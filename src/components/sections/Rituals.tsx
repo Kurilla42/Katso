@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useLayoutEffect, useRef, forwardRef } from 'react';
@@ -64,19 +65,16 @@ const RitualCard = forwardRef<HTMLDivElement, { ritual: (typeof ritualsData)[0],
             className="ritual-card group"
             style={{ 
                 backgroundColor: ritual.bgColor,
-                pointerEvents: 'none'
+                willChange: 'transform, filter, opacity',
+                transformOrigin: '50% 0%',
             }}
             data-cursor={ritual.theme}
         >
             <div className={cn(
-                isDark ? 'dark-bg' : 'light-bg', 
-                "w-full h-full relative p-8 sm:p-12 md:p-16 flex flex-col justify-center"
-            )}>
-                <div className={cn(
-                    "paper-texture",
-                    "transition-opacity duration-400",
-                    isDark ? "group-hover:opacity-[0.2]" : "group-hover:opacity-[0.2]"
-                )}></div>
+                "paper-texture transition-opacity duration-400",
+                isDark ? "group-hover:opacity-[0.2]" : "group-hover:opacity-[0.2]"
+            )}></div>
+            <div className="absolute inset-0 p-8 sm:p-12 md:p-16">
                 <div className={cn(
                     "absolute top-1/2 -translate-y-1/2 right-0 text-center select-none pointer-events-none text-[clamp(180px,28vw,540px)]",
                     "transition-colors duration-400",
@@ -87,7 +85,6 @@ const RitualCard = forwardRef<HTMLDivElement, { ritual: (typeof ritualsData)[0],
                         0{index + 1}
                     </span>
                 </div>
-
                 <div className="grid grid-cols-12 gap-x-4 h-full items-center">
                     <div className="col-span-11 md:col-span-6 lg:col-span-5 z-10">
                         <h3 className={`font-display text-h1 uppercase animate-item ${textColor}`}>
@@ -110,7 +107,7 @@ RitualCard.displayName = 'RitualCard';
 
 const Rituals = () => {
     const componentRef = useRef<HTMLDivElement>(null);
-    const pinContainerRef = useRef<HTMLDivElement>(null);
+    const stackRef = useRef<HTMLDivElement>(null);
     const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
     useLayoutEffect(() => {
@@ -120,124 +117,69 @@ const Rituals = () => {
         if (!cards.length) return;
 
         const mm = gsap.matchMedia(componentRef.current!);
-
+        
         mm.add({
-            isDesktop: `(min-width: 768px)`,
-            isMobile: `(max-width: 767px)`,
+            isDesktop: "(min-width: 768px)",
             isReduced: "(prefers-reduced-motion: reduce)"
         }, (context) => {
             const { isDesktop, isReduced } = context.conditions!;
-            const pinContainer = pinContainerRef.current!;
 
-            if (isDesktop && !isReduced) {
-                // --- DESKTOP chkstepan ANIMATION ---
-                pinContainer.style.height = '100svh';
-                pinContainer.style.position = 'relative';
-                pinContainer.style.overflow = 'hidden';
-                
-                const stackEl = pinContainer.firstElementChild as HTMLElement;
-                stackEl.style.position = 'relative';
-                stackEl.style.width = '100%';
-                stackEl.style.height = '100%';
-                stackEl.style.display = 'flex';
-                stackEl.style.alignItems = 'center';
-                stackEl.style.justifyContent = 'center';
-
-                cards.forEach(card => {
-                    Object.assign(card.style, {
-                        position: 'absolute',
-                        top: '50%',
-                        left: '50%',
-                        width: `calc(100vw - clamp(2rem, 6vw, 10rem))`,
-                        height: `clamp(420px, 38vw, 620px)`,
-                        borderRadius: '4px',
-                        overflow: 'hidden',
-                        willChange: 'transform,opacity,filter',
-                    });
-                });
-                
-                const animateCardContentIn = (card: HTMLDivElement) => {
+            if (!isReduced) {
+                // Animate content inside each card
+                cards.forEach((card) => {
                     const animatedItems = card.querySelectorAll('.animate-item');
-                    gsap.fromTo(animatedItems, { y: 20, opacity: 0 }, {
-                        y: 0, opacity: 1, stagger: 0.05, duration: 0.4, ease: 'power2.out',
+                    gsap.from(animatedItems, {
+                        y: 40, opacity: 0, ease: EASES.slide, stagger: 0.06, duration: 0.7,
+                        scrollTrigger: { 
+                            trigger: card, 
+                            start: isDesktop ? 'top 70%' : 'top 80%', 
+                            toggleActions: 'play none none reverse' 
+                        },
                     });
-                };
+                });
 
-                gsap.set(cards, { y: window.innerHeight, opacity: 0, scale: 1, filter: 'blur(0px)', transform: 'translate(-50%, -50%)' });
-                gsap.set(cards[0], { y: 0, opacity: 1, pointerEvents: 'auto' });
-                cards[0].setAttribute('data-cursor-hover', 'link');
-                
-                animateCardContentIn(cards[0]);
-
-                const tl = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: pinContainer,
-                        pin: true,
-                        scrub: 1,
-                        start: 'top top',
-                        end: `+=${cards.length * window.innerHeight * 0.8}`,
-                        onUpdate: () => {
-                            cards.forEach((card) => {
-                                const cardOpacity = gsap.getProperty(card, 'opacity') as number;
-                                if (cardOpacity > 0.95) {
-                                    if (card.style.pointerEvents !== 'auto') {
-                                        card.style.pointerEvents = 'auto';
-                                        card.setAttribute('data-cursor-hover', 'link');
-                                    }
-                                } else {
-                                     if (card.style.pointerEvents !== 'none') {
-                                        card.style.pointerEvents = 'none';
-                                        card.removeAttribute('data-cursor-hover');
-                                     }
-                                }
-                            });
+                // Card slide-up entrance animation
+                cards.forEach((card, index) => {
+                    if (index === 0) return;
+                    gsap.fromTo(card,
+                      { y: 80 },
+                      {
+                        y: 0,
+                        scrollTrigger: {
+                          trigger: card,
+                          start: 'top 100%',
+                          end: 'top 60%',
+                          scrub: 0.4
                         }
-                    },
+                      }
+                    );
                 });
 
-                cards.forEach((card, i) => {
-                    if (i === cards.length - 1) return;
+                if (isDesktop) {
+                    // DESKTOP-ONLY STICKY DEPTH ANIMATION
+                    cards.forEach((card, cardIndex) => {
+                        if (cardIndex === cards.length - 1) return;
 
-                    const label = `card-${i}`;
-                    tl.addLabel(label);
+                        const cardsThatTrigger = cards.slice(cardIndex + 1);
 
-                    tl.to(card, { y: -120, scale: 0.92, opacity: 0.5, filter: 'blur(2px)', duration: 1, ease: 'power2.inOut' }, label);
-                    tl.to(cards[i + 1], { y: 0, opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1, ease: 'power2.inOut', onStart: () => animateCardContentIn(cards[i+1]) }, label);
-                    
-                    for (let j = 0; j < i; j++) {
-                        const recededCard = cards[j];
-                        const distance = i - j;
-                        tl.to(recededCard, {
-                            y: -120 - (distance * 16),
-                            scale: Math.max(0.82, 0.92 - (distance * 0.015)),
-                            opacity: Math.max(0.15, 0.5 - (distance * 0.08)),
-                            filter: `blur(${Math.min(4, 2 + (distance * 0.5))}px)`,
-                            duration: 1, ease: 'power2.inOut'
-                        }, label);
-                    }
-                });
+                        cardsThatTrigger.forEach((triggerCard, stepIndex) => {
+                            const scale = Math.max(0.88, 1 - 0.025 * (stepIndex + 1));
+                            const opacity = Math.max(0.30, 0.85 - stepIndex * 0.12);
+                            const blur = Math.min(5, 1.2 + stepIndex * 0.5); 
 
-            } else {
-                // --- MOBILE & REDUCED MOTION FALLBACK ---
-                pinContainer.style.height = 'auto';
-                pinContainer.style.overflow = 'visible';
-                if(pinContainer.firstElementChild) (pinContainer.firstElementChild as HTMLElement).style.display = 'block';
-
-                cards.forEach(card => {
-                    Object.assign(card.style, {
-                        position: 'relative', transform: 'none', top: 'auto', left: 'auto',
-                        width: '100%', height: '480px', marginBottom: '16px', borderRadius: '0.375rem',
-                        opacity: '1', filter: 'blur(0px)', willChange: 'auto', pointerEvents: 'auto'
-                    });
-                    card.removeAttribute('data-cursor-hover');
-                });
-
-                if (!isReduced) {
-                    cards.forEach((card) => {
-                        const animatedItems = card.querySelectorAll('.animate-item');
-                        gsap.from(animatedItems, {
-                            y: 40, opacity: 0, ease: EASES.slide, stagger: 0.06, duration: 0.7,
-                            scrollTrigger: { trigger: card, start: 'top 80%', toggleActions: 'play none none reverse' },
+                            ScrollTrigger.create({
+                                trigger: triggerCard,
+                                start: 'top 90%',
+                                end: 'top 30%',
+                                scrub: 0.6,
+                                animation: gsap.to(card, {
+                                    scale: scale,
+                                    opacity: opacity,
+                                    filter: `blur(${blur}px)`,
+                                    ease: 'none',
+                                    overwrite: 'auto'
+                                })
+                            });
                         });
                     });
                 }
@@ -246,6 +188,8 @@ const Rituals = () => {
 
         return () => mm.revert();
     }, []);
+
+    const peekAmount = 72; // in pixels
 
     return (
         <section id="rituals" ref={componentRef}>
@@ -264,17 +208,20 @@ const Rituals = () => {
                   </div>
                 </div>
             </div>
-            <div ref={pinContainerRef} className="rituals-pin-container">
-                <div className="rituals-stack">
-                    {ritualsData.map((ritual, index) => (
-                        <RitualCard
-                            key={index}
-                            ritual={ritual}
-                            index={index}
-                            ref={(el) => (cardsRef.current[index] = el)}
-                        />
-                    ))}
-                </div>
+            <div ref={stackRef} className="rituals-stack relative bg-graphite">
+                {ritualsData.map((ritual, index) => (
+                    <div 
+                      key={index} 
+                      className="ritual-card-wrapper h-screen sticky"
+                      style={{ top: index * peekAmount, zIndex: index + 1 }}
+                    >
+                      <RitualCard
+                          ritual={ritual}
+                          index={index}
+                          ref={(el) => (cardsRef.current[index] = el)}
+                      />
+                    </div>
+                ))}
             </div>
         </section>
     );
