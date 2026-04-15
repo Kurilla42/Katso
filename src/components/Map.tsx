@@ -16,7 +16,6 @@ const Map = () => {
     
     const token = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
     if (!token) {
-        console.error("Mapbox access token is not set. Please set NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN in your .env.local file.");
         if (mapContainer.current) {
             mapContainer.current.innerHTML = '<div class="w-full h-full bg-gray-700 flex items-center justify-center text-center text-textLightMuted p-4">Map cannot be displayed. <br/>Mapbox token missing.</div>'
         }
