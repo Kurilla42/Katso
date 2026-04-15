@@ -20,7 +20,7 @@ const Separator = () => (
 
 const MarqueeItem = ({ text }: { text: string }) => (
   <div className="flex items-center shrink-0">
-    <span className="font-body text-lg md:text-xl text-textDark whitespace-nowrap">
+    <span className="font-body text-body-lg text-textDark whitespace-nowrap">
       {text}
     </span>
     <Separator />

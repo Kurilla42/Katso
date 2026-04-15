@@ -78,26 +78,26 @@ const RitualCard = forwardRef<HTMLDivElement, { ritual: (typeof ritualsData)[0],
                     isDark ? "group-hover:opacity-[0.2]" : "group-hover:opacity-[0.2]"
                 )}></div>
                 <div className={cn(
-                    "absolute top-1/2 -translate-y-1/2 right-0 -mr-16 md:mr-0 text-center select-none pointer-events-none",
+                    "absolute top-1/2 -translate-y-1/2 right-0 text-center select-none pointer-events-none text-[clamp(180px,28vw,540px)]",
                     "transition-colors duration-400",
                      bigNumberColor,
                     isDark ? "group-hover:text-white/20" : "group-hover:text-black/15"
                 )}>
-                    <span className="font-display leading-none text-[20rem] md:text-[28rem] lg:text-[36rem]">
+                    <span className="font-display leading-none">
                         0{index + 1}
                     </span>
                 </div>
 
                 <div className="grid grid-cols-12 gap-x-4 h-full items-center">
                     <div className="col-span-11 md:col-span-6 lg:col-span-5 z-10">
-                        <h3 className={`font-display text-5xl sm:text-7xl md:text-8xl uppercase animate-item ${textColor}`}>
+                        <h3 className={`font-display text-h1 uppercase animate-item ${textColor}`}>
                             {ritual.title}
                         </h3>
-                        <p className={`mt-6 text-base md:text-lg max-w-md animate-item ${mutedTextColor}`}>
+                        <p className={`mt-6 text-body-lg animate-item ${mutedTextColor} max-w-[min(560px,45vw)]`}>
                             {ritual.description}
                         </p>
-                        <button className={`mt-8 caption animate-item ${textColor} rounded-sm focus-visible:outline-none focus-visible:ring-2 ${isDark ? 'focus-visible:ring-white' : 'focus-visible:ring-textDark'}`}>
-                            Подробнее &rarr;
+                        <button className={`mt-8 animate-item ${textColor} rounded-sm focus-visible:outline-none focus-visible:ring-2 ${isDark ? 'focus-visible:ring-white' : 'focus-visible:ring-textDark'}`}>
+                            <span className='caption'>Подробнее &rarr;</span>
                         </button>
                     </div>
                 </div>
@@ -130,13 +130,30 @@ const Rituals = () => {
             const pinContainer = pinContainerRef.current!;
 
             if (isDesktop && !isReduced) {
-                // --- DESKTOP "chkstepan" ANIMATION ---
-
-                pinContainer.classList.add('h-svh', 'relative', 'overflow-hidden');
-                pinContainer.firstElementChild?.classList.add('relative', 'w-full', 'h-full', 'flex', 'items-center', 'justify-center');
+                // --- DESKTOP chkstepan ANIMATION ---
+                pinContainer.style.height = '100svh';
+                pinContainer.style.position = 'relative';
+                pinContainer.style.overflow = 'hidden';
+                
+                const stackEl = pinContainer.firstElementChild as HTMLElement;
+                stackEl.style.position = 'relative';
+                stackEl.style.width = '100%';
+                stackEl.style.height = '100%';
+                stackEl.style.display = 'flex';
+                stackEl.style.alignItems = 'center';
+                stackEl.style.justifyContent = 'center';
 
                 cards.forEach(card => {
-                    card.classList.add('absolute', 'top-1/2', 'left-1/2', 'w-[min(1400px,92vw)]', 'h-[480px]', 'rounded-md', 'overflow-hidden', 'will-change-[transform,opacity,filter]');
+                    Object.assign(card.style, {
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        width: `calc(100vw - clamp(2rem, 6vw, 10rem))`,
+                        height: `clamp(420px, 38vw, 620px)`,
+                        borderRadius: '4px',
+                        overflow: 'hidden',
+                        willChange: 'transform,opacity,filter',
+                    });
                 });
                 
                 const animateCardContentIn = (card: HTMLDivElement) => {
@@ -241,7 +258,7 @@ const Rituals = () => {
                   <div className="paper-texture"></div>
                   <div className="container py-16 md:py-24">
                       <p className="caption text-textLightMuted">Процедуры</p>
-                      <h2 className="font-display text-6xl sm:text-8xl md:text-9xl text-textLight uppercase mt-2">
+                      <h2 className="font-display text-h1 text-textLight uppercase mt-2">
                           Ритуалы <br /> Красоты
                       </h2>
                   </div>

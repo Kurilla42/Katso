@@ -14,7 +14,7 @@ type AnimatedCharactersProps = {
   duration?: number;
 };
 
-const AnimatedCharacters = forwardRef<HTMLHeadingElement, AnimatedCharactersProps>(({ 
+const AnimatedCharacters = forwardRef<HTMLDivElement, AnimatedCharactersProps>(({ 
   text, 
   className,
   stagger = 0.025,
@@ -25,7 +25,7 @@ const AnimatedCharacters = forwardRef<HTMLHeadingElement, AnimatedCharactersProp
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    const el = (ref as React.RefObject<HTMLHeadingElement>).current;
+    const el = (ref as React.RefObject<HTMLDivElement>).current;
     if (!el) return;
 
     const letterSpans = el.querySelectorAll('.letter');
@@ -167,7 +167,7 @@ const WhyKatso = () => {
         <div className="grid-overlay"></div>
         <div className="container">
             <p className="caption text-textLightMuted">Почему мы</p>
-            <h2 className="mt-4 font-display text-6xl sm:text-8xl md:text-9xl text-textLight uppercase">
+            <h2 className="mt-4 font-display text-h1 text-textLight uppercase">
               <AnimatedCharacters ref={headline1Ref} text="ПОЧЕМУ" />
               <AnimatedCharacters ref={headline2Ref} text="ВЫБИРАЮТ" />
               <AnimatedCharacters ref={headline3Ref} text="KATSO" className="text-primary" />
@@ -191,15 +191,15 @@ const WhyKatso = () => {
                   <div className="paper-texture"></div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8 items-center">
                       <div className={cn(isDark ? 'text-textLight' : 'text-textDark')}>
-                          <h3 className="font-display text-4xl md:text-5xl uppercase">
+                          <h3 className="font-display text-h2 uppercase">
                               {item.title}
                           </h3>
-                          <p className={cn('mt-4 max-w-md text-base md:text-lg', isDark ? 'text-textLightMuted' : 'text-textDarkMuted')}>
+                          <p className={cn('mt-4 text-body-lg max-w-[min(560px,45vw)]', isDark ? 'text-textLightMuted' : 'text-textDarkMuted')}>
                               {item.description}
                           </p>
                       </div>
                       <div className="relative min-h-[160px] flex items-center justify-center md:justify-end">
-                          <div className="w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
+                          <div className="w-32 h-32 md:w-[15vw] md:h-[15vw] max-w-[200px] max-h-[200px] flex-shrink-0">
                               <item.icon className={cn(isDark ? 'text-white/40' : 'text-black/30')} />
                           </div>
                           <span className={cn('absolute bottom-0 right-0 italic text-sm', isDark ? 'text-textLightMuted/70' : 'text-textDarkMuted/70')}>

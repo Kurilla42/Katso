@@ -8,7 +8,7 @@ import StarIcon from '@/components/icons/Star';
 
 const MarqueeItem = () => (
   <div className="flex items-center shrink-0">
-    <span className="mx-8 text-6xl md:text-8xl font-display uppercase text-textLight">
+    <span className="mx-8 text-h2 font-display uppercase text-textLight">
       KATSO
     </span>
     <StarIcon className="w-8 h-8 md:w-12 md:h-12 text-accent" />

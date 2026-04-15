@@ -20,18 +20,31 @@
     overflow: auto;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-display tracking-display;
   }
 
-  h1 { @apply leading-display; }
-  h2 { @apply leading-display; }
-  h3 { @apply leading-display; }
+  h1 {
+    @apply leading-display;
+  }
+  h2 {
+    @apply leading-display;
+  }
+  h3 {
+    @apply leading-display;
+  }
 }
 
 @layer components {
   .container {
-    @apply w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12;
+    @apply w-full mx-auto;
+    padding-left: clamp(1rem, 3vw, 5rem);
+    padding-right: clamp(1rem, 3vw, 5rem);
   }
 
   .caption {
@@ -59,8 +72,13 @@
   .grid-overlay {
     @apply absolute inset-0 w-full h-full pointer-events-none;
     --grid-color: theme('colors.gridOnLight');
-    background-image:
-      repeating-linear-gradient(to right, transparent, transparent calc(12.5% - 1px), var(--grid-color) calc(12.5% - 1px), var(--grid-color) 12.5%);
+    background-image: repeating-linear-gradient(
+      to right,
+      transparent,
+      transparent calc(12.5% - 1px),
+      var(--grid-color) calc(12.5% - 1px),
+      var(--grid-color) 12.5%
+    );
     background-size: 100% 100%;
   }
 

@@ -66,10 +66,10 @@ const MasterRow = React.forwardRef<
           isHovered ? 'text-textDark' : 'text-textLight'
         )}
       >
-        <h3 className="font-display text-4xl md:text-5xl uppercase">
+        <h3 className="font-display text-h3 uppercase">
           {master.name}
         </h3>
-        <p className={cn('md:text-lg', isHovered ? 'text-textDarkMuted' : 'text-textLightMuted')}>
+        <p className={cn('text-body-lg', isHovered ? 'text-textDarkMuted' : 'text-textLightMuted')}>
           {master.role}
         </p>
       </div>
@@ -195,7 +195,7 @@ const Masters = () => {
       <div className="grid-overlay"></div>
       <div className="container py-16 md:py-40 relative">
         <p className="caption text-textLightMuted">Команда</p>
-        <h2 className="font-display text-6xl sm:text-8xl md:text-9xl text-textLight uppercase mt-2">
+        <h2 className="font-display text-h1 text-textLight uppercase mt-2">
             Наши <br /> Мастера
         </h2>
       </div>
@@ -239,7 +239,7 @@ const Masters = () => {
       
       <div
         ref={imageWrapperRef}
-        className="hidden md:block fixed top-1/2 right-[5vw] w-[24vw] max-w-[320px] aspect-[4/5] z-20 pointer-events-none"
+        className="hidden md:block fixed top-1/2 right-[5vw] w-[clamp(280px,24vw,420px)] aspect-[4/5] z-20 pointer-events-none"
         style={{ transform: 'translateY(-50%)' }}
       >
         <div className="relative w-full h-full rounded-sm overflow-hidden">

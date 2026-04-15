@@ -1,6 +1,10 @@
+'use client';
+
 import { colors } from '@/lib/design-tokens';
 import Map from '@/components/Map';
 import StarIcon from '@/components/icons/Star';
+import { useRef, useLayoutEffect } from 'react';
+import { gsap } from 'gsap';
 
 const footerLinks = [
   {
@@ -22,6 +26,31 @@ const footerLinks = [
 ];
 
 const Footer = () => {
+    const wordMarkRef = useRef<HTMLHeadingElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useLayoutEffect(() => {
+        if (!wordMarkRef.current || !containerRef.current) return;
+
+        const el = wordMarkRef.current;
+        const container = containerRef.current;
+
+        const fitText = () => {
+            const containerWidth = container.offsetWidth / 2;
+            const currentFontSize = parseFloat(window.getComputedStyle(el).fontSize);
+            const scale = containerWidth / el.scrollWidth;
+            const newSize = currentFontSize * scale * 0.95; // 0.95 for a bit of margin
+            gsap.set(el, { fontSize: newSize });
+        }
+
+        fitText();
+
+        window.addEventListener('resize', fitText);
+        return () => window.removeEventListener('resize', fitText);
+
+    }, []);
+
+
   return (
     <footer
       id="footer"
@@ -32,17 +61,17 @@ const Footer = () => {
       <div className="relative">
         <div className="paper-texture"></div>
         <div className="grid-overlay"></div>
-        <div className="container relative">
-          <div className="relative h-[300px] md:h-[500px] flex items-end overflow-hidden">
+        <div className="container" ref={containerRef}>
+          <div className="relative h-[clamp(300px,30vw,500px)] flex items-end overflow-hidden">
             {/* Left: Giant Wordmark */}
-            <div className="absolute left-0 bottom-0 -translate-x-1/4 md:-translate-x-1/6 z-0">
-              <h2 className="font-display text-[18rem] md:text-[30rem] text-white/10 leading-none select-none">
+            <div className="absolute left-0 bottom-0 -translate-x-[15%] md:-translate-x-[10%] z-0">
+              <h2 ref={wordMarkRef} className="font-display text-white/10 leading-none select-none whitespace-nowrap">
                   KATSO
               </h2>
             </div>
 
             {/* Right: Map */}
-            <div className="relative w-full md:w-1/2 lg:w-5/12 h-[240px] md:h-[360px] ml-auto rounded-md overflow-hidden z-10">
+            <div className="relative w-full md:w-1/2 lg:w-5/12 h-[clamp(240px,25vw,400px)] ml-auto rounded-md overflow-hidden z-10">
                 <Map />
             </div>
           </div>
@@ -57,7 +86,7 @@ const Footer = () => {
                 <ul>
                   {column.links.map((link) => (
                     <li key={link} className="mt-2">
-                      <a href="#" className="text-textLight hover:text-accent transition-colors duration-200 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white" data-cursor-hover="link">
+                      <a href="#" className="text-body text-textLight hover:text-accent transition-colors duration-200 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white" data-cursor-hover="link">
                         {link}
                       </a>
                     </li>
@@ -72,7 +101,7 @@ const Footer = () => {
 
           {/* Bottom CTA */}
           <a href="#" className="group block text-center py-8 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white" data-cursor-hover="link">
-              <span className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-textLight uppercase group-hover:text-accent transition-colors duration-200">
+              <span className="font-display text-h1 text-textLight uppercase group-hover:text-accent transition-colors duration-200">
                   Записаться на ритуал
                   <span className="inline-block transition-transform duration-400 group-hover:translate-x-2 group-hover:-translate-y-2">&nbsp;↗</span>
               </span>

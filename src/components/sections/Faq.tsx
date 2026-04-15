@@ -91,7 +91,7 @@ const AccordionItem = ({
         className="w-full flex justify-between items-center py-6 text-left gap-4 focus-visible:outline-none focus-visible:bg-black/5 rounded-sm"
         data-cursor-hover="link"
       >
-        <span className="text-lg md:text-xl font-medium">{item.question}</span>
+        <span className="text-body-lg font-medium">{item.question}</span>
         <div className="relative w-4 h-4 flex-shrink-0">
           <span className="absolute w-full h-px bg-textDark top-1/2 -translate-y-1/2"></span>
           <span
@@ -103,7 +103,7 @@ const AccordionItem = ({
         </div>
       </button>
       <div ref={contentRef} className="h-0 overflow-hidden">
-        <p className="pb-6 text-textDarkMuted max-w-2xl">{item.answer}</p>
+        <p className="pb-6 text-textDarkMuted max-w-[min(640px,45vw)]">{item.answer}</p>
       </div>
     </div>
   );
@@ -129,13 +129,13 @@ const Faq = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16">
           {/* Left Column: Images */}
           <div className="hidden lg:block lg:col-span-3 space-y-12 self-center">
-             <FaqImage imageId="faq-image-1" className="aspect-[4/5] w-full max-w-[300px] mx-auto" />
-             <FaqImage imageId="faq-image-2" className="aspect-[4/5] w-full max-w-[300px] mx-auto" />
+             <FaqImage imageId="faq-image-1" className="aspect-[4/5] w-full" />
+             <FaqImage imageId="faq-image-2" className="aspect-[4/5] w-full" />
           </div>
 
           {/* Center Column: FAQ */}
           <div className="lg:col-span-6">
-            <h2 className="font-display text-8xl md:text-[160px] lg:text-[200px] uppercase text-textDark leading-none">
+            <h2 className="font-display text-hero uppercase text-textDark leading-none">
               FAQ
             </h2>
             <div className="mt-8 md:mt-12">

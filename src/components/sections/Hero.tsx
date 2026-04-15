@@ -109,7 +109,7 @@ const Hero = () => {
         <div className="container pt-32 sm:pt-40">
           <h1
             ref={headlineRef}
-            className="font-display text-6xl sm:text-8xl md:text-9xl lg:text-[160px] xl:text-[200px] text-textLight uppercase"
+            className="font-display text-[14vw] leading-display text-textLight uppercase"
           >
             <div className="overflow-hidden">
               <span className="line-inner block">Создаём</span>
@@ -131,11 +131,11 @@ const Hero = () => {
             <div ref={countersRef} className="flex flex-wrap gap-8 sm:gap-12">
               {stats.map((stat, index) => (
                 <div key={index} className="flex items-baseline gap-2">
-                  <span className="counter-value font-display text-4xl sm:text-5xl text-textLight">
+                  <span className="counter-value font-display text-h3 text-textLight">
                     {stat.value}
                   </span>
                   {stat.suffix && (
-                    <span className="font-display text-4xl sm:text-5xl text-primary">
+                    <span className="font-display text-h3 text-primary">
                       {stat.suffix}
                     </span>
                   )}
