@@ -96,44 +96,6 @@
     scrollbar-width: none; /* Firefox */
   }
 
-  #rituals {
-    --card-height: 480px;
-    --card-slot: 192px;
-    --stack-peek: 160px;
-  }
-
-  @media (max-height: 900px) {
-    #rituals {
-      --card-height: 440px;
-      --card-slot: 170px;
-      --stack-peek: 140px;
-    }
-  }
-
-  @media (max-height: 760px) {
-    #rituals {
-      --card-height: 400px;
-      --card-slot: 150px;
-      --stack-peek: 120px;
-    }
-  }
-
-  .ritual-card {
-    position: sticky;
-    height: var(--card-height);
-    will-change: transform, filter, opacity;
-    transform-origin: 50% 0%;
-    box-sizing: border-box;
-  }
-
-  .ritual-card:not(:first-child) {
-    margin-top: calc(-1 * (var(--card-height) - var(--card-slot)));
-  }
-
-  .ritual-card + .ritual-card {
-    border-top: 8px solid theme('colors.text');
-  }
-
   @media (max-width: 767px) {
     .rituals-stack {
       @apply snap-y snap-mandatory;
@@ -151,5 +113,145 @@
     .ritual-card + .ritual-card {
       border-top: none;
     }
+  }
+}
+
+/* ─── RITUALS STACKING SECTION ─────────────────────────── */
+
+#rituals {
+  --card-height: 380px;
+  --stack-peek: 110px;
+  --card-gap: 12px;
+  --section-bg: #4A4F55;
+
+  background-color: var(--section-bg);
+}
+
+@media (max-height: 900px) {
+  #rituals {
+    --card-height: 340px;
+    --stack-peek: 96px;
+  }
+}
+
+@media (max-height: 760px) {
+  #rituals {
+    --card-height: 300px;
+    --stack-peek: 80px;
+  }
+}
+
+.rituals-stack {
+  position: relative;
+  padding-top: var(--card-gap);
+}
+
+.ritual-card {
+  position: sticky;
+  height: var(--card-height);
+  width: 100%;
+  margin-bottom: var(--card-gap);
+  overflow: hidden;
+  box-sizing: border-box;
+  transform-origin: 50% 0%;
+  will-change: transform, filter, opacity;
+  isolation: isolate;
+}
+
+.ritual-card-inner {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: stretch;
+  padding: clamp(20px, 2.5vw, 40px) clamp(24px, 4vw, 80px);
+  gap: clamp(24px, 3vw, 60px);
+}
+
+.ritual-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+}
+
+.ritual-card-headline {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 5.5vw, 96px);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.ritual-card-description {
+  font-family: var(--font-body);
+  font-size: clamp(13px, 0.95vw, 16px);
+  line-height: 1.55;
+  max-width: 460px;
+  margin: 0;
+  align-self: center;
+  text-align: center;
+  width: 100%;
+}
+
+.ritual-card-link {
+  font-family: var(--font-display);
+  font-size: clamp(12px, 0.9vw, 15px);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1.5px;
+  align-self: center;
+}
+
+.ritual-card-numeral {
+  font-family: var(--font-display);
+  font-size: clamp(160px, 18vw, 320px);
+  line-height: 0.8;
+  color: transparent;
+  align-self: center;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* Mobile fallback */
+@media (max-width: 767px) {
+  #rituals {
+    --card-height: auto;
+    --card-gap: 12px;
+  }
+
+  .ritual-card {
+    position: relative;
+    height: auto;
+    min-height: 320px;
+  }
+
+  .ritual-card-inner {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .ritual-card-numeral {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 120px;
+    opacity: 0.6;
+  }
+
+  .ritual-card-content {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .ritual-card-description,
+  .ritual-card-link {
+    text-align: left;
+    align-self: flex-start;
   }
 }

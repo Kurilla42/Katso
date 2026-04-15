@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useLayoutEffect, useRef, forwardRef } from 'react';
+import React, { useLayoutEffect, useRef, forwardRef, CSSProperties } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { colors } from '@/lib/design-tokens';
@@ -52,69 +52,99 @@ const ritualsData = [
   },
 ];
 
-const RitualCard = forwardRef<HTMLDivElement, { ritual: (typeof ritualsData)[0], index: number }>(({ ritual, index }, ref) => {
-    const isDark = ritual.theme === 'dark';
-    const textColor = isDark ? 'text-textLight' : 'text-textDark';
-    const textMutedColor = isDark ? 'text-textLightMuted' : 'text-textDarkMuted';
+interface RitualCardProps {
+  index: number;
+  totalCards: number;
+  bgColor: string;
+  textColor?: 'light' | 'dark';
+  numeral: string;
+  headline: string;
+  description: string;
+  linkLabel: string;
+  linkHref: string;
+}
+
+const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
+  (
+    {
+      index,
+      totalCards,
+      bgColor,
+      textColor = 'light',
+      numeral,
+      headline,
+      description,
+      linkLabel,
+      linkHref,
+    },
+    ref
+  ) => {
+    const isLight = textColor === 'light';
+
+    const style: CSSProperties = {
+      backgroundColor: bgColor,
+      top: `calc(${index} * var(--stack-peek))`,
+      zIndex: index + 1,
+    };
 
     return (
-        <div
-            ref={ref}
-            className={cn(
-                'ritual-card group rounded-md overflow-hidden relative',
-                isDark ? 'dark-bg' : 'light-bg'
-            )}
-            style={{ 
-                backgroundColor: ritual.bgColor,
-                top: `calc(${index} * var(--stack-peek))`,
-                zIndex: index + 1,
-            }}
-            data-cursor={ritual.theme}
-        >
-            <div className="paper-texture"></div>
-            <div className="grid-overlay"></div>
-            
-            <div 
-              className="card-numeral absolute right-[clamp(1rem,3vw,5rem)] top-0 h-full flex items-center pointer-events-none"
-              style={{
-                fontSize: 'clamp(160px, 20vw, 360px)',
-                lineHeight: 0.8,
-                color: 'transparent',
-                WebkitTextStroke: isDark ? '2px rgba(255, 255, 255, 0.18)' : '2px rgba(0, 0, 0, 0.1)',
-              } as React.CSSProperties}
-            >
-              <span className="font-display">0{index + 1}</span>
-            </div>
-            
-            <div className="relative z-10 h-full flex flex-col justify-between p-6 sm:p-8 md:p-12">
-                <div 
-                  className="card-top-band"
-                  style={{ minHeight: 'var(--stack-peek)' }}
-                >
-                    <h3 className={`font-display text-card-headline uppercase animate-item ${textColor}`}>
-                        {ritual.title}
-                    </h3>
-                </div>
-                <div className="card-body">
-                    <p className={`animate-item text-body max-w-[480px] mt-6 ${textMutedColor}`} style={{lineHeight: 1.55 }}>
-                        {ritual.description}
-                    </p>
-                    <a href="#" className={cn(`inline-flex items-center gap-2 mt-8 animate-item font-display uppercase tracking-[0.08em] underline underline-offset-[6px] decoration-2 rounded-sm focus-visible:outline-none`, isDark ? 'focus-visible:ring-white' : 'focus-visible:ring-textDark', textColor)} style={{ fontSize: 'clamp(14px, 1.1vw, 20px)'}} data-cursor-hover="link">
-                        Подробнее
-                        <span className="text-xl relative -top-0.5">→</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    );
-});
-RitualCard.displayName = 'RitualCard';
+      <article className="ritual-card" style={style} ref={ref}>
+        <div className="paper-texture" />
+        <div className="grid-overlay" />
 
+        <div className="ritual-card-inner">
+          <div className="ritual-card-content">
+            <h3
+              className="ritual-card-headline"
+              style={{ color: isLight ? '#FFFFFF' : '#0B0B0B' }}
+            >
+              {headline}
+            </h3>
+            <p
+              className="ritual-card-description"
+              style={{
+                color: isLight
+                  ? 'rgba(255,255,255,0.65)'
+                  : 'rgba(11,11,11,0.65)',
+              }}
+            >
+              {description}
+            </p>
+            <a
+              href={linkHref}
+              className="ritual-card-link"
+              style={{
+                color: isLight
+                  ? 'rgba(255,255,255,0.95)'
+                  : 'rgba(11,11,11,0.95)',
+              }}
+              data-cursor-hover="link"
+            >
+              {linkLabel}
+            </a>
+          </div>
+
+          <div
+            className="ritual-card-numeral"
+            style={{
+              WebkitTextStroke: `2px ${
+                isLight ? 'rgba(255,255,255,0.18)' : 'rgba(11,11,11,0.18)'
+              }`,
+            }}
+          >
+            {numeral}
+          </div>
+        </div>
+      </article>
+    );
+  }
+);
+RitualCard.displayName = 'RitualCard';
 
 const Rituals = () => {
     const componentRef = useRef<HTMLDivElement>(null);
     const stackRef = useRef<HTMLDivElement>(null);
-    const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+    const cardsRef = useRef<(HTMLElement | null)[]>([]);
 
     useLayoutEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
@@ -126,12 +156,12 @@ const Rituals = () => {
             isReduced: "(prefers-reduced-motion: reduce)"
         }, (context) => {
             const { isDesktop, isReduced } = context.conditions as { isDesktop: boolean; isReduced: boolean };
-            const cards = cardsRef.current.filter(Boolean) as HTMLDivElement[];
+            const cards = cardsRef.current.filter(Boolean) as HTMLElement[];
             if (!cards.length) return;
 
             // Animate content inside each card
             cards.forEach((card) => {
-                const animatedItems = card.querySelectorAll('.animate-item');
+                const animatedItems = card.querySelectorAll('.ritual-card-headline, .ritual-card-description, .ritual-card-link');
                 gsap.from(animatedItems, {
                     y: 40, opacity: 0, ease: EASES.slide, stagger: 0.06, duration: 0.7,
                     scrollTrigger: { 
@@ -145,7 +175,7 @@ const Rituals = () => {
             if (isDesktop && !isReduced) {
                 // Card slide-up entrance animation
                 cards.forEach((card, index) => {
-                    if (index < 3) return;
+                    if (index < 3) return; // first three render at final y, no slide-in
                     gsap.fromTo(card,
                       { y: 60 },
                       {
@@ -213,10 +243,17 @@ const Rituals = () => {
                 {ritualsData.map((ritual, index) => (
                     <RitualCard
                         key={ritual.title}
-                        ritual={ritual}
                         index={index}
-                        ref={(el) => {
-                            if (el && cardsRef.current[index] === undefined) {
+                        totalCards={ritualsData.length}
+                        bgColor={ritual.bgColor}
+                        textColor={ritual.theme}
+                        numeral={`0${index + 1}`}
+                        headline={ritual.title}
+                        description={ritual.description}
+                        linkLabel="Подробнее →"
+                        linkHref="#"
+                        ref={(el: HTMLElement | null) => {
+                            if (el) {
                               cardsRef.current[index] = el;
                             }
                         }}
