@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useEffect, useRef, forwardRef } from 'react';
+import React, { useLayoutEffect, useRef, forwardRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { colors } from '@/lib/design-tokens';
 import { EASES } from '@/lib/animations';
+import { cn } from '@/lib/utils';
 
 const ritualsData = [
   {
@@ -60,13 +61,28 @@ const RitualCard = forwardRef<HTMLDivElement, { ritual: (typeof ritualsData)[0],
     return (
         <div
             ref={ref}
-            className="ritual-card h-svh w-full flex-shrink-0 snap-start md:sticky relative top-0"
-            style={{ backgroundColor: ritual.bgColor, zIndex: index }}
+            className="ritual-card group"
+            style={{ 
+                backgroundColor: ritual.bgColor,
+                pointerEvents: 'none'
+            }}
             data-cursor={ritual.theme}
         >
-            <div className={`${isDark ? 'dark-bg' : 'light-bg'} w-full h-full relative p-8 sm:p-12 md:p-16 flex flex-col justify-center`}>
-                <div className="paper-texture"></div>
-                <div className={`absolute top-1/2 -translate-y-1/2 right-0 -mr-16 md:mr-0 text-center select-none pointer-events-none ${bigNumberColor}`}>
+            <div className={cn(
+                isDark ? 'dark-bg' : 'light-bg', 
+                "w-full h-full relative p-8 sm:p-12 md:p-16 flex flex-col justify-center"
+            )}>
+                <div className={cn(
+                    "paper-texture",
+                    "transition-opacity duration-400",
+                    isDark ? "group-hover:opacity-[0.2]" : "group-hover:opacity-[0.2]"
+                )}></div>
+                <div className={cn(
+                    "absolute top-1/2 -translate-y-1/2 right-0 -mr-16 md:mr-0 text-center select-none pointer-events-none",
+                    "transition-colors duration-400",
+                     bigNumberColor,
+                    isDark ? "group-hover:text-white/20" : "group-hover:text-black/15"
+                )}>
                     <span className="font-display leading-none text-[20rem] md:text-[28rem] lg:text-[36rem]">
                         0{index + 1}
                     </span>
@@ -80,7 +96,7 @@ const RitualCard = forwardRef<HTMLDivElement, { ritual: (typeof ritualsData)[0],
                         <p className={`mt-6 text-base md:text-lg max-w-md animate-item ${mutedTextColor}`}>
                             {ritual.description}
                         </p>
-                        <button className={`mt-8 caption animate-item ${textColor} rounded-sm focus-visible:outline-none focus-visible:ring-2 ${isDark ? 'focus-visible:ring-white' : 'focus-visible:ring-textDark'}`} data-cursor-hover="link">
+                        <button className={`mt-8 caption animate-item ${textColor} rounded-sm focus-visible:outline-none focus-visible:ring-2 ${isDark ? 'focus-visible:ring-white' : 'focus-visible:ring-textDark'}`}>
                             Подробнее &rarr;
                         </button>
                     </div>
@@ -93,40 +109,129 @@ RitualCard.displayName = 'RitualCard';
 
 
 const Rituals = () => {
+    const componentRef = useRef<HTMLDivElement>(null);
+    const pinContainerRef = useRef<HTMLDivElement>(null);
     const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
-        
-        const cards = cardsRef.current.filter(c => c !== null) as HTMLDivElement[];
 
-        const mm = gsap.matchMedia();
-        mm.add('(prefers-reduced-motion: no-preference)', () => {
-            cards.forEach((card) => {
-                const animatedItems = card.querySelectorAll('.animate-item');
-                gsap.from(animatedItems, {
-                    y: 40,
-                    opacity: 0,
-                    ease: EASES.slide,
-                    stagger: 0.06,
-                    duration: 0.7,
+        const cards = cardsRef.current.filter(c => c !== null) as HTMLDivElement[];
+        if (!cards.length) return;
+
+        const mm = gsap.matchMedia(componentRef.current!);
+
+        mm.add({
+            isDesktop: `(min-width: 768px)`,
+            isMobile: `(max-width: 767px)`,
+            isReduced: "(prefers-reduced-motion: reduce)"
+        }, (context) => {
+            const { isDesktop, isReduced } = context.conditions!;
+            const pinContainer = pinContainerRef.current!;
+
+            if (isDesktop && !isReduced) {
+                // --- DESKTOP "chkstepan" ANIMATION ---
+
+                pinContainer.classList.add('h-svh', 'relative', 'overflow-hidden');
+                pinContainer.firstElementChild?.classList.add('relative', 'w-full', 'h-full', 'flex', 'items-center', 'justify-center');
+
+                cards.forEach(card => {
+                    card.classList.add('absolute', 'top-1/2', 'left-1/2', 'w-[min(1400px,92vw)]', 'h-[480px]', 'rounded-md', 'overflow-hidden', 'will-change-[transform,opacity,filter]');
+                });
+                
+                const animateCardContentIn = (card: HTMLDivElement) => {
+                    const animatedItems = card.querySelectorAll('.animate-item');
+                    gsap.fromTo(animatedItems, { y: 20, opacity: 0 }, {
+                        y: 0, opacity: 1, stagger: 0.05, duration: 0.4, ease: 'power2.out',
+                    });
+                };
+
+                gsap.set(cards, { y: window.innerHeight, opacity: 0, scale: 1, filter: 'blur(0px)', transform: 'translate(-50%, -50%)' });
+                gsap.set(cards[0], { y: 0, opacity: 1, pointerEvents: 'auto' });
+                cards[0].setAttribute('data-cursor-hover', 'link');
+                
+                animateCardContentIn(cards[0]);
+
+                const tl = gsap.timeline({
                     scrollTrigger: {
-                        trigger: card,
-                        start: 'top 80%',
-                        toggleActions: 'play none none reverse',
+                        trigger: pinContainer,
+                        pin: true,
+                        scrub: 1,
+                        start: 'top top',
+                        end: `+=${cards.length * window.innerHeight * 0.8}`,
+                        onUpdate: () => {
+                            cards.forEach((card) => {
+                                const cardOpacity = gsap.getProperty(card, 'opacity') as number;
+                                if (cardOpacity > 0.95) {
+                                    if (card.style.pointerEvents !== 'auto') {
+                                        card.style.pointerEvents = 'auto';
+                                        card.setAttribute('data-cursor-hover', 'link');
+                                    }
+                                } else {
+                                     if (card.style.pointerEvents !== 'none') {
+                                        card.style.pointerEvents = 'none';
+                                        card.removeAttribute('data-cursor-hover');
+                                     }
+                                }
+                            });
+                        }
                     },
                 });
-            });
+
+                cards.forEach((card, i) => {
+                    if (i === cards.length - 1) return;
+
+                    const label = `card-${i}`;
+                    tl.addLabel(label);
+
+                    tl.to(card, { y: -120, scale: 0.92, opacity: 0.5, filter: 'blur(2px)', duration: 1, ease: 'power2.inOut' }, label);
+                    tl.to(cards[i + 1], { y: 0, opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1, ease: 'power2.inOut', onStart: () => animateCardContentIn(cards[i+1]) }, label);
+                    
+                    for (let j = 0; j < i; j++) {
+                        const recededCard = cards[j];
+                        const distance = i - j;
+                        tl.to(recededCard, {
+                            y: -120 - (distance * 16),
+                            scale: Math.max(0.82, 0.92 - (distance * 0.015)),
+                            opacity: Math.max(0.15, 0.5 - (distance * 0.08)),
+                            filter: `blur(${Math.min(4, 2 + (distance * 0.5))}px)`,
+                            duration: 1, ease: 'power2.inOut'
+                        }, label);
+                    }
+                });
+
+            } else {
+                // --- MOBILE & REDUCED MOTION FALLBACK ---
+                pinContainer.style.height = 'auto';
+                pinContainer.style.overflow = 'visible';
+                if(pinContainer.firstElementChild) (pinContainer.firstElementChild as HTMLElement).style.display = 'block';
+
+                cards.forEach(card => {
+                    Object.assign(card.style, {
+                        position: 'relative', transform: 'none', top: 'auto', left: 'auto',
+                        width: '100%', height: '480px', marginBottom: '16px', borderRadius: '0.375rem',
+                        opacity: '1', filter: 'blur(0px)', willChange: 'auto', pointerEvents: 'auto'
+                    });
+                    card.removeAttribute('data-cursor-hover');
+                });
+
+                if (!isReduced) {
+                    cards.forEach((card) => {
+                        const animatedItems = card.querySelectorAll('.animate-item');
+                        gsap.from(animatedItems, {
+                            y: 40, opacity: 0, ease: EASES.slide, stagger: 0.06, duration: 0.7,
+                            scrollTrigger: { trigger: card, start: 'top 80%', toggleActions: 'play none none reverse' },
+                        });
+                    });
+                }
+            }
         });
 
-        return () => {
-            ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-            mm.revert();
-        };
+        return () => mm.revert();
     }, []);
 
     return (
-        <section id="rituals">
+        <section id="rituals" ref={componentRef}>
             <div
                 className="dark-bg"
                 style={{ backgroundColor: colors.graphite }}
@@ -142,15 +247,17 @@ const Rituals = () => {
                   </div>
                 </div>
             </div>
-            <div id="rituals-stack" className="md:h-auto h-svh overflow-y-auto snap-y snap-mandatory no-scrollbar md:overflow-visible md:snap-none motion-reduce:snap-none motion-reduce:overflow-visible">
-                {ritualsData.map((ritual, index) => (
-                    <RitualCard
-                        key={index}
-                        ritual={ritual}
-                        index={index}
-                        ref={(el) => (cardsRef.current[index] = el)}
-                    />
-                ))}
+            <div ref={pinContainerRef} className="rituals-pin-container">
+                <div className="rituals-stack">
+                    {ritualsData.map((ritual, index) => (
+                        <RitualCard
+                            key={index}
+                            ritual={ritual}
+                            index={index}
+                            ref={(el) => (cardsRef.current[index] = el)}
+                        />
+                    ))}
+                </div>
             </div>
         </section>
     );
