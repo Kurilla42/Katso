@@ -1,15 +1,88 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { useLenis } from '@/context/LenisContext';
 import { colors } from '@/lib/design-tokens';
+import StarIcon from '@/components/icons/Star';
+
+const MarqueeItem = () => (
+  <div className="flex items-center shrink-0">
+    <span className="mx-8 text-6xl md:text-8xl font-display uppercase text-textLight">
+      KATSO
+    </span>
+    <StarIcon className="w-8 h-8 md:w-12 md:h-12 text-orange" />
+  </div>
+);
 
 const BrandMarquee = () => {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const animation = useRef<gsap.core.Timeline | null>(null);
+  const lenis = useLenis();
+
+  useEffect(() => {
+    if (!wrapperRef.current) return;
+
+    const content = wrapperRef.current.querySelector<HTMLDivElement>('.marquee-content');
+    if (!content) return;
+
+    // Ensure content is wide enough for a seamless loop
+    const contentWidth = content.offsetWidth;
+    const duration = contentWidth / 80; // Speed: 80px/sec
+
+    animation.current = gsap.to(wrapperRef.current, {
+      x: -contentWidth,
+      ease: 'none',
+      duration: duration,
+      repeat: -1,
+    });
+
+    return () => {
+      animation.current?.kill();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!lenis || !animation.current) return;
+
+    const onScroll = (e: { velocity: number }) => {
+      const velocity = Math.abs(e.velocity);
+      let newTimeScale = 1 + velocity / 300;
+      newTimeScale = gsap.utils.clamp(0.5, 2.5, newTimeScale);
+
+      gsap.to(animation.current!, {
+        timeScale: newTimeScale,
+        duration: 0.2,
+        ease: 'power1.out',
+      });
+    };
+
+    lenis.on('scroll', onScroll);
+
+    return () => {
+      lenis.off('scroll', onScroll);
+      if (animation.current) {
+        gsap.to(animation.current, { timeScale: 1, duration: 0.2 });
+      }
+    };
+  }, [lenis]);
+
+  const marqueeItems = Array(15).fill(0).map((_, i) => <MarqueeItem key={i} />);
+
   return (
     <section
       id="brand-marquee"
-      className="dark-bg"
+      className="dark-bg overflow-hidden"
       style={{ backgroundColor: colors.black }}
     >
-      <div className="h-40 md:h-24">
-        <div className="container h-full flex items-center">
-          <p className="text-textLight">Brand Marquee Section</p>
+      <div className="py-8 md:py-4">
+        <div ref={wrapperRef} className="flex">
+          <div className="marquee-content flex shrink-0">
+            {marqueeItems}
+          </div>
+          <div className="marquee-content flex shrink-0" aria-hidden="true">
+            {marqueeItems}
+          </div>
         </div>
       </div>
     </section>
