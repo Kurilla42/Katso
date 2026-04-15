@@ -52,29 +52,29 @@ const MasterRow = React.forwardRef<
     onClick={onClick}
     className={cn(
       'w-full text-left border-b transition-colors duration-200 focus-visible:outline-none',
-      isHovered ? 'border-textDark bg-textLight' : 'border-white/20 bg-transparent',
-      isHovered ? 'focus-visible:ring-2 focus-visible:ring-textDark ring-offset-2 ring-offset-textLight' : 'focus-visible:ring-2 focus-visible:ring-white'
+      isHovered ? 'border-textDark/40 bg-border' : 'border-textDark/20 bg-transparent',
+      'focus-visible:ring-2 focus-visible:ring-textDark ring-offset-2 ring-offset-background'
     )}
     data-hovered={isHovered}
     data-cursor-hover="link"
-    data-cursor={isHovered ? 'light' : 'dark'}
+    data-cursor="light"
   >
     <div className="container py-6 flex justify-between items-center">
       <div
         className={cn(
           'flex flex-col md:flex-row md:items-baseline md:gap-6 transition-colors duration-200',
-          isHovered ? 'text-textDark' : 'text-textLight'
+          'text-textDark'
         )}
       >
         <h3 className="font-display text-h3 uppercase">
           {master.name}
         </h3>
-        <p className={cn('text-body-lg', isHovered ? 'text-textDarkMuted' : 'text-textLightMuted')}>
+        <p className={cn('text-body-lg', 'text-textDarkMuted')}>
           {master.role}
         </p>
       </div>
       <div className={cn('transition-transform duration-400 ease-slide md:hidden', isActive ? 'rotate-45' : 'rotate-0')}>
-        <svg className={cn('w-4 h-4', isHovered ? 'text-textDark' : 'text-textLight')} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg className="w-4 h-4 text-textDark" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8 0V16" stroke="currentColor" strokeWidth="1.5"/>
             <path d="M16 8L0 8" stroke="currentColor" strokeWidth="1.5"/>
         </svg>
@@ -187,15 +187,15 @@ const Masters = () => {
     <section
       id="masters"
       ref={component}
-      className="dark-bg relative"
-      style={{ backgroundColor: colors.backgroundDark }}
-      data-cursor="dark"
+      className="light-bg relative"
+      style={{ backgroundColor: colors.background }}
+      data-cursor="light"
     >
       <div className="paper-texture"></div>
       <div className="grid-overlay"></div>
       <div className="container py-16 md:py-40 relative">
-        <p className="caption text-textLightMuted">Команда</p>
-        <h2 className="font-display text-h1 text-textLight uppercase mt-2">
+        <p className="caption text-textDarkMuted">Команда</p>
+        <h2 className="font-display text-h1 text-textDark uppercase mt-2">
             Наши <br /> Мастера
         </h2>
       </div>
@@ -217,7 +217,7 @@ const Masters = () => {
                 ref={el => accordionContentsRef.current[index] = el}
                 className="h-0 overflow-hidden md:hidden"
               >
-                <div className="p-4 bg-textLight">
+                <div className="p-4 bg-border">
                   {placeholder && (
                     <div className="relative aspect-[4/5] w-full">
                        <Image

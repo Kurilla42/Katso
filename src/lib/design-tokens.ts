@@ -1,17 +1,24 @@
 export const colors = {
-  warmcharcoal: '#1C1A15',
-  graphite: '#4A4F55',
-  offwhite: '#E8DFD2',
-  chocolate: '#5A2E1B',
-  darkgreen: '#0E1410',
-  dustyblue: '#27406B',
-  burgundy: '#6B2B3A',
-  burgundyLt: '#7D4553',
-  wine: '#5A1A1F',
-  olive: '#6B5A1F',
-  bonefaq: '#F2EFEA',
-  accent: '#EC7E67',
-  primary: '#996B1F',
+  background: '#F5EEE6',
+  text: '#2C1A12',
+  primary: '#C4967A',
+  accent: '#7A9E7E',
+  border: '#E8D5B7',
+
+  // Compatibility mapping
+  warmcharcoal: '#2C1A12',
+  graphite: '#2C1A12',
+  offwhite: '#F5EEE6',
+  bonefaq: '#F5EEE6',
+
+  // Ritual & WhyKatso card colors
+  chocolate: '#C4967A',
+  darkgreen: '#7A9E7E',
+  dustyblue: '#E8D5B7',
+  burgundy: '#C4967A',
+  burgundyLt: '#7A9E7E',
+  wine: '#E8D5B7',
+  olive: '#C4967A',
 };
 
 export const typography = {

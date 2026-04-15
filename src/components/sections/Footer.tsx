@@ -54,9 +54,9 @@ const Footer = () => {
   return (
     <footer
       id="footer"
-      className="dark-bg"
-      style={{ backgroundColor: colors.backgroundDark }}
-      data-cursor="dark"
+      className="light-bg"
+      style={{ backgroundColor: colors.background }}
+      data-cursor="light"
     >
       <div className="relative">
         <div className="paper-texture"></div>
@@ -65,7 +65,7 @@ const Footer = () => {
           <div className="relative h-[clamp(300px,30vw,500px)] flex items-end overflow-hidden">
             {/* Left: Giant Wordmark */}
             <div className="absolute left-0 bottom-0 -translate-x-[15%] md:-translate-x-[10%] z-0">
-              <h2 ref={wordMarkRef} className="font-display text-white/10 leading-none select-none whitespace-nowrap">
+              <h2 ref={wordMarkRef} className="font-display text-textDark/10 leading-none select-none whitespace-nowrap">
                   KATSO
               </h2>
             </div>
@@ -82,11 +82,11 @@ const Footer = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {footerLinks.map((column) => (
               <div key={column.title}>
-                <h4 className="caption text-textLightMuted mb-4">{column.title}</h4>
+                <h4 className="caption text-textDarkMuted mb-4">{column.title}</h4>
                 <ul>
                   {column.links.map((link) => (
                     <li key={link} className="mt-2">
-                      <a href="#" className="text-body text-textLight hover:text-accent transition-colors duration-200 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white" data-cursor-hover="link">
+                      <a href="#" className="text-body text-textDark hover:text-accent transition-colors duration-200 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-textDark" data-cursor-hover="link">
                         {link}
                       </a>
                     </li>
@@ -97,11 +97,11 @@ const Footer = () => {
           </div>
 
           {/* Separator */}
-          <div className="border-b border-white/10 my-16 md:my-24" />
+          <div className="border-b border-textDark/10 my-16 md:my-24" />
 
           {/* Bottom CTA */}
-          <a href="#" className="group block text-center py-8 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white" data-cursor-hover="link">
-              <span className="font-display text-h1 text-textLight uppercase group-hover:text-accent transition-colors duration-200">
+          <a href="#" className="group block text-center py-8 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-textDark" data-cursor-hover="link">
+              <span className="font-display text-h1 text-textDark uppercase group-hover:text-accent transition-colors duration-200">
                   Записаться на ритуал
                   <span className="inline-block transition-transform duration-400 group-hover:translate-x-2 group-hover:-translate-y-2">&nbsp;↗</span>
               </span>
@@ -110,7 +110,7 @@ const Footer = () => {
         
         {/* Bottom bar */}
         <div className="container pb-6">
-          <div className="border-t border-white/10 pt-4 flex justify-between items-center text-sm text-textLightMuted">
+          <div className="border-t border-textDark/10 pt-4 flex justify-between items-center text-sm text-textDarkMuted">
               <span>© {new Date().getFullYear()} KATSO Studio. All rights reserved.</span>
               <div className="flex items-center gap-2">
                   <span>Made with</span>

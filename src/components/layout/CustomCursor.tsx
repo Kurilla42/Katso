@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { cn } from '@/lib/utils';
+import { colors } from '@/lib/design-tokens';
 
 const CustomCursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -87,7 +88,7 @@ const CustomCursor = () => {
   }
 
   const isHovered = cursorMode !== 'default';
-  const themeColor = cursorTheme === 'dark' ? 'white' : '#1C1A15';
+  const themeColor = cursorTheme === 'dark' ? 'white' : colors.text;
 
   return (
     <div

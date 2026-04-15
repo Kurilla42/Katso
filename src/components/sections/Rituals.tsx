@@ -24,7 +24,7 @@ const ritualsData = [
     title: 'Уход за волосами',
     description: 'Глубокое восстановление, увлажнение и питание. SPA-ритуалы для волос, которые вернут им силу, блеск и шелковистость.',
     bgColor: colors.dustyblue,
-    theme: 'dark',
+    theme: 'light',
   },
   {
     title: 'Ногтевой сервис',
@@ -42,7 +42,7 @@ const ritualsData = [
     title: 'Макияж и брови',
     description: 'Дневной, вечерний или свадебный макияж. Коррекция и окрашивание бровей для создания выразительного взгляда.',
     bgColor: colors.wine,
-    theme: 'dark',
+    theme: 'light',
   },
   {
     title: 'Массаж и SPA',
@@ -55,6 +55,7 @@ const ritualsData = [
 const RitualCard = forwardRef<HTMLDivElement, { ritual: (typeof ritualsData)[0], index: number }>(({ ritual, index }, ref) => {
     const isDark = ritual.theme === 'dark';
     const textColor = isDark ? 'text-textLight' : 'text-textDark';
+    const textMutedColor = isDark ? 'text-textLightMuted' : 'text-textDarkMuted';
 
     return (
         <div
@@ -80,7 +81,6 @@ const RitualCard = forwardRef<HTMLDivElement, { ritual: (typeof ritualsData)[0],
                 lineHeight: 0.8,
                 color: 'transparent',
                 WebkitTextStroke: isDark ? '2px rgba(255, 255, 255, 0.18)' : '2px rgba(0, 0, 0, 0.1)',
-                stroke: isDark ? '2px rgba(255, 255, 255, 0.18)' : '2px rgba(0, 0, 0, 0.1)',
               } as React.CSSProperties}
             >
               <span className="font-display">0{index + 1}</span>
@@ -96,10 +96,10 @@ const RitualCard = forwardRef<HTMLDivElement, { ritual: (typeof ritualsData)[0],
                     </h3>
                 </div>
                 <div className="card-body">
-                    <p className={`animate-item text-body max-w-[480px] mt-6`} style={{ color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(28, 26, 21, 0.7)', lineHeight: 1.55 }}>
+                    <p className={`animate-item text-body max-w-[480px] mt-6 ${textMutedColor}`} style={{lineHeight: 1.55 }}>
                         {ritual.description}
                     </p>
-                    <a href="#" className={`inline-flex items-center gap-2 mt-8 animate-item font-display uppercase tracking-[0.08em] underline underline-offset-[6px] decoration-2 rounded-sm focus-visible:outline-none ${isDark ? 'focus-visible:ring-white' : 'focus-visible:ring-textDark'}`} style={{ color: isDark ? 'rgba(255,255,255,0.95)' : 'rgba(28, 26, 21, 0.95)', fontSize: 'clamp(14px, 1.1vw, 20px)'}} data-cursor-hover="link">
+                    <a href="#" className={cn(`inline-flex items-center gap-2 mt-8 animate-item font-display uppercase tracking-[0.08em] underline underline-offset-[6px] decoration-2 rounded-sm focus-visible:outline-none`, isDark ? 'focus-visible:ring-white' : 'focus-visible:ring-textDark', textColor)} style={{ fontSize: 'clamp(14px, 1.1vw, 20px)'}} data-cursor-hover="link">
                         Подробнее
                         <span className="text-xl relative -top-0.5">→</span>
                     </a>
@@ -119,17 +119,15 @@ const Rituals = () => {
     useLayoutEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
 
-        if (!stackRef.current) return;
-        const cards = cardsRef.current.filter(Boolean) as HTMLDivElement[];
-        if (!cards.length) return;
-
         const mm = gsap.matchMedia(componentRef.current!);
         
         mm.add({
             isDesktop: "(min-width: 768px)",
             isReduced: "(prefers-reduced-motion: reduce)"
         }, (context) => {
-            const { isDesktop, isReduced } = context.conditions!;
+            const { isDesktop, isReduced } = context.conditions as { isDesktop: boolean; isReduced: boolean };
+            const cards = cardsRef.current.filter(Boolean) as HTMLDivElement[];
+            if (!cards.length) return;
 
             // Animate content inside each card
             cards.forEach((card) => {
@@ -197,21 +195,21 @@ const Rituals = () => {
     return (
         <section id="rituals" ref={componentRef}>
             <div
-                className="dark-bg"
-                style={{ backgroundColor: colors.graphite }}
-                data-cursor="dark"
+                className="light-bg"
+                style={{ backgroundColor: colors.background }}
+                data-cursor="light"
             >
                 <div className="relative">
                   <div className="paper-texture"></div>
                   <div className="container py-16 md:py-24">
-                      <p className="caption text-textLightMuted">Процедуры</p>
-                      <h2 className="font-display text-h1 text-textLight uppercase mt-2">
+                      <p className="caption text-textDarkMuted">Процедуры</p>
+                      <h2 className="font-display text-h1 text-textDark uppercase mt-2">
                           Ритуалы <br /> Красоты
                       </h2>
                   </div>
                 </div>
             </div>
-            <div ref={stackRef} className="rituals-stack relative bg-graphite md:p-0">
+            <div ref={stackRef} className="rituals-stack relative bg-background md:p-0">
                 {ritualsData.map((ritual, index) => (
                     <RitualCard
                         key={ritual.title}
@@ -221,7 +219,7 @@ const Rituals = () => {
                             if (el && cardsRef.current[index] === undefined) {
                               cardsRef.current[index] = el;
                             }
-                          }}
+                        }}
                     />
                 ))}
             </div>

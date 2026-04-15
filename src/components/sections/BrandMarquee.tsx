@@ -8,7 +8,7 @@ import StarIcon from '@/components/icons/Star';
 
 const MarqueeItem = () => (
   <div className="flex items-center shrink-0">
-    <span className="mx-8 text-h2 font-display uppercase text-textLight">
+    <span className="mx-8 text-h2 font-display uppercase text-textDark">
       KATSO
     </span>
     <StarIcon className="w-8 h-8 md:w-12 md:h-12 text-accent" />
@@ -72,9 +72,9 @@ const BrandMarquee = () => {
   return (
     <section
       id="brand-marquee"
-      className="dark-bg overflow-hidden"
-      style={{ backgroundColor: colors.backgroundDark }}
-      data-cursor="dark"
+      className="light-bg overflow-hidden"
+      style={{ backgroundColor: colors.background }}
+      data-cursor="light"
     >
       <div className="py-8 md:py-4">
         <div ref={wrapperRef} className="flex">

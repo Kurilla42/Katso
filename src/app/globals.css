@@ -4,7 +4,7 @@
 
 @layer base {
   html {
-    @apply font-body bg-backgroundDark text-textLight leading-body;
+    @apply font-body bg-background text-textDark leading-body;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -131,7 +131,7 @@
   }
 
   .ritual-card + .ritual-card {
-    border-top: 8px solid theme('colors.graphite');
+    border-top: 8px solid theme('colors.text');
   }
 
   @media (max-width: 767px) {

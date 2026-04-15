@@ -68,7 +68,7 @@ const AnimatedCharacters = forwardRef<HTMLDivElement, AnimatedCharactersProps>((
             backgroundClip: 'text',
           }}
         >
-          {letter === ' ' ? '\u00A0' : letter}
+          {letter === ' ' ? ' ' : letter}
         </span>
       ))}
     </div>
@@ -158,16 +158,16 @@ const WhyKatso = () => {
   return (
     <section
       id="why-us"
-      className="dark-bg py-16 md:py-40"
-      style={{ backgroundColor: colors.graphite }}
-      data-cursor="dark"
+      className="light-bg py-16 md:py-40"
+      style={{ backgroundColor: colors.background }}
+      data-cursor="light"
     >
       <div className="relative">
         <div className="paper-texture"></div>
         <div className="grid-overlay"></div>
         <div className="container">
-            <p className="caption text-textLightMuted">Почему мы</p>
-            <h2 className="mt-4 font-display text-h1 text-textLight uppercase">
+            <p className="caption text-textDarkMuted">Почему мы</p>
+            <h2 className="mt-4 font-display text-h1 text-textDark uppercase">
               <AnimatedCharacters ref={headline1Ref} text="ПОЧЕМУ" />
               <AnimatedCharacters ref={headline2Ref} text="ВЫБИРАЮТ" />
               <AnimatedCharacters ref={headline3Ref} text="KATSO" className="text-primary" />

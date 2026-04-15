@@ -19,7 +19,7 @@ const Map = () => {
     const token = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
     if (!token) {
         if (mapContainer.current) {
-            mapContainer.current.innerHTML = '<div class="w-full h-full bg-gray-700 flex items-center justify-center text-center text-textLightMuted p-4">Map cannot be displayed. <br/>Mapbox token missing.</div>'
+            mapContainer.current.innerHTML = `<div class="w-full h-full bg-border flex items-center justify-center text-center text-textDarkMuted p-4">Map cannot be displayed. <br/>Mapbox token missing.</div>`
         }
         return;
     }
@@ -28,7 +28,7 @@ const Map = () => {
 
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/dark-v11',
+      style: 'mapbox://styles/mapbox/light-v11',
       center: [lng, lat],
       zoom: zoom,
       interactive: false, // Make map non-interactive
@@ -52,10 +52,10 @@ const Map = () => {
   return (
     <div className="absolute inset-0 w-full h-full">
       <div ref={mapContainer} className="w-full h-full" />
-      <PlusMarker className="top-2 left-2" colorClassName="text-white/30" />
-      <PlusMarker className="top-2 right-2" colorClassName="text-white/30" />
-      <PlusMarker className="bottom-2 left-2" colorClassName="text-white/30" />
-      <PlusMarker className="bottom-2 right-2" colorClassName="text-white/30" />
+      <PlusMarker className="top-2 left-2" colorClassName="text-textDark/30" />
+      <PlusMarker className="top-2 right-2" colorClassName="text-textDark/30" />
+      <PlusMarker className="bottom-2 left-2" colorClassName="text-textDark/30" />
+      <PlusMarker className="bottom-2 right-2" colorClassName="text-textDark/30" />
     </div>
   );
 };

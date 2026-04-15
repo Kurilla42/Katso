@@ -99,9 +99,9 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="dark-bg relative"
-      style={{ backgroundColor: colors.graphite }}
-      data-cursor="dark"
+      className="light-bg relative"
+      style={{ backgroundColor: colors.background }}
+      data-cursor="light"
     >
       <div className="paper-texture"></div>
       <div className="grid-overlay"></div>
@@ -109,7 +109,7 @@ const Hero = () => {
         <div className="container pt-32 sm:pt-40">
           <h1
             ref={headlineRef}
-            className="font-display text-[14vw] leading-display text-textLight uppercase"
+            className="font-display text-[14vw] leading-display text-textDark uppercase"
           >
             <div className="overflow-hidden">
               <span className="line-inner block">Создаём</span>
@@ -131,7 +131,7 @@ const Hero = () => {
             <div ref={countersRef} className="flex flex-wrap gap-8 sm:gap-12">
               {stats.map((stat, index) => (
                 <div key={index} className="flex items-baseline gap-2">
-                  <span className="counter-value font-display text-h3 text-textLight">
+                  <span className="counter-value font-display text-h3 text-textDark">
                     {stat.value}
                   </span>
                   {stat.suffix && (
@@ -139,14 +139,14 @@ const Hero = () => {
                       {stat.suffix}
                     </span>
                   )}
-                  <span className="caption text-textLightMuted max-w-[100px]">
+                  <span className="caption text-textDarkMuted max-w-[100px]">
                     {stat.label}
                   </span>
                 </div>
               ))}
             </div>
 
-            <div className="flex items-center gap-4 text-textLightMuted flex-shrink-0">
+            <div className="flex items-center gap-4 text-textDarkMuted flex-shrink-0">
               <StarIcon className="w-5 h-5 opacity-50" />
               <div className="caption flex gap-4">
                 <span>КИШИНЁВ, МОЛДОВА</span>
@@ -161,8 +161,8 @@ const Hero = () => {
           ref={scrollIndicatorRef}
           className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         >
-          <span className="caption text-textLightMuted">SCROLL</span>
-          <div className="w-px h-10 bg-white/50 rounded-full"></div>
+          <span className="caption text-textDarkMuted">SCROLL</span>
+          <div className="w-px h-10 bg-textDark/50 rounded-full"></div>
         </div>
       </div>
     </section>
