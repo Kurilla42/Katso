@@ -97,24 +97,24 @@
   }
 
   #rituals {
-    --card-height: 624px;
-    --card-slot: 440px;
-    --stack-peek: 192px;
+    --card-height: 480px;
+    --card-slot: 192px;
+    --stack-peek: 160px;
   }
 
   @media (max-height: 900px) {
     #rituals {
-      --card-height: 552px;
-      --card-slot: 360px;
-      --stack-peek: 160px;
+      --card-height: 440px;
+      --card-slot: 170px;
+      --stack-peek: 140px;
     }
   }
 
   @media (max-height: 760px) {
     #rituals {
-      --card-height: 480px;
-      --card-slot: 280px;
-      --stack-peek: 128px;
+      --card-height: 400px;
+      --card-slot: 150px;
+      --stack-peek: 120px;
     }
   }
 
