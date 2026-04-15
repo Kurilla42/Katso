@@ -125,14 +125,21 @@ const Faq = () => {
         <div className="paper-texture"></div>
         <div className="grid-overlay"></div>
       <div className="container py-16 md:py-40 relative">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16 items-center">
+          
           {/* Left Column: Images */}
-          <div className="hidden lg:block lg:col-span-3 space-y-12 self-center">
-             <FaqImage imageId="faq-image-1" className="aspect-[4/5] w-full" />
-             <FaqImage imageId="faq-image-2" className="aspect-[4/5] w-full" />
+          <div className="hidden lg:block lg:col-span-6">
+             <div className="relative w-full h-full min-h-[650px]">
+                <div className="absolute top-0 left-0 w-7/12">
+                    <FaqImage imageId="faq-image-1" className="aspect-[4/5] w-full" />
+                </div>
+                <div className="absolute top-48 right-0 w-7/12">
+                    <FaqImage imageId="faq-image-2" className="aspect-[4/5] w-full" />
+                </div>
+             </div>
           </div>
 
-          {/* Center Column: FAQ */}
+          {/* Right Column: FAQ & Contact */}
           <div className="lg:col-span-6">
             <h2 className="font-display text-hero uppercase text-cream leading-none">
               FAQ
@@ -147,11 +154,8 @@ const Faq = () => {
                 />
               ))}
             </div>
-          </div>
-
-          {/* Right Column: Contact */}
-          <div className="lg:col-span-3 lg:pt-12">
-              <div className="sticky top-24 text-right">
+            
+            <div className="mt-16">
                 <p className="caption text-nude">
                     Не нашли ответ?
                 </p>
@@ -159,7 +163,7 @@ const Faq = () => {
                     <span>Напишите нам</span>
                     <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">&nbsp;&rarr;</span>
                 </a>
-              </div>
+            </div>
           </div>
         </div>
       </div>
