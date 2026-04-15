@@ -67,7 +67,7 @@ const NewMe = () => {
   return (
     <section ref={sectionRef} id="new-me" className="relative bg-background" data-cursor="dark">
       <div className="h-screen w-full flex items-center justify-center overflow-hidden">
-        <h2 ref={textRef} className="flex items-center justify-center gap-x-8 md:gap-x-12 font-display text-h1 text-cream uppercase">
+        <h2 ref={textRef} className="flex items-center justify-center gap-x-8 md:gap-x-12 font-display text-h2 text-cream uppercase">
           <div className="text-right">
             <div className="block">Раскрой свою</div>
             <div className="block">уникальность</div>
