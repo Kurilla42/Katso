@@ -11,20 +11,20 @@ const ritualsData = [
   {
     title: 'Стрижки',
     description: 'От классических форм до смелых креативных решений. Наши мастера создадут идеальный образ, подчеркивающий вашу индивидуальность.',
-    bgColor: colors.offwhite,
-    theme: 'light',
+    bgColor: colors.chocolate,
+    theme: 'dark',
   },
   {
     title: 'Окрашивание',
     description: 'Сложные техники, натуральные оттенки и яркие цвета. Мы используем только премиальные красители для здоровья ваших волос.',
-    bgColor: colors.chocolate,
+    bgColor: colors.darkgreen,
     theme: 'dark',
   },
   {
     title: 'Уход за волосами',
     description: 'Глубокое восстановление, увлажнение и питание. SPA-ритуалы для волос, которые вернут им силу, блеск и шелковистость.',
-    bgColor: colors.bonefaq,
-    theme: 'light',
+    bgColor: colors.dustyblue,
+    theme: 'dark',
   },
   {
     title: 'Ногтевой сервис',
@@ -35,14 +35,14 @@ const ritualsData = [
   {
     title: 'Косметология',
     description: 'Современные методики для сохранения молодости и красоты вашей кожи. Индивидуальные программы ухода от ведущих косметологов.',
-    bgColor: colors.dustyblue,
+    bgColor: colors.burgundyLt,
     theme: 'dark',
   },
   {
     title: 'Макияж и брови',
     description: 'Дневной, вечерний или свадебный макияж. Коррекция и окрашивание бровей для создания выразительного взгляда.',
-    bgColor: colors.offwhite,
-    theme: 'light',
+    bgColor: colors.wine,
+    theme: 'dark',
   },
   {
     title: 'Массаж и SPA',
@@ -56,48 +56,53 @@ const RitualCard = forwardRef<HTMLDivElement, { ritual: (typeof ritualsData)[0],
     const isDark = ritual.theme === 'dark';
     const textColor = isDark ? 'text-textLight' : 'text-textDark';
     const mutedTextColor = isDark ? 'text-textLightMuted' : 'text-textDarkMuted';
-    const bigNumberColor = isDark ? 'text-white/10' : 'text-black/5';
 
     return (
         <div
             ref={ref}
             className={cn(
-                'ritual-card group rounded-md overflow-hidden',
+                'ritual-card group rounded-md overflow-hidden relative',
                 isDark ? 'dark-bg' : 'light-bg'
             )}
             style={{ 
+                backgroundColor: ritual.bgColor,
                 top: `calc(${index} * var(--stack-peek))`,
                 zIndex: index + 1,
             }}
             data-cursor={ritual.theme}
         >
-            <div className={cn(
-                "paper-texture transition-opacity duration-400",
-                isDark ? "group-hover:opacity-[0.2]" : "group-hover:opacity-[0.2]"
-            )}></div>
-            <div className="absolute inset-0 p-8 sm:p-12 md:p-16">
-                <div className={cn(
-                    "absolute top-1/2 -translate-y-1/2 right-0 text-center select-none pointer-events-none text-[clamp(180px,28vw,540px)]",
-                    "transition-colors duration-400",
-                     bigNumberColor,
-                    isDark ? "group-hover:text-white/20" : "group-hover:text-black/15"
-                )}>
-                    <span className="font-display leading-none">
-                        0{index + 1}
-                    </span>
+            <div className="paper-texture"></div>
+            <div className="grid-overlay"></div>
+            
+            <div 
+              className="card-numeral absolute right-[clamp(1rem,3vw,5rem)] top-0 h-full flex items-center pointer-events-none"
+              style={{
+                fontSize: 'clamp(180px, 22vw, 480px)',
+                lineHeight: 0.8,
+                color: 'transparent',
+                WebkitTextStroke: isDark ? '2px rgba(255, 255, 255, 0.18)' : '2px rgba(0, 0, 0, 0.1)',
+                stroke: isDark ? '2px rgba(255, 255, 255, 0.18)' : '2px rgba(0, 0, 0, 0.1)',
+              } as React.CSSProperties}
+            >
+              <span className="font-display">0{index + 1}</span>
+            </div>
+            
+            <div className="relative z-10 h-full flex flex-col justify-between p-6 sm:p-8 md:p-12">
+                <div 
+                  className="card-top-band"
+                  style={{ minHeight: 'var(--stack-peek)' }}
+                >
+                    <h3 className={`font-display text-h1 uppercase animate-item ${textColor}`}>
+                        {ritual.title}
+                    </h3>
                 </div>
-                <div className="grid grid-cols-12 gap-x-4 h-full items-center">
-                    <div className="col-span-11 md:col-span-6 lg:col-span-5 z-10">
-                        <h3 className={`font-display text-h1 uppercase animate-item ${textColor}`}>
-                            {ritual.title}
-                        </h3>
-                        <p className={`mt-6 text-body-lg animate-item ${mutedTextColor} max-w-[min(560px,45vw)]`}>
-                            {ritual.description}
-                        </p>
-                        <button className={`mt-8 animate-item ${textColor} rounded-sm focus-visible:outline-none focus-visible:ring-2 ${isDark ? 'focus-visible:ring-white' : 'focus-visible:ring-textDark'}`} data-cursor-hover="link">
-                            <span className='caption'>Подробнее &rarr;</span>
-                        </button>
-                    </div>
+                <div className="card-body max-w-[60%]">
+                    <p className={`text-body-lg animate-item ${mutedTextColor}`}>
+                        {ritual.description}
+                    </p>
+                    <button className={`mt-6 animate-item ${textColor} rounded-sm focus-visible:outline-none focus-visible:ring-2 ${isDark ? 'focus-visible:ring-white' : 'focus-visible:ring-textDark'}`} data-cursor-hover="link">
+                        <span className='caption'>Подробнее &rarr;</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -115,7 +120,7 @@ const Rituals = () => {
         gsap.registerPlugin(ScrollTrigger);
 
         if (!stackRef.current) return;
-        const cards = Array.from(stackRef.current.children) as HTMLDivElement[];
+        const cards = cardsRef.current.filter(Boolean) as HTMLDivElement[];
         if (!cards.length) return;
 
         const mm = gsap.matchMedia(componentRef.current!);
@@ -213,8 +218,8 @@ const Rituals = () => {
                         ritual={ritual}
                         index={index}
                         ref={(el) => {
-                            if (el && (cardsRef.current as any)[index] === undefined) {
-                              (cardsRef.current as any)[index] = el;
+                            if (el && cardsRef.current[index] === undefined) {
+                              cardsRef.current[index] = el;
                             }
                           }}
                     />
