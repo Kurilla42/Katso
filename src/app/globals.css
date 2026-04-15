@@ -107,23 +107,23 @@
 /* ─── RITUALS STACKING SECTION ─────────────────────────── */
 
 #rituals {
-  --card-height: 380px;
+  --card-height: 304px;
   --stack-peek: 110px;
   --card-gap: 12px;
 
-  background-color: var(--color-background);
+  background-color: theme('colors.background');
 }
 
 @media (max-height: 900px) {
   #rituals {
-    --card-height: 340px;
+    --card-height: 272px;
     --stack-peek: 96px;
   }
 }
 
 @media (max-height: 760px) {
   #rituals {
-    --card-height: 300px;
+    --card-height: 240px;
     --stack-peek: 80px;
   }
 }
