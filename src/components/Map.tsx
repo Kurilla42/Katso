@@ -2,6 +2,8 @@
 
 import { useRef, useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
+import { colors } from '@/lib/design-tokens';
+import { PlusMarker } from '@/components/ui/PlusMarker';
 
 const Map = () => {
   const mapContainer = useRef<HTMLDivElement>(null);
@@ -35,8 +37,8 @@ const Map = () => {
     // Create a custom marker element
     const el = document.createElement('div');
     el.className = 'w-4 h-4 rounded-full shadow-lg';
-    el.style.backgroundColor = '#E8683A'; // colors.orange
-    el.style.outline = '3px solid rgba(232, 104, 58, 0.4)';
+    el.style.backgroundColor = colors.accent;
+    el.style.outline = `3px solid ${colors.accent}66`; // 40% opacity
     
     // Add marker to the map
     new mapboxgl.Marker(el)
@@ -47,7 +49,15 @@ const Map = () => {
     return () => map.current?.remove();
   }, [lng, lat, zoom]);
 
-  return <div ref={mapContainer} className="absolute inset-0 w-full h-full" />;
+  return (
+    <div className="absolute inset-0 w-full h-full">
+      <div ref={mapContainer} className="w-full h-full" />
+      <PlusMarker className="top-2 left-2" colorClassName="text-white/30" />
+      <PlusMarker className="top-2 right-2" colorClassName="text-white/30" />
+      <PlusMarker className="bottom-2 left-2" colorClassName="text-white/30" />
+      <PlusMarker className="bottom-2 right-2" colorClassName="text-white/30" />
+    </div>
+  );
 };
 
 export default Map;

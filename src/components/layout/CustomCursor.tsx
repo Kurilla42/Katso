@@ -87,13 +87,13 @@ const CustomCursor = () => {
   }
 
   const isHovered = cursorMode !== 'default';
-  const themeColor = cursorTheme === 'dark' ? 'white' : '#0B0B0B';
+  const themeColor = cursorTheme === 'dark' ? 'white' : '#1C1A15';
 
   return (
     <div
       ref={cursorRef}
       className={cn(
-        'fixed top-0 left-0 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-[9999] transition-[width,height] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] flex items-center justify-center font-display',
+        'fixed top-0 left-0 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-[9999] transition-[width,height] duration-400 ease-reveal flex items-center justify-center font-display',
         'rounded-full',
         isVisible ? 'opacity-100' : 'opacity-0',
         // Size & Style

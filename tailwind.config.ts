@@ -19,10 +19,11 @@ const config: Config = {
         ...colors,
         textLight: 'rgba(255,255,255,0.88)',
         textLightMuted: 'rgba(255,255,255,0.60)',
-        textDark: '#0B0B0B',
-        textDarkMuted: 'rgba(11,11,11,0.60)',
-        gridOnLight: 'rgba(11,11,11,0.08)',
+        textDark: colors.warmcharcoal,
+        textDarkMuted: 'rgba(28, 26, 21, 0.60)',
+        gridOnLight: 'rgba(28, 26, 21, 0.08)',
         gridOnDark: 'rgba(255,255,255,0.10)',
+        backgroundDark: colors.warmcharcoal,
       },
       fontFamily: {
         display: ['Anton', 'Oswald', 'sans-serif'],
@@ -38,6 +39,11 @@ const config: Config = {
       lineHeight: {
         display: '0.9',
         'display-lg': '0.85',
+        body: '1.5',
+      },
+      transitionTimingFunction: {
+        'reveal': 'cubic-bezier(0.22, 1, 0.36, 1)',
+        'slide': 'cubic-bezier(0.7, 0, 0.3, 1)',
       },
     },
   },

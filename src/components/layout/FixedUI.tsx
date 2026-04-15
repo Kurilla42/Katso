@@ -14,7 +14,7 @@ const FixedUI = () => {
       {/* Top-left logo mark */}
       <button
         onClick={scrollToTop}
-        className="fixed top-4 left-4 sm:top-6 sm:left-6 z-50 w-10 h-10 rounded-full border-2 border-white flex items-center justify-center bg-transparent cursor-pointer group"
+        className="fixed top-4 left-4 sm:top-6 sm:left-6 z-50 w-10 h-10 rounded-full border-2 border-white flex items-center justify-center bg-transparent cursor-pointer group transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-backgroundDark"
         aria-label="Scroll to top"
         data-cursor-hover="link"
       >
@@ -22,7 +22,7 @@ const FixedUI = () => {
       </button>
 
       {/* Right edge tag */}
-      <div className="fixed top-1/2 right-4 -translate-y-1/2 z-50 bg-black text-white rounded-full px-2 py-4 flex flex-col items-center justify-center shadow-lg">
+      <div className="fixed top-1/2 right-4 -translate-y-1/2 z-50 bg-backgroundDark text-white rounded-full px-2 py-4 flex flex-col items-center justify-center shadow-lg">
         <span className="font-display text-lg leading-none">K.</span>
         <span
           className="font-body text-xs uppercase mt-2 tracking-widest"

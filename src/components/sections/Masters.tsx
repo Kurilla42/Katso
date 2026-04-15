@@ -5,6 +5,7 @@ import { gsap } from 'gsap';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { colors } from '@/lib/design-tokens';
+import { EASES } from '@/lib/animations';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const mastersData = [
@@ -50,8 +51,9 @@ const MasterRow = React.forwardRef<
     onMouseEnter={onMouseEnter}
     onClick={onClick}
     className={cn(
-      'w-full text-left border-b transition-colors duration-300',
-      isHovered ? 'border-textDark bg-textLight' : 'border-white/20 bg-transparent'
+      'w-full text-left border-b transition-colors duration-200 focus-visible:outline-none',
+      isHovered ? 'border-textDark bg-textLight' : 'border-white/20 bg-transparent',
+      isHovered ? 'focus-visible:ring-2 focus-visible:ring-textDark ring-offset-2 ring-offset-textLight' : 'focus-visible:ring-2 focus-visible:ring-white'
     )}
     data-hovered={isHovered}
     data-cursor-hover="link"
@@ -60,7 +62,7 @@ const MasterRow = React.forwardRef<
     <div className="container py-6 flex justify-between items-center">
       <div
         className={cn(
-          'flex flex-col md:flex-row md:items-baseline md:gap-6 transition-colors duration-300',
+          'flex flex-col md:flex-row md:items-baseline md:gap-6 transition-colors duration-200',
           isHovered ? 'text-textDark' : 'text-textLight'
         )}
       >
@@ -71,7 +73,7 @@ const MasterRow = React.forwardRef<
           {master.role}
         </p>
       </div>
-      <div className={cn('transition-transform duration-500 ease-in-out md:hidden', isActive ? 'rotate-45' : 'rotate-0')}>
+      <div className={cn('transition-transform duration-400 ease-slide md:hidden', isActive ? 'rotate-45' : 'rotate-0')}>
         <svg className={cn('w-4 h-4', isHovered ? 'text-textDark' : 'text-textLight')} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8 0V16" stroke="currentColor" strokeWidth="1.5"/>
             <path d="M16 8L0 8" stroke="currentColor" strokeWidth="1.5"/>
@@ -106,13 +108,13 @@ const Masters = () => {
           const imageEl = imageWrapperRef.current!;
           gsap.set(imageEl, { xPercent: 100, autoAlpha: 0 });
 
-          const xTo = gsap.quickTo(imageEl, "xPercent", { duration: 0.8, ease: "power3.out" });
-          const yTo = gsap.quickTo(imageEl, "yPercent", { duration: 0.6, ease: "power2.out" });
+          const xTo = gsap.quickTo(imageEl, "xPercent", { duration: 0.4, ease: EASES.slide });
+          const yTo = gsap.quickTo(imageEl, "yPercent", { duration: 0.4, ease: EASES.slide });
           
           let initialImageY: number | null = null;
           
           const handleMouseEnter = (index: number) => {
-            if (initialImageY === null) {
+            if (initialImageY === null && imageEl.offsetParent) {
               initialImageY = imageEl.getBoundingClientRect().top;
             }
             const item = itemsRef.current[index];
@@ -123,20 +125,20 @@ const Masters = () => {
             if (placeholder) setActiveImageUrl(placeholder.imageUrl);
 
             const itemRect = item.getBoundingClientRect();
-            const yOffset = itemRect.top - initialImageY + (itemRect.height - imageEl.offsetHeight) / 2;
+            const yOffset = initialImageY !== null ? itemRect.top - initialImageY + (itemRect.height - imageEl.offsetHeight) / 2 : 0;
             
             yTo(yOffset * 100 / window.innerHeight); // as % of viewport height
             setHoveredIndex(index);
           };
 
           const handleListMouseEnter = () => {
-            gsap.to(imageEl, { autoAlpha: 1, duration: 0.3 });
+            gsap.to(imageEl, { autoAlpha: 1, duration: 0.2 });
             xTo(0);
           };
 
           const handleListMouseLeave = () => {
             xTo(100);
-            gsap.to(imageEl, { autoAlpha: 0, duration: 0.3, delay: 0.2 });
+            gsap.to(imageEl, { autoAlpha: 0, duration: 0.2, delay: 0.2 });
             setHoveredIndex(null);
           };
 
@@ -152,6 +154,7 @@ const Masters = () => {
             listEl?.removeEventListener('mouseenter', handleListMouseEnter);
             listEl?.removeEventListener('mouseleave', handleListMouseLeave);
             itemsRef.current.forEach((item, index) => {
+              // Cleanup to prevent memory leaks, checking if item exists
               item?.removeEventListener('mouseenter', () => handleMouseEnter(index));
             });
           }
@@ -167,8 +170,8 @@ const Masters = () => {
     accordionContentsRef.current.forEach((content, index) => {
       gsap.to(content, {
         height: activeIndex === index ? 'auto' : 0,
-        duration: 0.5,
-        ease: 'power2.inOut',
+        duration: 0.4,
+        ease: EASES.slide,
         overwrite: true
       });
     });
@@ -184,11 +187,13 @@ const Masters = () => {
     <section
       id="masters"
       ref={component}
-      className="dark-bg"
-      style={{ backgroundColor: colors.black }}
+      className="dark-bg relative"
+      style={{ backgroundColor: colors.backgroundDark }}
       data-cursor="dark"
     >
-      <div className="container py-16 md:py-40">
+      <div className="paper-texture"></div>
+      <div className="grid-overlay"></div>
+      <div className="container py-16 md:py-40 relative">
         <p className="caption text-textLightMuted">Команда</p>
         <h2 className="font-display text-6xl sm:text-8xl md:text-9xl text-textLight uppercase mt-2">
             Наши <br /> Мастера

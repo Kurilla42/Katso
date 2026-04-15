@@ -11,7 +11,7 @@ const MarqueeItem = () => (
     <span className="mx-8 text-6xl md:text-8xl font-display uppercase text-textLight">
       KATSO
     </span>
-    <StarIcon className="w-8 h-8 md:w-12 md:h-12 text-orange" />
+    <StarIcon className="w-8 h-8 md:w-12 md:h-12 text-accent" />
   </div>
 );
 
@@ -73,7 +73,7 @@ const BrandMarquee = () => {
     <section
       id="brand-marquee"
       className="dark-bg overflow-hidden"
-      style={{ backgroundColor: colors.black }}
+      style={{ backgroundColor: colors.backgroundDark }}
       data-cursor="dark"
     >
       <div className="py-8 md:py-4">

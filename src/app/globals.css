@@ -4,7 +4,7 @@
 
 @layer base {
   html {
-    @apply font-body bg-black text-textDark;
+    @apply font-body bg-backgroundDark text-textLight leading-body;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

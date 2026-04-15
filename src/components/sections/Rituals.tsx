@@ -4,6 +4,7 @@ import React, { useEffect, useRef, forwardRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { colors } from '@/lib/design-tokens';
+import { EASES } from '@/lib/animations';
 
 const ritualsData = [
   {
@@ -64,6 +65,7 @@ const RitualCard = forwardRef<HTMLDivElement, { ritual: (typeof ritualsData)[0],
             data-cursor={ritual.theme}
         >
             <div className={`${isDark ? 'dark-bg' : 'light-bg'} w-full h-full relative p-8 sm:p-12 md:p-16 flex flex-col justify-center`}>
+                <div className="paper-texture"></div>
                 <div className={`absolute top-1/2 -translate-y-1/2 right-0 -mr-16 md:mr-0 text-center select-none pointer-events-none ${bigNumberColor}`}>
                     <span className="font-display leading-none text-[20rem] md:text-[28rem] lg:text-[36rem]">
                         0{index + 1}
@@ -78,7 +80,7 @@ const RitualCard = forwardRef<HTMLDivElement, { ritual: (typeof ritualsData)[0],
                         <p className={`mt-6 text-base md:text-lg max-w-md animate-item ${mutedTextColor}`}>
                             {ritual.description}
                         </p>
-                        <button className={`mt-8 caption animate-item ${textColor}`} data-cursor-hover="link">
+                        <button className={`mt-8 caption animate-item ${textColor} rounded-sm focus-visible:outline-none focus-visible:ring-2 ${isDark ? 'focus-visible:ring-white' : 'focus-visible:ring-textDark'}`} data-cursor-hover="link">
                             Подробнее &rarr;
                         </button>
                     </div>
@@ -98,24 +100,28 @@ const Rituals = () => {
         
         const cards = cardsRef.current.filter(c => c !== null) as HTMLDivElement[];
 
-        cards.forEach((card) => {
-            const animatedItems = card.querySelectorAll('.animate-item');
-            gsap.from(animatedItems, {
-                y: 40,
-                opacity: 0,
-                ease: 'power2.out',
-                stagger: 0.06,
-                duration: 0.7,
-                scrollTrigger: {
-                    trigger: card,
-                    start: 'top 80%',
-                    toggleActions: 'play none none reverse',
-                },
+        const mm = gsap.matchMedia();
+        mm.add('(prefers-reduced-motion: no-preference)', () => {
+            cards.forEach((card) => {
+                const animatedItems = card.querySelectorAll('.animate-item');
+                gsap.from(animatedItems, {
+                    y: 40,
+                    opacity: 0,
+                    ease: EASES.slide,
+                    stagger: 0.06,
+                    duration: 0.7,
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse',
+                    },
+                });
             });
         });
 
         return () => {
             ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+            mm.revert();
         };
     }, []);
 
@@ -126,14 +132,17 @@ const Rituals = () => {
                 style={{ backgroundColor: colors.graphite }}
                 data-cursor="dark"
             >
-                <div className="container py-16 md:py-24">
-                    <p className="caption text-textLightMuted">Процедуры</p>
-                    <h2 className="font-display text-6xl sm:text-8xl md:text-9xl text-textLight uppercase mt-2">
-                        Ритуалы <br /> Красоты
-                    </h2>
+                <div className="relative">
+                  <div className="paper-texture"></div>
+                  <div className="container py-16 md:py-24">
+                      <p className="caption text-textLightMuted">Процедуры</p>
+                      <h2 className="font-display text-6xl sm:text-8xl md:text-9xl text-textLight uppercase mt-2">
+                          Ритуалы <br /> Красоты
+                      </h2>
+                  </div>
                 </div>
             </div>
-            <div id="rituals-stack" className="md:h-auto h-svh overflow-y-auto snap-y snap-mandatory no-scrollbar md:overflow-visible md:snap-none">
+            <div id="rituals-stack" className="md:h-auto h-svh overflow-y-auto snap-y snap-mandatory no-scrollbar md:overflow-visible md:snap-none motion-reduce:snap-none motion-reduce:overflow-visible">
                 {ritualsData.map((ritual, index) => (
                     <RitualCard
                         key={index}

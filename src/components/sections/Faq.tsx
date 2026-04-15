@@ -4,8 +4,10 @@ import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { colors } from '@/lib/design-tokens';
+import { EASES } from '@/lib/animations';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { cn } from '@/lib/utils';
+import { PlusMarker } from '@/components/ui/PlusMarker';
 
 const faqData = [
   {
@@ -51,13 +53,13 @@ const FaqImage = ({ imageId, className }: { imageId: string; className?: string 
         alt={placeholder.description}
         width={500}
         height={600}
-        className="w-full h-full object-cover filter grayscale transition-all duration-500 ease-in-out group-hover:grayscale-0"
+        className="w-full h-full object-cover filter grayscale transition-all duration-400 ease-in-out group-hover:grayscale-0"
         data-ai-hint={placeholder.imageHint}
       />
-      <div className="absolute top-2 left-2 w-3 h-3 border-l-2 border-t-2 border-black/30" />
-      <div className="absolute top-2 right-2 w-3 h-3 border-r-2 border-t-2 border-black/30" />
-      <div className="absolute bottom-2 left-2 w-3 h-3 border-l-2 border-b-2 border-black/30" />
-      <div className="absolute bottom-2 right-2 w-3 h-3 border-r-2 border-b-2 border-black/30" />
+      <PlusMarker className="top-2 left-2" />
+      <PlusMarker className="top-2 right-2" />
+      <PlusMarker className="bottom-2 left-2" />
+      <PlusMarker className="bottom-2 right-2" />
     </div>
   );
 };
@@ -77,8 +79,8 @@ const AccordionItem = ({
   useEffect(() => {
     gsap.to(contentRef.current, {
       height: isOpen ? 'auto' : 0,
-      duration: 0.5,
-      ease: 'power2.inOut',
+      duration: 0.4,
+      ease: EASES.slide,
     });
   }, [isOpen]);
 
@@ -86,7 +88,7 @@ const AccordionItem = ({
     <div className="border-b border-textDark/20">
       <button
         onClick={onClick}
-        className="w-full flex justify-between items-center py-6 text-left gap-4"
+        className="w-full flex justify-between items-center py-6 text-left gap-4 focus-visible:outline-none focus-visible:bg-black/5 rounded-sm"
         data-cursor-hover="link"
       >
         <span className="text-lg md:text-xl font-medium">{item.question}</span>
@@ -94,7 +96,7 @@ const AccordionItem = ({
           <span className="absolute w-full h-px bg-textDark top-1/2 -translate-y-1/2"></span>
           <span
             className={cn(
-              'absolute h-full w-px bg-textDark left-1/2 -translate-x-1/2 transition-transform duration-500 ease-in-out',
+              'absolute h-full w-px bg-textDark left-1/2 -translate-x-1/2 transition-transform duration-400 ease-slide',
               isOpen ? 'rotate-90' : 'rotate-0'
             )}
           ></span>
@@ -154,7 +156,7 @@ const Faq = () => {
                 <p className="caption text-textDarkMuted">
                     Не нашли ответ?
                 </p>
-                <a href="#" className="inline-block mt-2 font-medium text-textDark group" data-cursor-hover="link">
+                <a href="#" className="inline-block mt-2 font-medium text-textDark group rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-textDark focus-visible:ring-offset-4 focus-visible:ring-offset-bonefaq" data-cursor-hover="link">
                     <span>Связаться с нами</span>
                     <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">&nbsp;&rarr;</span>
                 </a>

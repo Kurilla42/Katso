@@ -1,4 +1,5 @@
 export const colors = {
+  warmcharcoal: '#1C1A15',
   graphite: '#4A4F55',
   offwhite: '#E8DFD2',
   chocolate: '#5A2E1B',
@@ -9,8 +10,8 @@ export const colors = {
   wine: '#5A1A1F',
   olive: '#6B5A1F',
   bonefaq: '#F2EFEA',
-  black: '#0B0B0B',
-  orange: '#E8683A',
+  accent: '#EC7E67',
+  primary: '#996B1F',
 };
 
 export const typography = {

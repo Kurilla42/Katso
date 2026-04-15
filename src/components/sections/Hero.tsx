@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { colors } from '@/lib/design-tokens';
+import { EASES } from '@/lib/animations';
 import StarIcon from '@/components/icons/Star';
 
 const Hero = () => {
@@ -38,8 +39,8 @@ const Hero = () => {
         { y: '100%' },
         {
           y: '0%',
-          duration: 1.2,
-          ease: 'power3.out',
+          duration: 0.8,
+          ease: EASES.reveal,
           stagger: 0.1,
           delay: 0.2,
         }
@@ -52,7 +53,7 @@ const Hero = () => {
       gsap.from(counters, {
         textContent: 0,
         duration: 1.6,
-        ease: 'power2.out',
+        ease: EASES.power2,
         snap: { textContent: 1 },
         stagger: 0.12,
         scrollTrigger: {
@@ -102,6 +103,7 @@ const Hero = () => {
       style={{ backgroundColor: colors.graphite }}
       data-cursor="dark"
     >
+      <div className="paper-texture"></div>
       <div className="grid-overlay"></div>
       <div className="min-h-screen flex flex-col justify-between">
         <div className="container pt-32 sm:pt-40">
@@ -116,7 +118,7 @@ const Hero = () => {
               <span className="line-inner block">ритуалы</span>
             </div>
             <div className="overflow-hidden">
-              <span className="line-inner block text-orange">красоты</span>
+              <span className="line-inner block text-primary">красоты</span>
             </div>
           </h1>
         </div>
@@ -133,7 +135,7 @@ const Hero = () => {
                     {stat.value}
                   </span>
                   {stat.suffix && (
-                    <span className="font-display text-4xl sm:text-5xl text-orange">
+                    <span className="font-display text-4xl sm:text-5xl text-primary">
                       {stat.suffix}
                     </span>
                   )}
