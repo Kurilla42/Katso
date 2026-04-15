@@ -66,7 +66,6 @@ const RitualCard = forwardRef<HTMLDivElement, { ritual: (typeof ritualsData)[0],
                 isDark ? 'dark-bg' : 'light-bg'
             )}
             style={{ 
-                backgroundColor: ritual.bgColor,
                 top: `calc(${index} * var(--stack-peek))`,
                 zIndex: index + 1,
             }}
@@ -110,6 +109,7 @@ RitualCard.displayName = 'RitualCard';
 const Rituals = () => {
     const componentRef = useRef<HTMLDivElement>(null);
     const stackRef = useRef<HTMLDivElement>(null);
+    const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
     useLayoutEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
@@ -142,7 +142,7 @@ const Rituals = () => {
             if (isDesktop && !isReduced) {
                 // Card slide-up entrance animation
                 cards.forEach((card, index) => {
-                    if (index < 3) return; // First 3 cards are visible at rest
+                    if (index < 3) return;
                     gsap.fromTo(card,
                       { y: 60 },
                       {
