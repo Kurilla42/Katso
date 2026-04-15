@@ -29,6 +29,18 @@
       "description": "Photo of master Dmitry Novikov",
       "imageUrl": "https://picsum.photos/seed/novikov/400/500",
       "imageHint": "man portrait"
+    },
+    {
+      "id": "faq-image-1",
+      "description": "Abstract photo for FAQ section",
+      "imageUrl": "https://picsum.photos/seed/faq1/500/600",
+      "imageHint": "beauty salon interior"
+    },
+    {
+      "id": "faq-image-2",
+      "description": "Second abstract photo for FAQ section",
+      "imageUrl": "https://picsum.photos/seed/faq2/500/600",
+      "imageHint": "hair styling"
     }
   ]
 }
