@@ -1,48 +1,54 @@
+
 'use client';
 
 import React, { useLayoutEffect, useRef, forwardRef, CSSProperties } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { colors } from '@/lib/design-tokens';
 import { EASES } from '@/lib/animations';
 
 const ritualsData = [
   {
     title: 'Стрижки',
     description: 'От классических форм до смелых креативных решений. Наши мастера создадут идеальный образ, подчеркивающий вашу индивидуальность.',
-    bgColor: colors.surface,
+    bg: 'surface',
   },
   {
     title: 'Окрашивание',
     description: 'Сложные техники, натуральные оттенки и яркие цвета. Мы используем только премиальные красители для здоровья ваших волос.',
-    bgColor: colors.walnut,
+    bg: 'walnut',
   },
   {
     title: 'Уход за волосами',
     description: 'Глубокое восстановление, увлажнение и питание. SPA-ритуалы для волос, которые вернут им силу, блеск и шелковистость.',
-    bgColor: colors.background,
+    bg: 'background',
   },
   {
     title: 'Ногтевой сервис',
     description: 'Идеальный маникюр и педикюр, от лечебного до дизайнерского. Безопасность, стерильность и внимание к деталям.',
-    bgColor: colors.surface,
+    bg: 'surface',
   },
   {
     title: 'Косметология',
     description: 'Современные методики для сохранения молодости и красоты вашей кожи. Индивидуальные программы ухода от ведущих косметологов.',
-    bgColor: colors.walnut,
+    bg: 'walnut',
   },
   {
     title: 'Макияж и брови',
     description: 'Дневной, вечерний или свадебный макияж. Коррекция и окрашивание бровей для создания выразительного взгляда.',
-    bgColor: colors.background,
+    bg: 'background',
   },
   {
     title: 'Массаж и SPA',
     description: 'Расслабляющие и оздоровительные массажи, обертывания и другие SPA-программы для гармонии души и тела.',
-    bgColor: colors.surface,
+    bg: 'surface',
   },
 ];
+
+const COLOR_MAP: { [key: string]: string } = {
+  background: '#2A2722',
+  surface: '#3E3A34',
+  walnut: '#4E3826',
+};
 
 interface RitualCardProps {
   index: number;
@@ -70,7 +76,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
     ref
   ) => {
     const style: CSSProperties = {
-      backgroundColor: bgColor,
+      backgroundColor: COLOR_MAP[bgColor] || 'transparent',
       top: `calc(${index} * var(--stack-peek))`,
       zIndex: index + 1,
     };
@@ -83,18 +89,25 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
         <div className="ritual-card-inner">
           <div className="ritual-card-content">
             <h3
-              className="ritual-card-headline text-cream"
+              className="ritual-card-headline"
+              style={{ color: '#EDE8E0' }}
             >
               {headline}
             </h3>
             <p
-              className="ritual-card-description text-nude"
+              className="ritual-card-description"
+              style={{
+                color: 'rgba(237, 232, 224, 0.65)',
+              }}
             >
               {description}
             </p>
             <a
               href={linkHref}
-              className="ritual-card-link text-cream"
+              className="ritual-card-link"
+              style={{
+                color: 'rgba(237, 232, 224, 0.95)',
+              }}
               data-cursor-hover="link"
             >
               {linkLabel}
@@ -118,7 +131,6 @@ RitualCard.displayName = 'RitualCard';
 
 const Rituals = () => {
     const componentRef = useRef<HTMLDivElement>(null);
-    const stackRef = useRef<HTMLDivElement>(null);
     const cardsRef = useRef<(HTMLElement | null)[]>([]);
 
     useLayoutEffect(() => {
@@ -131,67 +143,84 @@ const Rituals = () => {
             isReduced: "(prefers-reduced-motion: reduce)"
         }, (context) => {
             const { isDesktop, isReduced } = context.conditions as { isDesktop: boolean; isReduced: boolean };
+            if (!isDesktop || isReduced) return;
+            
             const cards = cardsRef.current.filter(Boolean) as HTMLElement[];
             if (!cards.length) return;
 
             // Animate content inside each card
             cards.forEach((card) => {
                 const animatedItems = card.querySelectorAll('.ritual-card-headline, .ritual-card-description, .ritual-card-link');
-                gsap.from(animatedItems, {
-                    y: 40, opacity: 0, ease: EASES.slide, stagger: 0.06, duration: 0.7,
-                    scrollTrigger: { 
-                        trigger: card, 
-                        start: 'top 80%', 
-                        toggleActions: 'play none none reverse' 
-                    },
-                });
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            gsap.fromTo(animatedItems, 
+                                { y: 40, opacity: 0 },
+                                { y: 0, opacity: 1, ease: EASES.slide, stagger: 0.06, duration: 0.7 }
+                            );
+                            observer.unobserve(card);
+                        }
+                    });
+                }, { threshold: 0.6 });
+                observer.observe(card);
             });
 
-            if (isDesktop && !isReduced) {
-                // Card slide-up entrance animation
-                cards.forEach((card, index) => {
-                    if (index < 3) return; // first three render at final y, no slide-in
-                    gsap.fromTo(card,
-                      { y: 60 },
-                      {
-                        y: 0,
-                        scrollTrigger: {
-                          trigger: card,
-                          start: 'top 100%',
-                          end: 'top 70%',
-                          scrub: 0.4
-                        }
-                      }
-                    );
+            // Card recede animation (depth effect)
+            const ritualsEl = componentRef.current;
+            if (!ritualsEl) return;
+            const stackPeek = parseInt(
+              getComputedStyle(ritualsEl)
+                .getPropertyValue('--stack-peek')
+            );
+            
+            cards.forEach((card, index) => {
+                if (index === cards.length - 1) return; // last card never recedes
+
+                const nextCard = cards[index + 1];
+
+                ScrollTrigger.create({
+                    trigger: nextCard,
+                    start: 'top bottom',
+                    end: `top ${(index + 1) * stackPeek + 40}px`,
+                    scrub: 0.6,
+                    animation: gsap.to(card, {
+                        scale: 0.97,
+                        opacity: 0.75,
+                        filter: 'blur(1.5px)',
+                        ease: 'none',
+                        overwrite: 'auto'
+                    }),
+                    invalidateOnRefresh: true
                 });
 
-                // Card recede animation (depth effect)
-                cards.forEach((card, cardIndex) => {
-                    if (cardIndex === cards.length - 1) return;
+                for (let stepIndex = 1; stepIndex < cards.length - index - 1; stepIndex++) {
+                    const triggerCard = cards[index + 1 + stepIndex];
+                    if (!triggerCard) break;
 
-                    const cardsThatTrigger = cards.slice(cardIndex + 1);
+                    const stepBlur = Math.min(1.5 + stepIndex * 0.6, 4);
+                    const stepScale = Math.max(0.97 - stepIndex * 0.012, 0.9);
+                    const stepOpacity = Math.max(0.75 - stepIndex * 0.10, 0.35);
 
-                    cardsThatTrigger.forEach((triggerCard, stepIndex) => {
-                        const scale = Math.max(0.88, 1 - 0.025 * (stepIndex + 1));
-                        const opacity = Math.max(0.30, 0.85 - stepIndex * 0.12);
-                        const blur = Math.min(5, 1.2 + stepIndex * 0.5); 
-
-                        ScrollTrigger.create({
-                            trigger: triggerCard,
-                            start: 'top 90%',
-                            end: 'top 30%',
-                            scrub: 0.6,
-                            animation: gsap.to(card, {
-                                scale: scale,
-                                opacity: opacity,
-                                filter: `blur(${blur}px)`,
-                                ease: 'none',
-                                overwrite: 'auto'
-                            })
-                        });
+                    ScrollTrigger.create({
+                        trigger: triggerCard,
+                        start: 'top bottom',
+                        end: `top ${(index + 1 + stepIndex) * stackPeek + 40}px`,
+                        scrub: 0.6,
+                        animation: gsap.to(card, {
+                            scale: stepScale,
+                            opacity: stepOpacity,
+                            filter: `blur(${stepBlur}px)`,
+                            ease: 'none',
+                            overwrite: 'auto'
+                        }),
+                        invalidateOnRefresh: true
                     });
-                });
-            }
+                }
+            });
+            
+            document.fonts.ready.then(() => {
+                ScrollTrigger.refresh();
+            });
         });
 
         return () => mm.revert();
@@ -200,25 +229,25 @@ const Rituals = () => {
     return (
         <section id="rituals" ref={componentRef} data-cursor="dark">
             <div
-                style={{ backgroundColor: colors.background }}
+                style={{ backgroundColor: 'var(--color-background)' }}
             >
                 <div className="relative">
                   <div className="paper-texture"></div>
                   <div className="container py-16 md:py-24">
-                      <p className="caption">Процедуры</p>
+                      <p className="caption text-nude">Процедуры</p>
                       <h2 className="font-display text-h1 text-cream uppercase mt-2">
                           Ритуалы <br /> Красоты
                       </h2>
                   </div>
                 </div>
             </div>
-            <div ref={stackRef} className="rituals-stack relative md:p-0">
+            <div className="rituals-stack relative md:p-0">
                 {ritualsData.map((ritual, index) => (
                     <RitualCard
                         key={ritual.title}
                         index={index}
                         totalCards={ritualsData.length}
-                        bgColor={ritual.bgColor}
+                        bgColor={ritual.bg}
                         numeral={`0${index + 1}`}
                         headline={ritual.title}
                         description={ritual.description}
@@ -237,3 +266,4 @@ const Rituals = () => {
 };
 
 export default Rituals;
+
