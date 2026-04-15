@@ -20,7 +20,6 @@ const NewMe = () => {
     // Use a timeout to ensure fonts are loaded and dimensions are correct
     const timer = setTimeout(() => {
       let ctx = gsap.context(() => {
-        // This timeline will be controlled by the scroll position
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: sectionEl,
@@ -32,20 +31,27 @@ const NewMe = () => {
           },
         });
 
-        const yaRect = yaEl.getBoundingClientRect();
         const textRect = textEl.getBoundingClientRect();
-        
-        // Calculate the x offset needed to center the 'я' character.
-        const xShift = -((yaRect.left + yaRect.width / 2) - (textRect.left + textRect.width / 2));
-        
-        // Animation starts after 80% of the scroll duration.
-        // We create a "dead zone" for the first 80% of the scroll.
-        tl.to(textEl, {
-            x: xShift,
-            scale: 35, // A large value to ensure text fills the screen
-            ease: 'power1.in',
-          }, '+=0.8'); // Start animation at the 80% mark of the timeline duration.
+        const yaRect = yaEl.getBoundingClientRect();
 
+        // Calculate the position of the 'я' character's center relative to the text element's top-left corner.
+        // We'll use this as the transform-origin.
+        const originX = (yaRect.left + yaRect.width / 2) - textRect.left;
+        const originY = (yaRect.top + yaRect.height / 2) - textRect.top;
+        
+        // Set the transform origin on the text element
+        gsap.set(textEl, { transformOrigin: `${originX}px ${originY}px` });
+
+        // Add the scaling animation to the timeline.
+        // It starts at 80% of the way through the scroll animation (position '0.8').
+        tl.to(
+          textEl,
+          {
+            scale: 50, // A large value to ensure text fills the screen
+            ease: 'power1.in',
+          },
+          0.8
+        );
       }, sectionEl);
 
       return () => {
@@ -53,7 +59,7 @@ const NewMe = () => {
           ctx.revert();
         }
       };
-    }, 200); // Delay for rendering
+    }, 200); // Delay for rendering and layout calculation
 
     return () => clearTimeout(timer);
   }, []);
