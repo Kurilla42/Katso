@@ -67,8 +67,16 @@ const NewMe = () => {
   return (
     <section ref={sectionRef} id="new-me" className="relative bg-background" data-cursor="dark">
       <div className="h-screen w-full flex items-center justify-center overflow-hidden">
-        <h2 ref={textRef} className="font-display text-hero text-cream uppercase whitespace-nowrap">
-          Познакомся с новым «<span ref={yaRef}>я</span>»
+        <h2 ref={textRef} className="flex items-center justify-center gap-x-8 md:gap-x-12 font-display text-h1 text-cream uppercase">
+          <div className="text-right">
+            <div className="block">Раскрой свою</div>
+            <div className="block">уникальность</div>
+          </div>
+          <div className="text-accent text-[1em] leading-none self-center">+</div>
+          <div className="text-left">
+            <div className="block">познакомься</div>
+            <div className="block">с новым «<span ref={yaRef}>я</span>»</div>
+          </div>
         </h2>
       </div>
     </section>
