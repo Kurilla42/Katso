@@ -4,8 +4,7 @@ import SocialProof from '@/components/sections/SocialProof';
 import Rituals from '@/components/sections/Rituals';
 import NewMe from '@/components/sections/NewMe';
 import WhyKatso from '@/components/sections/WhyKatso';
-import Masters from '@/components/sections/Masters';
-import Faq from '@/components/sections/Faq';
+import MastersAndFaq from '@/components/sections/MastersAndFaq';
 import Footer from '@/components/sections/Footer';
 
 export default function Home() {
@@ -17,8 +16,7 @@ export default function Home() {
       <Rituals />
       <NewMe />
       <WhyKatso />
-      <Masters />
-      <Faq />
+      <MastersAndFaq />
       <Footer />
     </main>
   );

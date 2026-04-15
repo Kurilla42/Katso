@@ -1,9 +1,8 @@
 'use client';
 
-import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { colors } from '@/lib/design-tokens';
 import { EASES } from '@/lib/animations';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -112,33 +111,6 @@ const AccordionItem = ({
 
 const Faq = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    
-    const sectionEl = sectionRef.current;
-    if (!sectionEl) return;
-
-    const contentToAnimate = sectionEl.querySelector('.container');
-    if (!contentToAnimate) return;
-
-    const ctx = gsap.context(() => {
-        gsap.from(contentToAnimate, {
-            x: '50%',
-            opacity: 0,
-            duration: 1.2,
-            ease: EASES.slide,
-            scrollTrigger: {
-                trigger: sectionEl,
-                start: 'top 70%',
-                toggleActions: 'play none none none',
-            }
-        });
-    }, sectionEl);
-
-    return () => ctx.revert();
-  }, []);
 
   const handleItemClick = (index: number) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -147,9 +119,9 @@ const Faq = () => {
   return (
     <section
       id="faq"
-      ref={sectionRef}
-      style={{ backgroundColor: colors.surface, overflow: 'hidden' }}
+      style={{ backgroundColor: colors.surface }}
       data-cursor="dark"
+      className="h-full w-full overflow-y-auto"
     >
         <div className="paper-texture"></div>
         <div className="grid-overlay"></div>

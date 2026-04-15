@@ -181,7 +181,7 @@ const Masters = () => {
     <section
       id="masters"
       ref={component}
-      className="relative"
+      className="relative h-full overflow-y-auto"
       style={{ backgroundColor: colors.walnut }}
       data-cursor="dark"
     >
