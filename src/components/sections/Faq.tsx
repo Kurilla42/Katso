@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { colors } from '@/lib/design-tokens';
 import { EASES } from '@/lib/animations';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -111,6 +112,33 @@ const AccordionItem = ({
 
 const Faq = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    const sectionEl = sectionRef.current;
+    if (!sectionEl) return;
+
+    const contentToAnimate = sectionEl.querySelector('.container');
+    if (!contentToAnimate) return;
+
+    const ctx = gsap.context(() => {
+        gsap.from(contentToAnimate, {
+            x: '50%',
+            opacity: 0,
+            duration: 1.2,
+            ease: EASES.slide,
+            scrollTrigger: {
+                trigger: sectionEl,
+                start: 'top 70%',
+                toggleActions: 'play none none none',
+            }
+        });
+    }, sectionEl);
+
+    return () => ctx.revert();
+  }, []);
 
   const handleItemClick = (index: number) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -119,7 +147,8 @@ const Faq = () => {
   return (
     <section
       id="faq"
-      style={{ backgroundColor: colors.surface }}
+      ref={sectionRef}
+      style={{ backgroundColor: colors.surface, overflow: 'hidden' }}
       data-cursor="dark"
     >
         <div className="paper-texture"></div>
@@ -128,19 +157,19 @@ const Faq = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16 items-center">
           
           {/* Left Column: Images */}
-          <div className="hidden lg:block lg:col-span-6">
+          <div className="hidden lg:block lg:col-span-5">
              <div className="relative w-full h-full min-h-[650px]">
-                <div className="absolute top-0 left-0 w-7/12">
+                <div className="absolute top-0 left-0 w-8/12">
                     <FaqImage imageId="faq-image-1" className="aspect-[4/5] w-full" />
                 </div>
-                <div className="absolute top-48 right-0 w-7/12">
+                <div className="absolute top-48 right-0 w-8/12">
                     <FaqImage imageId="faq-image-2" className="aspect-[4/5] w-full" />
                 </div>
              </div>
           </div>
 
           {/* Right Column: FAQ & Contact */}
-          <div className="lg:col-span-6">
+          <div className="lg:col-start-7 lg:col-span-6">
             <h2 className="font-display text-hero uppercase text-cream leading-none">
               FAQ
             </h2>
