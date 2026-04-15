@@ -55,7 +55,6 @@ const ritualsData = [
 const RitualCard = forwardRef<HTMLDivElement, { ritual: (typeof ritualsData)[0], index: number }>(({ ritual, index }, ref) => {
     const isDark = ritual.theme === 'dark';
     const textColor = isDark ? 'text-textLight' : 'text-textDark';
-    const mutedTextColor = isDark ? 'text-textLightMuted' : 'text-textDarkMuted';
 
     return (
         <div
@@ -77,7 +76,7 @@ const RitualCard = forwardRef<HTMLDivElement, { ritual: (typeof ritualsData)[0],
             <div 
               className="card-numeral absolute right-[clamp(1rem,3vw,5rem)] top-0 h-full flex items-center pointer-events-none"
               style={{
-                fontSize: 'clamp(180px, 22vw, 480px)',
+                fontSize: 'clamp(160px, 20vw, 360px)',
                 lineHeight: 0.8,
                 color: 'transparent',
                 WebkitTextStroke: isDark ? '2px rgba(255, 255, 255, 0.18)' : '2px rgba(0, 0, 0, 0.1)',
@@ -92,17 +91,18 @@ const RitualCard = forwardRef<HTMLDivElement, { ritual: (typeof ritualsData)[0],
                   className="card-top-band"
                   style={{ minHeight: 'var(--stack-peek)' }}
                 >
-                    <h3 className={`font-display text-h1 uppercase animate-item ${textColor}`}>
+                    <h3 className={`font-display text-card-headline uppercase animate-item ${textColor}`}>
                         {ritual.title}
                     </h3>
                 </div>
-                <div className="card-body max-w-[60%]">
-                    <p className={`text-body-lg animate-item ${mutedTextColor}`}>
+                <div className="card-body">
+                    <p className={`animate-item text-body max-w-[480px] mt-6`} style={{ color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(28, 26, 21, 0.7)', lineHeight: 1.55 }}>
                         {ritual.description}
                     </p>
-                    <button className={`mt-6 animate-item ${textColor} rounded-sm focus-visible:outline-none focus-visible:ring-2 ${isDark ? 'focus-visible:ring-white' : 'focus-visible:ring-textDark'}`} data-cursor-hover="link">
-                        <span className='caption'>Подробнее &rarr;</span>
-                    </button>
+                    <a href="#" className={`inline-flex items-center gap-2 mt-8 animate-item font-display uppercase tracking-[0.08em] underline underline-offset-[6px] decoration-2 rounded-sm focus-visible:outline-none ${isDark ? 'focus-visible:ring-white' : 'focus-visible:ring-textDark'}`} style={{ color: isDark ? 'rgba(255,255,255,0.95)' : 'rgba(28, 26, 21, 0.95)', fontSize: 'clamp(14px, 1.1vw, 20px)'}} data-cursor-hover="link">
+                        Подробнее
+                        <span className="text-xl relative -top-0.5">→</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -211,7 +211,7 @@ const Rituals = () => {
                   </div>
                 </div>
             </div>
-            <div ref={stackRef} className="rituals-stack relative bg-graphite p-4 md:p-8">
+            <div ref={stackRef} className="rituals-stack relative bg-graphite md:p-0">
                 {ritualsData.map((ritual, index) => (
                     <RitualCard
                         key={ritual.title}

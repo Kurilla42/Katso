@@ -27,6 +27,7 @@ const config: Config = {
         caption: ['clamp(0.6875rem, 0.75vw, 0.875rem)', { lineHeight: '1.5', letterSpacing: '0.12em' }], // 11px -> 14px
         body: ['clamp(0.875rem, 0.95vw, 1.125rem)', { lineHeight: '1.5' }], // 14px -> 18px
         'body-lg': ['clamp(1rem, 1.1vw, 1.375rem)', { lineHeight: '1.5' }], // 16px -> 22px
+        'card-headline': ['clamp(36px, 5.5vw, 112px)', { lineHeight: '0.95', letterSpacing: '-0.02em' }],
         h3: ['clamp(1.5rem, 3.5vw, 4.5rem)', { lineHeight: '1.2' }], // 24px -> 72px
         h2: ['clamp(2.25rem, 6.5vw, 8.75rem)', { lineHeight: '1.1' }], // 36px -> 140px
         h1: ['clamp(3rem, 10vw, 15rem)', { lineHeight: '1.0' }], // 48px -> 240px

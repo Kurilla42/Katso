@@ -123,10 +123,15 @@
     height: var(--card-height);
     will-change: transform, filter, opacity;
     transform-origin: 50% 0%;
+    box-sizing: border-box;
   }
 
   .ritual-card:not(:first-child) {
     margin-top: calc(-1 * (var(--card-height) - var(--card-slot)));
+  }
+
+  .ritual-card + .ritual-card {
+    border-top: 8px solid theme('colors.graphite');
   }
 
   @media (max-width: 767px) {
@@ -142,6 +147,9 @@
     }
     .ritual-card:first-child {
       margin-top: 0;
+    }
+    .ritual-card + .ritual-card {
+      border-top: none;
     }
   }
 }
