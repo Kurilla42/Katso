@@ -56,10 +56,10 @@ const FaqImage = ({ imageId, className }: { imageId: string; className?: string 
         className="w-full h-full object-cover filter grayscale transition-all duration-400 ease-in-out group-hover:grayscale-0"
         data-ai-hint={placeholder.imageHint}
       />
-      <PlusMarker className="top-2 left-2" />
-      <PlusMarker className="top-2 right-2" />
-      <PlusMarker className="bottom-2 left-2" />
-      <PlusMarker className="bottom-2 right-2" />
+      <PlusMarker className="top-2 left-2" colorClassName="text-cream/30" />
+      <PlusMarker className="top-2 right-2" colorClassName="text-cream/30" />
+      <PlusMarker className="bottom-2 left-2" colorClassName="text-cream/30" />
+      <PlusMarker className="bottom-2 right-2" colorClassName="text-cream/30" />
     </div>
   );
 };
@@ -85,25 +85,25 @@ const AccordionItem = ({
   }, [isOpen]);
 
   return (
-    <div className="border-b border-textDark/20">
+    <div className="border-b border-cream/20">
       <button
         onClick={onClick}
         className="w-full flex justify-between items-center py-6 text-left gap-4 focus-visible:outline-none focus-visible:bg-black/5 rounded-sm"
         data-cursor-hover="link"
       >
-        <span className="text-body-lg font-medium">{item.question}</span>
-        <div className="relative w-4 h-4 flex-shrink-0">
-          <span className="absolute w-full h-px bg-textDark top-1/2 -translate-y-1/2"></span>
+        <span className="text-body-lg font-medium text-cream">{item.question}</span>
+        <div className="relative w-4 h-4 flex-shrink-0 text-nude">
+          <span className="absolute w-full h-px bg-current top-1/2 -translate-y-1/2"></span>
           <span
             className={cn(
-              'absolute h-full w-px bg-textDark left-1/2 -translate-x-1/2 transition-transform duration-400 ease-slide',
+              'absolute h-full w-px bg-current left-1/2 -translate-x-1/2 transition-transform duration-400 ease-slide',
               isOpen ? 'rotate-90' : 'rotate-0'
             )}
           ></span>
         </div>
       </button>
       <div ref={contentRef} className="h-0 overflow-hidden">
-        <p className="pb-6 text-textDarkMuted max-w-[min(640px,45vw)]">{item.answer}</p>
+        <p className="pb-6 text-nude max-w-[min(640px,45vw)]">{item.answer}</p>
       </div>
     </div>
   );
@@ -119,9 +119,8 @@ const Faq = () => {
   return (
     <section
       id="faq"
-      className="light-bg"
-      style={{ backgroundColor: colors.bonefaq }}
-      data-cursor="light"
+      style={{ backgroundColor: colors.surface }}
+      data-cursor="dark"
     >
         <div className="paper-texture"></div>
         <div className="grid-overlay"></div>
@@ -135,7 +134,7 @@ const Faq = () => {
 
           {/* Center Column: FAQ */}
           <div className="lg:col-span-6">
-            <h2 className="font-display text-hero uppercase text-textDark leading-none">
+            <h2 className="font-display text-hero uppercase text-cream leading-none">
               FAQ
             </h2>
             <div className="mt-8 md:mt-12">
@@ -153,11 +152,11 @@ const Faq = () => {
           {/* Right Column: Contact */}
           <div className="lg:col-span-3 lg:pt-12">
               <div className="sticky top-24 text-right">
-                <p className="caption text-textDarkMuted">
+                <p className="caption text-nude">
                     Не нашли ответ?
                 </p>
-                <a href="#" className="inline-block mt-2 font-medium text-textDark group rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-textDark focus-visible:ring-offset-4 focus-visible:ring-offset-bonefaq" data-cursor-hover="link">
-                    <span>Связаться с нами</span>
+                <a href="#" className="inline-block mt-2 font-medium text-accent group rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-surface" data-cursor-hover="link">
+                    <span>Напишите нам</span>
                     <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">&nbsp;&rarr;</span>
                 </a>
               </div>

@@ -88,7 +88,7 @@ const CustomCursor = () => {
   }
 
   const isHovered = cursorMode !== 'default';
-  const themeColor = cursorTheme === 'dark' ? 'white' : colors.text;
+  const themeColor = cursorTheme === 'dark' ? colors.cream : colors.walnut;
 
   return (
     <div
@@ -102,9 +102,9 @@ const CustomCursor = () => {
       )}
       style={{
         backgroundColor: isHovered ? 'transparent' : themeColor,
-        borderColor: themeColor,
+        borderColor: isHovered ? colors.accent : themeColor,
         borderWidth: isHovered ? '2px' : '0px',
-        color: themeColor,
+        color: isHovered ? colors.accent : themeColor,
       }}
     >
       <span className={cn(

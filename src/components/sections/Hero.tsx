@@ -99,9 +99,8 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="light-bg relative"
-      style={{ backgroundColor: colors.background }}
-      data-cursor="light"
+      className="relative"
+      data-cursor="dark"
     >
       <div className="paper-texture"></div>
       <div className="grid-overlay"></div>
@@ -109,7 +108,7 @@ const Hero = () => {
         <div className="container pt-32 sm:pt-40">
           <h1
             ref={headlineRef}
-            className="font-display text-[14vw] leading-display text-textDark uppercase"
+            className="font-display text-[14vw] leading-display text-cream uppercase"
           >
             <div className="overflow-hidden">
               <span className="line-inner block">Создаём</span>
@@ -118,7 +117,7 @@ const Hero = () => {
               <span className="line-inner block">ритуалы</span>
             </div>
             <div className="overflow-hidden">
-              <span className="line-inner block text-primary">красоты</span>
+              <span className="line-inner block text-accent">красоты</span>
             </div>
           </h1>
         </div>
@@ -131,22 +130,22 @@ const Hero = () => {
             <div ref={countersRef} className="flex flex-wrap gap-8 sm:gap-12">
               {stats.map((stat, index) => (
                 <div key={index} className="flex items-baseline gap-2">
-                  <span className="counter-value font-display text-h3 text-textDark">
+                  <span className="counter-value font-display text-h3 text-cream">
                     {stat.value}
                   </span>
                   {stat.suffix && (
-                    <span className="font-display text-h3 text-primary">
+                    <span className="font-display text-h3 text-accent">
                       {stat.suffix}
                     </span>
                   )}
-                  <span className="caption text-textDarkMuted max-w-[100px]">
+                  <span className="caption max-w-[100px]">
                     {stat.label}
                   </span>
                 </div>
               ))}
             </div>
 
-            <div className="flex items-center gap-4 text-textDarkMuted flex-shrink-0">
+            <div className="flex items-center gap-4 text-nude flex-shrink-0">
               <StarIcon className="w-5 h-5 opacity-50" />
               <div className="caption flex gap-4">
                 <span>КИШИНЁВ, МОЛДОВА</span>
@@ -161,8 +160,8 @@ const Hero = () => {
           ref={scrollIndicatorRef}
           className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         >
-          <span className="caption text-textDarkMuted">SCROLL</span>
-          <div className="w-px h-10 bg-textDark/50 rounded-full"></div>
+          <span className="caption">SCROLL</span>
+          <div className="w-px h-10 bg-cream/50 rounded-full"></div>
         </div>
       </div>
     </section>

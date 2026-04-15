@@ -15,12 +15,12 @@ const socialProofs = [
 ];
 
 const Separator = () => (
-  <div className="w-2 h-2 bg-textDark rounded-full mx-8" />
+  <div className="w-2 h-2 bg-accent rounded-full mx-8" />
 );
 
 const MarqueeItem = ({ text }: { text: string }) => (
   <div className="flex items-center shrink-0">
-    <span className="font-body text-body-lg text-textDark whitespace-nowrap">
+    <span className="font-body text-body-lg text-cream whitespace-nowrap">
       {text}
     </span>
     <Separator />
@@ -81,9 +81,9 @@ const SocialProof = () => {
   return (
     <section
       id="social-proof"
-      className="light-bg overflow-hidden"
-      style={{ backgroundColor: colors.offwhite }}
-      data-cursor="light"
+      className="overflow-hidden"
+      style={{ backgroundColor: colors.surface }}
+      data-cursor="dark"
     >
       <div className="py-6 md:py-8">
         <div ref={wrapperRef} className="flex">

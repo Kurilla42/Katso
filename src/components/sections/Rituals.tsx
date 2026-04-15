@@ -5,50 +5,42 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { colors } from '@/lib/design-tokens';
 import { EASES } from '@/lib/animations';
-import { cn } from '@/lib/utils';
 
 const ritualsData = [
   {
     title: 'Стрижки',
     description: 'От классических форм до смелых креативных решений. Наши мастера создадут идеальный образ, подчеркивающий вашу индивидуальность.',
-    bgColor: colors.chocolate,
-    theme: 'dark',
+    bgColor: colors.surface,
   },
   {
     title: 'Окрашивание',
     description: 'Сложные техники, натуральные оттенки и яркие цвета. Мы используем только премиальные красители для здоровья ваших волос.',
-    bgColor: colors.darkgreen,
-    theme: 'dark',
+    bgColor: colors.walnut,
   },
   {
     title: 'Уход за волосами',
     description: 'Глубокое восстановление, увлажнение и питание. SPA-ритуалы для волос, которые вернут им силу, блеск и шелковистость.',
-    bgColor: colors.dustyblue,
-    theme: 'light',
+    bgColor: colors.background,
   },
   {
     title: 'Ногтевой сервис',
     description: 'Идеальный маникюр и педикюр, от лечебного до дизайнерского. Безопасность, стерильность и внимание к деталям.',
-    bgColor: colors.burgundy,
-    theme: 'dark',
+    bgColor: colors.surface,
   },
   {
     title: 'Косметология',
     description: 'Современные методики для сохранения молодости и красоты вашей кожи. Индивидуальные программы ухода от ведущих косметологов.',
-    bgColor: colors.burgundyLt,
-    theme: 'dark',
+    bgColor: colors.walnut,
   },
   {
     title: 'Макияж и брови',
     description: 'Дневной, вечерний или свадебный макияж. Коррекция и окрашивание бровей для создания выразительного взгляда.',
-    bgColor: colors.wine,
-    theme: 'light',
+    bgColor: colors.background,
   },
   {
     title: 'Массаж и SPA',
     description: 'Расслабляющие и оздоровительные массажи, обертывания и другие SPA-программы для гармонии души и тела.',
-    bgColor: colors.graphite,
-    theme: 'dark',
+    bgColor: colors.surface,
   },
 ];
 
@@ -56,7 +48,6 @@ interface RitualCardProps {
   index: number;
   totalCards: number;
   bgColor: string;
-  textColor?: 'light' | 'dark';
   numeral: string;
   headline: string;
   description: string;
@@ -70,7 +61,6 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
       index,
       totalCards,
       bgColor,
-      textColor = 'light',
       numeral,
       headline,
       description,
@@ -79,8 +69,6 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
     },
     ref
   ) => {
-    const isLight = textColor === 'light';
-
     const style: CSSProperties = {
       backgroundColor: bgColor,
       top: `calc(${index} * var(--stack-peek))`,
@@ -95,29 +83,18 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
         <div className="ritual-card-inner">
           <div className="ritual-card-content">
             <h3
-              className="ritual-card-headline"
-              style={{ color: isLight ? '#FFFFFF' : '#0B0B0B' }}
+              className="ritual-card-headline text-cream"
             >
               {headline}
             </h3>
             <p
-              className="ritual-card-description"
-              style={{
-                color: isLight
-                  ? 'rgba(255,255,255,0.65)'
-                  : 'rgba(11,11,11,0.65)',
-              }}
+              className="ritual-card-description text-nude"
             >
               {description}
             </p>
             <a
               href={linkHref}
-              className="ritual-card-link"
-              style={{
-                color: isLight
-                  ? 'rgba(255,255,255,0.95)'
-                  : 'rgba(11,11,11,0.95)',
-              }}
+              className="ritual-card-link text-cream"
               data-cursor-hover="link"
             >
               {linkLabel}
@@ -127,9 +104,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
           <div
             className="ritual-card-numeral"
             style={{
-              WebkitTextStroke: `2px ${
-                isLight ? 'rgba(255,255,255,0.18)' : 'rgba(11,11,11,0.18)'
-              }`,
+              WebkitTextStroke: `2px rgba(237, 232, 224, 0.18)`,
             }}
           >
             {numeral}
@@ -223,30 +198,27 @@ const Rituals = () => {
     }, []);
 
     return (
-        <section id="rituals" ref={componentRef}>
+        <section id="rituals" ref={componentRef} data-cursor="dark">
             <div
-                className="light-bg"
                 style={{ backgroundColor: colors.background }}
-                data-cursor="light"
             >
                 <div className="relative">
                   <div className="paper-texture"></div>
                   <div className="container py-16 md:py-24">
-                      <p className="caption text-textDarkMuted">Процедуры</p>
-                      <h2 className="font-display text-h1 text-textDark uppercase mt-2">
+                      <p className="caption">Процедуры</p>
+                      <h2 className="font-display text-h1 text-cream uppercase mt-2">
                           Ритуалы <br /> Красоты
                       </h2>
                   </div>
                 </div>
             </div>
-            <div ref={stackRef} className="rituals-stack relative bg-background md:p-0">
+            <div ref={stackRef} className="rituals-stack relative md:p-0">
                 {ritualsData.map((ritual, index) => (
                     <RitualCard
                         key={ritual.title}
                         index={index}
                         totalCards={ritualsData.length}
                         bgColor={ritual.bgColor}
-                        textColor={ritual.theme}
                         numeral={`0${index + 1}`}
                         headline={ritual.title}
                         description={ritual.description}

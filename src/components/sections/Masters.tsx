@@ -40,41 +40,38 @@ const MasterRow = React.forwardRef<
   HTMLButtonElement,
   {
     master: (typeof mastersData)[0];
-    isHovered: boolean;
     isActive: boolean;
     onMouseEnter: () => void;
     onClick: () => void;
   }
->(({ master, isHovered, isActive, onMouseEnter, onClick }, ref) => (
+>(({ master, isActive, onMouseEnter, onClick }, ref) => (
   <button
     ref={ref}
     onMouseEnter={onMouseEnter}
     onClick={onClick}
     className={cn(
-      'w-full text-left border-b transition-colors duration-200 focus-visible:outline-none',
-      isHovered ? 'border-textDark/40 bg-border' : 'border-textDark/20 bg-transparent',
-      'focus-visible:ring-2 focus-visible:ring-textDark ring-offset-2 ring-offset-background'
+      'w-full text-left border-b transition-colors duration-300 focus-visible:outline-none group',
+      'border-cream/20 bg-transparent',
+      'hover:bg-cream',
+      'focus-visible:ring-2 focus-visible:ring-cream ring-offset-2 ring-offset-walnut'
     )}
-    data-hovered={isHovered}
     data-cursor-hover="link"
-    data-cursor="light"
   >
     <div className="container py-6 flex justify-between items-center">
       <div
         className={cn(
-          'flex flex-col md:flex-row md:items-baseline md:gap-6 transition-colors duration-200',
-          'text-textDark'
+          'flex flex-col md:flex-row md:items-baseline md:gap-6'
         )}
       >
-        <h3 className="font-display text-h3 uppercase">
+        <h3 className="font-display text-h3 uppercase text-cream group-hover:text-background transition-colors duration-300">
           {master.name}
         </h3>
-        <p className={cn('text-body-lg', 'text-textDarkMuted')}>
+        <p className={cn('text-body-lg text-nude group-hover:text-background transition-colors duration-300')}>
           {master.role}
         </p>
       </div>
-      <div className={cn('transition-transform duration-400 ease-slide md:hidden', isActive ? 'rotate-45' : 'rotate-0')}>
-        <svg className="w-4 h-4 text-textDark" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <div className={cn('transition-transform duration-400 ease-slide md:hidden text-cream group-hover:text-background', isActive ? 'rotate-45' : 'rotate-0')}>
+        <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8 0V16" stroke="currentColor" strokeWidth="1.5"/>
             <path d="M16 8L0 8" stroke="currentColor" strokeWidth="1.5"/>
         </svg>
@@ -90,7 +87,6 @@ const Masters = () => {
   const itemsRef = useRef<(HTMLButtonElement | null)[]>([]);
   const accordionContentsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [activeImageUrl, setActiveImageUrl] = useState('');
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
@@ -128,7 +124,6 @@ const Masters = () => {
             const yOffset = initialImageY !== null ? itemRect.top - initialImageY + (itemRect.height - imageEl.offsetHeight) / 2 : 0;
             
             yTo(yOffset * 100 / window.innerHeight); // as % of viewport height
-            setHoveredIndex(index);
           };
 
           const handleListMouseEnter = () => {
@@ -139,7 +134,6 @@ const Masters = () => {
           const handleListMouseLeave = () => {
             xTo(100);
             gsap.to(imageEl, { autoAlpha: 0, duration: 0.2, delay: 0.2 });
-            setHoveredIndex(null);
           };
 
           const listEl = component.current!.querySelector('.masters-list');
@@ -187,15 +181,15 @@ const Masters = () => {
     <section
       id="masters"
       ref={component}
-      className="light-bg relative"
-      style={{ backgroundColor: colors.background }}
-      data-cursor="light"
+      className="relative"
+      style={{ backgroundColor: colors.walnut }}
+      data-cursor="dark"
     >
       <div className="paper-texture"></div>
       <div className="grid-overlay"></div>
       <div className="container py-16 md:py-40 relative">
-        <p className="caption text-textDarkMuted">Команда</p>
-        <h2 className="font-display text-h1 text-textDark uppercase mt-2">
+        <p className="caption">Команда</p>
+        <h2 className="font-display text-h1 text-cream uppercase mt-2">
             Наши <br /> Мастера
         </h2>
       </div>
@@ -208,16 +202,15 @@ const Masters = () => {
               <MasterRow
                 ref={el => itemsRef.current[index] = el}
                 master={master}
-                isHovered={hoveredIndex === index}
                 isActive={activeIndex === index}
                 onMouseEnter={() => {}} 
                 onClick={() => onRowClick(index)}
               />
               <div
                 ref={el => accordionContentsRef.current[index] = el}
-                className="h-0 overflow-hidden md:hidden"
+                className="h-0 overflow-hidden md:hidden bg-cream"
               >
-                <div className="p-4 bg-border">
+                <div className="p-4">
                   {placeholder && (
                     <div className="relative aspect-[4/5] w-full">
                        <Image

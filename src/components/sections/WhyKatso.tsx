@@ -82,8 +82,7 @@ const whyKatsoData = [
     title: 'Экспертиза',
     description: 'Наши мастера — признанные профессионалы с многолетним опытом, постоянно совершенствующие свои навыки на международных семинарах и мастер-классах.',
     tagline: '(Искусство в деталях)',
-    bgColor: colors.olive,
-    theme: 'dark',
+    bgColor: colors.surface,
     icon: (props: React.SVGProps<SVGSVGElement>) => (
         <svg {...props} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M50,5 L50,95" stroke="currentColor" strokeWidth="1" />
@@ -97,8 +96,7 @@ const whyKatsoData = [
     title: 'Атмосфера',
     description: 'Мы создали пространство, где вы можете расслабиться, отвлечься от суеты и посвятить время себе. Каждая деталь интерьера продумана для вашего комфорта.',
     tagline: '(Ваше личное убежище)',
-    bgColor: colors.bonefaq,
-    theme: 'light',
+    bgColor: colors.walnut,
     icon: (props: React.SVGProps<SVGSVGElement>) => (
       <svg {...props} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="50" cy="50" r="49" stroke="currentColor" strokeWidth="1"/>
@@ -111,8 +109,7 @@ const whyKatsoData = [
     title: 'Качество',
     description: 'Мы работаем только с премиальными брендами и проверенными технологиями. Безопасность и здоровье наших клиентов — наш главный приоритет.',
     tagline: '(Бескомпромиссный стандарт)',
-    bgColor: colors.chocolate,
-    theme: 'dark',
+    bgColor: colors.surface,
     icon: (props: React.SVGProps<SVGSVGElement>) => (
         <svg {...props} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="10" y="10" width="80" height="80" stroke="currentColor" strokeWidth="1"/>
@@ -158,52 +155,49 @@ const WhyKatso = () => {
   return (
     <section
       id="why-us"
-      className="light-bg py-16 md:py-40"
-      style={{ backgroundColor: colors.background }}
-      data-cursor="light"
+      className="py-16 md:py-40"
+      data-cursor="dark"
     >
       <div className="relative">
         <div className="paper-texture"></div>
         <div className="grid-overlay"></div>
         <div className="container">
-            <p className="caption text-textDarkMuted">Почему мы</p>
-            <h2 className="mt-4 font-display text-h1 text-textDark uppercase">
+            <p className="caption">Почему мы</p>
+            <h2 className="mt-4 font-display text-h1 text-cream uppercase">
               <AnimatedCharacters ref={headline1Ref} text="ПОЧЕМУ" />
               <AnimatedCharacters ref={headline2Ref} text="ВЫБИРАЮТ" />
-              <AnimatedCharacters ref={headline3Ref} text="KATSO" className="text-primary" />
+              <AnimatedCharacters ref={headline3Ref} text="KATSO" className="text-cream" />
             </h2>
         </div>
 
         <div className="container mt-16 md:mt-24">
           <div ref={cardsContainerRef} className="flex flex-col gap-4 md:gap-6">
             {whyKatsoData.map((item, index) => {
-              const isDark = item.theme === 'dark';
               return (
                 <div
                   key={index}
                   className={cn(
-                      'p-8 sm:p-12 md:p-16 rounded-md relative',
-                      isDark ? 'dark-bg' : 'light-bg'
+                      'p-8 sm:p-12 md:p-16 rounded-md relative'
                   )}
                   style={{ backgroundColor: item.bgColor }}
-                  data-cursor={item.theme}
+                  data-cursor="dark"
                 >
                   <div className="paper-texture"></div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8 items-center">
-                      <div className={cn(isDark ? 'text-textLight' : 'text-textDark')}>
+                      <div className="text-cream">
                           <h3 className="font-display text-h2 uppercase">
                               {item.title}
                           </h3>
-                          <p className={cn('mt-4 text-body-lg max-w-[min(560px,45vw)]', isDark ? 'text-textLightMuted' : 'text-textDarkMuted')}>
+                          <p className="mt-4 text-body-lg max-w-[min(560px,45vw)] text-nude">
                               {item.description}
                           </p>
                       </div>
                       <div className="relative min-h-[160px] flex items-center justify-center md:justify-end">
                           <div className="w-32 h-32 md:w-[15vw] md:h-[15vw] max-w-[200px] max-h-[200px] flex-shrink-0">
-                              <item.icon className={cn(isDark ? 'text-white/40' : 'text-black/30')} />
+                              <item.icon className="text-cream/30" />
                           </div>
-                          <span className={cn('absolute bottom-0 right-0 italic text-sm', isDark ? 'text-textLightMuted/70' : 'text-textDarkMuted/70')}>
-                              {item.tagline}
+                          <span className="absolute bottom-0 right-0 italic text-sm text-nude/70">
+                              <span className="text-accent">(</span>{item.tagline.substring(1, item.tagline.length -1)}<span className="text-accent">)</span>
                           </span>
                       </div>
                   </div>

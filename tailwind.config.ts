@@ -11,13 +11,9 @@ const config: Config = {
     extend: {
       colors: {
         ...colors,
-        textLight: 'rgba(255,255,255,0.88)',
-        textLightMuted: 'rgba(255,255,255,0.60)',
-        textDark: colors.text,
-        textDarkMuted: 'rgba(44, 26, 18, 0.60)',
-        gridOnLight: 'rgba(44, 26, 18, 0.08)',
-        gridOnDark: 'rgba(255,255,255,0.10)',
-        backgroundDark: colors.background,
+        textPrimary: colors.cream,
+        textSecondary: colors.nude,
+        grid: 'rgba(237, 232, 224, 0.08)',
       },
       fontFamily: {
         display: ['Anton', 'Oswald', 'sans-serif'],
