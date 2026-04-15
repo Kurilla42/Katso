@@ -1,3 +1,34 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "master-larina",
+      "description": "Photo of master Ekaterina Larina",
+      "imageUrl": "https://picsum.photos/seed/larina/400/500",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "master-wolf",
+      "description": "Photo of master Alexander Wolf",
+      "imageUrl": "https://picsum.photos/seed/wolf/400/500",
+      "imageHint": "man portrait"
+    },
+    {
+      "id": "master-sokolova",
+      "description": "Photo of master Marina Sokolova",
+      "imageUrl": "https://picsum.photos/seed/sokolova/400/500",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "master-belova",
+      "description": "Photo of master Olga Belova",
+      "imageUrl": "https://picsum.photos/seed/belova/400/500",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "master-novikov",
+      "description": "Photo of master Dmitry Novikov",
+      "imageUrl": "https://picsum.photos/seed/novikov/400/500",
+      "imageHint": "man portrait"
+    }
+  ]
 }
