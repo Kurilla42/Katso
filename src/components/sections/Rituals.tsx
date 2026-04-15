@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useLayoutEffect, useRef, forwardRef } from 'react';
@@ -62,11 +61,14 @@ const RitualCard = forwardRef<HTMLDivElement, { ritual: (typeof ritualsData)[0],
     return (
         <div
             ref={ref}
-            className="ritual-card group"
+            className={cn(
+                'ritual-card group rounded-md overflow-hidden',
+                isDark ? 'dark-bg' : 'light-bg'
+            )}
             style={{ 
                 backgroundColor: ritual.bgColor,
-                willChange: 'transform, filter, opacity',
-                transformOrigin: '50% 0%',
+                top: `calc(${index} * var(--stack-peek))`,
+                zIndex: index + 1,
             }}
             data-cursor={ritual.theme}
         >
@@ -93,7 +95,7 @@ const RitualCard = forwardRef<HTMLDivElement, { ritual: (typeof ritualsData)[0],
                         <p className={`mt-6 text-body-lg animate-item ${mutedTextColor} max-w-[min(560px,45vw)]`}>
                             {ritual.description}
                         </p>
-                        <button className={`mt-8 animate-item ${textColor} rounded-sm focus-visible:outline-none focus-visible:ring-2 ${isDark ? 'focus-visible:ring-white' : 'focus-visible:ring-textDark'}`}>
+                        <button className={`mt-8 animate-item ${textColor} rounded-sm focus-visible:outline-none focus-visible:ring-2 ${isDark ? 'focus-visible:ring-white' : 'focus-visible:ring-textDark'}`} data-cursor-hover="link">
                             <span className='caption'>Подробнее &rarr;</span>
                         </button>
                     </div>
@@ -108,12 +110,12 @@ RitualCard.displayName = 'RitualCard';
 const Rituals = () => {
     const componentRef = useRef<HTMLDivElement>(null);
     const stackRef = useRef<HTMLDivElement>(null);
-    const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
     useLayoutEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
 
-        const cards = cardsRef.current.filter(c => c !== null) as HTMLDivElement[];
+        if (!stackRef.current) return;
+        const cards = Array.from(stackRef.current.children) as HTMLDivElement[];
         if (!cards.length) return;
 
         const mm = gsap.matchMedia(componentRef.current!);
@@ -124,72 +126,68 @@ const Rituals = () => {
         }, (context) => {
             const { isDesktop, isReduced } = context.conditions!;
 
-            if (!isReduced) {
-                // Animate content inside each card
-                cards.forEach((card) => {
-                    const animatedItems = card.querySelectorAll('.animate-item');
-                    gsap.from(animatedItems, {
-                        y: 40, opacity: 0, ease: EASES.slide, stagger: 0.06, duration: 0.7,
-                        scrollTrigger: { 
-                            trigger: card, 
-                            start: isDesktop ? 'top 70%' : 'top 80%', 
-                            toggleActions: 'play none none reverse' 
-                        },
-                    });
+            // Animate content inside each card
+            cards.forEach((card) => {
+                const animatedItems = card.querySelectorAll('.animate-item');
+                gsap.from(animatedItems, {
+                    y: 40, opacity: 0, ease: EASES.slide, stagger: 0.06, duration: 0.7,
+                    scrollTrigger: { 
+                        trigger: card, 
+                        start: 'top 80%', 
+                        toggleActions: 'play none none reverse' 
+                    },
                 });
+            });
 
+            if (isDesktop && !isReduced) {
                 // Card slide-up entrance animation
                 cards.forEach((card, index) => {
-                    if (index === 0) return;
+                    if (index < 3) return; // First 3 cards are visible at rest
                     gsap.fromTo(card,
-                      { y: 80 },
+                      { y: 60 },
                       {
                         y: 0,
                         scrollTrigger: {
                           trigger: card,
                           start: 'top 100%',
-                          end: 'top 60%',
+                          end: 'top 70%',
                           scrub: 0.4
                         }
                       }
                     );
                 });
 
-                if (isDesktop) {
-                    // DESKTOP-ONLY STICKY DEPTH ANIMATION
-                    cards.forEach((card, cardIndex) => {
-                        if (cardIndex === cards.length - 1) return;
+                // Card recede animation (depth effect)
+                cards.forEach((card, cardIndex) => {
+                    if (cardIndex === cards.length - 1) return;
 
-                        const cardsThatTrigger = cards.slice(cardIndex + 1);
+                    const cardsThatTrigger = cards.slice(cardIndex + 1);
 
-                        cardsThatTrigger.forEach((triggerCard, stepIndex) => {
-                            const scale = Math.max(0.88, 1 - 0.025 * (stepIndex + 1));
-                            const opacity = Math.max(0.30, 0.85 - stepIndex * 0.12);
-                            const blur = Math.min(5, 1.2 + stepIndex * 0.5); 
+                    cardsThatTrigger.forEach((triggerCard, stepIndex) => {
+                        const scale = Math.max(0.88, 1 - 0.025 * (stepIndex + 1));
+                        const opacity = Math.max(0.30, 0.85 - stepIndex * 0.12);
+                        const blur = Math.min(5, 1.2 + stepIndex * 0.5); 
 
-                            ScrollTrigger.create({
-                                trigger: triggerCard,
-                                start: 'top 90%',
-                                end: 'top 30%',
-                                scrub: 0.6,
-                                animation: gsap.to(card, {
-                                    scale: scale,
-                                    opacity: opacity,
-                                    filter: `blur(${blur}px)`,
-                                    ease: 'none',
-                                    overwrite: 'auto'
-                                })
-                            });
+                        ScrollTrigger.create({
+                            trigger: triggerCard,
+                            start: 'top 90%',
+                            end: 'top 30%',
+                            scrub: 0.6,
+                            animation: gsap.to(card, {
+                                scale: scale,
+                                opacity: opacity,
+                                filter: `blur(${blur}px)`,
+                                ease: 'none',
+                                overwrite: 'auto'
+                            })
                         });
                     });
-                }
+                });
             }
         });
 
         return () => mm.revert();
     }, []);
-
-    const peekAmount = 72; // in pixels
 
     return (
         <section id="rituals" ref={componentRef}>
@@ -208,19 +206,18 @@ const Rituals = () => {
                   </div>
                 </div>
             </div>
-            <div ref={stackRef} className="rituals-stack relative bg-graphite">
+            <div ref={stackRef} className="rituals-stack relative bg-graphite p-4 md:p-8">
                 {ritualsData.map((ritual, index) => (
-                    <div 
-                      key={index} 
-                      className="ritual-card-wrapper h-screen sticky"
-                      style={{ top: index * peekAmount, zIndex: index + 1 }}
-                    >
-                      <RitualCard
-                          ritual={ritual}
-                          index={index}
-                          ref={(el) => (cardsRef.current[index] = el)}
-                      />
-                    </div>
+                    <RitualCard
+                        key={ritual.title}
+                        ritual={ritual}
+                        index={index}
+                        ref={(el) => {
+                            if (el && (cardsRef.current as any)[index] === undefined) {
+                              (cardsRef.current as any)[index] = el;
+                            }
+                          }}
+                    />
                 ))}
             </div>
         </section>

@@ -95,4 +95,53 @@
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }
+
+  #rituals {
+    --card-height: 480px;
+    --card-slot: 140px;
+    --stack-peek: 72px;
+  }
+
+  @media (max-height: 900px) {
+    #rituals {
+      --card-height: 420px;
+      --card-slot: 120px;
+      --stack-peek: 52px;
+    }
+  }
+
+  @media (max-height: 760px) {
+    #rituals {
+      --card-height: 380px;
+      --card-slot: 100px;
+      --stack-peek: 44px;
+    }
+  }
+
+  .ritual-card {
+    position: sticky;
+    height: var(--card-height);
+    will-change: transform, filter, opacity;
+    transform-origin: 50% 0%;
+  }
+
+  .ritual-card:not(:first-child) {
+    margin-top: calc(-1 * (var(--card-height) - var(--card-slot)));
+  }
+
+  @media (max-width: 767px) {
+    .rituals-stack {
+      @apply snap-y snap-mandatory;
+    }
+    .ritual-card {
+      position: relative !important;
+      top: auto !important;
+      height: 100svh;
+      margin-top: 12px;
+      @apply snap-start;
+    }
+    .ritual-card:first-child {
+      margin-top: 0;
+    }
+  }
 }
