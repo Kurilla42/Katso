@@ -189,9 +189,6 @@ const Masters = () => {
       <div className="grid-overlay"></div>
       <div className="container py-16 md:py-40 relative">
         <p className="caption">Команда</p>
-        <h2 className="font-display text-h1 text-cream uppercase mt-2">
-            Наши <br /> Мастера
-        </h2>
       </div>
 
       <div className="masters-list">
