@@ -149,6 +149,7 @@ const WhyKatso = () => {
       id="why-us"
       className="dark-bg py-16 md:py-40"
       style={{ backgroundColor: colors.graphite }}
+      data-cursor="dark"
     >
       <div className="container">
           <p className="caption text-textLightMuted">Почему мы</p>
@@ -171,6 +172,7 @@ const WhyKatso = () => {
                     isDark ? 'dark-bg' : 'light-bg'
                 )}
                 style={{ backgroundColor: item.bgColor }}
+                data-cursor={item.theme}
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8 items-center">
                     <div className={cn(isDark ? 'text-textLight' : 'text-textDark')}>

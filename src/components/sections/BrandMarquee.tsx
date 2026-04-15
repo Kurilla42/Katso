@@ -74,6 +74,7 @@ const BrandMarquee = () => {
       id="brand-marquee"
       className="dark-bg overflow-hidden"
       style={{ backgroundColor: colors.black }}
+      data-cursor="dark"
     >
       <div className="py-8 md:py-4">
         <div ref={wrapperRef} className="flex">

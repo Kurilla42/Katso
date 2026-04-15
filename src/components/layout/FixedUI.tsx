@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import CustomCursor from './CustomCursor';
 
 const FixedUI = () => {
   const scrollToTop = () => {
@@ -9,11 +10,13 @@ const FixedUI = () => {
 
   return (
     <>
+      <CustomCursor />
       {/* Top-left logo mark */}
       <button
         onClick={scrollToTop}
         className="fixed top-4 left-4 sm:top-6 sm:left-6 z-50 w-10 h-10 rounded-full border-2 border-white flex items-center justify-center bg-transparent cursor-pointer group"
         aria-label="Scroll to top"
+        data-cursor-hover="link"
       >
         <span className="block w-1.5 h-1.5 bg-white rounded-full"></span>
       </button>
@@ -30,7 +33,7 @@ const FixedUI = () => {
       </div>
 
       {/* Top-right menu placeholder */}
-      <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 hidden md:block">
+      <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 hidden md:block" data-cursor-hover="link">
         <span className="caption text-white">МЕНЮ</span>
       </div>
     </>

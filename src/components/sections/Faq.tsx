@@ -87,6 +87,7 @@ const AccordionItem = ({
       <button
         onClick={onClick}
         className="w-full flex justify-between items-center py-6 text-left gap-4"
+        data-cursor-hover="link"
       >
         <span className="text-lg md:text-xl font-medium">{item.question}</span>
         <div className="relative w-4 h-4 flex-shrink-0">
@@ -118,6 +119,7 @@ const Faq = () => {
       id="faq"
       className="light-bg"
       style={{ backgroundColor: colors.bonefaq }}
+      data-cursor="light"
     >
         <div className="paper-texture"></div>
         <div className="grid-overlay"></div>
@@ -152,7 +154,7 @@ const Faq = () => {
                 <p className="caption text-textDarkMuted">
                     Не нашли ответ?
                 </p>
-                <a href="#" className="inline-block mt-2 font-medium text-textDark group">
+                <a href="#" className="inline-block mt-2 font-medium text-textDark group" data-cursor-hover="link">
                     <span>Связаться с нами</span>
                     <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">&nbsp;&rarr;</span>
                 </a>

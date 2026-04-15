@@ -54,6 +54,8 @@ const MasterRow = React.forwardRef<
       isHovered ? 'border-textDark bg-textLight' : 'border-white/20 bg-transparent'
     )}
     data-hovered={isHovered}
+    data-cursor-hover="link"
+    data-cursor={isHovered ? 'light' : 'dark'}
   >
     <div className="container py-6 flex justify-between items-center">
       <div
@@ -184,6 +186,7 @@ const Masters = () => {
       ref={component}
       className="dark-bg"
       style={{ backgroundColor: colors.black }}
+      data-cursor="dark"
     >
       <div className="container py-16 md:py-40">
         <p className="caption text-textLightMuted">Команда</p>

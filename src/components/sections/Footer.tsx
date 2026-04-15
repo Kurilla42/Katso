@@ -27,6 +27,7 @@ const Footer = () => {
       id="footer"
       className="dark-bg"
       style={{ backgroundColor: colors.black }}
+      data-cursor="dark"
     >
       <div className="container relative">
         <div className="relative h-[300px] md:h-[500px] flex items-end overflow-hidden">
@@ -53,7 +54,7 @@ const Footer = () => {
               <ul>
                 {column.links.map((link) => (
                   <li key={link} className="mt-2">
-                    <a href="#" className="text-textLight hover:text-orange transition-colors duration-300">
+                    <a href="#" className="text-textLight hover:text-orange transition-colors duration-300" data-cursor-hover="link">
                       {link}
                     </a>
                   </li>
@@ -67,7 +68,7 @@ const Footer = () => {
         <div className="border-b border-white/10 my-16 md:my-24" />
 
         {/* Bottom CTA */}
-        <a href="#" className="group block text-center py-8">
+        <a href="#" className="group block text-center py-8" data-cursor-hover="link">
             <span className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-textLight uppercase group-hover:text-orange transition-colors duration-300">
                 Записаться на ритуал
                 <span className="inline-block transition-transform duration-300 group-hover:translate-x-2 group-hover:-translate-y-2">&nbsp;↗</span>

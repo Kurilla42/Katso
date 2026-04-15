@@ -100,6 +100,7 @@ const Hero = () => {
       id="hero"
       className="dark-bg relative"
       style={{ backgroundColor: colors.graphite }}
+      data-cursor="dark"
     >
       <div className="grid-overlay"></div>
       <div className="min-h-screen flex flex-col justify-between">

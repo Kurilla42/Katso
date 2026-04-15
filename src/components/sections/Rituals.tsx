@@ -61,6 +61,7 @@ const RitualCard = forwardRef<HTMLDivElement, { ritual: (typeof ritualsData)[0],
             ref={ref}
             className="ritual-card"
             style={{ backgroundColor: ritual.bgColor, willChange: 'transform, opacity, filter' }}
+            data-cursor={ritual.theme}
         >
             <div className={`${isDark ? 'dark-bg' : 'light-bg'} w-full h-full relative p-8 sm:p-12 md:p-16 flex flex-col justify-center`}>
                 <div className={`absolute top-1/2 -translate-y-1/2 right-0 -mr-16 md:mr-0 text-center select-none pointer-events-none ${bigNumberColor}`}>
@@ -77,7 +78,7 @@ const RitualCard = forwardRef<HTMLDivElement, { ritual: (typeof ritualsData)[0],
                         <p className={`mt-6 text-base md:text-lg max-w-md animate-item ${mutedTextColor}`}>
                             {ritual.description}
                         </p>
-                        <button className={`mt-8 caption animate-item ${textColor}`}>
+                        <button className={`mt-8 caption animate-item ${textColor}`} data-cursor-hover="link">
                             Подробнее &rarr;
                         </button>
                     </div>
@@ -236,6 +237,7 @@ const Rituals = () => {
             <div
                 className="dark-bg"
                 style={{ backgroundColor: colors.graphite }}
+                data-cursor="dark"
             >
                 <div className="container py-16 md:py-24">
                     <p className="caption text-textLightMuted">Процедуры</p>
