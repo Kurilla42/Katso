@@ -169,7 +169,7 @@
 }
 
 .ritual-card-headline {
-  font-family: var(--font-display);
+  font-family: theme('fontFamily.display');
   font-size: 4vw;
   line-height: 0.95;
   letter-spacing: -0.02em;
@@ -188,7 +188,7 @@
 }
 
 .ritual-card-link {
-  font-family: var(--font-display);
+  font-family: theme('fontFamily.display');
   font-size: 0.9vw;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -200,7 +200,7 @@
 }
 
 .ritual-card-numeral {
-  font-family: var(--font-display);
+  font-family: theme('fontFamily.display');
   font-size: clamp(160px, 18vw, 320px);
   line-height: 0.8;
   color: transparent;
