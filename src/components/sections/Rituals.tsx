@@ -10,7 +10,7 @@ const ritualsData = [
     title: 'МАНИКЮР И НАРАЩИВАНИЕ НОГТЕЙ',
     description:
       'Идеальный маникюр и педикюр, от лечебного до дизайнерского. Безопасность, стерильность и внимание к деталям.',
-    bgColor: '#8a9a6b',
+    bgColor: '#B89E82',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(237, 232, 224, 0.18)',
   },
@@ -26,7 +26,7 @@ const ritualsData = [
     title: 'СТРИЖКИ / УКЛАДКИ / УХОД ЗА ДЛИНОЙ',
     description:
       'От классических форм до смелых креативных решений, а также восстанавливающие уходы, которые вернут волосам силу и блеск.',
-    bgColor: '#8a9a6b',
+    bgColor: '#B89E82',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(237, 232, 224, 0.18)',
   },
@@ -42,7 +42,7 @@ const ritualsData = [
     title: 'КЕРАТИН / БОТОКС',
     description:
       'Профессиональная диагностика и индивидуальные программы лечения и ухода для решения проблем кожи головы и стимуляции роста волос.',
-    bgColor: '#8a9a6b',
+    bgColor: '#B89E82',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(237, 232, 224, 0.18)',
   },
@@ -58,7 +58,7 @@ const ritualsData = [
     title: 'МАКИЯЖ / ОБРАЗ НЕВЕСТЫ',
     description:
       'Создадим для вас неповторимый образ в самый важный день. Учтем все пожелания и детали, чтобы вы чувствовали себя неотразимой.',
-    bgColor: '#8a9a6b',
+    bgColor: '#B89E82',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(237, 232, 224, 0.18)',
   },
@@ -200,36 +200,29 @@ const Rituals = () => {
                 observer.observe(card);
             });
 
-            // Card recede animation (NEW LOGIC)
+            // Card recede animation
             cards.forEach((card, index) => {
-                if (index === cards.length - 1) return; // Last card doesn't recede
+                if (index === cards.length - 1) return;
 
                 const recedeTimeline = gsap.timeline({ paused: true });
 
-                // Build the sequence of recessions for this card.
-                // Each step in the loop adds a new state to the timeline.
-                for (let step = 0; step < cards.length - index - 1; step++) {
-                    const blur = Math.min(1.5 + step * 0.8, 5);
-                    const scale = Math.max(0.97 - step * 0.015, 0.88);
-                    const opacity = Math.max(0.75 - step * 0.12, 0.3);
+                for (let step = index; step < cards.length - 1; step++) {
+                    const blur = Math.min(1.5 + (step - index) * 0.8, 5);
+                    const scale = Math.max(0.97 - (step - index) * 0.015, 0.88);
+                    const opacity = Math.max(0.75 - (step - index) * 0.12, 0.3);
 
-                    // Add the next transformation to the timeline.
-                    // The position parameter 'step' ensures they happen in sequence.
                     recedeTimeline.to(card, {
                         scale: scale,
                         opacity: opacity,
                         filter: `blur(${blur}px)`,
                         ease: 'none',
-                        duration: 1, // Will be mapped to scroll distance
-                    }, step);
+                        duration: 1,
+                    }, step - index);
                 }
                 
-                // Create ONE ScrollTrigger to drive the entire animation sequence for this card.
                 ScrollTrigger.create({
                     trigger: stackContainer,
-                    // Start when the NEXT card is at the top of the stack area.
                     start: () => `top top-=${(index + 1) * stackPeek}`,
-                    // End when the LAST card is at the top of the stack area.
                     end: () => `top top-=${(cards.length - 1) * stackPeek}`,
                     scrub: true,
                     animation: recedeTimeline,

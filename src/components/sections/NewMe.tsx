@@ -112,7 +112,7 @@ const NewMe = () => {
                 style={{
                     fontSize: '1.2vw',
                     lineHeight: 1.085,
-                    color: '#8a9a6b',
+                    color: '#B89E82',
                     transform: 'translateY(7.2vw)',
                 }}
             >
