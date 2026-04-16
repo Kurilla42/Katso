@@ -81,7 +81,7 @@ const Footer = () => {
       <div className="relative">
         <div className="paper-texture"></div>
         <div className="grid-overlay"></div>
-        <div className="container" ref={containerRef}>
+        <div ref={containerRef}>
           <div className="relative h-[clamp(300px,30vw,500px)] flex items-end overflow-hidden">
             {/* Left: Giant Wordmark */}
             <div className="absolute left-0 bottom-0 -translate-x-[15%] md:-translate-x-[10%] z-0">
@@ -97,9 +97,9 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="container py-16 md:py-24">
+        <div className="py-16 md:py-24 px-[clamp(1rem,3vw,5rem)]">
           {/* Four-column links */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-20">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-28">
             {footerLinks.map((column) => (
               <div key={column.title}>
                 <h4 className="font-lora text-nude mb-4 uppercase" style={{ fontSize: '1.2vw' }}>{column.title}</h4>
@@ -128,8 +128,7 @@ const Footer = () => {
           </a>
         </div>
         
-        {/* Bottom bar */}
-        <div className="container pb-6">
+        <div className="pb-6 px-[clamp(1rem,3vw,5rem)]">
           <div className="border-t border-cream/10 pt-4 flex justify-between items-center text-nude font-lora" style={{ fontSize: '1.2vw' }}>
               <span>© {new Date().getFullYear()} KATSO Studio. All rights reserved.</span>
           </div>
