@@ -8,7 +8,7 @@ import Image from 'next/image';
 const NewMe = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const scaleTargetRef = useRef<HTMLDivElement>(null);
-  const logoRef = useRef<HTMLDivElement>(null);
+  const tRef = useRef<HTMLSpanElement>(null);
   const pinContainerRef = useRef<HTMLDivElement>(null);
   const imageContainerRef = useRef<HTMLDivElement>(null);
 
@@ -16,11 +16,11 @@ const NewMe = () => {
     gsap.registerPlugin(ScrollTrigger);
 
     const scaleTargetEl = scaleTargetRef.current;
-    const logoEl = logoRef.current;
+    const tEl = tRef.current;
     const sectionEl = sectionRef.current;
     const pinContainerEl = pinContainerRef.current;
     const imageContainerEl = imageContainerRef.current;
-    if (!scaleTargetEl || !logoEl || !sectionEl || !pinContainerEl || !imageContainerEl) return;
+    if (!scaleTargetEl || !tEl || !sectionEl || !pinContainerEl || !imageContainerEl) return;
 
     let ctx: gsap.Context;
 
@@ -41,23 +41,23 @@ const NewMe = () => {
               },
             });
             
-            // The central text block is now the reference for scaling
-            const logoRect = logoEl.getBoundingClientRect();
+            // The letter 'T' is now the reference for scaling
+            const tRect = tEl.getBoundingClientRect();
             
             const scaleTargetRect = scaleTargetEl.getBoundingClientRect();
-            const originXText = (logoRect.left - scaleTargetRect.left) + (logoRect.width / 2);
-            const originYText = (logoRect.top - scaleTargetRect.top) + (logoRect.height / 2);
+            const originXText = (tRect.left - scaleTargetRect.left) + (tRect.width / 2);
+            const originYText = (tRect.top - scaleTargetRect.top) + (tRect.height / 2);
             gsap.set(scaleTargetEl, { transformOrigin: `${originXText}px ${originYText}px` });
 
             const imageContainerRect = imageContainerEl.getBoundingClientRect();
-            const originXImage = (logoRect.left - imageContainerRect.left) + (logoRect.width / 2);
-            const originYImage = (logoRect.top - imageContainerRect.top) + (logoRect.height / 2);
+            const originXImage = (tRect.left - imageContainerRect.left) + (tRect.width / 2);
+            const originYImage = (tRect.top - imageContainerRect.top) + (tRect.height / 2);
             gsap.set(imageContainerEl, { transformOrigin: `${originXImage}px ${originYImage}px` });
 
             tl.to(
               [scaleTargetEl, imageContainerEl],
               {
-                scale: 170,
+                scale: 200,
                 ease: 'power1.in',
               }
             );
@@ -102,10 +102,10 @@ const NewMe = () => {
                 style={{ fontSize: '3vw', transform: 'translateY(-7.2vw)' }}
                 className="text-right leading-none font-display uppercase whitespace-pre-line"
             >
-                {'Задача\nKATSO:'}
+                {'Задача\nKA'}<span ref={tRef}>T</span>SO:
             </h2>
             
-            <div ref={logoRef}>
+            <div>
                 <p
                     className="whitespace-pre-line font-display uppercase"
                     style={{ fontSize: '3vw', lineHeight: 1.2 }}
