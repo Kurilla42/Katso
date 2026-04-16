@@ -1,13 +1,12 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
-import { colors } from '@/lib/design-tokens';
-import { EASES } from '@/lib/animations';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { cn } from '@/lib/utils';
-import { PlusMarker } from '@/components/ui/PlusMarker';
+import { EASES } from '@/lib/animations';
 
 const faqData = [
   {
@@ -42,28 +41,35 @@ const faqData = [
   },
 ];
 
-const FaqImage = ({ imageId, className }: { imageId: string; className?: string }) => {
-  const placeholder = PlaceHolderImages.find((p) => p.id === imageId);
-  if (!placeholder) return null;
+const FaqGalleryColumn = ({
+  images,
+  innerRef,
+  reversed,
+}: {
+  images: typeof PlaceHolderImages;
+  innerRef: React.RefObject<HTMLDivElement>;
+  reversed?: boolean;
+}) => {
+  const displayImages = reversed ? [...images].reverse() : images;
 
   return (
-    <div className={cn('relative group', className)}>
-      <Image
-        src={placeholder.imageUrl}
-        alt={placeholder.description}
-        width={500}
-        height={600}
-        className="w-full h-full object-cover filter grayscale transition-all duration-400 ease-in-out group-hover:grayscale-0"
-        data-ai-hint={placeholder.imageHint}
-      />
-      <PlusMarker className="top-2 left-2" colorClassName="text-cream/30" />
-      <PlusMarker className="top-2 right-2" colorClassName="text-cream/30" />
-      <PlusMarker className="bottom-2 left-2" colorClassName="text-cream/30" />
-      <PlusMarker className="bottom-2 right-2" colorClassName="text-cream/30" />
+    <div ref={innerRef}>
+      {[...displayImages, ...displayImages].map((p, index) => (
+        <div key={index} className="relative w-full aspect-[4/5] mb-[2vw]">
+          <Image
+            src={p.imageUrl}
+            alt={p.description}
+            fill
+            sizes="18vw"
+            className="object-cover"
+            data-ai-hint={p.imageHint}
+            priority={index < 4}
+          />
+        </div>
+      ))}
     </div>
   );
 };
-
 
 const AccordionItem = ({
   item,
@@ -111,6 +117,42 @@ const AccordionItem = ({
 
 const Faq = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const leftColumnRef = useRef<HTMLDivElement>(null);
+  const rightColumnRef = useRef<HTMLDivElement>(null);
+  
+  const galleryImages = PlaceHolderImages.filter(p => p.id.startsWith('faq-gallery-'));
+  const leftImages = galleryImages.slice(0, 4);
+  const rightImages = galleryImages.slice(4, 8);
+
+  useLayoutEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    const triggerElement = sectionRef.current?.parentElement?.parentElement;
+    if (!triggerElement || !leftColumnRef.current || !rightColumnRef.current) return;
+
+    // Initial position for right column to scroll "down" (by scrolling a reversed list up)
+    gsap.set(rightColumnRef.current, { yPercent: -50 });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: triggerElement,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: true,
+      },
+    });
+
+    // Left column scrolls up
+    tl.to(leftColumnRef.current, { yPercent: -50, ease: 'none' }, 0);
+    // Right column scrolls "down" (by moving a reversed list up)
+    tl.to(rightColumnRef.current, { yPercent: 0, ease: 'none' }, 0);
+
+    return () => {
+      tl.kill();
+      ScrollTrigger.getAll().forEach(t => t.kill());
+    };
+  }, [leftImages, rightImages]);
 
   const handleItemClick = (index: number) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -119,34 +161,38 @@ const Faq = () => {
   return (
     <section
       id="faq"
+      ref={sectionRef}
       style={{ backgroundColor: '#2D2D2D' }}
       data-cursor="dark"
       className="h-full w-full overflow-y-auto"
     >
-        <div
-          className="absolute inset-0 w-full h-full pointer-events-none"
-          style={{
-            backgroundImage: 'url(https://i.ibb.co/zWNnhBMd/concrete-wall-2-1.png)',
-            backgroundRepeat: 'repeat',
-            opacity: 0.4,
-            mixBlendMode: 'overlay',
-          }}
-        ></div>
-        <div className="paper-texture"></div>
-        <div className="grid-overlay"></div>
+      <div
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        style={{
+          backgroundImage: 'url(https://i.ibb.co/zWNnhBMd/concrete-wall-2-1.png)',
+          backgroundRepeat: 'repeat',
+          opacity: 0.4,
+          mixBlendMode: 'overlay',
+        }}
+      ></div>
+      <div className="paper-texture"></div>
+      <div className="grid-overlay"></div>
       <div className="container py-16 md:py-40 relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16 items-start">
           
-          {/* Left Column: Images */}
+          {/* Left Column: Image Gallery */}
           <div className="hidden lg:block lg:col-span-5">
-             <div className="relative w-full h-full min-h-[650px]">
-                <div className="absolute top-0 left-0 w-8/12">
-                    <FaqImage imageId="faq-image-1" className="aspect-[4/5] w-full" />
-                </div>
-                <div className="absolute top-48 right-0 w-8/12">
-                    <FaqImage imageId="faq-image-2" className="aspect-[4/5] w-full" />
-                </div>
-             </div>
+            <div
+              className="relative w-full h-[70vh] flex justify-start gap-[5vw]"
+              style={{ left: '5%' }}
+            >
+              <div className="w-[18vw] h-full overflow-hidden relative">
+                <FaqGalleryColumn images={leftImages} innerRef={leftColumnRef} />
+              </div>
+              <div className="w-[18vw] h-full overflow-hidden relative mt-[10vh]">
+                <FaqGalleryColumn images={rightImages} innerRef={rightColumnRef} reversed />
+              </div>
+            </div>
           </div>
 
           {/* Right Column: FAQ & Contact */}
@@ -166,13 +212,15 @@ const Faq = () => {
             </div>
             
             <div className="mt-16">
-                <p className="caption text-nude">
-                    Не нашли ответ?
-                </p>
-                <a href="#" className="inline-block mt-2 font-medium text-accent group rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-surface" data-cursor-hover="link">
-                    <span>Напишите нам</span>
-                    <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">&nbsp;&rarr;</span>
-                </a>
+              <p className="caption text-nude">Не нашли ответ?</p>
+              <a
+                href="#"
+                className="inline-block mt-2 font-medium text-accent group rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-surface"
+                data-cursor-hover="link"
+              >
+                <span>Напишите нам</span>
+                <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">&nbsp;&rarr;</span>
+              </a>
             </div>
           </div>
         </div>

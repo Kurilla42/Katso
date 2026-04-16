@@ -31,16 +31,52 @@
       "imageHint": "man portrait"
     },
     {
-      "id": "faq-image-1",
-      "description": "Abstract photo for FAQ section",
-      "imageUrl": "https://picsum.photos/seed/faq1/500/600",
-      "imageHint": "beauty salon interior"
+      "id": "faq-gallery-1",
+      "description": "FAQ gallery image 1",
+      "imageUrl": "https://picsum.photos/seed/faq_g1/400/500",
+      "imageHint": "salon interior"
     },
     {
-      "id": "faq-image-2",
-      "description": "Second abstract photo for FAQ section",
-      "imageUrl": "https://picsum.photos/seed/faq2/500/600",
-      "imageHint": "hair styling"
+      "id": "faq-gallery-2",
+      "description": "FAQ gallery image 2",
+      "imageUrl": "https://picsum.photos/seed/faq_g2/400/500",
+      "imageHint": "beauty products"
+    },
+    {
+      "id": "faq-gallery-3",
+      "description": "FAQ gallery image 3",
+      "imageUrl": "https://picsum.photos/seed/faq_g3/400/500",
+      "imageHint": "hair styling tools"
+    },
+    {
+      "id": "faq-gallery-4",
+      "description": "FAQ gallery image 4",
+      "imageUrl": "https://picsum.photos/seed/faq_g4/400/500",
+      "imageHint": "manicure details"
+    },
+    {
+      "id": "faq-gallery-5",
+      "description": "FAQ gallery image 5",
+      "imageUrl": "https://picsum.photos/seed/faq_g5/400/500",
+      "imageHint": "spa stones"
+    },
+    {
+      "id": "faq-gallery-6",
+      "description": "FAQ gallery image 6",
+      "imageUrl": "https://picsum.photos/seed/faq_g6/400/500",
+      "imageHint": "relaxing ambiance"
+    },
+    {
+      "id": "faq-gallery-7",
+      "description": "FAQ gallery image 7",
+      "imageUrl": "https://picsum.photos/seed/faq_g7/400/500",
+      "imageHint": "cosmetic application"
+    },
+    {
+      "id": "faq-gallery-8",
+      "description": "FAQ gallery image 8",
+      "imageUrl": "https://picsum.photos/seed/faq_g8/400/500",
+      "imageHint": "modern decor"
     }
   ]
 }
