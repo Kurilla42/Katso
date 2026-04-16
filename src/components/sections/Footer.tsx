@@ -75,10 +75,19 @@ const Footer = () => {
   return (
     <footer
       id="footer"
-      style={{ backgroundColor: colors.background }}
+      style={{ backgroundColor: '#2D2D2D' }}
       data-cursor="dark"
     >
       <div className="relative">
+        <div
+            className="absolute inset-0 w-full h-full pointer-events-none"
+            style={{
+                backgroundImage: 'url(https://i.ibb.co/zWNnhBMd/concrete-wall-2-1.png)',
+                backgroundRepeat: 'repeat',
+                opacity: 0.4,
+                mixBlendMode: 'overlay',
+            }}
+        ></div>
         <div className="paper-texture"></div>
         <div className="grid-overlay"></div>
         <div ref={containerRef}>
