@@ -82,7 +82,7 @@ const Footer = () => {
         <div className="paper-texture"></div>
         <div className="grid-overlay"></div>
         <div ref={containerRef}>
-          <div className="relative h-[clamp(300px,30vw,500px)] flex items-end overflow-hidden">
+          <div className="relative h-[clamp(300px,30vw,500px)] flex items-end overflow-hidden pl-[10%] pr-[10%]">
             {/* Left: Giant Wordmark */}
             <div className="absolute left-0 bottom-0 -translate-x-[15%] md:-translate-x-[10%] z-0">
               <h2 ref={wordMarkRef} className="font-display text-cream/10 leading-none select-none whitespace-nowrap">
@@ -99,7 +99,7 @@ const Footer = () => {
         
         <div className="py-16 md:py-24 px-[clamp(1rem,3vw,5rem)]">
           {/* Four-column links */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-28">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12 md:gap-x-28">
             {footerLinks.map((column) => (
               <div key={column.title}>
                 <h4 className="font-lora text-nude mb-4 uppercase" style={{ fontSize: '1.2vw' }}>{column.title}</h4>
