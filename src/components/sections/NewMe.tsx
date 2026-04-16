@@ -91,29 +91,31 @@ const NewMe = () => {
             mixBlendMode: 'overlay',
           }}></div>
       <div ref={pinContainerRef} className="h-screen w-full flex items-center justify-center overflow-hidden md:sticky md:top-0 relative">
-        <div ref={scaleTargetRef} className="relative z-10 w-full text-cream" style={{
-            paddingLeft: 'clamp(24px, 4vw, 80px)',
-            paddingRight: 'clamp(24px, 4vw, 80px)',
-        }}>
-            <h2 style={{ fontSize: '3vw' }} className="text-center leading-none font-display uppercase">
+        <div
+            ref={scaleTargetRef}
+            className="relative z-10 w-full text-cream grid grid-cols-[1fr_auto_1fr] items-center gap-x-8"
+            style={{
+                paddingLeft: 'clamp(24px, 4vw, 80px)',
+                paddingRight: 'clamp(24px, 4vw, 80px)',
+            }}
+        >
+            <h2 style={{ fontSize: '3vw' }} className="text-right leading-none font-display uppercase">
                 Задача KA<span ref={logoRef}>T</span>SO:
             </h2>
-            <div className="w-full max-w-5xl mx-auto mt-12">
-                <p 
-                    className="text-center whitespace-pre-line font-display uppercase"
-                    style={{ fontSize: '3vw', lineHeight: 1.2 }}
-                >
-                    {'Раскрыть твою уникальность\n и познакомить с новым «я»'}
-                </p>
-                <div className="flex justify-end mt-4">
-                     <p
-                        className="font-lora text-right whitespace-pre-line"
-                        style={{ fontSize: '0.8vw', lineHeight: 1.085, color: '#8a9a6b' }}
-                    >
-                        {'Другой взгляд на себя – другое мировоззрение\n и отношения с окружающим миром.'}
-                    </p>
-                </div>
-            </div>
+            
+            <p
+                className="text-center whitespace-pre-line font-display uppercase"
+                style={{ fontSize: '3vw', lineHeight: 1.2 }}
+            >
+                {'Раскрыть твою уникальность\n и познакомить с новым «я»'}
+            </p>
+
+            <p
+                className="font-lora text-left whitespace-pre-line"
+                style={{ fontSize: '0.8vw', lineHeight: 1.085, color: '#8a9a6b' }}
+            >
+                {'Другой взгляд на себя – другое мировоззрение\n и отношения с окружающим миром.'}
+            </p>
         </div>
         
         <div ref={imageContainerRef} className="absolute bottom-0 right-0 w-[40vw] h-[80vh] max-w-[500px] z-0 pointer-events-none">
