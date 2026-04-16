@@ -179,24 +179,19 @@
 
 .ritual-card-description {
   font-size: 0.8vw;
-  line-height: 1.55;
-  max-width: 460px;
+  line-height: 1.085;
   margin: 0;
-  align-self: end;
-  text-align: right;
-  width: 100%;
 }
 
 .ritual-card-link {
   font-family: theme('fontFamily.display');
-  font-size: 0.9vw;
+  font-size: 0.8vw;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   text-decoration: underline;
   text-underline-offset: 6px;
   text-decoration-thickness: 1.5px;
-  align-self: end;
-  text-align: right;
+  margin-top: 1em;
 }
 
 .ritual-card-numeral {

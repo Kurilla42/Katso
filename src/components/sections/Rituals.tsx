@@ -23,7 +23,7 @@ const ritualsData = [
     numeralColor: 'rgba(45, 45, 45, 0.18)',
   },
   {
-    title: 'СТРИЖКИ / УКЛАДКИ / УХОД ЗА ДЛИНОЙ ВОЛОС',
+    title: 'СТРИЖКИ / УКЛАДКИ / УХОД ЗА ДЛИНОЙ',
     description:
       'От классических форм до смелых креативных решений, а также восстанавливающие уходы, которые вернут волосам силу и блеск.',
     bgColor: '#8a9a6b',
@@ -31,7 +31,7 @@ const ritualsData = [
     numeralColor: 'rgba(237, 232, 224, 0.18)',
   },
   {
-    title: 'ОКРАШИВАНИЯ / ВЫПРЯМЛЕНИЕ / КЕРАТИН / БОТОКС',
+    title: 'ОКРАШИВАНИЯ / ВЫПРЯМЛЕНИЕ',
     description:
       'Сложные техники окрашивания, безопасное выпрямление и процедуры для глубокого восстановления структуры волос.',
     bgColor: '#EDE8E0',
@@ -39,7 +39,7 @@ const ritualsData = [
     numeralColor: 'rgba(45, 45, 45, 0.18)',
   },
   {
-    title: 'УХОД ЗА КОЖЕЙ ГОЛОВЫ',
+    title: 'КЕРАТИН / БОТОКС',
     description:
       'Профессиональная диагностика и индивидуальные программы лечения и ухода для решения проблем кожи головы и стимуляции роста волос.',
     bgColor: '#8a9a6b',
@@ -47,7 +47,7 @@ const ritualsData = [
     numeralColor: 'rgba(237, 232, 224, 0.18)',
   },
   {
-    title: 'МАКИЯЖ',
+    title: 'УХОД ЗА КОЖЕЙ ГОЛОВЫ',
     description:
       'Дневной, вечерний или для особого случая. Наши визажисты создадут образ, который подчеркнет вашу уникальность.',
     bgColor: '#EDE8E0',
@@ -55,7 +55,7 @@ const ritualsData = [
     numeralColor: 'rgba(45, 45, 45, 0.18)',
   },
   {
-    title: 'СВАДЕБНЫЙ ОБРАЗ',
+    title: 'МАКИЯЖ / ОБРАЗ НЕВЕСТЫ',
     description:
       'Создадим для вас неповторимый образ в самый важный день. Учтем все пожелания и детали, чтобы вы чувствовали себя неотразимой.',
     bgColor: '#8a9a6b',
@@ -109,26 +109,28 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
             >
               {headline}
             </h3>
-            <p
-              className="ritual-card-description font-lora"
-              style={{
-                color: textColor,
-                opacity: 0.65,
-              }}
-            >
-              {description}
-            </p>
-            <a
-              href={linkHref}
-              className="ritual-card-link"
-              style={{
-                color: textColor,
-                opacity: 0.95
-              }}
-              data-cursor-hover="link"
-            >
-              {linkLabel}
-            </a>
+            <div className="self-end text-right" style={{maxWidth: '30vw'}}>
+              <p
+                className="ritual-card-description font-lora"
+                style={{
+                  color: textColor,
+                  opacity: 0.65,
+                }}
+              >
+                {description}
+              </p>
+              <a
+                href={linkHref}
+                className="ritual-card-link"
+                style={{
+                  color: textColor,
+                  opacity: 0.95
+                }}
+                data-cursor-hover="link"
+              >
+                {linkLabel}
+              </a>
+            </div>
           </div>
 
           <div
@@ -290,7 +292,7 @@ const Rituals = () => {
                         numeral={`0${index + 1}`}
                         headline={ritual.title}
                         description={ritual.description}
-                        linkLabel="Подробнее →"
+                        linkLabel="цены"
                         linkHref="#"
                         ref={(el: HTMLElement | null) => {
                             if (el) {
