@@ -176,7 +176,7 @@ const WhyKatso = () => {
                                             muted
                                             playsInline
                                         >
-                                            <source src="/video/video-1.mp4" type="video/mp4" />
+                                            <source src="/video/Video-15.mp4" type="video/mp4" />
                                         </video>
                                     </div>
                                     <div className="relative flex-1 aspect-[9/16]">
@@ -202,7 +202,7 @@ const WhyKatso = () => {
                                                 muted
                                                 playsInline
                                             >
-                                                <source src="/video/video-2.mp4" type="video/mp4" />
+                                                <source src="/video/Video-16.mp4" type="video/mp4" />
                                             </video>
                                         </div>
                                         <div className="relative flex-1 aspect-[9/16]">
@@ -263,7 +263,7 @@ const WhyKatso = () => {
                                             muted
                                             playsInline
                                         >
-                                            <source src="/video/video-3.mp4" type="video/mp4" />
+                                            <source src="/video/Video-17.mp4" type="video/mp4" />
                                         </video>
                                     </div>
                                 </div>
