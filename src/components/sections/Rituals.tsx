@@ -11,42 +11,56 @@ const ritualsData = [
     description:
       'От классических форм до смелых креативных решений. Наши мастера создадут идеальный образ, подчеркивающий вашу индивидуальность.',
     bgColor: '#8a9a6b',
+    textColor: '#EDE8E0',
+    numeralColor: 'rgba(237, 232, 224, 0.18)',
   },
   {
     title: 'Окрашивание',
     description:
       'Сложные техники, натуральные оттенки и яркие цвета. Мы используем только премиальные красители для здоровья ваших волос.',
-    bgColor: '#2D2D2D',
+    bgColor: '#EDE8E0',
+    textColor: '#2D2D2D',
+    numeralColor: 'rgba(45, 45, 45, 0.18)',
   },
   {
     title: 'Уход за волосами',
     description:
       'Глубокое восстановление, увлажнение и питание. SPA-ритуалы для волос, которые вернут им силу, блеск и шелковистость.',
     bgColor: '#8a9a6b',
+    textColor: '#EDE8E0',
+    numeralColor: 'rgba(237, 232, 224, 0.18)',
   },
   {
     title: 'Ногтевой сервис',
     description:
       'Идеальный маникюр и педикюр, от лечебного до дизайнерского. Безопасность, стерильность и внимание к деталям.',
-    bgColor: '#2D2D2D',
+    bgColor: '#EDE8E0',
+    textColor: '#2D2D2D',
+    numeralColor: 'rgba(45, 45, 45, 0.18)',
   },
   {
     title: 'Косметология',
     description:
       'Современные методики для сохранения молодости и красоты вашей кожи. Индивидуальные программы ухода от ведущих косметологов.',
     bgColor: '#8a9a6b',
+    textColor: '#EDE8E0',
+    numeralColor: 'rgba(237, 232, 224, 0.18)',
   },
   {
     title: 'Макияж и брови',
     description:
       'Дневной, вечерний или свадебный макияж. Коррекция и окрашивание бровей для создания выразительного взгляда.',
-    bgColor: '#2D2D2D',
+    bgColor: '#EDE8E0',
+    textColor: '#2D2D2D',
+    numeralColor: 'rgba(45, 45, 45, 0.18)',
   },
   {
     title: 'Массаж и SPA',
     description:
       'Расслабляющие и оздоровительные массажи, обертывания и другие SPA-программы для гармонии души и тела.',
     bgColor: '#8a9a6b',
+    textColor: '#EDE8E0',
+    numeralColor: 'rgba(237, 232, 224, 0.18)',
   },
 ];
 
@@ -54,6 +68,8 @@ interface RitualCardProps {
   index: number;
   totalCards: number;
   bgColor: string;
+  textColor: string;
+  numeralColor: string;
   numeral: string;
   headline: string;
   description: string;
@@ -67,6 +83,8 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
       index,
       totalCards,
       bgColor,
+      textColor,
+      numeralColor,
       numeral,
       headline,
       description,
@@ -87,14 +105,15 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
           <div className="ritual-card-content">
             <h3
               className="ritual-card-headline"
-              style={{ color: '#EDE8E0' }}
+              style={{ color: textColor }}
             >
               {headline}
             </h3>
             <p
               className="ritual-card-description"
               style={{
-                color: 'rgba(237, 232, 224, 0.65)',
+                color: textColor,
+                opacity: 0.65,
               }}
             >
               {description}
@@ -103,7 +122,8 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
               href={linkHref}
               className="ritual-card-link"
               style={{
-                color: 'rgba(237, 232, 224, 0.95)',
+                color: textColor,
+                opacity: 0.95
               }}
               data-cursor-hover="link"
             >
@@ -114,7 +134,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
           <div
             className="ritual-card-numeral"
             style={{
-              WebkitTextStroke: `2px rgba(237, 232, 224, 0.18)`,
+              WebkitTextStroke: `2px ${numeralColor}`,
             }}
           >
             {numeral}
@@ -265,6 +285,8 @@ const Rituals = () => {
                         index={index}
                         totalCards={ritualsData.length}
                         bgColor={ritual.bgColor}
+                        textColor={ritual.textColor}
+                        numeralColor={ritual.numeralColor}
                         numeral={`0${index + 1}`}
                         headline={ritual.title}
                         description={ritual.description}
