@@ -19,12 +19,14 @@ const NewMe = () => {
     const logoEl = logoRef.current;
     const sectionEl = sectionRef.current;
     const pinContainerEl = pinContainerRef.current;
-    const imageContainerEl = imageContainerRef.current; // Get the element from ref
+    const imageContainerEl = imageContainerRef.current;
     if (!scaleTargetEl || !logoEl || !sectionEl || !pinContainerEl || !imageContainerEl) return;
+
+    let ctx: gsap.Context;
 
     // Use a timeout to ensure fonts are loaded and dimensions are correct
     const timer = setTimeout(() => {
-      let ctx = gsap.context(() => {
+      ctx = gsap.context(() => {
         const mm = gsap.matchMedia();
 
         mm.add("(min-width: 768px)", () => {
@@ -39,36 +41,41 @@ const NewMe = () => {
               },
             });
 
-            const pinContainerRect = pinContainerEl.getBoundingClientRect();
+            // Get dimensions of all relevant elements
             const logoRect = logoEl.getBoundingClientRect();
-
-            // Calculate the position of the logo's center relative to the PINNING element's top-left corner.
-            // This ensures all transforms share the same coordinate space.
-            const originX = (logoRect.left - pinContainerRect.left) + (logoRect.width / 2);
-            const originY = (logoRect.top - pinContainerRect.top) + (logoRect.height / 2);
+            const scaleTargetRect = scaleTargetEl.getBoundingClientRect();
+            const imageContainerRect = imageContainerEl.getBoundingClientRect();
             
-            // Set the transform origin for both the text and the image container
-            gsap.set([scaleTargetEl, imageContainerEl], { transformOrigin: `${originX}px ${originY}px` });
+            // Calculate origin for the text container, relative to its own top-left corner
+            const originXText = (logoRect.left - scaleTargetRect.left) + (logoRect.width / 2);
+            const originYText = (logoRect.top - scaleTargetRect.top) + (logoRect.height / 2);
+            
+            // Calculate origin for the image container, relative to its own top-left corner
+            const originXImage = (logoRect.left - imageContainerRect.left) + (logoRect.width / 2);
+            const originYImage = (logoRect.top - imageContainerRect.top) + (logoRect.height / 2);
+
+            // Set the transform origin for each element individually
+            gsap.set(scaleTargetEl, { transformOrigin: `${originXText}px ${originYText}px` });
+            gsap.set(imageContainerEl, { transformOrigin: `${originXImage}px ${originYImage}px` });
 
             // Animate both elements together
             tl.to(
               [scaleTargetEl, imageContainerEl],
               {
-                scale: 50, // A large value to ensure text fills the screen
+                scale: 50,
                 ease: 'power1.in',
               }
             );
         });
       }, sectionEl);
+    }, 200);
 
-      return () => {
-        if (ctx.revert) {
-          ctx.revert();
-        }
-      };
-    }, 200); // Delay for rendering and layout calculation
-
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      if (ctx) {
+        ctx.revert();
+      }
+    };
   }, []);
 
   return (
