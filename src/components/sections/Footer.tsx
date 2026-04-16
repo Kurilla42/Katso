@@ -99,14 +99,14 @@ const Footer = () => {
         
         <div className="container py-16 md:py-24">
           {/* Four-column links */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-20">
             {footerLinks.map((column) => (
               <div key={column.title}>
-                <h4 className="font-lora text-body-lg text-nude mb-4 uppercase">{column.title}</h4>
+                <h4 className="font-lora text-nude mb-4 uppercase" style={{ fontSize: '1.2vw' }}>{column.title}</h4>
                 <ul>
                   {column.links.map((link) => (
                     <li key={link.text} className="mt-2">
-                      <a href={link.href} className="font-lora text-body-lg text-cream hover:text-accent transition-colors duration-200 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" data-cursor-hover="link">
+                      <a href={link.href} className="font-lora text-cream hover:text-accent transition-colors duration-200 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" data-cursor-hover="link" style={{ fontSize: '1.2vw' }}>
                         {link.text}
                       </a>
                     </li>
@@ -130,7 +130,7 @@ const Footer = () => {
         
         {/* Bottom bar */}
         <div className="container pb-6">
-          <div className="border-t border-cream/10 pt-4 flex justify-between items-center text-nude font-lora text-body-lg">
+          <div className="border-t border-cream/10 pt-4 flex justify-between items-center text-nude font-lora" style={{ fontSize: '1.2vw' }}>
               <span>© {new Date().getFullYear()} KATSO Studio. All rights reserved.</span>
           </div>
         </div>
