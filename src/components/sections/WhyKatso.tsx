@@ -224,7 +224,7 @@ const WhyKatso = () => {
                                             />
                                         </div>
                                     </div>
-                                    <div className="absolute bottom-0 right-[5%] w-[35vw] h-[45vh] z-0 pointer-events-none">
+                                    <div className="absolute bottom-0 right-[5%] w-[30vw] h-[38vh] z-0 pointer-events-none">
                                         <Image
                                             src="https://i.ibb.co/Y71XvhtZ/Pngtree-pampas-grass-isolated-on-a-21120510.png"
                                             alt="Pampas grass decoration"
