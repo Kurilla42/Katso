@@ -132,6 +132,18 @@ const WhyKatso = () => {
                                 >
                                     {item.title}
                                 </h3>
+                                {index === 0 && (
+                                    <div className="absolute top-1/2 left-[65%] -translate-y-1/2 w-[30%] h-3/4 pointer-events-none">
+                                        <video
+                                            src="/video/video-1.mp4"
+                                            autoPlay
+                                            loop
+                                            muted
+                                            playsInline
+                                            className="w-full h-full object-cover rounded-lg shadow-xl"
+                                        />
+                                    </div>
+                                )}
                             </div>
                         </div>
                     ))}
