@@ -16,7 +16,7 @@ const config: Config = {
         grid: 'rgba(237, 232, 224, 0.08)',
       },
       fontFamily: {
-        display: ['Anton', 'Oswald', 'sans-serif'],
+        display: ['Unbounded', 'sans-serif'],
         body: ['Inter Tight', 'sans-serif'],
       },
       fontSize: {
