@@ -89,7 +89,7 @@ const NewMe = () => {
           }}></div>
       <div ref={pinContainerRef} className="h-screen w-full flex items-center justify-center overflow-hidden md:sticky md:top-0 relative">
         <div ref={scaleTargetRef} className="relative z-10 w-full max-w-5xl mx-auto px-4 text-cream">
-            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 4rem)' }} className="leading-none font-display uppercase">
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 4rem)' }} className="text-left leading-none font-display uppercase">
                 Задача KA<span ref={logoRef}>T</span>SO:
             </h2>
             <p 
