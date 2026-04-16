@@ -51,7 +51,7 @@ const MastersAndFaq = () => {
     return (
         <div ref={sectionRef} className="relative h-screen overflow-hidden">
             {/* Base layer: Masters section, always interactive. */}
-            <div className="absolute inset-0 w-full h-full">
+            <div className="absolute inset-0 w-full h-full" style={{ transform: 'translateZ(0)' }}>
                 <Masters />
             </div>
             {/* Overlay layer: FAQ section that slides in. */}

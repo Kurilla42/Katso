@@ -57,7 +57,13 @@ const MasterRow = React.forwardRef<
     )}
     data-cursor-hover="link"
   >
-    <div className="container py-6 flex justify-between items-center">
+    <div
+      className="w-full mx-auto py-6 flex justify-between items-center"
+      style={{
+        paddingLeft: 'clamp(24px, 4vw, 80px)',
+        paddingRight: 'clamp(24px, 4vw, 80px)',
+      }}
+    >
       <div
         className={cn(
           'flex flex-col md:flex-row md:items-baseline md:gap-6'
@@ -105,25 +111,11 @@ const Masters = () => {
           gsap.set(imageEl, { xPercent: 100, autoAlpha: 0 });
 
           const xTo = gsap.quickTo(imageEl, "xPercent", { duration: 0.4, ease: EASES.slide });
-          const yTo = gsap.quickTo(imageEl, "yPercent", { duration: 0.4, ease: EASES.slide });
-          
-          let initialImageY: number | null = null;
           
           const handleMouseEnter = (index: number) => {
-            if (initialImageY === null && imageEl.offsetParent) {
-              initialImageY = imageEl.getBoundingClientRect().top;
-            }
-            const item = itemsRef.current[index];
-            if (!item) return;
-
             const master = mastersData[index];
             const placeholder = PlaceHolderImages.find(p => p.id === master.imageId);
             if (placeholder) setActiveImageUrl(placeholder.imageUrl);
-
-            const itemRect = item.getBoundingClientRect();
-            const yOffset = initialImageY !== null ? itemRect.top - initialImageY + (itemRect.height - imageEl.offsetHeight) / 2 : 0;
-            
-            yTo(yOffset * 100 / window.innerHeight); // as % of viewport height
           };
 
           const handleListMouseEnter = () => {
@@ -196,7 +188,13 @@ const Masters = () => {
       ></div>
       <div className="paper-texture"></div>
       <div className="grid-overlay"></div>
-      <div className="container py-16 md:py-40 relative">
+      <div 
+        className="w-full mx-auto py-16 md:py-40 relative"
+        style={{
+            paddingLeft: 'clamp(24px, 4vw, 80px)',
+            paddingRight: 'clamp(24px, 4vw, 80px)',
+        }}
+      >
         <p className="caption">Команда</p>
       </div>
 
