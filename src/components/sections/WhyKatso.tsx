@@ -65,7 +65,7 @@ const WhyKatso = () => {
             const stickyContainer = sectionEl.querySelector<HTMLElement>('.why-us-sticky-container');
             if (!stickyContainer || cards.length < 2) return;
             
-            gsap.set(sectionEl, { backgroundColor: whyKatsoData[0].bgColor });
+            gsap.set(sectionEl, { backgroundColor: colors.cream });
 
             const tl = gsap.timeline({
                 scrollTrigger: {
@@ -83,12 +83,10 @@ const WhyKatso = () => {
                           gsap.to(sectionEl, { backgroundColor: currentCardData.bgColor, duration: 0.3, ease: 'none' });
                         }
                     },
-                    onLeave: () => gsap.to(sectionEl, { backgroundColor: whyKatsoData[whyKatsoData.length-1].bgColor, duration: 0.3, ease: 'none' }),
-                    onEnterBack: () => gsap.to(sectionEl, { backgroundColor: whyKatsoData[0].bgColor, duration: 0.3, ease: 'none' })
                 }
             });
 
-            tl.fromTo(cards[0], { rotation: 4 }, { rotation: 0, ease: 'none' });
+            tl.fromTo(cards[0], { rotation: 4, yPercent: 5 }, { rotation: 0, yPercent: 0, ease: 'none' });
             
             cards.slice(1).forEach((card, i) => {
                 const startTime = i;
