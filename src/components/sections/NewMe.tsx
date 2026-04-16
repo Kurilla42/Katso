@@ -47,14 +47,13 @@ const NewMe = () => {
             gsap.set(scaleTargetEl, { transformOrigin: `${originX}px ${originY}px` });
 
             // Add the scaling animation to the timeline.
-            // It starts at 10% of the way through the scroll animation (position '0.1').
+            // It starts immediately.
             tl.to(
               scaleTargetEl,
               {
                 scale: 50, // A large value to ensure text fills the screen
                 ease: 'power1.in',
-              },
-              0.1
+              }
             );
         });
       }, sectionEl);
@@ -87,14 +86,12 @@ const NewMe = () => {
           }}></div>
       <div ref={pinContainerRef} className="h-screen w-full flex items-center justify-center overflow-hidden md:sticky md:top-0 relative">
         <div ref={scaleTargetRef} className="relative z-10 w-full max-w-5xl mx-auto px-4 text-cream">
-            <div className="flex items-center font-display uppercase">
-                <h2 style={{ fontSize: 'clamp(2rem, 4vw, 4rem)' }} className="leading-none">
-                    Задача KA<span ref={logoRef}>T</span>SO
-                </h2>
-            </div>
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 4rem)' }} className="leading-none font-display uppercase">
+                Задача KA<span ref={logoRef}>T</span>SO:
+            </h2>
             <p 
                 className="text-center mt-12 whitespace-pre-line font-display uppercase"
-                style={{ fontSize: 'clamp(2.5rem, 4vw, 5rem)', lineHeight: 1.2 }}
+                style={{ fontSize: 'clamp(2rem, 4vw, 4rem)', lineHeight: 1.2 }}
             >
                 {'Раскрыть вашу уникальность и \nпознакомить с вашим новым «я»'}
             </p>
