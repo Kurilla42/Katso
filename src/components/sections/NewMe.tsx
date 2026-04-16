@@ -24,6 +24,7 @@ const NewMe = () => {
 
     let ctx: gsap.Context;
 
+    // A small delay to ensure all elements are rendered and have their dimensions.
     const timer = setTimeout(() => {
       ctx = gsap.context(() => {
         const mm = gsap.matchMedia();
@@ -40,16 +41,15 @@ const NewMe = () => {
               },
             });
 
-            // Calculate origins for both elements relative to the logo's center
             const logoRect = logoEl.getBoundingClientRect();
             
-            // For the text container
+            // Set transform origin for the text container
             const scaleTargetRect = scaleTargetEl.getBoundingClientRect();
             const originXText = (logoRect.left - scaleTargetRect.left) + (logoRect.width / 2);
             const originYText = (logoRect.top - scaleTargetRect.top) + (logoRect.height / 2);
             gsap.set(scaleTargetEl, { transformOrigin: `${originXText}px ${originYText}px` });
 
-            // For the image container
+            // Set transform origin for the image container
             const imageContainerRect = imageContainerEl.getBoundingClientRect();
             const originXImage = (logoRect.left - imageContainerRect.left) + (logoRect.width / 2);
             const originYImage = (logoRect.top - imageContainerRect.top) + (logoRect.height / 2);
@@ -58,7 +58,7 @@ const NewMe = () => {
             tl.to(
               [scaleTargetEl, imageContainerEl],
               {
-                scale: 80,
+                scale: 150,
                 ease: 'power1.in',
               }
             );
@@ -92,12 +92,12 @@ const NewMe = () => {
           }}></div>
       <div ref={pinContainerRef} className="h-screen w-full flex items-center justify-center overflow-hidden md:sticky md:top-0 relative">
         <div ref={scaleTargetRef} className="relative z-10 w-full max-w-5xl mx-auto px-4 text-cream">
-            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 4rem)' }} className="text-left leading-none font-display uppercase">
+            <h2 style={{ fontSize: '4vw' }} className="text-left leading-none font-display uppercase">
                 Задача KA<span ref={logoRef}>T</span>SO:
             </h2>
             <p 
                 className="text-center mt-12 whitespace-pre-line font-display uppercase"
-                style={{ fontSize: 'clamp(2rem, 4vw, 4rem)', lineHeight: 1.2 }}
+                style={{ fontSize: '4vw', lineHeight: 1.2 }}
             >
                 {'Раскрыть вашу уникальность и \nпознакомить с вашим новым «я»'}
             </p>

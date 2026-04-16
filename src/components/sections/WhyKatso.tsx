@@ -73,23 +73,30 @@ const WhyKatso = () => {
                     pin: stickyContainer,
                     scrub: 1,
                     start: 'top top',
-                    end: `+=${(cards.length - 1) * 100}%`,
+                    end: `+=${cards.length * 100}%`,
                     invalidateOnRefresh: true,
                     onUpdate: (self) => {
-                        const progress = self.progress;
-                        const cardIndex = Math.floor(progress * (cards.length - 1));
-                        const currentCardData = whyKatsoData[cardIndex];
-                        if (currentCardData) {
-                          gsap.to(sectionEl, { backgroundColor: currentCardData.bgColor, duration: 0.3, ease: 'none' });
+                        const time = self.progress * cards.length;
+                        
+                        if (time < 1) {
+                            gsap.to(sectionEl, { backgroundColor: colors.cream, duration: 0.3, ease: 'none' });
+                        } else {
+                            const cardIndex = Math.floor(time - 1);
+                            if (cardIndex < whyKatsoData.length) {
+                                const currentCardData = whyKatsoData[cardIndex];
+                                if (currentCardData) {
+                                  gsap.to(sectionEl, { backgroundColor: currentCardData.bgColor, duration: 0.3, ease: 'none' });
+                                }
+                            }
                         }
                     },
                 }
             });
 
-            tl.fromTo(cards[0], { rotation: 4, yPercent: 10 }, { rotation: 0, yPercent: 0, ease: 'none' });
+            tl.fromTo(cards[0], { rotation: 4, yPercent: 12 }, { rotation: 0, yPercent: 0, ease: 'none' });
             
             cards.slice(1).forEach((card, i) => {
-                const startTime = i;
+                const startTime = i + 1;
                 tl.fromTo(card, 
                     { yPercent: 101, rotation: 4 }, 
                     { yPercent: 0, rotation: 0, ease: 'none' },
