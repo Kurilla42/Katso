@@ -93,28 +93,28 @@ const NewMe = () => {
       <div ref={pinContainerRef} className="h-screen w-full flex items-center justify-center overflow-hidden md:sticky md:top-0 relative">
         <div
             ref={scaleTargetRef}
-            className="relative z-10 w-full text-cream grid grid-cols-[1fr_auto_1fr] items-center gap-x-8"
+            className="relative z-10 w-full text-cream grid grid-cols-[1fr_auto_1fr] gap-x-8"
             style={{
                 paddingLeft: 'clamp(24px, 4vw, 80px)',
                 paddingRight: 'clamp(24px, 4vw, 80px)',
             }}
         >
-            <h2 style={{ fontSize: '3vw' }} className="text-right leading-none font-display uppercase">
+            <h2 style={{ fontSize: '3vw' }} className="text-right leading-none font-display uppercase self-start">
                 Задача KA<span ref={logoRef}>T</span>SO:
             </h2>
             
             <p
-                className="text-center whitespace-pre-line font-display uppercase"
+                className="text-center whitespace-pre-line font-display uppercase self-center"
                 style={{ fontSize: '3vw', lineHeight: 1.2 }}
             >
                 {'Раскрыть твою уникальность\n и познакомить с новым «я»'}
             </p>
 
             <p
-                className="font-lora text-left whitespace-pre-line"
+                className="font-lora text-right whitespace-pre-line self-end"
                 style={{ fontSize: '0.8vw', lineHeight: 1.085, color: '#8a9a6b' }}
             >
-                {'Другой взгляд на себя – другое мировоззрение\n и отношения с окружающим миром.'}
+                {'Другой взгляд на себя, \nдругое мировоззрение и \nотношения с окружающим миром'}
             </p>
         </div>
         
