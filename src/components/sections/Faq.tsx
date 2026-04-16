@@ -126,7 +126,7 @@ const Faq = () => {
         <div
           className="absolute inset-0 w-full h-full pointer-events-none"
           style={{
-            backgroundImage: 'url(https://i.ibb.co/fzk39XBR/wall-4-light.png)',
+            backgroundImage: 'url(https://i.ibb.co/zWNnhBMd/concrete-wall-2-1.png)',
             backgroundRepeat: 'repeat',
             opacity: 0.2,
             mixBlendMode: 'overlay',
@@ -135,7 +135,7 @@ const Faq = () => {
         <div className="paper-texture"></div>
         <div className="grid-overlay"></div>
       <div className="container py-16 md:py-40 relative">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16 items-start">
           
           {/* Left Column: Images */}
           <div className="hidden lg:block lg:col-span-5">

@@ -81,7 +81,7 @@ const NewMe = () => {
       <div
           className="absolute inset-0 w-full h-full pointer-events-none"
           style={{
-            backgroundImage: 'url(https://i.ibb.co/fzk39XBR/wall-4-light.png)',
+            backgroundImage: 'url(https://i.ibb.co/zWNnhBMd/concrete-wall-2-1.png)',
             backgroundRepeat: 'repeat',
             opacity: 0.2,
             mixBlendMode: 'overlay',
@@ -92,7 +92,7 @@ const NewMe = () => {
             <div className="block">Раскрой свою</div>
             <div className="block">уникальность</div>
           </div>
-          <div ref={plusRef} className="text-accent text-h1 leading-none self-center">+</div>
+          <div ref={plusRef} className="text-accent text-h1 leading-none self-center scale-[2]">+</div>
           <div className="text-left">
             <div className="block">познакомься</div>
             <div className="block">с новым «<span>я</span>»</div>

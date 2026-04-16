@@ -64,6 +64,8 @@ const WhyKatso = () => {
             const cards = gsap.utils.toArray<HTMLElement>(sectionEl.querySelectorAll('.why-us-card'));
             const stickyContainer = sectionEl.querySelector<HTMLElement>('.why-us-sticky-container');
             if (!stickyContainer || cards.length < 2) return;
+            
+            gsap.set(sectionEl, { backgroundColor: whyKatsoData[0].bgColor });
 
             const tl = gsap.timeline({
                 scrollTrigger: {
@@ -73,6 +75,16 @@ const WhyKatso = () => {
                     start: 'top top',
                     end: `+=${(cards.length - 1) * 100}%`,
                     invalidateOnRefresh: true,
+                    onUpdate: (self) => {
+                        const progress = self.progress;
+                        const cardIndex = Math.floor(progress * (cards.length - 1));
+                        const currentCardData = whyKatsoData[cardIndex];
+                        if (currentCardData) {
+                          gsap.to(sectionEl, { backgroundColor: currentCardData.bgColor, duration: 0.3, ease: 'none' });
+                        }
+                    },
+                    onLeave: () => gsap.to(sectionEl, { backgroundColor: whyKatsoData[whyKatsoData.length-1].bgColor, duration: 0.3, ease: 'none' }),
+                    onEnterBack: () => gsap.to(sectionEl, { backgroundColor: whyKatsoData[0].bgColor, duration: 0.3, ease: 'none' })
                 }
             });
 
@@ -100,7 +112,6 @@ const WhyKatso = () => {
             id="why-us"
             ref={sectionRef}
             className="md:h-[300vh]"
-            style={{ backgroundColor: '#2D2D2D' }}
             data-cursor="dark"
         >
             <div className="why-us-sticky-container h-auto md:h-screen md:sticky md:top-0 md:overflow-hidden">
@@ -114,7 +125,7 @@ const WhyKatso = () => {
                              <div
                                 className="absolute inset-0 w-full h-full pointer-events-none"
                                 style={{
-                                    backgroundImage: 'url(https://i.ibb.co/fzk39XBR/wall-4-light.png)',
+                                    backgroundImage: 'url(https://i.ibb.co/zWNnhBMd/concrete-wall-2-1.png)',
                                     backgroundRepeat: 'repeat',
                                     opacity: 0.2,
                                     mixBlendMode: 'overlay',
