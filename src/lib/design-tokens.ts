@@ -4,7 +4,7 @@ export const colors = {
   accent: '#C49850',
   cream: '#EDE8E0',
   nude: '#B89E82',
-  walnut: '#4E3826',
+  walnut: '#8a9a6b',
 };
 
 export const typography = {
