@@ -10,6 +10,7 @@ const NewMe = () => {
   const scaleTargetRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLSpanElement>(null);
   const pinContainerRef = useRef<HTMLDivElement>(null);
+  const imageContainerRef = useRef<HTMLDivElement>(null); // Ref for the image
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -18,7 +19,8 @@ const NewMe = () => {
     const logoEl = logoRef.current;
     const sectionEl = sectionRef.current;
     const pinContainerEl = pinContainerRef.current;
-    if (!scaleTargetEl || !logoEl || !sectionEl || !pinContainerEl) return;
+    const imageContainerEl = imageContainerRef.current; // Get the element from ref
+    if (!scaleTargetEl || !logoEl || !sectionEl || !pinContainerEl || !imageContainerEl) return;
 
     // Use a timeout to ensure fonts are loaded and dimensions are correct
     const timer = setTimeout(() => {
@@ -37,19 +39,20 @@ const NewMe = () => {
               },
             });
 
-            const scaleTargetRect = scaleTargetEl.getBoundingClientRect();
+            const pinContainerRect = pinContainerEl.getBoundingClientRect();
             const logoRect = logoEl.getBoundingClientRect();
 
-            // Calculate the position of the logo's center relative to the scaling element's top-left corner.
-            const originX = (logoRect.left + logoRect.width / 2) - scaleTargetRect.left;
-            const originY = (logoRect.top + logoRect.height / 2) - scaleTargetRect.top;
+            // Calculate the position of the logo's center relative to the PINNING element's top-left corner.
+            // This ensures all transforms share the same coordinate space.
+            const originX = (logoRect.left - pinContainerRect.left) + (logoRect.width / 2);
+            const originY = (logoRect.top - pinContainerRect.top) + (logoRect.height / 2);
             
-            gsap.set(scaleTargetEl, { transformOrigin: `${originX}px ${originY}px` });
+            // Set the transform origin for both the text and the image container
+            gsap.set([scaleTargetEl, imageContainerEl], { transformOrigin: `${originX}px ${originY}px` });
 
-            // Add the scaling animation to the timeline.
-            // It starts immediately.
+            // Animate both elements together
             tl.to(
-              scaleTargetEl,
+              [scaleTargetEl, imageContainerEl],
               {
                 scale: 50, // A large value to ensure text fills the screen
                 ease: 'power1.in',
@@ -97,7 +100,7 @@ const NewMe = () => {
             </p>
         </div>
         
-        <div className="absolute bottom-0 right-0 w-[40vw] h-[80vh] max-w-[500px] z-0 pointer-events-none">
+        <div ref={imageContainerRef} className="absolute bottom-0 right-0 w-[40vw] h-[80vh] max-w-[500px] z-0 pointer-events-none">
              <Image
                 src="https://i.ibb.co/Y71XvhtZ/Pngtree-pampas-grass-isolated-on-a-21120510.png"
                 alt="Pampas grass decoration"
