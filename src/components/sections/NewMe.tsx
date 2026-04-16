@@ -91,16 +91,29 @@ const NewMe = () => {
             mixBlendMode: 'overlay',
           }}></div>
       <div ref={pinContainerRef} className="h-screen w-full flex items-center justify-center overflow-hidden md:sticky md:top-0 relative">
-        <div ref={scaleTargetRef} className="relative z-10 w-full max-w-5xl mx-auto px-4 text-cream">
-            <h2 style={{ fontSize: '4vw' }} className="text-left leading-none font-display uppercase">
+        <div ref={scaleTargetRef} className="relative z-10 w-full text-cream" style={{
+            paddingLeft: 'clamp(24px, 4vw, 80px)',
+            paddingRight: 'clamp(24px, 4vw, 80px)',
+        }}>
+            <h2 style={{ fontSize: '3vw' }} className="text-left leading-none font-display uppercase">
                 Задача KA<span ref={logoRef}>T</span>SO:
             </h2>
-            <p 
-                className="text-center mt-12 whitespace-pre-line font-display uppercase"
-                style={{ fontSize: '4vw', lineHeight: 1.2 }}
-            >
-                {'Раскрыть вашу уникальность и \nпознакомить с вашим новым «я»'}
-            </p>
+            <div className="w-full max-w-5xl mx-auto mt-12">
+                <p 
+                    className="text-center whitespace-pre-line font-display uppercase"
+                    style={{ fontSize: '3vw', lineHeight: 1.2 }}
+                >
+                    {'Раскрыть твою уникальность\n и познакомить с новым «я»'}
+                </p>
+                <div className="flex justify-end mt-4">
+                     <p
+                        className="font-lora text-nude max-w-[25vw]"
+                        style={{ fontSize: '0.8vw', lineHeight: 1.085 }}
+                    >
+                        Другой взгляд на себя – другое мировоззрение и отношения с окружающим миром.
+                    </p>
+                </div>
+            </div>
         </div>
         
         <div ref={imageContainerRef} className="absolute bottom-0 right-0 w-[40vw] h-[80vh] max-w-[500px] z-0 pointer-events-none">
