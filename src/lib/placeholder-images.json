@@ -1,33 +1,33 @@
 {
   "placeholderImages": [
     {
-      "id": "master-larina",
-      "description": "Photo of master Ekaterina Larina",
-      "imageUrl": "https://picsum.photos/seed/larina/400/500",
+      "id": "master-treller",
+      "description": "Photo of master Софья Треллер",
+      "imageUrl": "https://i.ibb.co/cK9XRLQn/7e4747b2-2171-4717-961e-22f3b30d23e2.jpg",
       "imageHint": "woman portrait"
     },
     {
-      "id": "master-wolf",
-      "description": "Photo of master Alexander Wolf",
-      "imageUrl": "https://picsum.photos/seed/wolf/400/500",
-      "imageHint": "man portrait"
-    },
-    {
-      "id": "master-sokolova",
-      "description": "Photo of master Marina Sokolova",
-      "imageUrl": "https://picsum.photos/seed/sokolova/400/500",
+      "id": "master-frolova",
+      "description": "Photo of master Мария Фролова",
+      "imageUrl": "https://i.ibb.co/wrPNZHC3/653dd3ab-162d-4e8d-a9a8-d240ae5f2339.jpg",
       "imageHint": "woman portrait"
     },
     {
-      "id": "master-belova",
-      "description": "Photo of master Olga Belova",
-      "imageUrl": "https://picsum.photos/seed/belova/400/500",
+      "id": "master-priyatnova",
+      "description": "Photo of master Оксана Приятнова",
+      "imageUrl": "https://i.ibb.co/mrYcxZVW/922576d4-7e05-4bd3-9efb-083c39224467.jpg",
       "imageHint": "woman portrait"
     },
     {
-      "id": "master-novikov",
-      "description": "Photo of master Dmitry Novikov",
-      "imageUrl": "https://picsum.photos/seed/novikov/400/500",
+      "id": "master-novenkaya",
+      "description": "Photo of master Полина Новенькая",
+      "imageUrl": "https://i.ibb.co/572GHBT/68a8694e-a91d-487f-bd27-3c3bac0207df.png",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "master-kolesnikov",
+      "description": "Photo of master Антон Колесников (aka Вилл)",
+      "imageUrl": "https://i.ibb.co/yFs1sk85/photo-2025-10-14-15-13-09.jpg",
       "imageHint": "man portrait"
     },
     {

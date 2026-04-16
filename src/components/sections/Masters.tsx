@@ -10,29 +10,29 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const mastersData = [
   {
-    name: 'Екатерина Ларина',
-    role: 'Арт-директор, стилист',
-    imageId: 'master-larina',
+    name: 'Софья Треллер',
+    role: 'Главная Мамка, легенда, очень важная',
+    imageId: 'master-treller',
   },
   {
-    name: 'Александр Вольф',
-    role: 'Ведущий барбер',
-    imageId: 'master-wolf',
+    name: 'Мария Фролова',
+    role: 'Отвечает за бровки и смешнявки',
+    imageId: 'master-frolova',
   },
   {
-    name: 'Марина Соколова',
-    role: 'Мастер маникюра и педикюра',
-    imageId: 'master-sokolova',
+    name: 'Оксана Приятнова',
+    role: 'Причесочки и няшности',
+    imageId: 'master-priyatnova',
   },
   {
-    name: 'Ольга Белова',
-    role: 'Косметолог-эстетист',
-    imageId: 'master-belova',
+    name: 'Полина Новенькая',
+    role: 'Ноготочки, не рисует «лепешки» (!?)',
+    imageId: 'master-novenkaya',
   },
   {
-    name: 'Дмитрий Новиков',
-    role: 'Массажист, SPA-терапевт',
-    imageId: 'master-novikov',
+    name: 'Антон Колесников (aka Вилл)',
+    role: 'Просто хорош собой',
+    imageId: 'master-kolesnikov',
   },
 ];
 
@@ -236,7 +236,7 @@ const Masters = () => {
       
       <div
         ref={imageWrapperRef}
-        className="hidden md:block fixed top-1/2 right-[25vw] w-[clamp(280px,24vw,420px)] aspect-[4/5] z-20 pointer-events-none"
+        className="hidden md:block fixed top-1/2 right-[15vw] w-[clamp(280px,24vw,420px)] aspect-[4/5] z-20 pointer-events-none"
         style={{ transform: 'translateY(-50%)' }}
       >
         <div className="relative w-full h-full rounded-sm overflow-hidden">
