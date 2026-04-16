@@ -115,7 +115,7 @@ const WhyKatso = () => {
         <section
             id="why-us"
             ref={sectionRef}
-            className="md:h-[400vh]"
+            className="md:h-[500vh]"
             data-cursor="dark"
             style={{ backgroundColor: colors.cream }}
         >
@@ -143,7 +143,7 @@ const WhyKatso = () => {
                                     <h3 className="font-display text-h2 uppercase">
                                         {item.title}
                                     </h3>
-                                    <p className="mt-4 text-body-lg max-w-lg mx-auto md:mx-0 text-nude">
+                                    <p className="font-golos mt-4 text-body-lg max-w-lg mx-auto md:mx-0 text-nude">
                                         {item.description}
                                     </p>
                                 </div>
