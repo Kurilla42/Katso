@@ -10,7 +10,6 @@ const NewMe = () => {
   const scaleTargetRef = useRef<HTMLDivElement>(null);
   const tRef = useRef<HTMLSpanElement>(null);
   const pinContainerRef = useRef<HTMLDivElement>(null);
-  const imageContainerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -19,8 +18,7 @@ const NewMe = () => {
     const tEl = tRef.current;
     const sectionEl = sectionRef.current;
     const pinContainerEl = pinContainerRef.current;
-    const imageContainerEl = imageContainerRef.current;
-    if (!scaleTargetEl || !tEl || !sectionEl || !pinContainerEl || !imageContainerEl) return;
+    if (!scaleTargetEl || !tEl || !sectionEl || !pinContainerEl) return;
 
     let ctx: gsap.Context;
 
@@ -49,13 +47,8 @@ const NewMe = () => {
             const originYText = (tRect.top - scaleTargetRect.top) + (tRect.height / 2);
             gsap.set(scaleTargetEl, { transformOrigin: `${originXText}px ${originYText}px` });
 
-            const imageContainerRect = imageContainerEl.getBoundingClientRect();
-            const originXImage = (tRect.left - imageContainerRect.left) + (tRect.width / 2);
-            const originYImage = (tRect.top - imageContainerRect.top) + (tRect.height / 2);
-            gsap.set(imageContainerEl, { transformOrigin: `${originXImage}px ${originYImage}px` });
-
             tl.to(
-              [scaleTargetEl, imageContainerEl],
+              scaleTargetEl,
               {
                 scale: 200,
                 ease: 'power1.in',
@@ -126,20 +119,6 @@ const NewMe = () => {
                 {'Другой взгляд на себя, \nдругое мировоззрение и \nотношения с окружающим миром'}
             </p>
         </div>
-        
-        <div
-          ref={imageContainerRef}
-          className="absolute bottom-0 right-0 w-[40vw] h-[80vh] max-w-[500px] z-0 pointer-events-none"
-          style={{ transform: 'translateX(-60vw)' }}
-        >
-             <Image
-                src="https://i.ibb.co/Y71XvhtZ/Pngtree-pampas-grass-isolated-on-a-21120510.png"
-                alt="Pampas grass decoration"
-                fill
-                style={{ objectFit: 'contain', objectPosition: 'bottom right' }}
-            />
-        </div>
-
       </div>
     </section>
   );
