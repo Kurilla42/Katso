@@ -1,62 +1,35 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
-import mapboxgl from 'mapbox-gl';
-import { colors } from '@/lib/design-tokens';
-import { PlusMarker } from '@/components/ui/PlusMarker';
+import { useEffect, useRef } from 'react';
 
 const Map = () => {
-  const mapContainer = useRef<HTMLDivElement>(null);
-  const map = useRef<mapboxgl.Map | null>(null);
-
-  const lng = 28.8593;
-  const lat = 47.0211;
-  const zoom = 14;
+  const mapContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (map.current || !mapContainer.current) return; // initialize map only once
-    
-    const token = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
-    if (!token) {
-        if (mapContainer.current) {
-            mapContainer.current.innerHTML = `<div class="w-full h-full bg-surface flex items-center justify-center text-center text-nude p-4">Map cannot be displayed. <br/>Mapbox token missing.</div>`
-        }
-        return;
+    const mapContainer = mapContainerRef.current;
+
+    // Don't do anything if the container is not rendered or if the map is already there.
+    // The Yandex script creates a `ymaps` element.
+    if (!mapContainer || mapContainer.querySelector('ymaps')) {
+      return;
     }
 
-    mapboxgl.accessToken = token;
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.charset = 'utf-8';
+    script.async = true;
+    script.src =
+      'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A14c480810c5924650cc12d101ab70dff0dc165c1de66b9a77d5fb6a18e4d09a5&width=100%&height=100%&lang=ru_RU&scroll=true';
 
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/dark-v11',
-      center: [lng, lat],
-      zoom: zoom,
-      interactive: false, // Make map non-interactive
-    });
+    mapContainer.appendChild(script);
 
-    // Create a custom marker element
-    const el = document.createElement('div');
-    el.className = 'w-4 h-4 rounded-full shadow-lg';
-    el.style.backgroundColor = colors.walnut;
-    el.style.outline = `2px solid ${colors.cream}`;
-    
-    // Add marker to the map
-    new mapboxgl.Marker(el)
-      .setLngLat([lng, lat])
-      .addTo(map.current);
-
-    // Clean up on unmount
-    return () => map.current?.remove();
-  }, [lng, lat, zoom]);
+  }, []);
 
   return (
-    <div className="absolute inset-0 w-full h-full">
-      <div ref={mapContainer} className="w-full h-full" />
-      <PlusMarker className="top-2 left-2" colorClassName="text-cream/30" />
-      <PlusMarker className="top-2 right-2" colorClassName="text-cream/30" />
-      <PlusMarker className="bottom-2 left-2" colorClassName="text-cream/30" />
-      <PlusMarker className="bottom-2 right-2" colorClassName="text-cream/30" />
-    </div>
+    <div
+      ref={mapContainerRef}
+      className="absolute inset-0 w-full h-full"
+    />
   );
 };
 

@@ -18,11 +18,6 @@ Here are the items you need to update to finalize your site content.
 
 ### Content & Configuration
 
-- [ ] **Mapbox Access Token**: The map in the footer requires a Mapbox token.
-  - Sign up for a free account at [mapbox.com](https://www.mapbox.com/).
-  - Create a file named `.env.local` in the root of your project.
-  - Add your token to the file like this: `NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=your_token_here`
-
 - [ ] **Contact Information**: The footer contains placeholder contact details.
   - Edit `src/components/sections/Footer.tsx` and update the `footerLinks` array with your actual phone number and email address.
 
