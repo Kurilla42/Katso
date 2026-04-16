@@ -95,7 +95,7 @@ const NewMe = () => {
             paddingLeft: 'clamp(24px, 4vw, 80px)',
             paddingRight: 'clamp(24px, 4vw, 80px)',
         }}>
-            <h2 style={{ fontSize: '3vw' }} className="text-left leading-none font-display uppercase">
+            <h2 style={{ fontSize: '3vw' }} className="text-center leading-none font-display uppercase">
                 Задача KA<span ref={logoRef}>T</span>SO:
             </h2>
             <div className="w-full max-w-5xl mx-auto mt-12">
@@ -107,10 +107,10 @@ const NewMe = () => {
                 </p>
                 <div className="flex justify-end mt-4">
                      <p
-                        className="font-lora text-nude max-w-[25vw]"
-                        style={{ fontSize: '0.8vw', lineHeight: 1.085 }}
+                        className="font-lora text-right whitespace-pre-line"
+                        style={{ fontSize: '0.8vw', lineHeight: 1.085, color: '#8a9a6b' }}
                     >
-                        Другой взгляд на себя – другое мировоззрение и отношения с окружающим миром.
+                        {'Другой взгляд на себя – другое мировоззрение\n и отношения с окружающим миром.'}
                     </p>
                 </div>
             </div>
