@@ -1,23 +1,24 @@
 'use client';
 
 import { useRef, useLayoutEffect } from 'react';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const NewMe = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLHeadingElement>(null);
-  const plusRef = useRef<HTMLDivElement>(null);
+  const scaleTargetRef = useRef<HTMLDivElement>(null);
+  const logoRef = useRef<HTMLDivElement>(null);
   const pinContainerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    const textEl = textRef.current;
-    const plusEl = plusRef.current;
+    const scaleTargetEl = scaleTargetRef.current;
+    const logoEl = logoRef.current;
     const sectionEl = sectionRef.current;
     const pinContainerEl = pinContainerRef.current;
-    if (!textEl || !plusEl || !sectionEl || !pinContainerEl) return;
+    if (!scaleTargetEl || !logoEl || !sectionEl || !pinContainerEl) return;
 
     // Use a timeout to ensure fonts are loaded and dimensions are correct
     const timer = setTimeout(() => {
@@ -36,26 +37,24 @@ const NewMe = () => {
               },
             });
 
-            const textRect = textEl.getBoundingClientRect();
-            const plusRect = plusEl.getBoundingClientRect();
+            const scaleTargetRect = scaleTargetEl.getBoundingClientRect();
+            const logoRect = logoEl.getBoundingClientRect();
 
-            // Calculate the position of the '+' character's center relative to the text element's top-left corner.
-            // We'll use this as the transform-origin.
-            const originX = (plusRect.left + plusRect.width / 2) - textRect.left;
-            const originY = (plusRect.top + plusRect.height / 2) - textRect.top;
+            // Calculate the position of the logo's center relative to the scaling element's top-left corner.
+            const originX = (logoRect.left + logoRect.width / 2) - scaleTargetRect.left;
+            const originY = (logoRect.top + logoRect.height / 2) - scaleTargetRect.top;
             
-            // Set the transform origin on the text element
-            gsap.set(textEl, { transformOrigin: `${originX}px ${originY}px` });
+            gsap.set(scaleTargetEl, { transformOrigin: `${originX}px ${originY}px` });
 
             // Add the scaling animation to the timeline.
-            // It starts at 40% of the way through the scroll animation (position '0.4').
+            // It starts at 10% of the way through the scroll animation (position '0.1').
             tl.to(
-              textEl,
+              scaleTargetEl,
               {
                 scale: 50, // A large value to ensure text fills the screen
                 ease: 'power1.in',
               },
-              0.4
+              0.1 // Changed from 0.4 to 0.1
             );
         });
       }, sectionEl);
@@ -87,17 +86,28 @@ const NewMe = () => {
             mixBlendMode: 'overlay',
           }}></div>
       <div ref={pinContainerRef} className="h-screen w-full flex items-center justify-center overflow-hidden md:sticky md:top-0">
-        <h2 ref={textRef} className="flex items-center justify-center gap-x-8 md:gap-x-12 font-display text-h3 text-cream uppercase">
-          <div className="text-right">
-            <div className="block">Раскрой свою</div>
-            <div className="block">уникальность</div>
-          </div>
-          <div ref={plusRef} className="text-accent text-h1 leading-none self-center scale-[2]">+</div>
-          <div className="text-left">
-            <div className="block">познакомься</div>
-            <div className="block">с новым «<span>я</span>»</div>
-          </div>
-        </h2>
+        <div ref={scaleTargetRef} className="w-full max-w-5xl mx-auto px-4 text-cream">
+            <div className="flex items-center font-display uppercase">
+                <h2 style={{ fontSize: 'clamp(2rem, 4vw, 4rem)' }} className="leading-none">
+                    Задача
+                </h2>
+                <div ref={logoRef} className="relative w-[clamp(2.5rem,4vw,4.5rem)] h-[clamp(2.5rem,4vw,4.5rem)] ml-4">
+                    <Image 
+                        src="https://i.ibb.co/Q7bS93Y5/image.png" 
+                        alt="Katso logo abstract mark" 
+                        width={80}
+                        height={80}
+                        className="w-full h-full object-contain"
+                    />
+                </div>
+            </div>
+            <p 
+                className="text-center mt-12 whitespace-pre-line font-display uppercase"
+                style={{ fontSize: 'clamp(2.5rem, 5.5vw, 6rem)', lineHeight: 1.2 }}
+            >
+                {'Раскрыть вашу уникальность и \nпознакомить с вашим новым «я»\n\nДругой взгляд на себя – другое мировоззрение \nи отношения с окружающим миром'}
+            </p>
+        </div>
       </div>
     </section>
   );
