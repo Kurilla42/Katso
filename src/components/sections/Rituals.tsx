@@ -232,7 +232,7 @@ const Rituals = () => {
             >
                 <div className="relative">
                   <div 
-                    className="absolute inset-0 w-full h-full bg-cover bg-center pointer-events-none"
+                    className="absolute inset-0 w-full h-full pointer-events-none"
                     style={{
                       backgroundImage: 'url(https://i.ibb.co/fzk39XBR/wall-4-light.png)',
                       opacity: 0.2,
