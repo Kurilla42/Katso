@@ -16,8 +16,9 @@ const config: Config = {
         grid: 'rgba(237, 232, 224, 0.08)',
       },
       fontFamily: {
-        display: ['Unbounded', 'sans-serif'],
+        display: ['Anton', 'sans-serif'],
         body: ['Inter Tight', 'sans-serif'],
+        furore: ['Furore', 'sans-serif'],
       },
       fontSize: {
         caption: ['clamp(0.6875rem, 0.75vw, 0.875rem)', { lineHeight: '1.5', letterSpacing: '0.12em' }], // 11px -> 14px

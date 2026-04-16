@@ -92,11 +92,11 @@ const NewMe = () => {
           }}></div>
       <div ref={pinContainerRef} className="h-screen w-full flex items-center justify-center overflow-hidden md:sticky md:top-0 relative">
         <div ref={scaleTargetRef} className="relative z-10 w-full max-w-5xl mx-auto px-4 text-cream">
-            <h2 style={{ fontSize: '4vw' }} className="text-left leading-none font-display uppercase">
+            <h2 style={{ fontSize: '4vw' }} className="text-left leading-none font-furore uppercase">
                 Задача KA<span ref={logoRef}>T</span>SO:
             </h2>
             <p 
-                className="text-center mt-12 whitespace-pre-line font-display uppercase"
+                className="text-center mt-12 whitespace-pre-line font-furore uppercase"
                 style={{ fontSize: '4vw', lineHeight: 1.2 }}
             >
                 {'Раскрыть вашу уникальность и \nпознакомить с вашим новым «я»'}
