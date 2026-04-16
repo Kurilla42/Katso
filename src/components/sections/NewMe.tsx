@@ -8,7 +8,7 @@ import Image from 'next/image';
 const NewMe = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const scaleTargetRef = useRef<HTMLDivElement>(null);
-  const logoRef = useRef<HTMLSpanElement>(null);
+  const logoRef = useRef<HTMLParagraphElement>(null);
   const pinContainerRef = useRef<HTMLDivElement>(null);
   const imageContainerRef = useRef<HTMLDivElement>(null);
 
@@ -93,25 +93,26 @@ const NewMe = () => {
       <div ref={pinContainerRef} className="h-screen w-full flex items-center justify-center overflow-hidden md:sticky md:top-0 relative">
         <div
             ref={scaleTargetRef}
-            className="relative z-10 w-full text-cream grid grid-cols-[1fr_auto_1fr] gap-x-8"
+            className="relative z-10 w-full text-cream grid grid-cols-[1fr_auto_1fr] gap-x-8 items-center"
             style={{
                 paddingLeft: 'clamp(24px, 4vw, 80px)',
                 paddingRight: 'clamp(24px, 4vw, 80px)',
             }}
         >
-            <h2 style={{ fontSize: '3vw' }} className="text-right leading-none font-display uppercase self-start">
-                Задача KA<span ref={logoRef}>T</span>SO:
+            <h2 style={{ fontSize: '3vw' }} className="text-right leading-none font-display uppercase">
+                {'Задача\nKATSO:'}
             </h2>
             
             <p
-                className="text-center whitespace-pre-line font-display uppercase self-center"
+                ref={logoRef}
+                className="text-left whitespace-pre-line font-display uppercase"
                 style={{ fontSize: '3vw', lineHeight: 1.2 }}
             >
-                {'Раскрыть твою уникальность\n и познакомить с новым «я»'}
+                {'Раскрыть твою уникальность\nи познакомить с новым «я»'}
             </p>
 
             <p
-                className="font-lora text-right whitespace-pre-line self-end"
+                className="font-lora text-left self-end"
                 style={{ fontSize: '0.8vw', lineHeight: 1.085, color: '#8a9a6b' }}
             >
                 {'Другой взгляд на себя, \nдругое мировоззрение и \nотношения с окружающим миром'}
