@@ -33,6 +33,11 @@ const mastersData = [
     name: 'Антон Колесников (aka Вилл)',
     role: 'Просто хорош собой',
     imageId: 'master-kolesnikov',
+    animationImages: [
+        'https://i.ibb.co/B2F0BZpz/c02953e2-b03f-4043-acfc-63c694317304.jpg',
+        'https://i.ibb.co/FbfJ8CH1/75889612-c09e-48cd-a4ff-585846bbc6a4.jpg',
+        'https://i.ibb.co/9k7MTmMg/3c84985f-1065-4f58-8779-d69efd6e6712.jpg',
+    ]
   },
 ];
 
@@ -92,8 +97,10 @@ const Masters = () => {
   const imageWrapperRef = useRef<HTMLDivElement>(null);
   const itemsRef = useRef<(HTMLButtonElement | null)[]>([]);
   const accordionContentsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const timelineRef = useRef<gsap.core.Timeline | null>(null);
 
-  const [activeImageUrl, setActiveImageUrl] = useState('');
+  const [activeImages, setActiveImages] = useState<string[]>([]);
+  const [isAnimatingMaster, setIsAnimatingMaster] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   useLayoutEffect(() => {
@@ -114,8 +121,33 @@ const Masters = () => {
           
           const handleMouseEnter = (index: number) => {
             const master = mastersData[index];
-            const placeholder = PlaceHolderImages.find(p => p.id === master.imageId);
-            if (placeholder) setActiveImageUrl(placeholder.imageUrl);
+            
+            if (timelineRef.current) {
+              timelineRef.current.kill();
+              timelineRef.current = null;
+            }
+
+            if (master.animationImages) {
+              setIsAnimatingMaster(true);
+              setActiveImages(master.animationImages);
+
+              setTimeout(() => {
+                if (!imageWrapperRef.current) return;
+                const animatedElements = imageWrapperRef.current.querySelectorAll('.animated-image-instance');
+                if (animatedElements.length < 3) return;
+
+                gsap.set(animatedElements, { y: '100%' });
+                gsap.set(animatedElements[0], { y: '0%' });
+
+                timelineRef.current = gsap.timeline({ delay: 1 })
+                  .to(animatedElements[1], { y: '0%', duration: 0.5, ease: EASES.slide })
+                  .to(animatedElements[2], { y: '0%', duration: 0.5, ease: EASES.slide }, '+=0.5');
+              }, 50);
+            } else {
+              setIsAnimatingMaster(false);
+              const placeholder = PlaceHolderImages.find(p => p.id === master.imageId);
+              setActiveImages(placeholder ? [placeholder.imageUrl] : []);
+            }
           };
 
           const handleListMouseEnter = () => {
@@ -126,6 +158,10 @@ const Masters = () => {
           const handleListMouseLeave = () => {
             xTo(100);
             gsap.to(imageEl, { autoAlpha: 0, duration: 0.2, delay: 0.2 });
+            if (timelineRef.current) {
+              timelineRef.current.kill();
+              timelineRef.current = null;
+            }
           };
 
           const listEl = component.current!.querySelector('.masters-list');
@@ -140,9 +176,9 @@ const Masters = () => {
             listEl?.removeEventListener('mouseenter', handleListMouseEnter);
             listEl?.removeEventListener('mouseleave', handleListMouseLeave);
             itemsRef.current.forEach((item, index) => {
-              // Cleanup to prevent memory leaks, checking if item exists
               item?.removeEventListener('mouseenter', () => handleMouseEnter(index));
             });
+            if (timelineRef.current) timelineRef.current.kill();
           }
         }
       });
@@ -236,20 +272,39 @@ const Masters = () => {
       
       <div
         ref={imageWrapperRef}
-        className="hidden md:block fixed top-1/2 right-[15vw] w-[clamp(280px,24vw,420px)] aspect-[4/5] z-20 pointer-events-none"
+        className="hidden md:block fixed top-1/2 right-[25vw] w-[clamp(280px,24vw,420px)] aspect-[4/5] z-20 pointer-events-none"
         style={{ transform: 'translateY(-50%)' }}
       >
         <div className="relative w-full h-full rounded-sm overflow-hidden">
-          {activeImageUrl && (
-            <Image
-              key={activeImageUrl} // Force re-render on src change for transition
-              src={activeImageUrl}
-              alt="Photo of a master"
-              fill
-              sizes="24vw"
-              className="object-cover"
-            />
-          )}
+        {isAnimatingMaster ? (
+            activeImages.map((src, index) => (
+                <div
+                    key={src}
+                    className="animated-image-instance absolute inset-0 w-full h-full"
+                    style={{ zIndex: index + 1 }}
+                >
+                    <Image
+                        src={src}
+                        alt="Photo of a master"
+                        fill
+                        sizes="24vw"
+                        className="object-cover"
+                        priority={index === 0}
+                    />
+                </div>
+            ))
+        ) : (
+            activeImages.length > 0 && (
+                <Image
+                    key={activeImages[0]}
+                    src={activeImages[0]}
+                    alt="Photo of a master"
+                    fill
+                    sizes="24vw"
+                    className="object-cover"
+                />
+            )
+        )}
         </div>
       </div>
     </section>
