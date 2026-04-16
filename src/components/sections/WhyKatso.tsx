@@ -112,6 +112,13 @@ const WhyKatso = () => {
                                 }}
                             ></div>
                             <div className="paper-texture"></div>
+
+                            {/* Decorative Line */}
+                            <div
+                                className="absolute top-[40%] right-0 w-[60%] h-px"
+                                style={{ backgroundColor: colors.cream }}
+                            />
+
                             {/* Content Wrapper */}
                             <div 
                                 className="relative max-w-6xl w-full h-full z-10 md:py-16"
@@ -128,13 +135,13 @@ const WhyKatso = () => {
                                 </p>
                                 <h3 
                                     className="absolute bottom-[10%] font-display uppercase text-cream"
-                                    style={{ fontSize: '3vw' }}
+                                    style={{ fontSize: '5vw' }}
                                 >
                                     {item.title}
                                 </h3>
                             </div>
                             {index === 0 && (
-                                <div className="absolute top-1/2 left-[70%] -translate-y-1/2 -translate-x-1/2 w-[22vw] max-w-[320px] pointer-events-none">
+                                <div className="absolute top-[calc(40%+2rem)] left-[70%] -translate-x-1/2 w-[22vw] max-w-[320px] pointer-events-none">
                                     <video
                                         src="/video/video-1.mp4"
                                         autoPlay
