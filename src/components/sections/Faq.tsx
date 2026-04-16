@@ -60,7 +60,7 @@ const FaqGalleryColumn = ({
             src={p.imageUrl}
             alt={p.description}
             fill
-            sizes="21vw"
+            sizes="20vw"
             className="object-cover"
             data-ai-hint={p.imageHint}
             priority={index < 4}
@@ -183,10 +183,10 @@ const Faq = () => {
             className="relative flex justify-start gap-[5vw]"
             style={{ left: '5%' }}
         >
-            <div className="w-[21vw] h-[80vh] overflow-hidden relative">
+            <div className="w-[20vw] h-[80vh] overflow-hidden relative">
               <FaqGalleryColumn images={leftImages} innerRef={leftColumnRef} />
             </div>
-            <div className="w-[21vw] h-[80vh] overflow-hidden relative mt-[10vh]">
+            <div className="w-[20vw] h-[80vh] overflow-hidden relative mt-[10vh]">
               <FaqGalleryColumn images={rightImages} innerRef={rightColumnRef} reversed />
             </div>
         </div>
