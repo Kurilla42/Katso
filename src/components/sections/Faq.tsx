@@ -94,7 +94,7 @@ const AccordionItem = ({
     <div className="border-b border-cream/20">
       <button
         onClick={onClick}
-        className="w-full flex justify-between items-center py-6 text-left gap-4 focus-visible:outline-none focus-visible:bg-black/5 rounded-sm"
+        className="w-full flex justify-between items-center py-6 text-left gap-4 focus-visible:outline-none focus-visible:bg-black/5 rounded-sm pr-[clamp(1rem,3vw,5rem)]"
         data-cursor-hover="link"
       >
         <span className="font-lora text-cream" style={{ lineHeight: 1.085, fontSize: '1.2vw' }}>{item.question}</span>
@@ -109,7 +109,7 @@ const AccordionItem = ({
         </div>
       </button>
       <div ref={contentRef} className="h-0 overflow-hidden">
-        <p className="pb-6 text-nude max-w-[min(640px,45vw)] font-lora" style={{ lineHeight: 1.085, fontSize: '1vw' }}>{item.answer}</p>
+        <p className="pb-6 text-nude font-lora pr-[clamp(1rem,3vw,5rem)]" style={{ lineHeight: 1.085, fontSize: '1vw' }}>{item.answer}</p>
       </div>
     </div>
   );
@@ -192,17 +192,19 @@ const Faq = () => {
         </div>
       </div>
 
-      <div className="container py-16 md:py-40 relative">
+      <div className="py-16 md:py-40 relative pl-[clamp(1rem,3vw,5rem)]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16 items-start">
           
           {/* Spacer to push content to the right */}
-          <div className="hidden lg:block lg:col-span-7"></div>
+          <div className="hidden lg:block lg:col-span-5"></div>
 
           {/* Right Column: FAQ & Contact */}
-          <div className="lg:col-start-8 lg:col-span-5">
-            <h2 className="font-display uppercase text-cream leading-none" style={{ fontSize: '5vw' }}>
-              FAQ
-            </h2>
+          <div className="lg:col-span-7">
+            <div className="pr-[clamp(1rem,3vw,5rem)]">
+              <h2 className="font-display uppercase text-cream leading-none" style={{ fontSize: '5vw' }}>
+                FAQ
+              </h2>
+            </div>
             <div className="mt-8 md:mt-12">
               {faqData.map((item, index) => (
                 <AccordionItem
@@ -214,7 +216,7 @@ const Faq = () => {
               ))}
             </div>
             
-            <div className="mt-16">
+            <div className="mt-16 pr-[clamp(1rem,3vw,5rem)]">
               <p className="font-lora text-nude" style={{ fontSize: '1.2vw' }}>Не нашли ответ?</p>
               <a
                 href="#"
