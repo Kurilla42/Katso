@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useLayoutEffect, useRef, forwardRef, CSSProperties } from 'react';
@@ -229,9 +228,17 @@ const Rituals = () => {
     return (
         <section id="rituals" ref={componentRef} data-cursor="dark">
             <div
-                style={{ backgroundColor: 'var(--color-background)' }}
+                style={{ backgroundColor: '#66686b' }}
             >
                 <div className="relative">
+                  <div 
+                    className="absolute inset-0 w-full h-full bg-cover bg-center pointer-events-none"
+                    style={{
+                      backgroundImage: 'url(https://i.ibb.co/fzk39XBR/wall-4-light.png)',
+                      opacity: 0.2,
+                      mixBlendMode: 'overlay'
+                    }}
+                  ></div>
                   <div className="paper-texture"></div>
                   <div className="container py-16 md:py-24">
                       <p className="caption text-nude">Процедуры</p>
@@ -266,4 +273,3 @@ const Rituals = () => {
 };
 
 export default Rituals;
-
