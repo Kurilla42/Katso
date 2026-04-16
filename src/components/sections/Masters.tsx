@@ -15,7 +15,7 @@ const mastersData = [
     imageId: 'master-treller',
   },
   {
-    name: 'Мария Фролова',
+    name: 'Мария Хохотушкина',
     role: 'Отвечает за бровки и смешнявки',
     imageId: 'master-frolova',
   },
@@ -30,7 +30,7 @@ const mastersData = [
     imageId: 'master-novenkaya',
   },
   {
-    name: 'Антон Колесников (aka Вилл)',
+    name: 'Антон Виллович',
     role: 'Просто хорош собой',
     imageId: 'master-kolesnikov',
     animationImages: [
