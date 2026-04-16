@@ -128,7 +128,7 @@ const Faq = () => {
           style={{
             backgroundImage: 'url(https://i.ibb.co/zWNnhBMd/concrete-wall-2-1.png)',
             backgroundRepeat: 'repeat',
-            opacity: 0.2,
+            opacity: 0.4,
             mixBlendMode: 'overlay',
           }}
         ></div>
