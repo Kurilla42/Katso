@@ -1,14 +1,13 @@
 'use client';
 
 import { useRef, useLayoutEffect } from 'react';
-import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const NewMe = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const scaleTargetRef = useRef<HTMLDivElement>(null);
-  const logoRef = useRef<HTMLDivElement>(null);
+  const logoRef = useRef<HTMLSpanElement>(null);
   const pinContainerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
@@ -89,21 +88,12 @@ const NewMe = () => {
         <div ref={scaleTargetRef} className="w-full max-w-5xl mx-auto px-4 text-cream">
             <div className="flex items-center font-display uppercase">
                 <h2 style={{ fontSize: 'clamp(2rem, 4vw, 4rem)' }} className="leading-none">
-                    Задача
+                    Задача KA<span ref={logoRef}>T</span>SO
                 </h2>
-                <div ref={logoRef} className="relative w-[clamp(2.5rem,4vw,4.5rem)] h-[clamp(2.5rem,4vw,4.5rem)] ml-4">
-                    <Image 
-                        src="https://i.ibb.co/Q7bS93Y5/image.png" 
-                        alt="Katso logo abstract mark" 
-                        width={80}
-                        height={80}
-                        className="w-full h-full object-contain"
-                    />
-                </div>
             </div>
             <p 
                 className="text-center mt-12 whitespace-pre-line font-display uppercase"
-                style={{ fontSize: 'clamp(2.5rem, 5.5vw, 6rem)', lineHeight: 1.2 }}
+                style={{ fontSize: 'clamp(2.5rem, 4vw, 5rem)', lineHeight: 1.2 }}
             >
                 {'Раскрыть вашу уникальность и \nпознакомить с вашим новым «я»\n\nДругой взгляд на себя – другое мировоззрение \nи отношения с окружающим миром'}
             </p>
