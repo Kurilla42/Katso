@@ -148,7 +148,8 @@ const WhyKatso = () => {
                                 </h3>
                             </div>
                             {index === 0 && (
-                                <div className="absolute top-[8%] right-0 w-[35vw] h-[85vh] max-w-[500px] pointer-events-none">
+                                <>
+                                <div className="absolute top-[8%] right-0 w-[42vw] h-[85vh] max-w-[600px] pointer-events-none">
                                     <Image
                                         src="https://i.ibb.co/B5zD30Jx/isolated-pampas-grass-plume2.png"
                                         alt="Pampas grass decoration"
@@ -156,6 +157,18 @@ const WhyKatso = () => {
                                         style={{ objectFit: 'contain', objectPosition: 'top right' }}
                                     />
                                 </div>
+                                <div className="absolute top-1/2 right-[5%] w-[30%] h-1/2 -translate-y-1/2">
+                                    <video
+                                        className="w-full h-full object-contain"
+                                        autoPlay
+                                        loop
+                                        muted
+                                        playsInline
+                                    >
+                                        <source src="/video/video-1.mp4" type="video/mp4" />
+                                    </video>
+                                </div>
+                                </>
                             )}
                         </div>
                     ))}
