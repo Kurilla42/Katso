@@ -235,14 +235,20 @@ const Rituals = () => {
                     className="absolute inset-0 w-full h-full pointer-events-none"
                     style={{
                       backgroundImage: 'url(https://i.ibb.co/fzk39XBR/wall-4-light.png)',
+                      backgroundRepeat: 'repeat',
                       opacity: 0.2,
                       mixBlendMode: 'overlay'
                     }}
                   ></div>
                   <div className="paper-texture"></div>
-                  <div className="container py-16 md:py-24">
-                      <p className="caption text-nude">Процедуры</p>
-                      <h2 className="font-display text-h1 text-cream uppercase mt-2">
+                  <div
+                    className="w-full mx-auto py-16 md:py-24"
+                    style={{
+                      paddingLeft: 'clamp(24px, 4vw, 80px)',
+                      paddingRight: 'clamp(24px, 4vw, 80px)',
+                    }}
+                  >
+                      <h2 className="ritual-card-headline text-cream">
                           Ритуалы <br /> Красоты
                       </h2>
                   </div>
