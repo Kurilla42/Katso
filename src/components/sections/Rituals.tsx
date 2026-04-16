@@ -8,46 +8,47 @@ import { EASES } from '@/lib/animations';
 const ritualsData = [
   {
     title: 'Стрижки',
-    description: 'От классических форм до смелых креативных решений. Наши мастера создадут идеальный образ, подчеркивающий вашу индивидуальность.',
-    bg: 'surface',
+    description:
+      'От классических форм до смелых креативных решений. Наши мастера создадут идеальный образ, подчеркивающий вашу индивидуальность.',
+    bgColor: '#8b5e3c',
   },
   {
     title: 'Окрашивание',
-    description: 'Сложные техники, натуральные оттенки и яркие цвета. Мы используем только премиальные красители для здоровья ваших волос.',
-    bg: 'walnut',
+    description:
+      'Сложные техники, натуральные оттенки и яркие цвета. Мы используем только премиальные красители для здоровья ваших волос.',
+    bgColor: '#2D2D2D',
   },
   {
     title: 'Уход за волосами',
-    description: 'Глубокое восстановление, увлажнение и питание. SPA-ритуалы для волос, которые вернут им силу, блеск и шелковистость.',
-    bg: 'background',
+    description:
+      'Глубокое восстановление, увлажнение и питание. SPA-ритуалы для волос, которые вернут им силу, блеск и шелковистость.',
+    bgColor: '#8b5e3c',
   },
   {
     title: 'Ногтевой сервис',
-    description: 'Идеальный маникюр и педикюр, от лечебного до дизайнерского. Безопасность, стерильность и внимание к деталям.',
-    bg: 'surface',
+    description:
+      'Идеальный маникюр и педикюр, от лечебного до дизайнерского. Безопасность, стерильность и внимание к деталям.',
+    bgColor: '#2D2D2D',
   },
   {
     title: 'Косметология',
-    description: 'Современные методики для сохранения молодости и красоты вашей кожи. Индивидуальные программы ухода от ведущих косметологов.',
-    bg: 'walnut',
+    description:
+      'Современные методики для сохранения молодости и красоты вашей кожи. Индивидуальные программы ухода от ведущих косметологов.',
+    bgColor: '#8b5e3c',
   },
   {
     title: 'Макияж и брови',
-    description: 'Дневной, вечерний или свадебный макияж. Коррекция и окрашивание бровей для создания выразительного взгляда.',
-    bg: 'background',
+    description:
+      'Дневной, вечерний или свадебный макияж. Коррекция и окрашивание бровей для создания выразительного взгляда.',
+    bgColor: '#2D2D2D',
   },
   {
     title: 'Массаж и SPA',
-    description: 'Расслабляющие и оздоровительные массажи, обертывания и другие SPA-программы для гармонии души и тела.',
-    bg: 'surface',
+    description:
+      'Расслабляющие и оздоровительные массажи, обертывания и другие SPA-программы для гармонии души и тела.',
+    bgColor: '#8b5e3c',
   },
 ];
-
-const COLOR_MAP: { [key: string]: string } = {
-  background: '#2A2722',
-  surface: '#3E3A34',
-  walnut: '#4E3826',
-};
 
 interface RitualCardProps {
   index: number;
@@ -75,24 +76,13 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
     ref
   ) => {
     const style: CSSProperties = {
-      backgroundColor: '#66686b',
+      backgroundColor: bgColor,
       top: `calc(${index} * var(--stack-peek))`,
       zIndex: index + 1,
     };
 
     return (
       <article className="ritual-card" style={style} ref={ref}>
-        <div
-            className="absolute inset-0 w-full h-full pointer-events-none"
-            style={{
-                backgroundImage: 'url(https://i.ibb.co/fzk39XBR/wall-4-light.png)',
-                backgroundRepeat: 'repeat',
-                opacity: 0.2,
-                mixBlendMode: 'overlay',
-            }}></div>
-        <div className="paper-texture"></div>
-        <div className="grid-overlay" />
-
         <div className="ritual-card-inner">
           <div className="ritual-card-content">
             <h3
@@ -234,41 +224,45 @@ const Rituals = () => {
     }, []);
 
     return (
-        <section id="rituals" ref={componentRef} data-cursor="dark">
+        <section
+            id="rituals"
+            ref={componentRef}
+            data-cursor="dark"
+            className="relative"
+            style={{ backgroundColor: '#66686b' }}
+        >
             <div
-                style={{ backgroundColor: '#66686b' }}
-            >
-                <div className="relative">
-                  <div 
-                    className="absolute inset-0 w-full h-full pointer-events-none"
-                    style={{
-                      backgroundImage: 'url(https://i.ibb.co/fzk39XBR/wall-4-light.png)',
-                      backgroundRepeat: 'repeat',
-                      opacity: 0.2,
-                      mixBlendMode: 'overlay'
-                    }}
-                  ></div>
-                  <div className="paper-texture"></div>
-                  <div
+                className="absolute inset-0 w-full h-full pointer-events-none"
+                style={{
+                    backgroundImage: 'url(https://i.ibb.co/fzk39XBR/wall-4-light.png)',
+                    backgroundRepeat: 'repeat',
+                    opacity: 0.2,
+                    mixBlendMode: 'overlay',
+                }}
+            ></div>
+            <div className="paper-texture"></div>
+
+            <div className="relative">
+                <div
                     className="w-full mx-auto py-16 md:py-24"
                     style={{
-                      paddingLeft: 'clamp(24px, 4vw, 80px)',
-                      paddingRight: 'clamp(24px, 4vw, 80px)',
+                        paddingLeft: 'clamp(24px, 4vw, 80px)',
+                        paddingRight: 'clamp(24px, 4vw, 80px)',
                     }}
-                  >
-                      <h2 className="ritual-card-headline text-cream">
-                          Ритуалы <br /> Красоты
-                      </h2>
-                  </div>
+                >
+                    <h2 className="ritual-card-headline text-cream">
+                        Ритуалы <br /> Красоты
+                    </h2>
                 </div>
             </div>
+
             <div className="rituals-stack relative md:p-0">
                 {ritualsData.map((ritual, index) => (
                     <RitualCard
                         key={ritual.title}
                         index={index}
                         totalCards={ritualsData.length}
-                        bgColor={ritual.bg}
+                        bgColor={ritual.bgColor}
                         numeral={`0${index + 1}`}
                         headline={ritual.title}
                         description={ritual.description}
