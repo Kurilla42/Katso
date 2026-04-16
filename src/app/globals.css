@@ -178,7 +178,6 @@
 }
 
 .ritual-card-description {
-  font-family: var(--font-body);
   font-size: 0.8vw;
   line-height: 1.55;
   max-width: 460px;
@@ -197,6 +196,7 @@
   text-underline-offset: 6px;
   text-decoration-thickness: 1.5px;
   align-self: end;
+  text-align: right;
 }
 
 .ritual-card-numeral {
