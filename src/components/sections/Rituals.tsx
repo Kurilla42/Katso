@@ -200,45 +200,45 @@ const Rituals = () => {
             cards.forEach((card, index) => {
                 if (index === cards.length - 1) return; // last card never recedes
 
-                const nextCard = cards[index + 1];
-
-                ScrollTrigger.create({
-                    trigger: nextCard,
-                    start: 'top bottom',
-                    end: `top ${(index + 1) * stackPeek + 40}px`,
-                    scrub: 0.6,
-                    animation: gsap.to(card, {
-                        scale: 0.97,
-                        opacity: 0.75,
-                        filter: 'blur(1.5px)',
+                const createRecedeAnimation = (triggerCard: HTMLElement, scale: number, opacity: number, blur: number) => {
+                    const timeline = gsap.timeline();
+                    // Start scaling and fading immediately
+                    timeline.to(card, {
+                        scale: scale,
+                        opacity: opacity,
                         ease: 'none',
-                        overwrite: 'auto'
-                    }),
-                    invalidateOnRefresh: true
-                });
-
-                for (let stepIndex = 1; stepIndex < cards.length - index - 1; stepIndex++) {
-                    const triggerCard = cards[index + 1 + stepIndex];
-                    if (!triggerCard) break;
-
-                    const stepBlur = Math.min(1.5 + stepIndex * 0.6, 4);
-                    const stepScale = Math.max(0.97 - stepIndex * 0.012, 0.9);
-                    const stepOpacity = Math.max(0.75 - stepIndex * 0.10, 0.35);
+                    }, 0);
+                    // Start blurring after 40% of the animation is done, to make it feel like it happens "after"
+                    timeline.to(card, {
+                        filter: `blur(${blur}px)`,
+                        ease: 'power1.in',
+                    }, 0.4);
 
                     ScrollTrigger.create({
                         trigger: triggerCard,
                         start: 'top bottom',
-                        end: `top ${(index + 1 + stepIndex) * stackPeek + 40}px`,
-                        scrub: 0.6,
-                        animation: gsap.to(card, {
-                            scale: stepScale,
-                            opacity: stepOpacity,
-                            filter: `blur(${stepBlur}px)`,
-                            ease: 'none',
-                            overwrite: 'auto'
-                        }),
+                        end: `top top+=${stackPeek}`,
+                        scrub: true, // Direct scrub, no lag
+                        animation: timeline,
+                        overwrite: true, // Force overwrite to prevent conflicts
                         invalidateOnRefresh: true
                     });
+                };
+                
+                // First recede, when the very next card appears
+                const nextCard = cards[index + 1];
+                createRecedeAnimation(nextCard, 0.97, 0.75, 1.5);
+                
+                // Subsequent, deeper recedes for each card that follows
+                for (let stepIndex = 1; stepIndex < cards.length - index - 1; stepIndex++) {
+                    const triggerCard = cards[index + 1 + stepIndex];
+                    if (!triggerCard) break;
+
+                    const stepBlur = Math.min(1.5 + stepIndex * 0.8, 5);
+                    const stepScale = Math.max(0.97 - stepIndex * 0.015, 0.88);
+                    const stepOpacity = Math.max(0.75 - stepIndex * 0.12, 0.3);
+
+                    createRecedeAnimation(triggerCard, stepScale, stepOpacity, stepBlur);
                 }
             });
             
