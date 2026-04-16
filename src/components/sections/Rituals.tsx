@@ -110,10 +110,11 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
               {headline}
             </h3>
             <p
-              className="ritual-card-description font-manrope"
+              className="ritual-card-description font-lora"
               style={{
                 color: textColor,
                 opacity: 0.65,
+                fontSize: 'clamp(13px, 0.95vw, 16px)',
               }}
             >
               {description}
