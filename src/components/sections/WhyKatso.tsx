@@ -122,7 +122,7 @@ const WhyKatso = () => {
 
                             {/* Content Wrapper */}
                             <div 
-                                className="relative max-w-6xl w-full h-full z-10 md:py-16"
+                                className="relative w-full h-full z-10 md:py-16"
                                 style={{
                                     paddingLeft: 'clamp(24px, 4vw, 80px)',
                                     paddingRight: 'clamp(24px, 4vw, 80px)',
@@ -149,7 +149,7 @@ const WhyKatso = () => {
                             </div>
                             {index === 0 && (
                                 <>
-                                <div className="absolute top-[8%] right-0 w-[42vw] h-[85vh] max-w-[600px] pointer-events-none">
+                                <div className="absolute top-[8%] right-0 w-[42vw] h-[85vh] max-w-[600px] pointer-events-none scale-120">
                                     <Image
                                         src="https://i.ibb.co/B5zD30Jx/isolated-pampas-grass-plume2.png"
                                         alt="Pampas grass decoration"
@@ -157,16 +157,37 @@ const WhyKatso = () => {
                                         style={{ objectFit: 'contain', objectPosition: 'top right' }}
                                     />
                                 </div>
-                                <div className="absolute top-1/2 right-[5%] w-[30%] h-1/2 -translate-y-1/2">
-                                    <video
-                                        className="w-full h-full object-contain"
-                                        autoPlay
-                                        loop
-                                        muted
-                                        playsInline
-                                    >
-                                        <source src="/video/video-1.mp4" type="video/mp4" />
-                                    </video>
+                                
+                                <div className="absolute bottom-[10%] right-[10%] w-[45%] md:w-[35%] lg:w-[30%] flex items-stretch gap-2 z-20">
+                                    <div className="relative flex-1 aspect-[9/16]">
+                                        <Image
+                                            src="https://i.ibb.co/5XKvgQWw/Am-KWo-80y-IRE0-Zv-Jank4y-ZPm-Xsn-JCL-p1-B7s-J-8-D9w3r-Qxzgol-Sxp-Th-N35vk-Yy-QXR-5sxd53-YGbs2u-CBI2-Qh.jpg"
+                                            alt="Studio example 1"
+                                            fill
+                                            className="object-cover rounded-sm"
+                                            sizes="15vw"
+                                        />
+                                    </div>
+                                    <div className="relative flex-1 aspect-[9/16]">
+                                        <video
+                                            className="w-full h-full object-cover rounded-sm"
+                                            autoPlay
+                                            loop
+                                            muted
+                                            playsInline
+                                        >
+                                            <source src="/video/video-1.mp4" type="video/mp4" />
+                                        </video>
+                                    </div>
+                                    <div className="relative flex-1 aspect-[9/16]">
+                                        <Image
+                                            src="https://i.ibb.co/LzKt0WTV/F4-s35-Lzl9i-J7-ZJa-E161ac-Yt-RBz3cs-c0m7-BDy-NJBjo-Kf-JVp-Epz-Pg-T9f-O3-Cvknkb-Nr-XYx3-U-a-BD887o-Mlj1t.jpg"
+                                            alt="Studio example 2"
+                                            fill
+                                            className="object-cover rounded-sm"
+                                            sizes="15vw"
+                                        />
+                                    </div>
                                 </div>
                                 </>
                             )}
