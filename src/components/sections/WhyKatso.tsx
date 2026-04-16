@@ -116,7 +116,7 @@ const WhyKatso = () => {
 
                             {/* Decorative Line */}
                             <div
-                                className="absolute top-[40%] right-0 w-[60%] h-px"
+                                className={`absolute right-0 w-[60%] h-px ${index === 1 ? 'bottom-[40%]' : 'top-[40%]'}`}
                                 style={{ backgroundColor: '#EDE8E0' }}
                             />
 
@@ -190,6 +190,39 @@ const WhyKatso = () => {
                                     </div>
                                 </div>
                                 </>
+                            )}
+                            {index === 1 && (
+                                <div className="absolute top-[10%] right-[10%] w-[54%] md:w-[42%] lg:w-[36%] flex items-stretch gap-2 z-20 scale-[1.42]">
+                                    <div className="relative flex-1 aspect-[9/16]">
+                                        <video
+                                            className="w-full h-full object-cover rounded-sm"
+                                            autoPlay
+                                            loop
+                                            muted
+                                            playsInline
+                                        >
+                                            <source src="/video/video-2.mp4" type="video/mp4" />
+                                        </video>
+                                    </div>
+                                    <div className="relative flex-1 aspect-[9/16]">
+                                        <Image
+                                            src="https://i.ibb.co/C4zZNhv/xo-Yh-Ad-Fk-Aomwez-MVy-SE8sv-OEM2mn0-Huh4rc8-S2-VIYNwh-Vs-QAo-ZP-3-AET4g-Lf9h-BSVt8cic-Zeco-O40v-Q2ku-KX.jpg"
+                                            alt="Studio example 5"
+                                            fill
+                                            className="object-cover rounded-sm"
+                                            sizes="15vw"
+                                        />
+                                    </div>
+                                    <div className="relative flex-1 aspect-[9/16]">
+                                        <Image
+                                            src="https://i.ibb.co/prbQTwGN/0i-Xf-i-PYg4-Je-IHQv-MNs-CKAKPega-Ed7-Mg-L2-Ns-Hq-Jw-AFvq-VNwa-Niy9x-MTjd-Zjgr7-Ofb-DF8-T-1k-QAX-s7-HF7-Uef.jpg"
+                                            alt="Studio example 6"
+                                            fill
+                                            className="object-cover rounded-sm"
+                                            sizes="15vw"
+                                        />
+                                    </div>
+                                </div>
                             )}
                             {index === 2 && (
                                 <>
