@@ -7,47 +7,22 @@ import { colors } from '@/lib/design-tokens';
 
 const whyKatsoData = [
   {
-    title: 'Экспертиза',
-    description: 'Наши мастера — признанные профессионалы с многолетним опытом, постоянно совершенствующие свои навыки на международных семинарах и мастер-классах.',
-    tagline: '(Искусство в деталях)',
+    title: 'Мастерство через отбор',
+    description: 'Не учим джуниоров на платных клиентах. Каждый мастер пришёл с минимум 3-летним стажем в своей дисциплине. Вы платите за руки, которые делали это уже тысячу раз и получают удовольствие от своего занятия',
     bgColor: '#2D2D2D',
-    icon: (props: React.SVGProps<SVGSVGElement>) => (
-        <svg {...props} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M50,5 L50,95" stroke="currentColor" strokeWidth="1" />
-            <path d="M90,20 L10,80" stroke="currentColor" strokeWidth="1" />
-            <path d="M10,20 L90,80" stroke="currentColor" strokeWidth="1" />
-            <circle cx="50" cy="50" r="48" stroke="currentColor" strokeWidth="0.5" opacity="0.5" />
-      </svg>
-    ),
   },
   {
-    title: 'Атмосфера',
-    description: 'Мы создали пространство, где вы можете расслабиться, отвлечься от суеты и посвятить время себе. Каждая деталь интерьера продумана для вашего комфорта.',
-    tagline: '(Ваше личное убежище)',
+    title: 'Программа лояльности',
+    description: '3% от каждой услуги возвращается баллами. 20% любой следующей услуги можно оплатить баллами.\n-15% скидка в день рождения, действует 7 дней до/после\n-15% день студента кажды понедльник\n-10% комбо «ногти+ брови»',
     bgColor: '#66686b',
-    icon: (props: React.SVGProps<SVGSVGElement>) => (
-      <svg {...props} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="50" cy="50" r="49" stroke="currentColor" strokeWidth="1"/>
-        <circle cx="50" cy="50" r="30" stroke="currentColor" strokeWidth="1" opacity="0.7"/>
-        <circle cx="50" cy="50" r="10" stroke="currentColor" strokeWidth="1" opacity="0.4"/>
-      </svg>
-    ),
   },
   {
-    title: 'Качество',
-    description: 'Мы работаем только с премиальными брендами и проверенными технологиями. Безопасность и здоровье наших клиентов — наш главный приоритет.',
-    tagline: '(Бескомпромиссный стандарт)',
+    title: 'Консультация как часть услуги',
+    description: 'Каждая услуга начинается с 10-минутного разбора: что вы хотите сегодня, что у вас было в прошлый раз, какой финальный образ. Это входит в цену и не продлевает время в кресле. Нам важно слышать вас',
     bgColor: '#2D2D2D',
-    icon: (props: React.SVGProps<SVGSVGElement>) => (
-        <svg {...props} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="10" y="10" width="80" height="80" stroke="currentColor" strokeWidth="1"/>
-            <rect x="25" y="25" width="50" height="50" stroke="currentColor" strokeWidth="1" opacity="0.6"/>
-            <path d="M0 50H100" stroke="currentColor" strokeWidth="0.5" opacity="0.5"/>
-            <path d="M50 0V100" stroke="currentColor" strokeWidth="0.5" opacity="0.5"/>
-        </svg>
-    ),
   },
 ];
+
 
 const WhyKatso = () => {
     const sectionRef = useRef<HTMLDivElement>(null);
@@ -138,23 +113,16 @@ const WhyKatso = () => {
                             ></div>
                             <div className="paper-texture"></div>
                             {/* Content Wrapper */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8 items-center max-w-6xl w-full z-10">
-                                <div className="text-cream text-center md:text-left">
-                                    <h3 className="font-display text-h2 uppercase">
-                                        {item.title}
-                                    </h3>
-                                    <p className="font-lora mt-4 text-body-lg max-w-lg mx-auto md:mx-0 text-nude">
-                                        {item.description}
-                                    </p>
-                                </div>
-                                <div className="relative min-h-[160px] flex items-center justify-center">
-                                    <div className="w-32 h-32 md:w-[15vw] md:h-[15vw] max-w-[200px] max-h-[200px] flex-shrink-0">
-                                        <item.icon className="text-cream/30" />
-                                    </div>
-                                    <span className="absolute bottom-0 right-0 italic text-sm text-nude/70">
-                                        <span className="text-accent">(</span>{item.tagline.substring(1, item.tagline.length -1)}<span className="text-accent">)</span>
-                                    </span>
-                                </div>
+                            <div className="relative max-w-6xl w-full h-full z-10">
+                                <p 
+                                    className="absolute top-[10%] font-lora text-body-lg max-w-2xl text-nude whitespace-pre-line"
+                                    style={{ lineHeight: 1.085 }}
+                                >
+                                    {item.description}
+                                </p>
+                                <h3 className="absolute bottom-[10%] font-display text-h2 uppercase text-cream">
+                                    {item.title}
+                                </h3>
                             </div>
                         </div>
                     ))}
