@@ -9,19 +9,40 @@ import { gsap } from 'gsap';
 const footerLinks = [
   {
     title: 'Навигация',
-    links: ['Главная', 'Услуги', 'Мастера', 'Почему мы', 'FAQ'],
+    links: [
+      { text: 'Главная', href: '#' },
+      { text: 'Услуги', href: '#' },
+      { text: 'Мастера', href: '#' },
+      { text: 'Почему мы', href: '#' },
+      { text: 'FAQ', href: '#' },
+    ],
   },
   {
     title: 'Услуги',
-    links: ['Стрижки', 'Окрашивание', 'Уход', 'Ногти', 'Косметология', 'Макияж'],
+    links: [
+      { text: 'Стрижки', href: '#' },
+      { text: 'Окрашивание', href: '#' },
+      { text: 'Уход', href: '#' },
+      { text: 'Ногти', href: '#' },
+      { text: 'Косметология', href: '#' },
+      { text: 'Макияж', href: '#' },
+    ],
   },
   {
     title: 'Контакты',
-    links: ['Bulevardul Ștefan cel Mare și Sfînt 64', '+373 69 123 456', 'hello@katso.md'],
+    links: [
+      { text: 'Ижевск, ул. имени 50-летия ВЛКСМ, 6', href: '#' },
+      { text: '+7 (912) 019-33-62', href: 'tel:+79120193362' },
+      { text: 'hello@katso.md', href: 'mailto:hello@katso.md' },
+    ],
   },
   {
     title: 'Соцсети',
-    links: ['Instagram', 'Facebook', 'Telegram'],
+    links: [
+      { text: 'Instagram', href: 'https://www.instagram.com/katso.studio' },
+      { text: 'VK', href: 'https://vk.com/httpkatso.studio' },
+      { text: 'Telegram', href: 'https://t.me/katso_studio' },
+    ],
   },
 ];
 
@@ -81,12 +102,12 @@ const Footer = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {footerLinks.map((column) => (
               <div key={column.title}>
-                <h4 className="caption text-nude mb-4">{column.title}</h4>
+                <h4 className="font-lora text-body-lg text-nude mb-4 uppercase">{column.title}</h4>
                 <ul>
-                  {column.links.map((link, index) => (
-                    <li key={link} className="mt-2">
-                      <a href="#" className="text-body text-cream hover:text-accent transition-colors duration-200 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" data-cursor-hover="link">
-                        {link}
+                  {column.links.map((link) => (
+                    <li key={link.text} className="mt-2">
+                      <a href={link.href} className="font-lora text-body-lg text-cream hover:text-accent transition-colors duration-200 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" data-cursor-hover="link">
+                        {link.text}
                       </a>
                     </li>
                   ))}
@@ -100,7 +121,7 @@ const Footer = () => {
 
           {/* Bottom CTA */}
           <a href="#" className="group block text-center py-8 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" data-cursor-hover="link">
-              <span className="font-display text-h1 text-cream uppercase group-hover:text-accent transition-colors duration-200">
+              <span className="font-display text-cream uppercase group-hover:text-accent transition-colors duration-200" style={{ fontSize: '5vw' }}>
                   Записаться на ритуал
                   <span className="inline-block transition-transform duration-400 group-hover:translate-x-2 group-hover:-translate-y-2">&nbsp;↗</span>
               </span>
@@ -109,13 +130,8 @@ const Footer = () => {
         
         {/* Bottom bar */}
         <div className="container pb-6">
-          <div className="border-t border-cream/10 pt-4 flex justify-between items-center text-sm text-nude">
+          <div className="border-t border-cream/10 pt-4 flex justify-between items-center text-nude font-lora text-body-lg">
               <span>© {new Date().getFullYear()} KATSO Studio. All rights reserved.</span>
-              <div className="flex items-center gap-2">
-                  <span>Made with</span>
-                  <StarIcon className="w-3 h-3 text-accent" />
-                  <span>by AI</span>
-              </div>
           </div>
         </div>
       </div>
