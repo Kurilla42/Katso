@@ -19,6 +19,7 @@ const config: Config = {
         display: ['Playfair Display', 'serif'],
         body: ['Geologica', 'sans-serif'],
         furore: ['Furore', 'sans-serif'],
+        golos: ['Golos Text', 'sans-serif'],
       },
       fontSize: {
         caption: ['clamp(0.6875rem, 0.75vw, 0.875rem)', { lineHeight: '1.5', letterSpacing: '0.12em' }], // 11px -> 14px
