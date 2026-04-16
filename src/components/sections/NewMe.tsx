@@ -117,7 +117,7 @@ const NewMe = () => {
             <p
                 className="font-lora text-right whitespace-pre-line"
                 style={{
-                    fontSize: '0.8vw',
+                    fontSize: '1.2vw',
                     lineHeight: 1.085,
                     color: '#8a9a6b',
                     transform: 'translateY(7.2vw)',

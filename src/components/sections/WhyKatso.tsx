@@ -99,7 +99,7 @@ const WhyKatso = () => {
                     {whyKatsoData.map((item, index) => (
                         <div
                             key={index}
-                            className="why-us-card p-8 sm:p-12 md:p-16 rounded-md md:rounded-none md:absolute md:inset-0 md:h-full md:flex md:items-center md:justify-center"
+                            className="why-us-card p-8 sm:p-12 md:p-0 rounded-md md:rounded-none md:absolute md:inset-0 md:h-full md:flex md:items-center"
                             style={{ backgroundColor: item.bgColor }}
                         >
                              <div
@@ -113,14 +113,23 @@ const WhyKatso = () => {
                             ></div>
                             <div className="paper-texture"></div>
                             {/* Content Wrapper */}
-                            <div className="relative max-w-6xl w-full h-full z-10">
+                            <div 
+                                className="relative max-w-6xl w-full h-full z-10 md:py-16"
+                                style={{
+                                    paddingLeft: 'clamp(24px, 4vw, 80px)',
+                                    paddingRight: 'clamp(24px, 4vw, 80px)',
+                                }}
+                            >
                                 <p 
                                     className="absolute top-[10%] font-lora text-body-lg max-w-2xl text-nude whitespace-pre-line"
                                     style={{ lineHeight: 1.085 }}
                                 >
                                     {item.description}
                                 </p>
-                                <h3 className="absolute bottom-[10%] font-display text-h2 uppercase text-cream">
+                                <h3 
+                                    className="absolute bottom-[10%] font-display uppercase text-cream"
+                                    style={{ fontSize: '3vw' }}
+                                >
                                     {item.title}
                                 </h3>
                             </div>
