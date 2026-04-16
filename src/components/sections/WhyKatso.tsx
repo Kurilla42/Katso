@@ -4,6 +4,7 @@ import React, { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { colors } from '@/lib/design-tokens';
+import Image from 'next/image';
 
 const whyKatsoData = [
   {
@@ -116,7 +117,7 @@ const WhyKatso = () => {
                             {/* Decorative Line */}
                             <div
                                 className="absolute top-[40%] right-0 w-[60%] h-px"
-                                style={{ backgroundColor: colors.cream }}
+                                style={{ backgroundColor: '#EDE8E0' }}
                             />
 
                             {/* Content Wrapper */}
@@ -147,14 +148,12 @@ const WhyKatso = () => {
                                 </h3>
                             </div>
                             {index === 0 && (
-                                <div className="absolute top-[calc(40%+2rem)] left-[70%] -translate-x-1/2 w-[22vw] max-w-[320px] pointer-events-none">
-                                    <video
-                                        src="/video/video-1.mp4"
-                                        autoPlay
-                                        loop
-                                        muted
-                                        playsInline
-                                        className="w-full h-full object-contain rounded-lg shadow-xl"
+                                <div className="absolute top-[8%] right-0 w-[35vw] h-[85vh] max-w-[500px] pointer-events-none">
+                                    <Image
+                                        src="https://i.ibb.co/B5zD30Jx/isolated-pampas-grass-plume2.png"
+                                        alt="Pampas grass decoration"
+                                        fill
+                                        style={{ objectFit: 'contain', objectPosition: 'top right' }}
                                     />
                                 </div>
                             )}
