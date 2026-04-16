@@ -63,7 +63,7 @@ const WhyKatso = () => {
         mm.add("(min-width: 768px)", () => {
             const cards = gsap.utils.toArray<HTMLElement>(sectionEl.querySelectorAll('.why-us-card'));
             const stickyContainer = sectionEl.querySelector<HTMLElement>('.why-us-sticky-container');
-            if (!stickyContainer || cards.length < 2) return;
+            if (!stickyContainer || cards.length === 0) return;
             
             gsap.set(sectionEl, { backgroundColor: colors.cream });
 
@@ -73,7 +73,7 @@ const WhyKatso = () => {
                     pin: stickyContainer,
                     scrub: 1,
                     start: 'top top',
-                    end: `+=${cards.length * 100}%`,
+                    end: `+=${(cards.length) * 100}%`,
                     invalidateOnRefresh: true,
                     onUpdate: (self) => {
                         const time = self.progress * (cards.length);
@@ -93,12 +93,13 @@ const WhyKatso = () => {
                 }
             });
 
-            tl.fromTo(cards[0], { rotation: 4, yPercent: 12 }, { rotation: 0, yPercent: 0, duration: 1, ease: 'none' });
+            tl.fromTo(cards[0], { rotation: 4, yPercent: 20 }, { rotation: 0, yPercent: 0, duration: 1, ease: 'none' });
             
             cards.slice(1).forEach((card, i) => {
                 tl.fromTo(card, 
                     { yPercent: 101, rotation: 4 }, 
-                    { yPercent: 0, rotation: 0, duration: 1, ease: 'none' }
+                    { yPercent: 0, rotation: 0, duration: 1, ease: 'none' },
+                    i + 1
                 );
             });
 
@@ -114,7 +115,7 @@ const WhyKatso = () => {
         <section
             id="why-us"
             ref={sectionRef}
-            className="md:h-[320vh]"
+            className="md:h-[400vh]"
             data-cursor="dark"
             style={{ backgroundColor: colors.cream }}
         >
