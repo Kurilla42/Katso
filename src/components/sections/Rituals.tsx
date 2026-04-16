@@ -114,7 +114,6 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
               style={{
                 color: textColor,
                 opacity: 0.65,
-                fontSize: 'clamp(13px, 0.95vw, 16px)',
               }}
             >
               {description}
