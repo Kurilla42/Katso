@@ -18,7 +18,7 @@ const whyKatsoData = [
     bgColor: '#66686b',
   },
   {
-    title: 'Консультация как часть услуги',
+    title: 'Консультация часть услуги',
     description: 'Каждая услуга начинается с 10-минутного разбора: что вы хотите сегодня, что у вас было в прошлый раз, какой финальный образ. Это входит в цену и не продлевает время в кресле. Нам важно слышать вас',
     bgColor: '#2D2D2D',
   },
@@ -158,7 +158,7 @@ const WhyKatso = () => {
                                     />
                                 </div>
                                 
-                                <div className="absolute bottom-[10%] right-[10%] w-[54%] md:w-[42%] lg:w-[36%] flex items-stretch gap-2 z-20 scale-[1.32]">
+                                <div className="absolute bottom-[10%] right-[10%] w-[54%] md:w-[42%] lg:w-[36%] flex items-stretch gap-2 z-20 scale-[1.42]">
                                     <div className="relative flex-1 aspect-[9/16]">
                                         <Image
                                             src="https://i.ibb.co/5XKvgQWw/Am-KWo-80y-IRE0-Zv-Jank4y-ZPm-Xsn-JCL-p1-B7s-J-8-D9w3r-Qxzgol-Sxp-Th-N35vk-Yy-QXR-5sxd53-YGbs2u-CBI2-Qh.jpg"
@@ -187,6 +187,41 @@ const WhyKatso = () => {
                                             className="object-cover rounded-sm"
                                             sizes="15vw"
                                         />
+                                    </div>
+                                </div>
+                                </>
+                            )}
+                            {index === 2 && (
+                                <>
+                                <div className="absolute bottom-[10%] right-[10%] w-[54%] md:w-[42%] lg:w-[36%] flex items-stretch gap-2 z-20 scale-[1.42]">
+                                    <div className="relative flex-1 aspect-[9/16]">
+                                        <Image
+                                            src="https://i.ibb.co/W4SrSLNw/2026-04-16-20-21-01.png"
+                                            alt="Studio example 3"
+                                            fill
+                                            className="object-cover rounded-sm"
+                                            sizes="15vw"
+                                        />
+                                    </div>
+                                    <div className="relative flex-1 aspect-[9/16]">
+                                         <Image
+                                            src="https://i.ibb.co/q30RbqX1/2026-04-16-22-06-13.png"
+                                            alt="Studio example 4"
+                                            fill
+                                            className="object-cover rounded-sm"
+                                            sizes="15vw"
+                                        />
+                                    </div>
+                                    <div className="relative flex-1 aspect-[9/16]">
+                                        <video
+                                            className="w-full h-full object-cover rounded-sm"
+                                            autoPlay
+                                            loop
+                                            muted
+                                            playsInline
+                                        >
+                                            <source src="/video/video-3.mp4" type="video/mp4" />
+                                        </video>
                                     </div>
                                 </div>
                                 </>
