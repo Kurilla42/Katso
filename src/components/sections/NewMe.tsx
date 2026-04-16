@@ -58,7 +58,7 @@ const NewMe = () => {
             tl.to(
               [scaleTargetEl, imageContainerEl],
               {
-                scale: 150,
+                scale: 170,
                 ease: 'power1.in',
               }
             );

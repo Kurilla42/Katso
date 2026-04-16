@@ -76,7 +76,7 @@ const WhyKatso = () => {
                     end: `+=${cards.length * 100}%`,
                     invalidateOnRefresh: true,
                     onUpdate: (self) => {
-                        const time = self.progress * cards.length;
+                        const time = self.progress * (cards.length);
                         
                         if (time < 1) {
                             gsap.to(sectionEl, { backgroundColor: colors.cream, duration: 0.3, ease: 'none' });
@@ -93,14 +93,12 @@ const WhyKatso = () => {
                 }
             });
 
-            tl.fromTo(cards[0], { rotation: 4, yPercent: 12 }, { rotation: 0, yPercent: 0, ease: 'none' });
+            tl.fromTo(cards[0], { rotation: 4, yPercent: 12 }, { rotation: 0, yPercent: 0, duration: 1, ease: 'none' });
             
             cards.slice(1).forEach((card, i) => {
-                const startTime = i + 1;
                 tl.fromTo(card, 
                     { yPercent: 101, rotation: 4 }, 
-                    { yPercent: 0, rotation: 0, ease: 'none' },
-                    startTime
+                    { yPercent: 0, rotation: 0, duration: 1, ease: 'none' }
                 );
             });
 
@@ -116,7 +114,7 @@ const WhyKatso = () => {
         <section
             id="why-us"
             ref={sectionRef}
-            className="md:h-[300vh]"
+            className="md:h-[320vh]"
             data-cursor="dark"
             style={{ backgroundColor: colors.cream }}
         >
