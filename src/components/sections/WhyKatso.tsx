@@ -86,7 +86,7 @@ const WhyKatso = () => {
                 }
             });
 
-            tl.fromTo(cards[0], { rotation: 4, yPercent: 5 }, { rotation: 0, yPercent: 0, ease: 'none' });
+            tl.fromTo(cards[0], { rotation: 4, yPercent: 10 }, { rotation: 0, yPercent: 0, ease: 'none' });
             
             cards.slice(1).forEach((card, i) => {
                 const startTime = i;
@@ -111,6 +111,7 @@ const WhyKatso = () => {
             ref={sectionRef}
             className="md:h-[300vh]"
             data-cursor="dark"
+            style={{ backgroundColor: colors.cream }}
         >
             <div className="why-us-sticky-container h-auto md:h-screen md:sticky md:top-0 md:overflow-hidden">
                 <div className="relative flex flex-col gap-4 py-16 md:py-0 md:gap-0 md:w-full md:h-full">
