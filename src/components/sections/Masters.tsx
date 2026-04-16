@@ -182,9 +182,18 @@ const Masters = () => {
       id="masters"
       ref={component}
       className="relative h-full overflow-y-auto"
-      style={{ backgroundColor: colors.walnut }}
+      style={{ backgroundColor: '#66686b' }}
       data-cursor="dark"
     >
+      <div
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        style={{
+          backgroundImage: 'url(https://i.ibb.co/fzk39XBR/wall-4-light.png)',
+          backgroundRepeat: 'repeat',
+          opacity: 0.2,
+          mixBlendMode: 'overlay',
+        }}
+      ></div>
       <div className="paper-texture"></div>
       <div className="grid-overlay"></div>
       <div className="container py-16 md:py-40 relative">

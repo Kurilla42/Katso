@@ -75,14 +75,22 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
     ref
   ) => {
     const style: CSSProperties = {
-      backgroundColor: COLOR_MAP[bgColor] || 'transparent',
+      backgroundColor: '#66686b',
       top: `calc(${index} * var(--stack-peek))`,
       zIndex: index + 1,
     };
 
     return (
       <article className="ritual-card" style={style} ref={ref}>
-        <div className="paper-texture" />
+        <div
+            className="absolute inset-0 w-full h-full pointer-events-none"
+            style={{
+                backgroundImage: 'url(https://i.ibb.co/fzk39XBR/wall-4-light.png)',
+                backgroundRepeat: 'repeat',
+                opacity: 0.2,
+                mixBlendMode: 'overlay',
+            }}></div>
+        <div className="paper-texture"></div>
         <div className="grid-overlay" />
 
         <div className="ritual-card-inner">

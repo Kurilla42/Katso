@@ -24,7 +24,7 @@ const whyKatsoData = [
     title: 'Атмосфера',
     description: 'Мы создали пространство, где вы можете расслабиться, отвлечься от суеты и посвятить время себе. Каждая деталь интерьера продумана для вашего комфорта.',
     tagline: '(Ваше личное убежище)',
-    bgColor: colors.walnut,
+    bgColor: '#66686b',
     icon: (props: React.SVGProps<SVGSVGElement>) => (
       <svg {...props} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="50" cy="50" r="49" stroke="currentColor" strokeWidth="1"/>
@@ -110,6 +110,15 @@ const WhyKatso = () => {
                             className="why-us-card p-8 sm:p-12 md:p-16 rounded-md md:rounded-none md:absolute md:inset-0 md:h-full md:flex md:items-center md:justify-center"
                             style={{ backgroundColor: item.bgColor }}
                         >
+                             <div
+                                className="absolute inset-0 w-full h-full pointer-events-none"
+                                style={{
+                                    backgroundImage: 'url(https://i.ibb.co/fzk39XBR/wall-4-light.png)',
+                                    backgroundRepeat: 'repeat',
+                                    opacity: 0.2,
+                                    mixBlendMode: 'overlay',
+                                }}
+                            ></div>
                             <div className="paper-texture"></div>
                             {/* Content Wrapper */}
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8 items-center max-w-6xl w-full z-10">

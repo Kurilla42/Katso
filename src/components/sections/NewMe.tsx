@@ -71,7 +71,21 @@ const NewMe = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} id="new-me" className="relative bg-background md:h-[300vh]" data-cursor="dark">
+    <section
+      ref={sectionRef}
+      id="new-me"
+      className="relative md:h-[300vh]"
+      style={{ backgroundColor: '#66686b' }}
+      data-cursor="dark"
+    >
+      <div
+          className="absolute inset-0 w-full h-full pointer-events-none"
+          style={{
+            backgroundImage: 'url(https://i.ibb.co/fzk39XBR/wall-4-light.png)',
+            backgroundRepeat: 'repeat',
+            opacity: 0.2,
+            mixBlendMode: 'overlay',
+          }}></div>
       <div ref={pinContainerRef} className="h-screen w-full flex items-center justify-center overflow-hidden md:sticky md:top-0">
         <h2 ref={textRef} className="flex items-center justify-center gap-x-8 md:gap-x-12 font-display text-h3 text-cream uppercase">
           <div className="text-right">
