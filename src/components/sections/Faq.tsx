@@ -46,7 +46,7 @@ const FaqGalleryColumn = ({
   innerRef,
   reversed,
 }: {
-  images: typeof PlaceHolderImages;
+  images: (typeof PlaceHolderImages);
   innerRef: React.RefObject<HTMLDivElement>;
   reversed?: boolean;
 }) => {
@@ -60,7 +60,7 @@ const FaqGalleryColumn = ({
             src={p.imageUrl}
             alt={p.description}
             fill
-            sizes="18vw"
+            sizes="23vw"
             className="object-cover"
             data-ai-hint={p.imageHint}
             priority={index < 4}
@@ -76,7 +76,7 @@ const AccordionItem = ({
   isOpen,
   onClick,
 }: {
-  item: typeof faqData[0];
+  item: (typeof faqData)[0];
   isOpen: boolean;
   onClick: () => void;
 }) => {
@@ -97,7 +97,7 @@ const AccordionItem = ({
         className="w-full flex justify-between items-center py-6 text-left gap-4 focus-visible:outline-none focus-visible:bg-black/5 rounded-sm"
         data-cursor-hover="link"
       >
-        <span className="text-body-lg font-lora text-cream" style={{ lineHeight: 1.085 }}>{item.question}</span>
+        <span className="font-lora text-cream" style={{ lineHeight: 1.085, fontSize: '1.2vw' }}>{item.question}</span>
         <div className="relative w-4 h-4 flex-shrink-0 text-nude">
           <span className="absolute w-full h-px bg-current top-1/2 -translate-y-1/2"></span>
           <span
@@ -109,7 +109,7 @@ const AccordionItem = ({
         </div>
       </button>
       <div ref={contentRef} className="h-0 overflow-hidden">
-        <p className="pb-6 text-nude max-w-[min(640px,45vw)] font-lora text-body" style={{ lineHeight: 1.085 }}>{item.answer}</p>
+        <p className="pb-6 text-nude max-w-[min(640px,45vw)] font-lora" style={{ lineHeight: 1.085, fontSize: '1vw' }}>{item.answer}</p>
       </div>
     </div>
   );
@@ -131,27 +131,26 @@ const Faq = () => {
     const triggerElement = sectionRef.current?.parentElement?.parentElement;
     if (!triggerElement || !leftColumnRef.current || !rightColumnRef.current) return;
 
-    // Initial position for right column to scroll "down" (by scrolling a reversed list up)
-    gsap.set(rightColumnRef.current, { yPercent: -50 });
+    const ctx = gsap.context(() => {
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: triggerElement,
+                start: 'top top',
+                end: '+=100%',
+                scrub: true,
+                invalidateOnRefresh: true,
+            }
+        });
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: triggerElement,
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: true,
-      },
-    });
+        // Set initial positions
+        gsap.set(rightColumnRef.current, { yPercent: -50 });
 
-    // Left column scrolls up
-    tl.to(leftColumnRef.current, { yPercent: -50, ease: 'none' }, 0);
-    // Right column scrolls "down" (by moving a reversed list up)
-    tl.to(rightColumnRef.current, { yPercent: 0, ease: 'none' }, 0);
+        // Animate columns
+        tl.to(leftColumnRef.current, { yPercent: -50, ease: 'none' }, 0);
+        tl.to(rightColumnRef.current, { yPercent: 0, ease: 'none' }, 0);
+    }, sectionRef);
 
-    return () => {
-      tl.kill();
-      ScrollTrigger.getAll().forEach(t => t.kill());
-    };
+    return () => ctx.revert();
   }, [leftImages, rightImages]);
 
   const handleItemClick = (index: number) => {
@@ -177,23 +176,27 @@ const Faq = () => {
       ></div>
       <div className="paper-texture"></div>
       <div className="grid-overlay"></div>
+
+      {/* Left Column: Image Gallery - Repositioned and Resized */}
+      <div className="hidden lg:flex absolute top-0 left-0 h-full w-1/2 items-center pointer-events-none">
+        <div
+            className="relative flex justify-start gap-[5vw]"
+            style={{ left: '5%' }}
+        >
+            <div className="w-[23vw] h-[80vh] overflow-hidden relative">
+              <FaqGalleryColumn images={leftImages} innerRef={leftColumnRef} />
+            </div>
+            <div className="w-[23vw] h-[80vh] overflow-hidden relative mt-[10vh]">
+              <FaqGalleryColumn images={rightImages} innerRef={rightColumnRef} reversed />
+            </div>
+        </div>
+      </div>
+
       <div className="container py-16 md:py-40 relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16 items-start">
           
-          {/* Left Column: Image Gallery */}
-          <div className="hidden lg:block lg:col-span-5">
-            <div
-              className="relative w-full h-[70vh] flex justify-start gap-[5vw]"
-              style={{ left: '5%' }}
-            >
-              <div className="w-[18vw] h-full overflow-hidden relative">
-                <FaqGalleryColumn images={leftImages} innerRef={leftColumnRef} />
-              </div>
-              <div className="w-[18vw] h-full overflow-hidden relative mt-[10vh]">
-                <FaqGalleryColumn images={rightImages} innerRef={rightColumnRef} reversed />
-              </div>
-            </div>
-          </div>
+          {/* Spacer to push content to the right */}
+          <div className="hidden lg:block lg:col-span-6"></div>
 
           {/* Right Column: FAQ & Contact */}
           <div className="lg:col-start-7 lg:col-span-6">
@@ -212,7 +215,7 @@ const Faq = () => {
             </div>
             
             <div className="mt-16">
-              <p className="text-body-lg font-lora text-nude">Не нашли ответ?</p>
+              <p className="font-lora text-nude" style={{ fontSize: '1.2vw' }}>Не нашли ответ?</p>
               <a
                 href="#"
                 className="inline-block mt-2 font-medium text-accent group rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-surface"
