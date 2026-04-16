@@ -170,7 +170,7 @@
 
 .ritual-card-headline {
   font-family: var(--font-display);
-  font-size: 5vw;
+  font-size: 4vw;
   line-height: 0.95;
   letter-spacing: -0.02em;
   text-transform: uppercase;
@@ -179,12 +179,12 @@
 
 .ritual-card-description {
   font-family: var(--font-body);
-  font-size: 0.95vw;
+  font-size: 0.8vw;
   line-height: 1.55;
   max-width: 460px;
   margin: 0;
-  align-self: center;
-  text-align: center;
+  align-self: end;
+  text-align: right;
   width: 100%;
 }
 
@@ -196,7 +196,7 @@
   text-decoration: underline;
   text-underline-offset: 6px;
   text-decoration-thickness: 1.5px;
-  align-self: center;
+  align-self: end;
 }
 
 .ritual-card-numeral {
