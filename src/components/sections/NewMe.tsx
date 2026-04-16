@@ -10,7 +10,7 @@ const NewMe = () => {
   const scaleTargetRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLSpanElement>(null);
   const pinContainerRef = useRef<HTMLDivElement>(null);
-  const imageContainerRef = useRef<HTMLDivElement>(null); // Ref for the image
+  const imageContainerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -24,7 +24,6 @@ const NewMe = () => {
 
     let ctx: gsap.Context;
 
-    // Use a timeout to ensure fonts are loaded and dimensions are correct
     const timer = setTimeout(() => {
       ctx = gsap.context(() => {
         const mm = gsap.matchMedia();
@@ -41,28 +40,25 @@ const NewMe = () => {
               },
             });
 
-            // Get dimensions of all relevant elements
+            // Calculate origins for both elements relative to the logo's center
             const logoRect = logoEl.getBoundingClientRect();
-            const scaleTargetRect = scaleTargetEl.getBoundingClientRect();
-            const imageContainerRect = imageContainerEl.getBoundingClientRect();
             
-            // Calculate origin for the text container, relative to its own top-left corner
+            // For the text container
+            const scaleTargetRect = scaleTargetEl.getBoundingClientRect();
             const originXText = (logoRect.left - scaleTargetRect.left) + (logoRect.width / 2);
             const originYText = (logoRect.top - scaleTargetRect.top) + (logoRect.height / 2);
-            
-            // Calculate origin for the image container, relative to its own top-left corner
+            gsap.set(scaleTargetEl, { transformOrigin: `${originXText}px ${originYText}px` });
+
+            // For the image container
+            const imageContainerRect = imageContainerEl.getBoundingClientRect();
             const originXImage = (logoRect.left - imageContainerRect.left) + (logoRect.width / 2);
             const originYImage = (logoRect.top - imageContainerRect.top) + (logoRect.height / 2);
-
-            // Set the transform origin for each element individually
-            gsap.set(scaleTargetEl, { transformOrigin: `${originXText}px ${originYText}px` });
             gsap.set(imageContainerEl, { transformOrigin: `${originXImage}px ${originYImage}px` });
 
-            // Animate both elements together
             tl.to(
               [scaleTargetEl, imageContainerEl],
               {
-                scale: 50,
+                scale: 60,
                 ease: 'power1.in',
               }
             );
