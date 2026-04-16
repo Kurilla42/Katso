@@ -16,8 +16,8 @@ const config: Config = {
         grid: 'rgba(237, 232, 224, 0.08)',
       },
       fontFamily: {
-        display: ['Anton', 'sans-serif'],
-        body: ['Inter Tight', 'sans-serif'],
+        display: ['Playfair Display', 'serif'],
+        body: ['Geologica', 'sans-serif'],
         furore: ['Furore', 'sans-serif'],
       },
       fontSize: {
