@@ -10,7 +10,7 @@ const whyKatsoData = [
     title: 'Экспертиза',
     description: 'Наши мастера — признанные профессионалы с многолетним опытом, постоянно совершенствующие свои навыки на международных семинарах и мастер-классах.',
     tagline: '(Искусство в деталях)',
-    bgColor: colors.surface,
+    bgColor: '#2D2D2D',
     icon: (props: React.SVGProps<SVGSVGElement>) => (
         <svg {...props} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M50,5 L50,95" stroke="currentColor" strokeWidth="1" />
@@ -37,7 +37,7 @@ const whyKatsoData = [
     title: 'Качество',
     description: 'Мы работаем только с премиальными брендами и проверенными технологиями. Безопасность и здоровье наших клиентов — наш главный приоритет.',
     tagline: '(Бескомпромиссный стандарт)',
-    bgColor: colors.surface,
+    bgColor: '#2D2D2D',
     icon: (props: React.SVGProps<SVGSVGElement>) => (
         <svg {...props} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="10" y="10" width="80" height="80" stroke="currentColor" strokeWidth="1"/>
@@ -99,7 +99,8 @@ const WhyKatso = () => {
         <section
             id="why-us"
             ref={sectionRef}
-            className="bg-background md:h-[300vh]"
+            className="md:h-[300vh]"
+            style={{ backgroundColor: '#2D2D2D' }}
             data-cursor="dark"
         >
             <div className="why-us-sticky-container h-auto md:h-screen md:sticky md:top-0 md:overflow-hidden">

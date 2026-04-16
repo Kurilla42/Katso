@@ -119,7 +119,7 @@ const Faq = () => {
   return (
     <section
       id="faq"
-      style={{ backgroundColor: colors.surface }}
+      style={{ backgroundColor: '#2D2D2D' }}
       data-cursor="dark"
       className="h-full w-full overflow-y-auto"
     >

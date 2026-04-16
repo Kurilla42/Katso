@@ -10,7 +10,7 @@ const ritualsData = [
     title: 'Стрижки',
     description:
       'От классических форм до смелых креативных решений. Наши мастера создадут идеальный образ, подчеркивающий вашу индивидуальность.',
-    bgColor: '#8b5e3c',
+    bgColor: '#4E3826',
   },
   {
     title: 'Окрашивание',
@@ -22,7 +22,7 @@ const ritualsData = [
     title: 'Уход за волосами',
     description:
       'Глубокое восстановление, увлажнение и питание. SPA-ритуалы для волос, которые вернут им силу, блеск и шелковистость.',
-    bgColor: '#8b5e3c',
+    bgColor: '#4E3826',
   },
   {
     title: 'Ногтевой сервис',
@@ -34,7 +34,7 @@ const ritualsData = [
     title: 'Косметология',
     description:
       'Современные методики для сохранения молодости и красоты вашей кожи. Индивидуальные программы ухода от ведущих косметологов.',
-    bgColor: '#8b5e3c',
+    bgColor: '#4E3826',
   },
   {
     title: 'Макияж и брови',
@@ -46,7 +46,7 @@ const ritualsData = [
     title: 'Массаж и SPA',
     description:
       'Расслабляющие и оздоровительные массажи, обертывания и другие SPA-программы для гармонии души и тела.',
-    bgColor: '#8b5e3c',
+    bgColor: '#4E3826',
   },
 ];
 
@@ -244,10 +244,12 @@ const Rituals = () => {
 
             <div className="relative">
                 <div
-                    className="w-full mx-auto py-16 md:py-24"
+                    className="w-full mx-auto"
                     style={{
                         paddingLeft: 'clamp(24px, 4vw, 80px)',
                         paddingRight: 'clamp(24px, 4vw, 80px)',
+                        paddingTop: 'clamp(64px, 10vh, 96px)',
+                        paddingBottom: 'clamp(64px, 10vh, 96px)',
                     }}
                 >
                     <h2 className="ritual-card-headline text-cream">
