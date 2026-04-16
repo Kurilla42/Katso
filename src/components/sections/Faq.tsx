@@ -183,10 +183,10 @@ const Faq = () => {
             className="relative flex justify-start gap-[5vw]"
             style={{ left: '5%' }}
         >
-            <div className="w-[20vw] h-[80vh] overflow-hidden relative">
+            <div className="w-[17.1vw] h-[80vh] overflow-hidden relative">
               <FaqGalleryColumn images={leftImages} innerRef={leftColumnRef} />
             </div>
-            <div className="w-[20vw] h-[80vh] overflow-hidden relative mt-[10vh]">
+            <div className="w-[17.1vw] h-[80vh] overflow-hidden relative mt-[10vh]">
               <FaqGalleryColumn images={rightImages} innerRef={rightColumnRef} reversed />
             </div>
         </div>
@@ -196,10 +196,10 @@ const Faq = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16 items-start">
           
           {/* Spacer to push content to the right */}
-          <div className="hidden lg:block lg:col-span-6"></div>
+          <div className="hidden lg:block lg:col-span-7"></div>
 
           {/* Right Column: FAQ & Contact */}
-          <div className="lg:col-start-7 lg:col-span-6">
+          <div className="lg:col-start-8 lg:col-span-5">
             <h2 className="font-display uppercase text-cream leading-none" style={{ fontSize: '5vw' }}>
               FAQ
             </h2>
