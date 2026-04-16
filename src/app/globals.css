@@ -97,7 +97,7 @@
       position: relative !important;
       top: auto !important;
       height: 100svh;
-      margin-top: 12px;
+      margin-top: 24px;
       @apply snap-start;
     }
     .ritual-card:first-child {
@@ -113,8 +113,8 @@
 
 #rituals {
   --card-height: 304px;
-  --stack-peek: 110px;
-  --card-gap: 12px;
+  --stack-peek: 220px;
+  --card-gap: 24px;
 
   background-color: theme('colors.background');
 }
@@ -122,14 +122,14 @@
 @media (max-height: 900px) {
   #rituals {
     --card-height: 272px;
-    --stack-peek: 96px;
+    --stack-peek: 192px;
   }
 }
 
 @media (max-height: 760px) {
   #rituals {
     --card-height: 240px;
-    --stack-peek: 80px;
+    --stack-peek: 160px;
   }
 }
 
@@ -209,7 +209,7 @@
 @media (max-width: 767px) {
   #rituals {
     --card-height: auto;
-    --card-gap: 12px;
+    --card-gap: 24px;
   }
 
   .ritual-card {
