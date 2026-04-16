@@ -8,7 +8,7 @@ import Image from 'next/image';
 const NewMe = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const scaleTargetRef = useRef<HTMLDivElement>(null);
-  const logoRef = useRef<HTMLParagraphElement>(null);
+  const logoRef = useRef<HTMLDivElement>(null);
   const pinContainerRef = useRef<HTMLDivElement>(null);
   const imageContainerRef = useRef<HTMLDivElement>(null);
 
@@ -40,16 +40,15 @@ const NewMe = () => {
                 invalidateOnRefresh: true,
               },
             });
-
+            
+            // The central text block is now the reference for scaling
             const logoRect = logoEl.getBoundingClientRect();
             
-            // Set transform origin for the text container
             const scaleTargetRect = scaleTargetEl.getBoundingClientRect();
             const originXText = (logoRect.left - scaleTargetRect.left) + (logoRect.width / 2);
             const originYText = (logoRect.top - scaleTargetRect.top) + (logoRect.height / 2);
             gsap.set(scaleTargetEl, { transformOrigin: `${originXText}px ${originYText}px` });
 
-            // Set transform origin for the image container
             const imageContainerRect = imageContainerEl.getBoundingClientRect();
             const originXImage = (logoRect.left - imageContainerRect.left) + (logoRect.width / 2);
             const originYImage = (logoRect.top - imageContainerRect.top) + (logoRect.height / 2);
@@ -99,21 +98,22 @@ const NewMe = () => {
                 paddingRight: 'clamp(24px, 4vw, 80px)',
             }}
         >
-            <h2 style={{ fontSize: '3vw' }} className="text-right leading-none font-display uppercase">
+            <h2 style={{ fontSize: '3vw', transform: 'translateY(-7.2vw)' }} className="text-right leading-none font-display uppercase">
                 {'Задача\nKATSO:'}
             </h2>
             
-            <p
-                ref={logoRef}
-                className="text-left whitespace-pre-line font-display uppercase"
-                style={{ fontSize: '3vw', lineHeight: 1.2 }}
-            >
-                {'Раскрыть твою уникальность\nи познакомить с новым «я»'}
-            </p>
+            <div ref={logoRef}>
+                <p
+                    className="whitespace-pre-line font-display uppercase"
+                    style={{ fontSize: '3vw', lineHeight: 1.2 }}
+                >
+                    {'Раскрыть твою уникальность\nи познакомить с новым «я»'}
+                </p>
+            </div>
 
             <p
-                className="font-lora text-left self-end"
-                style={{ fontSize: '0.8vw', lineHeight: 1.085, color: '#8a9a6b' }}
+                className="font-lora text-right"
+                style={{ fontSize: '0.8vw', lineHeight: 1.085, color: '#8a9a6b', transform: 'translateY(7.2vw)' }}
             >
                 {'Другой взгляд на себя, \nдругое мировоззрение и \nотношения с окружающим миром'}
             </p>
