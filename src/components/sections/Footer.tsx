@@ -93,7 +93,7 @@ const Footer = () => {
         <div ref={containerRef}>
           <div className="relative h-[clamp(300px,30vw,500px)] flex items-end overflow-hidden pl-[10%] pr-[10%]">
             {/* Left: Giant Wordmark */}
-            <div className="absolute left-0 bottom-0 -translate-x-[15%] md:-translate-x-[10%] z-0">
+            <div className="absolute left-0 bottom-0 z-0">
               <h2 ref={wordMarkRef} className="font-display text-cream/10 leading-none select-none whitespace-nowrap">
                   KATSO
               </h2>
