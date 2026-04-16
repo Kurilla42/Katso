@@ -78,7 +78,7 @@ const NewMe = () => {
     <section
       ref={sectionRef}
       id="new-me"
-      className="relative md:h-[300vh]"
+      className="relative h-[400vh]"
       style={{ backgroundColor: '#66686b' }}
       data-cursor="dark"
     >
@@ -92,11 +92,11 @@ const NewMe = () => {
           }}></div>
       <div ref={pinContainerRef} className="h-screen w-full flex items-center justify-center overflow-hidden md:sticky md:top-0 relative">
         <div ref={scaleTargetRef} className="relative z-10 w-full max-w-5xl mx-auto px-4 text-cream">
-            <h2 style={{ fontSize: '4vw' }} className="text-left leading-none font-furore uppercase">
+            <h2 style={{ fontSize: '4vw' }} className="text-left leading-none font-display uppercase">
                 Задача KA<span ref={logoRef}>T</span>SO:
             </h2>
             <p 
-                className="text-center mt-12 whitespace-pre-line font-furore uppercase"
+                className="text-center mt-12 whitespace-pre-line font-display uppercase"
                 style={{ fontSize: '4vw', lineHeight: 1.2 }}
             >
                 {'Раскрыть вашу уникальность и \nпознакомить с вашим новым «я»'}
