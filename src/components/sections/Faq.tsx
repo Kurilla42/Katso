@@ -97,7 +97,7 @@ const AccordionItem = ({
         className="w-full flex justify-between items-center py-6 text-left gap-4 focus-visible:outline-none focus-visible:bg-black/5 rounded-sm"
         data-cursor-hover="link"
       >
-        <span className="text-body-lg font-medium text-cream">{item.question}</span>
+        <span className="text-body-lg font-lora text-cream" style={{ lineHeight: 1.085 }}>{item.question}</span>
         <div className="relative w-4 h-4 flex-shrink-0 text-nude">
           <span className="absolute w-full h-px bg-current top-1/2 -translate-y-1/2"></span>
           <span
@@ -109,7 +109,7 @@ const AccordionItem = ({
         </div>
       </button>
       <div ref={contentRef} className="h-0 overflow-hidden">
-        <p className="pb-6 text-nude max-w-[min(640px,45vw)]">{item.answer}</p>
+        <p className="pb-6 text-nude max-w-[min(640px,45vw)] font-lora text-body" style={{ lineHeight: 1.085 }}>{item.answer}</p>
       </div>
     </div>
   );
@@ -197,7 +197,7 @@ const Faq = () => {
 
           {/* Right Column: FAQ & Contact */}
           <div className="lg:col-start-7 lg:col-span-6">
-            <h2 className="font-display text-hero uppercase text-cream leading-none">
+            <h2 className="font-display uppercase text-cream leading-none" style={{ fontSize: '5vw' }}>
               FAQ
             </h2>
             <div className="mt-8 md:mt-12">
@@ -212,7 +212,7 @@ const Faq = () => {
             </div>
             
             <div className="mt-16">
-              <p className="caption text-nude">Не нашли ответ?</p>
+              <p className="text-body-lg font-lora text-nude">Не нашли ответ?</p>
               <a
                 href="#"
                 className="inline-block mt-2 font-medium text-accent group rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-surface"
