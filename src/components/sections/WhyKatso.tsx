@@ -132,8 +132,8 @@ const WhyKatso = () => {
                                     <div className="relative pl-4 md:pl-6">
                                         <div className="absolute top-0 left-0 h-full w-px bg-cream"></div>
                                         <p
-                                            className="font-lora text-body-lg text-nude whitespace-pre-line"
-                                            style={{ lineHeight: 1.085 }}
+                                            className="font-lora text-nude whitespace-pre-line"
+                                            style={{ fontSize: '1.2vw', lineHeight: 1.085 }}
                                         >
                                             {item.description}
                                         </p>

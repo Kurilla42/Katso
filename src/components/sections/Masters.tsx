@@ -72,7 +72,7 @@ const MasterRow = React.forwardRef<
         <h3 className="font-display text-h3 uppercase text-cream group-hover:text-background transition-colors duration-300">
           {master.name}
         </h3>
-        <p className={cn('font-lora text-body-lg text-nude group-hover:text-background transition-colors duration-300')}>
+        <p className={cn('font-lora text-nude group-hover:text-background transition-colors duration-300')} style={{ fontSize: '1.2vw' }}>
           {master.role}
         </p>
       </div>
@@ -236,7 +236,7 @@ const Masters = () => {
       
       <div
         ref={imageWrapperRef}
-        className="hidden md:block fixed top-1/2 right-[15vw] w-[clamp(280px,24vw,420px)] aspect-[4/5] z-20 pointer-events-none"
+        className="hidden md:block fixed top-1/2 right-[25vw] w-[clamp(280px,24vw,420px)] aspect-[4/5] z-20 pointer-events-none"
         style={{ transform: 'translateY(-50%)' }}
       >
         <div className="relative w-full h-full rounded-sm overflow-hidden">
