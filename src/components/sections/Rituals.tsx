@@ -11,7 +11,7 @@ const ritualsData = [
     description:
       'Идеальный маникюр и педикюр, от лечебного до дизайнерского. Безопасность, стерильность и внимание к деталям.',
     bgColor: '#8a9a6b',
-    textColor: '#EDE8E0',
+    textColor: '#2D2D2D',
     numeralColor: 'rgba(237, 232, 224, 0.18)',
   },
   {
@@ -27,7 +27,7 @@ const ritualsData = [
     description:
       'От классических форм до смелых креативных решений, а также восстанавливающие уходы, которые вернут волосам силу и блеск.',
     bgColor: '#8a9a6b',
-    textColor: '#EDE8E0',
+    textColor: '#2D2D2D',
     numeralColor: 'rgba(237, 232, 224, 0.18)',
   },
   {
@@ -43,7 +43,7 @@ const ritualsData = [
     description:
       'Профессиональная диагностика и индивидуальные программы лечения и ухода для решения проблем кожи головы и стимуляции роста волос.',
     bgColor: '#8a9a6b',
-    textColor: '#EDE8E0',
+    textColor: '#2D2D2D',
     numeralColor: 'rgba(237, 232, 224, 0.18)',
   },
   {
@@ -59,7 +59,7 @@ const ritualsData = [
     description:
       'Создадим для вас неповторимый образ в самый важный день. Учтем все пожелания и детали, чтобы вы чувствовали себя неотразимой.',
     bgColor: '#8a9a6b',
-    textColor: '#EDE8E0',
+    textColor: '#2D2D2D',
     numeralColor: 'rgba(237, 232, 224, 0.18)',
   },
 ];
@@ -109,28 +109,33 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
             >
               {headline}
             </h3>
-            <div className="self-end text-right" style={{maxWidth: '30vw'}}>
-              <p
-                className="ritual-card-description font-lora"
-                style={{
-                  color: textColor,
-                  opacity: 0.65,
-                }}
-              >
-                {description}
-              </p>
-              <a
-                href={linkHref}
-                className="ritual-card-link"
-                style={{
-                  color: textColor,
-                  opacity: 0.95
-                }}
-                data-cursor-hover="link"
-              >
-                {linkLabel}
-              </a>
-            </div>
+          </div>
+
+          <div
+            className="absolute right-[40%] bottom-[clamp(20px,2.5vw,40px)] text-right"
+            style={{ maxWidth: '30vw' }}
+          >
+            <p
+              className="ritual-card-description font-lora"
+              style={{
+                color: textColor,
+                opacity: 0.65,
+                lineHeight: 1.085,
+              }}
+            >
+              {description}
+            </p>
+            <a
+              href={linkHref}
+              className="ritual-card-link"
+              style={{
+                color: textColor,
+                opacity: 0.95,
+              }}
+              data-cursor-hover="link"
+            >
+              {linkLabel}
+            </a>
           </div>
 
           <div
