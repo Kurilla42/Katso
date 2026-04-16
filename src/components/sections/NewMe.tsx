@@ -3,6 +3,7 @@
 import { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Image from 'next/image';
 
 const NewMe = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -53,7 +54,7 @@ const NewMe = () => {
                 scale: 50, // A large value to ensure text fills the screen
                 ease: 'power1.in',
               },
-              0.1 // Changed from 0.4 to 0.1
+              0.1
             );
         });
       }, sectionEl);
@@ -84,8 +85,8 @@ const NewMe = () => {
             opacity: 0.4,
             mixBlendMode: 'overlay',
           }}></div>
-      <div ref={pinContainerRef} className="h-screen w-full flex items-center justify-center overflow-hidden md:sticky md:top-0">
-        <div ref={scaleTargetRef} className="w-full max-w-5xl mx-auto px-4 text-cream">
+      <div ref={pinContainerRef} className="h-screen w-full flex items-center justify-center overflow-hidden md:sticky md:top-0 relative">
+        <div ref={scaleTargetRef} className="relative z-10 w-full max-w-5xl mx-auto px-4 text-cream">
             <div className="flex items-center font-display uppercase">
                 <h2 style={{ fontSize: 'clamp(2rem, 4vw, 4rem)' }} className="leading-none">
                     Задача KA<span ref={logoRef}>T</span>SO
@@ -95,9 +96,19 @@ const NewMe = () => {
                 className="text-center mt-12 whitespace-pre-line font-display uppercase"
                 style={{ fontSize: 'clamp(2.5rem, 4vw, 5rem)', lineHeight: 1.2 }}
             >
-                {'Раскрыть вашу уникальность и \nпознакомить с вашим новым «я»\n\nДругой взгляд на себя – другое мировоззрение \nи отношения с окружающим миром'}
+                {'Раскрыть вашу уникальность и \nпознакомить с вашим новым «я»'}
             </p>
         </div>
+        
+        <div className="absolute bottom-0 right-0 w-[40vw] h-[80vh] max-w-[500px] z-0 pointer-events-none">
+             <Image
+                src="https://i.ibb.co/Y71XvhtZ/Pngtree-pampas-grass-isolated-on-a-21120510.png"
+                alt="Pampas grass decoration"
+                fill
+                style={{ objectFit: 'contain', objectPosition: 'bottom right' }}
+            />
+        </div>
+
       </div>
     </section>
   );
