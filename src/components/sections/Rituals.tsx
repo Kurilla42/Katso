@@ -170,8 +170,19 @@ const Rituals = () => {
             if (!isDesktop || isReduced) return;
             
             const cards = cardsRef.current.filter(Boolean) as HTMLElement[];
-            if (!cards.length) return;
+            if (cards.length < 2) return;
 
+            const ritualsEl = componentRef.current;
+            if (!ritualsEl) return;
+
+            const stackContainer = ritualsEl.querySelector('.rituals-stack');
+            if (!stackContainer) return;
+            
+            const stackPeek = parseInt(
+              getComputedStyle(ritualsEl)
+                .getPropertyValue('--stack-peek')
+            );
+            
             // Animate content inside each card
             cards.forEach((card) => {
                 const animatedItems = card.querySelectorAll('.ritual-card-headline, .ritual-card-description, .ritual-card-link');
@@ -189,57 +200,41 @@ const Rituals = () => {
                 observer.observe(card);
             });
 
-            // Card recede animation (depth effect)
-            const ritualsEl = componentRef.current;
-            if (!ritualsEl) return;
-            const stackPeek = parseInt(
-              getComputedStyle(ritualsEl)
-                .getPropertyValue('--stack-peek')
-            );
-            
+            // Card recede animation (NEW LOGIC)
             cards.forEach((card, index) => {
-                if (index === cards.length - 1) return; // last card never recedes
+                if (index === cards.length - 1) return; // Last card doesn't recede
 
-                const createRecedeAnimation = (triggerCard: HTMLElement, scale: number, opacity: number, blur: number) => {
-                    const timeline = gsap.timeline();
-                    // Start scaling and fading immediately
-                    timeline.to(card, {
+                const recedeTimeline = gsap.timeline({ paused: true });
+
+                // Build the sequence of recessions for this card.
+                // Each step in the loop adds a new state to the timeline.
+                for (let step = 0; step < cards.length - index - 1; step++) {
+                    const blur = Math.min(1.5 + step * 0.8, 5);
+                    const scale = Math.max(0.97 - step * 0.015, 0.88);
+                    const opacity = Math.max(0.75 - step * 0.12, 0.3);
+
+                    // Add the next transformation to the timeline.
+                    // The position parameter 'step' ensures they happen in sequence.
+                    recedeTimeline.to(card, {
                         scale: scale,
                         opacity: opacity,
-                        ease: 'none',
-                    }, 0);
-                    // Start blurring after 40% of the animation is done, to make it feel like it happens "after"
-                    timeline.to(card, {
                         filter: `blur(${blur}px)`,
-                        ease: 'power1.in',
-                    }, 0.4);
-
-                    ScrollTrigger.create({
-                        trigger: triggerCard,
-                        start: 'top bottom',
-                        end: `top top+=${stackPeek}`,
-                        scrub: true, // Direct scrub, no lag
-                        animation: timeline,
-                        overwrite: true, // Force overwrite to prevent conflicts
-                        invalidateOnRefresh: true
-                    });
-                };
-                
-                // First recede, when the very next card appears
-                const nextCard = cards[index + 1];
-                createRecedeAnimation(nextCard, 0.97, 0.75, 1.5);
-                
-                // Subsequent, deeper recedes for each card that follows
-                for (let stepIndex = 1; stepIndex < cards.length - index - 1; stepIndex++) {
-                    const triggerCard = cards[index + 1 + stepIndex];
-                    if (!triggerCard) break;
-
-                    const stepBlur = Math.min(1.5 + stepIndex * 0.8, 5);
-                    const stepScale = Math.max(0.97 - stepIndex * 0.015, 0.88);
-                    const stepOpacity = Math.max(0.75 - stepIndex * 0.12, 0.3);
-
-                    createRecedeAnimation(triggerCard, stepScale, stepOpacity, stepBlur);
+                        ease: 'none',
+                        duration: 1, // Will be mapped to scroll distance
+                    }, step);
                 }
+                
+                // Create ONE ScrollTrigger to drive the entire animation sequence for this card.
+                ScrollTrigger.create({
+                    trigger: stackContainer,
+                    // Start when the NEXT card is at the top of the stack area.
+                    start: () => `top top-=${(index + 1) * stackPeek}`,
+                    // End when the LAST card is at the top of the stack area.
+                    end: () => `top top-=${(cards.length - 1) * stackPeek}`,
+                    scrub: true,
+                    animation: recedeTimeline,
+                    invalidateOnRefresh: true,
+                });
             });
             
             document.fonts.ready.then(() => {
