@@ -98,7 +98,10 @@ const NewMe = () => {
                 paddingRight: 'clamp(24px, 4vw, 80px)',
             }}
         >
-            <h2 style={{ fontSize: '3vw', transform: 'translateY(-7.2vw)' }} className="text-right leading-none font-display uppercase">
+            <h2
+                style={{ fontSize: '3vw', transform: 'translateY(-7.2vw)' }}
+                className="text-right leading-none font-display uppercase whitespace-pre-line"
+            >
                 {'Задача\nKATSO:'}
             </h2>
             
@@ -112,14 +115,23 @@ const NewMe = () => {
             </div>
 
             <p
-                className="font-lora text-right"
-                style={{ fontSize: '0.8vw', lineHeight: 1.085, color: '#8a9a6b', transform: 'translateY(7.2vw)' }}
+                className="font-lora text-right whitespace-pre-line"
+                style={{
+                    fontSize: '0.8vw',
+                    lineHeight: 1.085,
+                    color: '#8a9a6b',
+                    transform: 'translateY(7.2vw)',
+                }}
             >
                 {'Другой взгляд на себя, \nдругое мировоззрение и \nотношения с окружающим миром'}
             </p>
         </div>
         
-        <div ref={imageContainerRef} className="absolute bottom-0 right-0 w-[40vw] h-[80vh] max-w-[500px] z-0 pointer-events-none">
+        <div
+          ref={imageContainerRef}
+          className="absolute bottom-0 right-0 w-[40vw] h-[80vh] max-w-[500px] z-0 pointer-events-none"
+          style={{ transform: 'translateX(-60vw)' }}
+        >
              <Image
                 src="https://i.ibb.co/Y71XvhtZ/Pngtree-pampas-grass-isolated-on-a-21120510.png"
                 alt="Pampas grass decoration"
