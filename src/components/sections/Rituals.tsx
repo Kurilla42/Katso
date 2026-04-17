@@ -141,7 +141,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
           {index === 0 ? (
             <div className="relative w-[18vw] self-center">
               <Image
-                src="https://i.ibb.co/S912Rn8/Whisk-a97a05fe24789d09a124ba07c2982c35dr.png"
+                src="https://i.ibb.co/1fzMvZsX/Whisk-c3d7e1a30964faf9de94c4e89d9441feeg.png"
                 alt="Manicure tool"
                 width={300}
                 height={300}
