@@ -145,7 +145,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
             <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
               <div className="relative w-full h-full">
                 <Image
-                  src="https://i.ibb.co/27zQ4Nvz/Whisk-c3d7e1a30964faf9de94c4e89d9441feeg-removebg-preview.png"
+                  src="https://i.ibb.co/spH1Fjd7/Whisk-c3d7e1a30964faf9de94c4e89d9441feeg-removebg-preview-upscayl-2x-ultrasharp-4x.png"
                   alt="Manicure tool"
                   fill
                   className="object-contain object-center"
@@ -163,7 +163,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
             <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
               <div className="relative w-full h-full">
                 <Image
-                  src="https://i.ibb.co/RkVTLCPR/Whisk-27769cf02b3812bb0f246d211e75f64edr-removebg-preview.png"
+                  src="https://i.ibb.co/XZdQq3fJ/Whisk-27769cf02b3812bb0f246d211e75f64edr-removebg-preview-upscayl-2x-ultrasharp-4x.png"
                   alt="Eyebrow and lash tool"
                   fill
                   className="object-contain object-center"
@@ -181,7 +181,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
             <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
                 <div className="relative w-full h-full">
                     <Image
-                    src="https://i.ibb.co/tMTK5Dfg/Whisk-805bb058bc86e48be73448b52e080bdbdr-removebg-preview-1.png"
+                    src="https://i.ibb.co/qFXGgnwx/Whisk-2d20512359f9059bbcc4a221cef3c79fdr-removebg-preview-upscayl-2x-ultrasharp-4x.png"
                     alt="Hairdressing tool"
                     fill
                     className="object-contain object-center"
@@ -199,7 +199,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
             <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
                 <div className="relative w-full h-full">
                     <Image
-                    src="https://i.ibb.co/vvVPy5SZ/Whisk-a7c8acf8514669fb9bf493e47ff7ffc6dr-removebg-preview.png"
+                    src="https://i.ibb.co/6RJ64XBy/Whisk-a7c8acf8514669fb9bf493e47ff7ffc6dr-removebg-preview-upscayl-2x-ultrasharp-4x.png"
                     alt="Hair coloring tool"
                     fill
                     className="object-contain object-center"
@@ -217,7 +217,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
             <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
                 <div className="relative w-full h-full">
                     <Image
-                    src="https://i.ibb.co/5x4hx901/Whisk-bba91139aa68284b2ff4dccad8136ab3dr-removebg-preview.png"
+                    src="https://i.ibb.co/SwwdwCCk/Whisk-bba91139aa68284b2ff4dccad8136ab3dr-removebg-preview-upscayl-2x-ultrasharp-4x.png"
                     alt="Keratin treatment tool"
                     fill
                     className="object-contain object-center"
@@ -235,7 +235,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
             <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
                 <div className="relative w-full h-full">
                     <Image
-                    src="https://i.ibb.co/7dGfSpM0/Whisk-1e8ba549e98a6f0b8974891a067a5d37dr-removebg-preview.png"
+                    src="https://i.ibb.co/5gY1NcSJ/Whisk-7135b2e72ee7bbbad5f48f302f0e6577dr-removebg-preview-upscayl-2x-ultrasharp-4x.png"
                     alt="Scalp care tool"
                     fill
                     className="object-contain object-center"
@@ -253,7 +253,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
             <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
                 <div className="relative w-full h-full">
                     <Image
-                    src="https://i.ibb.co/6cshktBn/Whisk-e21bda035270e648ac1407efd0a90bd8dr-removebg-preview.png"
+                    src="https://i.ibb.co/pjDSJnrJ/Whisk-e21bda035270e648ac1407efd0a90bd8dr-removebg-preview-upscayl-2x-ultrasharp-4x.png"
                     alt="Makeup tool"
                     fill
                     className="object-contain object-center"
