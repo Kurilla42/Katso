@@ -36,16 +36,6 @@ const Hero = () => {
             },
             });
 
-            // Parallax effect for the video
-            tl.to(
-                videoRef.current,
-                {
-                    yPercent: 10,
-                    ease: 'none',
-                },
-                0
-            );
-
             // Phase 1: Animate the text mask to expand
             tl.to(
             maskedTextRef.current,
@@ -103,17 +93,6 @@ const Hero = () => {
     <section ref={sectionRef} id="hero" className="relative md:h-[350vh]">
       <div ref={pinRef} className="h-screen w-full md:sticky top-0 overflow-hidden" style={{ backgroundColor: '#2D2D2D' }}>
         
-        <div
-            className="absolute inset-0 w-full h-full pointer-events-none"
-            style={{
-                backgroundImage: 'url(https://i.ibb.co/zWNnhBMd/concrete-wall-2-1.png)',
-                backgroundRepeat: 'repeat',
-                opacity: 0.7,
-                mixBlendMode: 'overlay',
-            }}>
-        </div>
-        <div className="paper-texture"></div>
-        
         <svg ref={svgRef} className="absolute inset-0 w-full h-full pointer-events-none">
           <defs>
             <mask id="hero-mask">
@@ -127,7 +106,7 @@ const Hero = () => {
 
         <div className="h-full w-full" style={{ mask: 'url(#hero-mask)', WebkitMask: 'url(#hero-mask)' }}>
            <div className="relative h-full w-full overflow-hidden">
-             <video ref={videoRef} className="absolute top-[-10%] left-0 w-full h-[120%] object-cover" autoPlay loop muted playsInline poster="https://i.ibb.co/cKjhxFRw/2026-04-16-20-21-13.png">
+             <video ref={videoRef} className="absolute top-0 left-0 w-full h-full object-cover" autoPlay loop muted playsInline poster="https://i.ibb.co/cKjhxFRw/2026-04-16-20-21-13.png">
                <source src="/video/Hero-video.mp4" type="video/mp4" />
              </video>
              <div className="absolute inset-0 bg-black/20"></div>
