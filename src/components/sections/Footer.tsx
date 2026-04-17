@@ -60,15 +60,22 @@ const Footer = () => {
         const fitText = () => {
             const containerWidth = container.offsetWidth / 2;
             const currentFontSize = parseFloat(window.getComputedStyle(el).fontSize);
+            if (el.scrollWidth === 0) return;
             const scale = containerWidth / el.scrollWidth;
             const newSize = currentFontSize * scale * 0.95; // 0.95 for a bit of margin
             gsap.set(el, { fontSize: newSize });
         }
 
-        fitText();
+        const timer = setTimeout(() => {
+            fitText();
+            window.addEventListener('resize', fitText);
+        }, 150);
 
-        window.addEventListener('resize', fitText);
-        return () => window.removeEventListener('resize', fitText);
+
+        return () => {
+            clearTimeout(timer);
+            window.removeEventListener('resize', fitText);
+        }
 
     }, []);
 
@@ -92,10 +99,10 @@ const Footer = () => {
         <div className="paper-texture"></div>
         <div className="grid-overlay"></div>
         <div ref={containerRef}>
-          <div className="relative h-[clamp(300px,30vw,500px)] flex items-end overflow-hidden px-[clamp(1rem,3vw,5rem)]">
+          <div className="relative h-[clamp(200px,25vw,380px)] flex items-end overflow-hidden px-[clamp(1rem,3vw,5rem)]">
             {/* Left: Giant Wordmark */}
-            <div className="absolute left-0 bottom-0 z-0">
-              <h2 ref={wordMarkRef} className="font-display text-cream/10 leading-none select-none whitespace-nowrap pl-[clamp(1rem,3vw,5rem)]">
+            <div className="absolute left-0 bottom-0 z-0 pl-[clamp(1rem,3vw,5rem)]">
+              <h2 ref={wordMarkRef} className="font-display text-cream/10 leading-none select-none whitespace-nowrap">
                   KATSO
               </h2>
             </div>
@@ -131,7 +138,7 @@ const Footer = () => {
 
           {/* Bottom CTA */}
           <a href="https://wa.me/79120193362" target="_blank" rel="noopener noreferrer" className="group block text-center py-8 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" data-cursor-hover="link">
-              <span className="font-display tracking-display text-cream uppercase group-hover:text-accent transition-colors duration-200" style={{ fontSize: '3.5vw' }}>
+              <span className="font-display tracking-display text-cream uppercase group-hover:text-accent transition-colors duration-200" style={{ fontSize: 'calc(3.5vw * 0.7)' }}>
                   Записаться на ритуал
                   <span className="inline-block transition-transform duration-400 group-hover:translate-x-2 group-hover:-translate-y-2">&nbsp;↗</span>
               </span>
