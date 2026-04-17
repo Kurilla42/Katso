@@ -103,7 +103,7 @@ const NewMe = () => {
           {/* Images are positioned relative to this container */}
           <div ref={contentWrapperRef} className="absolute inset-0 w-full h-full">
             {/* Image 1 */}
-            <div className="floating-image absolute w-[13.7vw] aspect-[1/1.2] bottom-[10%] left-[10%] transform -rotate-[7deg]">
+            <div className="floating-image absolute w-[12.3vw] aspect-[1/1.2] bottom-[10%] left-[8%] transform -rotate-[7deg]">
                 <Image
                     src="https://i.ibb.co/8D9VnyxZ/790b8980-17ce-4517-9d41-bd3a5008a7ef.jpg"
                     alt="Woman with beautiful hair"
@@ -114,7 +114,7 @@ const NewMe = () => {
             </div>
 
             {/* Image 2 */}
-            <div className="floating-image absolute w-[19.7vw] aspect-[1.2/1] top-[8%] right-[12%] transform rotate-[6deg]">
+            <div className="floating-image absolute w-[17.7vw] aspect-[1.2/1] top-[8%] right-[10%] transform rotate-[6deg]">
                 <Image
                     src="https://i.ibb.co/v6xqgN14/440cc9b2-04fe-40e8-83e7-84d0e84b820f.jpg"
                     alt="Beauty salon details"
