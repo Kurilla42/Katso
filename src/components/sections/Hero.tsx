@@ -40,7 +40,7 @@ const Hero = () => {
             tl.to(
                 videoRef.current,
                 {
-                    yPercent: 20, // Move video down slowly
+                    yPercent: 10,
                     ease: 'none',
                 },
                 0
@@ -125,9 +125,12 @@ const Hero = () => {
         </svg>
 
         <div className="h-full w-full" style={{ mask: 'url(#hero-mask)', WebkitMask: 'url(#hero-mask)' }}>
-          <video ref={videoRef} className="w-full h-full object-cover" autoPlay loop muted playsInline poster="https://i.ibb.co/cKjhxFRw/2026-04-16-20-21-13.png">
-            <source src="/video/Hero-video.mp4" type="video/mp4" />
-          </video>
+           <div className="relative h-full w-full overflow-hidden">
+             <video ref={videoRef} className="absolute top-[-10%] left-0 w-full h-[120%] object-cover" autoPlay loop muted playsInline poster="https://i.ibb.co/cKjhxFRw/2026-04-16-20-21-13.png">
+               <source src="/video/Hero-video.mp4" type="video/mp4" />
+             </video>
+             <div className="absolute inset-0 bg-black/20"></div>
+           </div>
         </div>
 
         <div ref={contentRef} className="absolute inset-0 z-10 opacity-0 flex items-end justify-center">
