@@ -222,9 +222,9 @@ const Faq = () => {
                 href="https://t.me/katso_studio"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block mt-2 font-medium text-nude group rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nude focus-visible:ring-offset-4 focus-visible:ring-offset-surface"
+                className="inline-block mt-2 font-lora text-nude group rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nude focus-visible:ring-offset-4 focus-visible:ring-offset-surface"
                 data-cursor-hover="link"
-                style={{ fontSize: '1.2vw' }}
+                style={{ fontSize: '1.2vw', color: '#8FA89A' }}
               >
                 <span>Напишите нам</span>
                 <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">&nbsp;&rarr;</span>
