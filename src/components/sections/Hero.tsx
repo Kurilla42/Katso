@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useLayoutEffect, useRef } from 'react';
@@ -107,7 +108,7 @@ const Hero = () => {
 
         <div className="h-full w-full" style={{ mask: 'url(#hero-mask)', WebkitMask: 'url(#hero-mask)' }}>
           <video className="w-full h-full object-cover" autoPlay loop muted playsInline poster="https://i.ibb.co/cKjhxFRw/2026-04-16-20-21-13.png">
-            <source src="/video/Video-15.mp4" type="video/mp4" />
+            <source src="/video/Hero-video.mp4" type="video/mp4" />
           </video>
         </div>
 
