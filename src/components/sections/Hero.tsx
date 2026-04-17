@@ -1,167 +1,135 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { colors } from '@/lib/design-tokens';
 import { EASES } from '@/lib/animations';
-import StarIcon from '@/components/icons/Star';
 
 const Hero = () => {
-  const headlineRef = useRef<HTMLHeadingElement>(null);
-  const countersRef = useRef<HTMLDivElement>(null);
-  const metadataRef = useRef<HTMLDivElement>(null);
-  const scrollIndicatorRef = useRef<HTMLDivElement>(null);
-  const [currentTime, setCurrentTime] = useState('');
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const pinRef = useRef<HTMLDivElement>(null);
+  const maskedTextRef = useRef<SVGTextElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Live time
-    const updateTime = () => {
-      const now = new Date();
-      setCurrentTime(
-        now.toLocaleTimeString('ru-RU', {
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-        })
-      );
-    };
-    updateTime();
-    const timerId = setInterval(updateTime, 1000);
+    const ctx = gsap.context(() => {
+      const mm = gsap.matchMedia();
 
-    // Headline reveal animation
-    if (headlineRef.current) {
-      const lines = headlineRef.current.querySelectorAll('.line-inner');
-      gsap.fromTo(
-        lines,
-        { y: '100%' },
-        {
-          y: '0%',
-          duration: 0.8,
-          ease: EASES.reveal,
-          stagger: 0.1,
-          delay: 0.2,
-        }
-      );
-    }
+      mm.add("(min-width: 768px)", () => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top top',
+            end: '+=250%',
+            scrub: 1,
+            pin: pinRef.current,
+            invalidateOnRefresh: true,
+          },
+        });
 
-    // Counters animation
-    if (countersRef.current) {
-      const counters = countersRef.current.querySelectorAll('.counter-value');
-      gsap.from(counters, {
-        textContent: 0,
-        duration: 1.6,
-        ease: EASES.power2,
-        snap: { textContent: 1 },
-        stagger: 0.12,
-        scrollTrigger: {
-          trigger: countersRef.current,
-          start: 'top 80%',
-        },
+        // Phase 1: Animate the text mask to expand
+        tl.to(
+          maskedTextRef.current,
+          {
+            attr: { 'font-size': '80vw' },
+            letterSpacing: '5vw',
+            ease: 'power1.in',
+            duration: 4,
+          },
+          0
+        );
+
+        // Phase 2: Reveal the video by "erasing" the mask's text
+        tl.to(
+          maskedTextRef.current,
+          {
+            attr: { fill: 'white' }, // Filling with white makes this part of the mask transparent
+            ease: 'power1.inOut',
+            duration: 3,
+          },
+          3 // Start this animation slightly before the previous one ends
+        );
+
+        // Phase 2: Fade in the content on top
+        tl.fromTo(
+          contentRef.current,
+          {
+            opacity: 0,
+            y: 50,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            ease: 'power1.out',
+            duration: 3,
+          },
+          3.5 // Start slightly after the mask starts to disappear
+        );
       });
-    }
-
-    // Metadata fade in
-    if (metadataRef.current) {
-      gsap.fromTo(
-        metadataRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 1, delay: 1.5 }
-      );
-    }
-
-    // Scroll indicator pulse
-    if (scrollIndicatorRef.current) {
-      gsap.to(scrollIndicatorRef.current, {
-        y: 10,
-        opacity: 0.7,
-        repeat: -1,
-        yoyo: true,
-        duration: 1.2,
-        ease: 'power1.inOut',
+      
+      mm.add("(max-width: 767px)", () => {
+        // Mobile fallback: Show final content immediately, no complex animation.
+        gsap.set(contentRef.current, { opacity: 1, y: 0 });
+        gsap.set(maskedTextRef.current, { 'font-size': 0, opacity: 0 }); // Hide masked text
       });
-    }
 
-    return () => {
-      clearInterval(timerId);
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
-  const stats = [
-    { value: 1000, label: 'Довольных клиентов', suffix: '+' },
-    { value: 5, label: 'Лет безупречной работы', suffix: '' },
-  ];
-
   return (
-    <section
-      id="hero"
-      className="relative"
-      data-cursor="dark"
-    >
-      <div className="paper-texture"></div>
-      <div className="grid-overlay"></div>
-      <div className="min-h-screen flex flex-col justify-between">
-        <div className="container pt-32 sm:pt-40">
-          <h1
-            ref={headlineRef}
-            className="font-display text-[14vw] leading-display text-cream uppercase"
-          >
-            <div className="overflow-hidden">
-              <span className="line-inner block">Создаём</span>
-            </div>
-            <div className="overflow-hidden">
-              <span className="line-inner block">ритуалы</span>
-            </div>
-            <div className="overflow-hidden">
-              <span className="line-inner block text-accent">красоты</span>
-            </div>
-          </h1>
-        </div>
-
-        <div className="container pb-8 z-10">
-          <div
-            ref={metadataRef}
-            className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-8"
-          >
-            <div ref={countersRef} className="flex flex-wrap gap-8 sm:gap-12">
-              {stats.map((stat, index) => (
-                <div key={index} className="flex items-baseline gap-2">
-                  <span className="counter-value font-display tracking-display text-h3 text-cream">
-                    {stat.value}
-                  </span>
-                  {stat.suffix && (
-                    <span className="font-display tracking-display text-h3 text-accent">
-                      {stat.suffix}
-                    </span>
-                  )}
-                  <span className="caption max-w-[100px]">
-                    {stat.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex items-center gap-4 text-nude flex-shrink-0">
-              <StarIcon className="w-5 h-5 opacity-50" />
-              <div className="caption flex gap-4">
-                <span>КИШИНЁВ, МОЛДОВА</span>
-                <span>{currentTime}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll down indicator */}
+    <section ref={sectionRef} id="hero" className="relative md:h-[350vh]" style={{ backgroundColor: '#2D2D2D' }}>
+      <div ref={pinRef} className="h-screen w-full md:sticky top-0 overflow-hidden">
+        
         <div
-          ref={scrollIndicatorRef}
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-        >
-          <span className="caption">SCROLL</span>
-          <div className="w-px h-10 bg-cream/50 rounded-full"></div>
+            className="absolute inset-0 w-full h-full pointer-events-none"
+            style={{
+                backgroundImage: 'url(https://i.ibb.co/zWNnhBMd/concrete-wall-2-1.png)',
+                backgroundRepeat: 'repeat',
+                opacity: 0.7,
+                mixBlendMode: 'overlay',
+            }}>
         </div>
+        
+        <svg className="absolute w-0 h-0">
+          <defs>
+            <mask id="hero-mask">
+              <rect width="100%" height="100%" fill="white" />
+              <text ref={maskedTextRef} x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fill="black" fontSize="25vw" fontFamily="Playfair Display" fontWeight="700">
+                KATSO
+              </text>
+            </mask>
+          </defs>
+        </svg>
+
+        <div className="h-full w-full" style={{ mask: 'url(#hero-mask)', WebkitMask: 'url(#hero-mask)' }}>
+          <video className="w-full h-full object-cover" autoPlay loop muted playsInline poster="https://i.ibb.co/cKjhxFRw/2026-04-16-20-21-13.png">
+            <source src="/video/Video-15.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        <div ref={contentRef} className="absolute inset-0 z-10 opacity-0 flex items-center justify-center">
+            <div className="text-center text-cream max-w-3xl mx-auto px-4">
+                <h1 className="font-display leading-none" style={{ fontSize: 'clamp(3rem, 6vw, 5rem)' }}>
+                    Красота, которую видно
+                </h1>
+                <p className="font-lora text-nude mt-4" style={{ fontSize: 'clamp(1rem, 1.2vw, 1.2rem)' }}>
+                    Премиум-салон в центре Ижевска. Kérastase · Olaplex · La Biosthétique · мастера с обучением в Лондоне и Париже
+                </p>
+                <div className="flex justify-center gap-4 mt-8">
+                    <a href="#" className="bg-accent text-background font-display uppercase tracking-display py-3 px-6 rounded-sm transition-transform hover:scale-105" data-cursor-hover="link">
+                        Записаться онлайн
+                    </a>
+                    <a href="#" className="border border-nude text-nude font-display uppercase tracking-display py-3 px-6 rounded-sm transition-transform hover:scale-105" data-cursor-hover="link">
+                        Смотреть работы
+                    </a>
+                </div>
+            </div>
+        </div>
+
       </div>
     </section>
   );
