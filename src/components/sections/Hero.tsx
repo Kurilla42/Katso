@@ -147,8 +147,8 @@ const Hero = () => {
                     <div style={{ fontWeight: 900, textTransform: 'uppercase' }}>Красота</div>
                     <div style={{ fontWeight: 400, fontStyle: 'italic', color: '#8FA89A' }}>которую видно</div>
                 </h1>
-                <div className="mt-8">
-                    <div style={{ width: '120px', height: '1px', backgroundColor: '#C49850', marginBottom: '1rem' }}></div>
+                <div className="mt-8 inline-block">
+                    <div style={{ height: '1px', backgroundColor: '#F0EBE3', marginBottom: '1rem' }}></div>
                     <p className="font-furore uppercase" style={{ color: '#F0EBE3', fontSize: '1.2vw', letterSpacing: '0.2em' }}>
                         KATSO STUDIO · ИЖЕВСК
                     </p>
