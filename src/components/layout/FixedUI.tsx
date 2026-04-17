@@ -1,12 +1,27 @@
 'use client';
 
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import CustomCursor from './CustomCursor';
+import { useLenis } from '@/context/LenisContext';
+import { usePathname, useRouter } from 'next/navigation';
+
+const navLinks = [
+    { text: 'Главная', href: '#hero' },
+    { text: 'Услуги', href: '#rituals' },
+    { text: 'Мастера', href: '#masters' },
+    { text: 'Почему мы', href: '#why-us' },
+    { text: 'FAQ', href: '#faq' },
+];
 
 const FixedUI = () => {
   const menuRef = useRef<HTMLDivElement>(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const lenis = useLenis();
+  const pathname = usePathname();
+  const router = useRouter();
+
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -34,7 +49,22 @@ const FixedUI = () => {
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (pathname !== '/') {
+        router.push('/');
+    } else {
+        lenis?.scrollTo(0, { duration: 2.5, ease: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+    }
+  };
+
+  const handleNavLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
+    e.preventDefault();
+    setIsMenuOpen(false);
+    
+    if (pathname !== '/') {
+        router.push('/' + target);
+    } else {
+        lenis?.scrollTo(target, { duration: 2 });
+    }
   };
 
   return (
@@ -55,13 +85,40 @@ const FixedUI = () => {
         ref={menuRef}
         className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 hidden md:flex items-center gap-6"
       >
-        <a href="#" className="caption text-nude hover:text-accent transition-colors" data-cursor-hover="link">
+        <a href="https://wa.me/79120193362" target="_blank" rel="noopener noreferrer" className="caption text-nude hover:text-accent transition-colors" data-cursor-hover="link">
           ЗАПИСАТЬСЯ ОНЛАЙН
         </a>
-        <div data-cursor-hover="link">
-          <span className="caption text-cream data-[hero-visible=true]:text-nude hover:text-accent transition-colors">
-            МЕНЮ
-          </span>
+        <div className="relative">
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)} data-cursor-hover="link" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm">
+                <span className="caption text-cream data-[hero-visible=true]:text-nude hover:text-accent transition-colors">
+                    МЕНЮ
+                </span>
+            </button>
+
+            {isMenuOpen && (
+                <div 
+                    className="absolute right-0 top-full mt-4 w-56 rounded-md border border-cream/10 shadow-lg py-2 z-20 overflow-hidden"
+                    style={{
+                        backgroundColor: 'rgba(42, 39, 34, 0.8)',
+                        backdropFilter: 'blur(10px)',
+                        WebkitBackdropFilter: 'blur(10px)',
+                    }}
+                >
+                    <ul>
+                        {navLinks.map((link) => (
+                        <li key={link.text}>
+                            <a
+                            href={link.href}
+                            onClick={(e) => handleNavLinkClick(e, link.href)}
+                            className="block w-full text-left px-6 py-3 font-body text-cream hover:bg-cream/5 transition-colors duration-200"
+                            >
+                            {link.text}
+                            </a>
+                        </li>
+                        ))}
+                    </ul>
+                </div>
+          )}
         </div>
       </div>
     </>
