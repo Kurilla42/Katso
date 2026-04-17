@@ -223,7 +223,6 @@ const Masters = () => {
         }}
       ></div>
       <div className="paper-texture"></div>
-      <div className="grid-overlay"></div>
       <div 
         className="w-full mx-auto py-16 md:py-40 relative"
         style={{
