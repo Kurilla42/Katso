@@ -87,6 +87,18 @@ const Hero = () => {
     <section ref={sectionRef} id="hero" className="relative md:h-[350vh]">
       <div ref={pinRef} className="h-screen w-full md:sticky top-0 overflow-hidden" style={{ backgroundColor: '#2D2D2D' }}>
         
+        {/* Main background textures */}
+        <div
+            className="absolute inset-0 w-full h-full pointer-events-none"
+            style={{
+                backgroundImage: 'url(https://i.ibb.co/zWNnhBMd/concrete-wall-2-1.png)',
+                backgroundRepeat: 'repeat',
+                opacity: 0.7,
+                mixBlendMode: 'overlay',
+            }}
+        ></div>
+        <div className="paper-texture"></div>
+
         <svg ref={svgRef} className="absolute inset-0 w-full h-full pointer-events-none z-10">
           <defs>
             <mask id="hero-mask">
@@ -129,7 +141,7 @@ const Hero = () => {
             </div>
         </div>
 
-        <div ref={contentRef} className="absolute inset-0 z-10 opacity-0 flex items-end justify-center">
+        <div ref={contentRef} className="absolute inset-0 z-20 opacity-0 flex items-end justify-center">
              <div className="text-center" style={{ paddingBottom: '5vh' }}>
                 <h1 className="font-display leading-none" style={{ fontSize: '7vw', color: '#F0EBE3' }}>
                     Красота, которую видно
