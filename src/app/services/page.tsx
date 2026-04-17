@@ -360,15 +360,6 @@ const ThreeColPriceRow = ({ col1, col2, col3 }: { col1: string | null; col2: str
     </div>
   );
 
-const SwappedThreeColPriceRow = ({ col1, col2, col3 }: { col1: string | null; col2: string | null; col3: string | null; }) => (
-    <div className="grid grid-cols-3 items-start gap-4 py-4 font-lora border-b border-cream/10">
-      <p className="text-cream" style={{ fontSize: '1.2vw' }}>{col1}</p>
-      <p className="text-cream text-right" style={{ fontSize: '1.2vw' }}>{col3}</p>
-      <p className="text-cream" style={{ fontSize: '1.2vw' }}>{col2}</p>
-    </div>
-);
-
-
 const PriceTable = ({ subCategory }: { subCategory: (typeof servicesData)[0]['subCategories'][0] }) => (
   <div className="mb-12">
     {subCategory.title && <h3 className="font-display text-2xl md:text-3xl uppercase text-cream mb-6">{subCategory.title}</h3>}
@@ -384,26 +375,14 @@ const PriceTable = ({ subCategory }: { subCategory: (typeof servicesData)[0]['su
          {subCategory.headers.length === 3 && (
             <div className="grid grid-cols-3 items-start gap-4 py-2 font-display text-nude uppercase tracking-wider" style={{ fontSize: '1.2vw' }}>
                 <span>{subCategory.headers[0]}</span>
-                {subCategory.headers[1] === 'Описание' && subCategory.headers[2] === 'Цена' ? (
-                    <>
-                        <span className="text-right">{subCategory.headers[2]}</span>
-                        <span>{subCategory.headers[1]}</span>
-                    </>
-                ) : (
-                    <>
-                        <span className="text-center">{subCategory.headers[1]}</span>
-                        <span className="text-right">{subCategory.headers[2]}</span>
-                    </>
-                )}
+                <span className="text-center">{subCategory.headers[1]}</span>
+                <span className="text-right">{subCategory.headers[2]}</span>
             </div>
         )}
 
         {subCategory.items.map((item, index) => {
             if (subCategory.headers.length < 3) {
                 return <PriceRow key={index} col1={item[0]} col2={item[1]} col3={item[2]} />
-            }
-            if (subCategory.headers[1] === 'Описание' && subCategory.headers[2] === 'Цена') {
-                return <SwappedThreeColPriceRow key={index} col1={item[0]} col2={item[1]} col3={item[2]} />
             }
             return <ThreeColPriceRow key={index} col1={item[0]} col2={item[1]} col3={item[2]} />
         })}
