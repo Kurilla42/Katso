@@ -116,7 +116,7 @@
   --stack-peek: clamp(160px, 23vh, 220px);
   --card-gap: 30px;
 
-  background-color: theme('colors.background');
+  background-color: #2D2D2D;
 }
 
 .rituals-stack {
@@ -162,7 +162,6 @@
   font-family: theme('fontFamily.display');
   font-size: 3vw;
   line-height: 0.95;
-  letter-spacing: -0.01em;
   text-transform: uppercase;
   margin: 0;
   position: relative;

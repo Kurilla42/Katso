@@ -154,7 +154,7 @@ const NewMe = () => {
                 
                 <div>
                     <p
-                        className="whitespace-pre-line font-display uppercase"
+                        className="whitespace-pre-line font-display tracking-display uppercase"
                         style={{ fontSize: '3vw', lineHeight: 1.2 }}
                     >
                         {'Раскрыть твою уникальность\nи познакомить с новым «я»'}

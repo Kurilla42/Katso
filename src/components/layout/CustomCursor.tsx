@@ -94,7 +94,7 @@ const CustomCursor = () => {
     <div
       ref={cursorRef}
       className={cn(
-        'fixed top-0 left-0 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-[9999] transition-[width,height] duration-400 ease-reveal flex items-center justify-center font-display',
+        'fixed top-0 left-0 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-[9999] transition-[width,height] duration-400 ease-reveal flex items-center justify-center font-display tracking-display',
         'rounded-full',
         isVisible ? 'opacity-100' : 'opacity-0',
         // Size & Style

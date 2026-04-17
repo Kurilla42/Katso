@@ -130,7 +130,7 @@ const Footer = () => {
 
           {/* Bottom CTA */}
           <a href="#" className="group block text-center py-8 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" data-cursor-hover="link">
-              <span className="font-display text-cream uppercase group-hover:text-accent transition-colors duration-200" style={{ fontSize: '5vw' }}>
+              <span className="font-display tracking-display text-cream uppercase group-hover:text-accent transition-colors duration-200" style={{ fontSize: '5vw' }}>
                   Записаться на ритуал
                   <span className="inline-block transition-transform duration-400 group-hover:translate-x-2 group-hover:-translate-y-2">&nbsp;↗</span>
               </span>

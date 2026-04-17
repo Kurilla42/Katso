@@ -34,7 +34,7 @@ const config: Config = {
         hero: ['13vw', { lineHeight: '0.9' }],
       },
       letterSpacing: {
-        display: '-0.02em',
+        display: '-0.01em',
         'display-lg': '-0.03em',
       },
       lineHeight: {

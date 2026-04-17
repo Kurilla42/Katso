@@ -129,11 +129,11 @@ const Hero = () => {
             <div ref={countersRef} className="flex flex-wrap gap-8 sm:gap-12">
               {stats.map((stat, index) => (
                 <div key={index} className="flex items-baseline gap-2">
-                  <span className="counter-value font-display text-h3 text-cream">
+                  <span className="counter-value font-display tracking-display text-h3 text-cream">
                     {stat.value}
                   </span>
                   {stat.suffix && (
-                    <span className="font-display text-h3 text-accent">
+                    <span className="font-display tracking-display text-h3 text-accent">
                       {stat.suffix}
                     </span>
                   )}

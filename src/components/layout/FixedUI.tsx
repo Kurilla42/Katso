@@ -23,7 +23,7 @@ const FixedUI = () => {
 
       {/* Right edge tag */}
       <div className="fixed top-1/2 right-4 -translate-y-1/2 z-50 bg-walnut text-cream rounded-full px-2 py-4 flex flex-col items-center justify-center shadow-lg">
-        <span className="font-display text-lg leading-none">K.</span>
+        <span className="font-display tracking-display text-lg leading-none">K.</span>
         <span
           className="font-body text-xs uppercase mt-2 tracking-widest"
           style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
