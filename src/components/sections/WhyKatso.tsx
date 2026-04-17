@@ -98,7 +98,7 @@ const WhyKatso = () => {
         <section
             id="why-us"
             ref={sectionRef}
-            className="md:h-[400vh]"
+            className="md:h-[300vh]"
             data-cursor="dark"
             style={{ backgroundColor: colors.cream }}
         >
