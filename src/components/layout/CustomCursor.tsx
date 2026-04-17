@@ -83,38 +83,38 @@ const CustomCursor = () => {
     };
   }, [isVisible]);
 
+  const isHovered = cursorMode !== 'default';
+
+  useEffect(() => {
+    if (cursorRef.current) {
+        gsap.to(cursorRef.current, {
+            scale: isHovered ? 5 : 1,
+            duration: 0.3,
+            ease: 'power2.out'
+        });
+    }
+  }, [isHovered]);
+
+
   if (!isEligible) {
     return null;
   }
 
-  const isHovered = cursorMode !== 'default';
-  const themeColor = cursorTheme === 'dark' ? colors.cream : colors.walnut;
+  const themeColor = cursorTheme === 'dark' ? colors.cream : '#2D2D2D';
 
   return (
     <div
       ref={cursorRef}
       className={cn(
-        'fixed top-0 left-0 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-[9999] transition-[width,height] duration-400 ease-reveal flex items-center justify-center font-display tracking-display',
-        'rounded-full',
+        'fixed top-0 left-0 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-[9999]',
+        'w-3 h-3 rounded-full',
         isVisible ? 'opacity-100' : 'opacity-0',
-        // Size & Style
-        isHovered ? 'w-12 h-12 bg-transparent' : 'w-3 h-3',
+        'transition-opacity duration-200'
       )}
       style={{
-        backgroundColor: isHovered ? 'transparent' : themeColor,
-        borderColor: isHovered ? colors.accent : themeColor,
-        borderWidth: isHovered ? '2px' : '0px',
-        color: isHovered ? colors.accent : themeColor,
+        backgroundColor: themeColor,
       }}
-    >
-      <span className={cn(
-          "transition-opacity duration-200 text-2xl",
-          isHovered ? 'opacity-100' : 'opacity-0'
-        )}>
-          {cursorMode === 'link' && '↗'}
-          {cursorMode === 'drag' && '←→'}
-      </span>
-    </div>
+    />
   );
 };
 

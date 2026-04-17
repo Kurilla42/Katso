@@ -109,9 +109,10 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
       backgroundColor: bgColor,
       color: textColor,
     };
+    const cursorTheme = bgColor === '#F0EBE3' ? 'light' : 'dark';
 
     return (
-      <article className="ritual-card" style={style} ref={ref}>
+      <article className="ritual-card" style={style} ref={ref} data-cursor={cursorTheme}>
         <div className="ritual-card-inner">
           <div className="ritual-card-content">
             <h3
