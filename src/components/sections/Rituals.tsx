@@ -221,7 +221,7 @@ const Rituals = () => {
             ref={componentRef}
             data-cursor="dark"
             className="relative"
-            style={{ backgroundColor: '#2D2D2D' }}
+            style={{ backgroundColor: '#7A7570' }}
         >
             <div
                 className="absolute inset-0 w-full h-full pointer-events-none"
