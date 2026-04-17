@@ -100,8 +100,8 @@ const Hero = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} id="hero" className="relative md:h-[350vh]" style={{ backgroundColor: '#2D2D2D' }}>
-      <div ref={pinRef} className="h-screen w-full md:sticky top-0 overflow-hidden">
+    <section ref={sectionRef} id="hero" className="relative md:h-[350vh]">
+      <div ref={pinRef} className="h-screen w-full md:sticky top-0 overflow-hidden" style={{ backgroundColor: '#2D2D2D' }}>
         
         <div
             className="absolute inset-0 w-full h-full pointer-events-none"
