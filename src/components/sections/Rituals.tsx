@@ -4,6 +4,7 @@ import React, { useLayoutEffect, useRef, forwardRef, CSSProperties } from 'react
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { EASES } from '@/lib/animations';
+import Image from 'next/image';
 
 const ritualsData = [
   {
@@ -95,6 +96,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
   ) => {
     const style: CSSProperties = {
       backgroundColor: bgColor,
+      color: textColor,
     };
 
     return (
@@ -103,7 +105,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
           <div className="ritual-card-content">
             <h3
               className="ritual-card-headline"
-              style={{ color: textColor }}
+              style={{ color: textColor, letterSpacing: '-0.01em', left: '-2vw' }}
             >
               {headline}
             </h3>
@@ -136,14 +138,27 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
             </a>
           </div>
 
-          <div
-            className="ritual-card-numeral"
-            style={{
-              WebkitTextStroke: `2px ${numeralColor}`,
-            }}
-          >
-            {numeral}
-          </div>
+          {index === 0 ? (
+            <div className="relative w-[18vw] self-center">
+              <Image
+                src="https://i.ibb.co/S912Rn8/Whisk-a97a05fe24789d09a124ba07c2982c35dr.png"
+                alt="Manicure tool"
+                width={300}
+                height={300}
+                className="w-full h-auto"
+                sizes="18vw"
+              />
+            </div>
+          ) : (
+            <div
+              className="ritual-card-numeral"
+              style={{
+                WebkitTextStroke: `2px ${numeralColor}`,
+              }}
+            >
+              {numeral}
+            </div>
+          )}
         </div>
       </article>
     );
