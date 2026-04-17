@@ -14,74 +14,79 @@ const Hero = () => {
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    const ctx = gsap.context(() => {
-      const mm = gsap.matchMedia();
+    let ctx: gsap.Context;
 
-      mm.add("(min-width: 768px)", () => {
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top top',
-            end: '+=250%',
-            scrub: 1,
-            pin: pinRef.current,
-            invalidateOnRefresh: true,
-          },
+    // We must wait for the webfont to be loaded before initializing GSAP
+    // to prevent positioning bugs.
+    document.fonts.ready.then(() => {
+        ctx = gsap.context(() => {
+        const mm = gsap.matchMedia();
+
+        mm.add("(min-width: 768px)", () => {
+            const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: sectionRef.current,
+                start: 'top top',
+                end: '+=250%',
+                scrub: 1,
+                pin: pinRef.current,
+                invalidateOnRefresh: true,
+            },
+            });
+
+            // Phase 1: Animate the text mask to expand
+            tl.to(
+            maskedTextRef.current,
+            {
+                attr: { 'font-size': '80vw', 'letter-spacing': '5vw' },
+                ease: 'power1.in',
+                duration: 4,
+            },
+            0
+            );
+
+            // Phase 2: Reveal the video by making the mask's rect white
+            tl.to(
+            maskRectRef.current,
+            {
+                attr: { fill: 'white' },
+                ease: 'power1.inOut',
+                duration: 3,
+            },
+            3
+            );
+
+            // Phase 2: Fade in the content on top
+            tl.fromTo(
+            contentRef.current,
+            {
+                opacity: 0,
+                y: 50,
+            },
+            {
+                opacity: 1,
+                y: 0,
+                ease: 'power1.out',
+                duration: 3,
+            },
+            3.5
+            );
         });
-
-        // Phase 1: Animate the text mask to expand
-        tl.to(
-          maskedTextRef.current,
-          {
-            attr: { 'font-size': '80vw', 'letter-spacing': '5vw' },
-            ease: 'power1.in',
-            duration: 4,
-          },
-          0
-        );
-
-        // Phase 2: Reveal the video by making the mask's rect white
-        tl.to(
-          maskRectRef.current,
-          {
-            attr: { fill: 'white' },
-            ease: 'power1.inOut',
-            duration: 3,
-          },
-          3
-        );
-
-        // Phase 2: Fade in the content on top
-        tl.fromTo(
-          contentRef.current,
-          {
-            opacity: 0,
-            y: 50,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            ease: 'power1.out',
-            duration: 3,
-          },
-          3.5
-        );
         
-        // Refresh ScrollTrigger after fonts are loaded to prevent positioning jumps
-        document.fonts.ready.then(() => {
-            ScrollTrigger.refresh();
+        mm.add("(max-width: 767px)", () => {
+            // Mobile fallback: Show final content immediately, no complex animation.
+            gsap.set(contentRef.current, { opacity: 1, y: 0 });
+            gsap.set(maskedTextRef.current, { 'font-size': 0, opacity: 0 }); // Hide masked text
         });
-      });
-      
-      mm.add("(max-width: 767px)", () => {
-        // Mobile fallback: Show final content immediately, no complex animation.
-        gsap.set(contentRef.current, { opacity: 1, y: 0 });
-        gsap.set(maskedTextRef.current, { 'font-size': 0, opacity: 0 }); // Hide masked text
-      });
 
-    }, sectionRef);
+        }, sectionRef);
+    });
 
-    return () => ctx.revert();
+    return () => {
+        if (ctx) {
+            ctx.revert();
+        }
+    };
   }, []);
 
   return (
@@ -98,7 +103,7 @@ const Hero = () => {
             }}>
         </div>
         
-        <svg className="absolute w-0 h-0">
+        <svg className="absolute inset-0 w-full h-full pointer-events-none">
           <defs>
             <mask id="hero-mask">
               <rect ref={maskRectRef} width="100%" height="100%" fill="black" />
