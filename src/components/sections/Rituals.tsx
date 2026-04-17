@@ -112,8 +112,11 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
           </div>
 
           <div
-            className="absolute right-[40%] bottom-[clamp(20px,2.5vw,40px)] text-right"
-            style={{ maxWidth: '30vw' }}
+            className="absolute bottom-[clamp(20px,2.5vw,40px)] text-right"
+            style={{
+              maxWidth: '30vw',
+              right: index === 0 ? 'calc(25vw + 5vw)' : '40%',
+            }}
           >
             <p
               className="ritual-card-description font-lora"
@@ -139,15 +142,22 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
           </div>
 
           {index === 0 ? (
-            <div className="relative w-[18vw] self-center">
-              <Image
-                src="https://i.ibb.co/1fzMvZsX/Whisk-c3d7e1a30964faf9de94c4e89d9441feeg.png"
-                alt="Manicure tool"
-                width={300}
-                height={300}
-                className="w-full h-auto"
-                sizes="18vw"
-              />
+            <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
+              <div className="relative w-full h-full">
+                <Image
+                  src="https://i.ibb.co/1fzMvZsX/Whisk-c3d7e1a30964faf9de94c4e89d9441feeg.png"
+                  alt="Manicure tool"
+                  fill
+                  className="object-contain object-center"
+                  sizes="25vw"
+                />
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background: `linear-gradient(to right, ${bgColor} 0%, transparent 40%)`,
+                  }}
+                />
+              </div>
             </div>
           ) : (
             <div
