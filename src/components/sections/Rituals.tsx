@@ -163,7 +163,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
             <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
               <div className="relative w-full h-full">
                 <Image
-                  src="https://i.ibb.co/G3bb3tJW/Whisk-e2a222fd1d93f479bf241578c34fa8eaeg-removebg-preview.png"
+                  src="https://i.ibb.co/RkVTLCPR/Whisk-27769cf02b3812bb0f246d211e75f64edr-removebg-preview.png"
                   alt="Eyebrow and lash tool"
                   fill
                   className="object-contain object-center"
@@ -217,7 +217,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
             <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
                 <div className="relative w-full h-full">
                     <Image
-                    src="https://i.ibb.co/QvzQ2xrx/Whisk-b28514e40a605588f9945c4cb122255bdr-removebg-preview.png"
+                    src="https://i.ibb.co/5x4hx901/Whisk-bba91139aa68284b2ff4dccad8136ab3dr-removebg-preview.png"
                     alt="Keratin treatment tool"
                     fill
                     className="object-contain object-center"
