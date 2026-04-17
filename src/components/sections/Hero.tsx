@@ -143,13 +143,13 @@ const Hero = () => {
 
         <div ref={contentRef} className="absolute inset-0 z-20 opacity-0 flex items-end justify-start">
              <div className="text-left" style={{ paddingBottom: '15vh', paddingLeft: 'clamp(1rem, 3vw, 5rem)' }}>
-                <h1 className="font-display leading-none" style={{ fontSize: '7vw', color: '#F0EBE3', letterSpacing: '-0.01em', textShadow: '2px 2px 8px rgba(0, 0, 0, 0.5)' }}>
+                <h1 className="font-display leading-none" style={{ fontSize: '7vw', color: '#F0EBE3', letterSpacing: '-0.01em', textShadow: '0 0 40px rgba(10,9,8,0.9), 0 0 80px rgba(10,9,8,0.7), 0 2px 4px rgba(10,9,8,1)' }}>
                     <div style={{ fontWeight: 900, textTransform: 'uppercase' }}>Красота</div>
                     <div style={{ fontWeight: 400, fontStyle: 'italic', color: '#8FA89A' }}>которую видно</div>
                 </h1>
                 <div className="mt-8 inline-block">
                     <div style={{ height: '1px', backgroundColor: '#F0EBE3', marginBottom: '1rem' }}></div>
-                    <p className="font-furore uppercase" style={{ color: '#F0EBE3', fontSize: '1.2vw', letterSpacing: '0.2em', textShadow: '1px 1px 4px rgba(0, 0, 0, 0.5)' }}>
+                    <p className="font-furore uppercase" style={{ color: '#F0EBE3', fontSize: '1.2vw', letterSpacing: '0.2em', textShadow: '0 0 10px rgba(10,9,8,0.9), 0 1px 2px rgba(10,9,8,1)' }}>
                         KATSO STUDIO · ИЖЕВСК
                     </p>
                 </div>
