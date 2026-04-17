@@ -12,6 +12,8 @@ const Hero = () => {
   const maskRectRef = useRef<SVGRectElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const topLeftTextRef = useRef<HTMLHeadingElement>(null);
+  const bottomRightTextRef = useRef<HTMLHeadingElement>(null);
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -20,58 +22,94 @@ const Hero = () => {
 
     document.fonts.ready.then(() => {
         ctx = gsap.context(() => {
-        const mm = gsap.matchMedia();
+            const mm = gsap.matchMedia();
 
-        mm.add("(min-width: 768px)", () => {
-            const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: sectionRef.current,
-                start: 'top top',
-                end: '+=250%',
-                scrub: 1,
-                pin: pinRef.current,
-                invalidateOnRefresh: true,
-            },
+            const topLeftEl = topLeftTextRef.current;
+            const bottomRightEl = bottomRightTextRef.current;
+            const pinEl = pinRef.current;
+
+            if (pinEl && topLeftEl && bottomRightEl) {
+                const fitText = () => {
+                    const containerWidth = pinEl.offsetWidth;
+                    
+                    const currentFontSizeTL = parseFloat(window.getComputedStyle(topLeftEl).fontSize) || 16;
+                    const scaleTL = (containerWidth * 0.45) / topLeftEl.scrollWidth;
+                    gsap.set(topLeftEl, { fontSize: currentFontSizeTL * scaleTL });
+
+                    const currentFontSizeBR = parseFloat(window.getComputedStyle(bottomRightEl).fontSize) || 16;
+                    const scaleBR = (containerWidth * 0.7) / bottomRightEl.scrollWidth;
+                    gsap.set(bottomRightEl, { fontSize: currentFontSizeBR * scaleBR });
+                };
+
+                fitText();
+                window.addEventListener('resize', fitText);
+                
+                mm.add('all', () => {
+                    return () => window.removeEventListener('resize', fitText)
+                });
+            }
+
+            mm.add("(min-width: 768px)", () => {
+                const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: 'top top',
+                    end: '+=250%',
+                    scrub: 1,
+                    pin: pinRef.current,
+                    invalidateOnRefresh: true,
+                },
+                });
+
+                tl.to(
+                maskedTextRef.current,
+                {
+                    attr: { 'font-size': '80vw', 'letter-spacing': '5vw' },
+                    ease: 'power1.in',
+                    duration: 4,
+                },
+                0
+                );
+
+                tl.to(
+                maskRectRef.current,
+                {
+                    attr: { fill: 'white' },
+                    ease: 'power1.inOut',
+                    duration: 3,
+                },
+                3
+                );
+
+                tl.fromTo(
+                contentRef.current,
+                {
+                    opacity: 0,
+                },
+                {
+                    opacity: 1,
+                    ease: 'power1.out',
+                    duration: 3,
+                },
+                3.5
+                );
+
+                tl.to(
+                  [topLeftEl, bottomRightEl],
+                  {
+                    opacity: 1,
+                    ease: 'power1.out',
+                    duration: 3,
+                  },
+                  3.5
+                );
             });
-
-            tl.to(
-            maskedTextRef.current,
-            {
-                attr: { 'font-size': '80vw', 'letter-spacing': '5vw' },
-                ease: 'power1.in',
-                duration: 4,
-            },
-            0
-            );
-
-            tl.to(
-            maskRectRef.current,
-            {
-                attr: { fill: 'white' },
-                ease: 'power1.inOut',
-                duration: 3,
-            },
-            3
-            );
-
-            tl.fromTo(
-            contentRef.current,
-            {
-                opacity: 0,
-            },
-            {
-                opacity: 1,
-                ease: 'power1.out',
-                duration: 3,
-            },
-            3.5
-            );
-        });
-        
-        mm.add("(max-width: 767px)", () => {
-            gsap.set(contentRef.current, { opacity: 1, y: 0 });
-            gsap.set(maskedTextRef.current, { 'font-size': 0, opacity: 0 });
-        });
+            
+            mm.add("(max-width: 767px)", () => {
+                gsap.set(contentRef.current, { opacity: 1, y: 0 });
+                gsap.set(maskedTextRef.current, { 'font-size': 0, opacity: 0 });
+                gsap.set([topLeftEl, bottomRightEl], { opacity: 1 });
+            });
 
         }, sectionRef);
     });
@@ -86,6 +124,9 @@ const Hero = () => {
   return (
     <section ref={sectionRef} id="hero" className="relative md:h-[350vh]">
       <div ref={pinRef} className="h-screen w-full md:sticky top-0 overflow-hidden" style={{ backgroundColor: '#2D2D2D' }}>
+        
+        <h2 ref={topLeftTextRef} className="absolute top-0 left-0 font-anton text-cream/10 leading-none select-none whitespace-nowrap z-20 opacity-0 p-4">Красота</h2>
+        <h2 ref={bottomRightTextRef} className="absolute bottom-0 right-0 font-anton text-cream/10 leading-none select-none whitespace-nowrap z-20 opacity-0 p-4">которую видно</h2>
         
         {/* Main background textures */}
         <div

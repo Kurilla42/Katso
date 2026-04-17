@@ -20,6 +20,7 @@ const config: Config = {
         body: ['Geologica', 'sans-serif'],
         furore: ['Furore', 'sans-serif'],
         lora: ['Lora', 'serif'],
+        anton: ['Anton', 'sans-serif'],
       },
       fontSize: {
         xs: '0.75vw',
