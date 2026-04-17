@@ -41,6 +41,18 @@ const NewMe = () => {
         const mm = gsap.matchMedia();
 
         mm.add("(min-width: 768px)", () => {
+            const setOrigin = () => {
+                if (!tEl || !scaleTargetEl) return;
+                // The letter 'T' is now the reference for scaling
+                const tRect = tEl.getBoundingClientRect();
+                const scaleTargetRect = scaleTargetEl.getBoundingClientRect();
+                const originXText = (tRect.left - scaleTargetRect.left) + (tRect.width / 2);
+                const originYText = (tRect.top - scaleTargetRect.top) + (tRect.height / 2);
+                gsap.set(scaleTargetEl, { transformOrigin: `${originXText}px ${originYText}px` });
+            }
+            
+            setOrigin(); // Set it once initially
+
             const tl = gsap.timeline({
               scrollTrigger: {
                 trigger: sectionEl,
@@ -49,17 +61,10 @@ const NewMe = () => {
                 scrub: 1,
                 pin: pinContainerEl,
                 invalidateOnRefresh: true,
+                onRefresh: setOrigin, // And recalculate on every refresh (like window resize)
               },
             });
             
-            // The letter 'T' is now the reference for scaling
-            const tRect = tEl.getBoundingClientRect();
-            
-            const scaleTargetRect = scaleTargetEl.getBoundingClientRect();
-            const originXText = (tRect.left - scaleTargetRect.left) + (tRect.width / 2);
-            const originYText = (tRect.top - scaleTargetRect.top) + (tRect.height / 2);
-            gsap.set(scaleTargetEl, { transformOrigin: `${originXText}px ${originYText}px` });
-
             tl.to(
               scaleTargetEl,
               {
