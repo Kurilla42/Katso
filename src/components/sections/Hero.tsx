@@ -145,7 +145,7 @@ const Hero = () => {
              <div className="text-left" style={{ paddingBottom: '5vh', paddingLeft: 'clamp(1rem, 3vw, 5rem)' }}>
                 <h1 className="font-display leading-none" style={{ fontSize: '7vw', color: '#F0EBE3', letterSpacing: '-0.01em', textShadow: '2px 2px 8px rgba(0, 0, 0, 0.5)' }}>
                     <div style={{ fontWeight: 900, textTransform: 'uppercase' }}>Красота</div>
-                    <div style={{ fontWeight: 400, fontStyle: 'italic' }}>которую видно</div>
+                    <div style={{ fontWeight: 400, fontStyle: 'italic', color: '#8FA89A' }}>которую видно</div>
                 </h1>
             </div>
         </div>
