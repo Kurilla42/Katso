@@ -199,7 +199,7 @@ const Rituals = () => {
 
                 gsap.to(card, {
                     scale: 0.9,
-                    yPercent: -15,
+                    yPercent: -100,
                     filter: 'blur(8px)',
                     ease: 'power1.in',
                     scrollTrigger: {
