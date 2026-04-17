@@ -168,7 +168,7 @@ const Rituals = () => {
             if (!isDesktop || isReduced) return;
             
             const cards = cardsRef.current.filter(Boolean) as HTMLElement[];
-            if (cards.length < 2) return;
+            if (cards.length < 1) return;
 
             const ritualsEl = componentRef.current;
             if (!ritualsEl) return;
@@ -192,9 +192,6 @@ const Rituals = () => {
 
             // Card disappear animation
             cards.forEach((card, index) => {
-                // The last card doesn't scroll off, it just gets covered by the next section
-                if (index === cards.length - 1) return;
-
                 gsap.to(card, {
                     scale: 0.9,
                     yPercent: -100,
@@ -202,8 +199,8 @@ const Rituals = () => {
                     ease: 'power1.in',
                     scrollTrigger: {
                         trigger: card,
-                        start: 'top 30%', // When top of card is at 30% of viewport height (i.e. it has passed 70% of the screen)
-                        end: 'top top',    // When top of card reaches top of viewport
+                        start: 'top 30%',
+                        end: 'top top',
                         scrub: true,
                         invalidateOnRefresh: true,
                     },

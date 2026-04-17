@@ -139,7 +139,7 @@
 }
 
 .ritual-card {
-  position: relative;
+  position: relative; /* Changed from sticky */
   height: var(--card-height);
   width: 100%;
   margin-bottom: var(--card-gap);
@@ -148,6 +148,10 @@
   transform-origin: 50% 0%;
   will-change: transform, filter, opacity;
   isolation: isolate;
+}
+
+.rituals-stack .ritual-card:last-child {
+  margin-bottom: 0;
 }
 
 .ritual-card-inner {
