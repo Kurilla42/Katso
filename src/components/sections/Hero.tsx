@@ -115,13 +115,13 @@ const Hero = () => {
 
         {/* Gradient Overlay */}
         <div
-            className="absolute inset-0 w-full h-full z-[5] pointer-events-none"
+            className="absolute inset-x-0 top-0 bottom-[-2px] w-full z-[5] pointer-events-none"
             style={{
             maskImage: 'linear-gradient(to top, black 15%, transparent 30%)',
             WebkitMaskImage: 'linear-gradient(to top, black 15%, transparent 30%)',
             }}
         >
-            <div className="relative w-full h-full" style={{ backgroundColor: '#2D2D2D' }}>
+            <div className="relative w-full h-full">
                 <div
                     className="absolute inset-0 w-full h-full"
                     style={{
