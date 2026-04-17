@@ -15,7 +15,7 @@ const whyKatsoData = [
   {
     title: 'Программа лояльности',
     description: '3% от каждой услуги возвращается баллами. Этими баллами можно оплатить 20% любой следующей услуги\n-15% скидка в день рождения, действует 7 дней до/после\n-15% день студента каждый понедельник\n-10% комбо «ногти+ брови»',
-    bgColor: '#B89E82',
+    bgColor: '#8FA89A',
   },
   {
     title: 'Консультация часть услуги',
@@ -124,7 +124,7 @@ const WhyKatso = () => {
                             {/* Decorative Line */}
                             <div
                                 className={`absolute right-0 w-[60%] h-px ${index === 1 ? 'bottom-[40%]' : 'top-[40%]'}`}
-                                style={{ backgroundColor: '#EDE8E0' }}
+                                style={{ backgroundColor: index === 1 ? '#2D2D2D' : '#EDE8E0' }}
                             />
 
                             {/* Content Wrapper */}
@@ -137,10 +137,17 @@ const WhyKatso = () => {
                             >
                                 <div className="absolute top-[10%] max-w-2xl">
                                     <div className="relative pl-4 md:pl-6">
-                                        <div className="absolute top-0 left-0 h-full w-px bg-cream"></div>
+                                        <div
+                                            className="absolute top-0 left-0 h-full w-px"
+                                            style={{ backgroundColor: index === 1 ? '#2D2D2D' : colors.cream }}
+                                        ></div>
                                         <p
-                                            className="font-lora text-nude whitespace-pre-line"
-                                            style={{ fontSize: '1.2vw', lineHeight: 1.085 }}
+                                            className="font-lora whitespace-pre-line"
+                                            style={{
+                                                fontSize: '1.2vw',
+                                                lineHeight: 1.085,
+                                                color: index === 1 ? '#2D2D2D' : colors.nude,
+                                            }}
                                         >
                                             {item.description}
                                         </p>
@@ -148,8 +155,11 @@ const WhyKatso = () => {
                                 </div>
 
                                 <h3 
-                                    className="absolute bottom-[10%] font-display uppercase text-cream max-w-[50%]"
-                                    style={{ fontSize: '5vw' }}
+                                    className="absolute bottom-[10%] font-display uppercase max-w-[50%]"
+                                    style={{
+                                        fontSize: '5vw',
+                                        color: index === 1 ? '#2D2D2D' : colors.cream
+                                    }}
                                 >
                                     {item.title}
                                 </h3>
