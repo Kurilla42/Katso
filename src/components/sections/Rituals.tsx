@@ -201,7 +201,7 @@ const Rituals = () => {
                         trigger: card,
                         start: 'top 30%',
                         end: 'top top',
-                        scrub: true,
+                        scrub: 1.5,
                         invalidateOnRefresh: true,
                     },
                 });
