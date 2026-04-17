@@ -121,7 +121,7 @@ const Hero = () => {
 
         <div className="h-full w-full" style={{ mask: 'url(#hero-mask)', WebkitMask: 'url(#hero-mask)' }}>
            <div className="relative h-full w-full overflow-hidden">
-             <video ref={videoRef} className="absolute top-0 left-0 w-full h-full object-cover" autoPlay loop muted playsInline poster="https://i.ibb.co/cKjhxFRw/2026-04-16-20-21-13.png">
+             <video ref={videoRef} className="absolute top-0 left-0 w-full h-full object-cover" autoPlay loop muted playsInline poster="https://i.ibb.co/p688qQCw/2026-04-18-03-06-45.jpg">
                <source src="/video/Hero-video.mp4" type="video/mp4" />
              </video>
              <div className="absolute inset-0 bg-black/20"></div>
