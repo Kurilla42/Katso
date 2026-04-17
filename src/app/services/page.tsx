@@ -343,29 +343,29 @@ const PriceRow = ({
   col2: string | null;
   col3?: string | null;
 }) => (
-  <div className="flex justify-between items-start gap-4 py-4 border-b border-cream/10 font-lora">
+  <div className="flex justify-between items-start gap-4 py-4 font-lora">
     <div className="flex-1">
-      {col1 && <p className="text-cream">{col1}</p>}
-      {col3 && <p className="text-nude text-sm mt-1 max-w-md">{col3}</p>}
+      {col1 && <p className="text-cream" style={{ fontSize: '1.2vw' }}>{col1}</p>}
+      {col3 && <p className="text-nude mt-1 max-w-md" style={{ fontSize: '1.2vw' }}>{col3}</p>}
     </div>
-    {col2 && <p className="text-cream text-right whitespace-nowrap">{col2}</p>}
+    {col2 && <p className="text-cream text-right whitespace-nowrap" style={{ fontSize: '1.2vw' }}>{col2}</p>}
   </div>
 );
 
 const ThreeColPriceRow = ({ col1, col2, col3 }: { col1: string | null; col2: string | null; col3: string | null; }) => (
-    <div className="grid grid-cols-3 items-start gap-4 py-4 border-b border-cream/10 font-lora">
-      <p className="text-cream">{col1}</p>
-      <p className="text-cream text-center">{col2}</p>
-      <p className="text-cream text-right">{col3}</p>
+    <div className="grid grid-cols-3 items-start gap-4 py-4 font-lora">
+      <p className="text-cream" style={{ fontSize: '1.2vw' }}>{col1}</p>
+      <p className="text-cream text-center" style={{ fontSize: '1.2vw' }}>{col2}</p>
+      <p className="text-cream text-right" style={{ fontSize: '1.2vw' }}>{col3}</p>
     </div>
   );
 
 const PriceTable = ({ subCategory }: { subCategory: (typeof servicesData)[0]['subCategories'][0] }) => (
   <div className="mb-12">
     {subCategory.title && <h3 className="font-display text-2xl md:text-3xl uppercase text-cream mb-6">{subCategory.title}</h3>}
-    {subCategory.description && <p className="font-lora text-nude mb-6 -mt-4">{subCategory.description}</p>}
+    {subCategory.description && <p className="font-lora text-nude mb-6 -mt-4" style={{ fontSize: '1.2vw' }}>{subCategory.description}</p>}
     
-    <div className="border-t border-cream/10">
+    <div>
         {subCategory.headers.length > 0 && subCategory.headers.length < 3 && (
              <div className="flex justify-between items-start gap-4 py-2 font-display text-nude uppercase tracking-wider text-sm">
                 <span className="flex-1">{subCategory.headers[0]}</span>
@@ -391,7 +391,7 @@ const PriceTable = ({ subCategory }: { subCategory: (typeof servicesData)[0]['su
     {subCategory.notes && (
         <div className="mt-4 space-y-1">
             {subCategory.notes.map((note, index) => (
-                <p key={index} className="text-nude text-sm font-lora">
+                <p key={index} className="text-nude font-lora" style={{ fontSize: '1.2vw' }}>
                     * {note}
                 </p>
             ))}
@@ -424,21 +424,29 @@ export default function ServicesPage() {
     }, []);
 
     return (
-        <main style={{ backgroundColor: colors.background }} data-cursor="dark">
+        <main style={{ backgroundColor: '#2D2D2D' }} data-cursor="dark" className="relative">
+            <div
+                className="absolute inset-0 w-full h-full pointer-events-none"
+                style={{
+                    backgroundImage: 'url(https://i.ibb.co/zWNnhBMd/concrete-wall-2-1.png)',
+                    backgroundRepeat: 'repeat',
+                    opacity: 0.7,
+                    mixBlendMode: 'overlay',
+                }}
+            ></div>
             <div className="paper-texture"></div>
-            <div className="grid-overlay"></div>
             
             <ServicesNav activeSection={activeSection} />
 
-            <div className="container py-16 md:py-24">
+            <div className="relative py-16 md:py-24" style={{ paddingLeft: '10%', paddingRight: '10%' }}>
                 {servicesData.map((section, sectionIndex) => (
                     <section
                         key={section.id}
                         id={section.id}
                         className="service-section scroll-mt-header mb-16 md:mb-24"
                     >
-                        <h2 className="font-display text-h2 uppercase text-cream mb-10 md:mb-12">
-                           <span className="text-accent">{String(sectionIndex+1).padStart(2, '0')}</span> {section.title}
+                        <h2 className="font-display uppercase text-cream mb-10 md:mb-12" style={{ fontSize: '3.0vw', lineHeight: 1.1 }}>
+                           {section.title}
                         </h2>
                         {section.subCategories.map((subCategory, subIndex) => (
                             <PriceTable key={subIndex} subCategory={subCategory} />
