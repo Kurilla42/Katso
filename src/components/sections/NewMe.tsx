@@ -26,6 +26,18 @@ const NewMe = () => {
     // A small delay to ensure all elements are rendered and have their dimensions.
     const timer = setTimeout(() => {
       ctx = gsap.context(() => {
+        // Floating animation for images
+        gsap.utils.toArray<HTMLElement>('.floating-image').forEach((el, i) => {
+          gsap.to(el, {
+            yPercent: i % 2 === 0 ? -5 : 5, // move up or down by 5% of its height
+            duration: 3 + Math.random() * 2, // random duration for variety
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut',
+            delay: Math.random() * 2 // random delay to de-sync them
+          });
+        });
+
         const mm = gsap.matchMedia();
 
         mm.add("(min-width: 768px)", () => {
@@ -91,7 +103,7 @@ const NewMe = () => {
           {/* Images are positioned relative to this container */}
           <div ref={contentWrapperRef} className="absolute inset-0 w-full h-full">
             {/* Image 1 */}
-            <div className="absolute w-[10.8vw] aspect-[1/1.2] bottom-[10%] left-[10%] transform -rotate-[7deg]">
+            <div className="floating-image absolute w-[11.9vw] aspect-[1/1.2] bottom-[10%] left-[10%] transform -rotate-[7deg]">
                 <Image
                     src="https://i.ibb.co/8D9VnyxZ/790b8980-17ce-4517-9d41-bd3a5008a7ef.jpg"
                     alt="Woman with beautiful hair"
@@ -102,7 +114,7 @@ const NewMe = () => {
             </div>
 
             {/* Image 2 */}
-            <div className="absolute w-[8.7vw] aspect-[1.2/1] top-[12%] right-[15%] transform rotate-[6deg]">
+            <div className="floating-image absolute w-[10.4vw] aspect-[1.2/1] top-[12%] right-[15%] transform rotate-[6deg]">
                 <Image
                     src="https://i.ibb.co/v6xqgN14/440cc9b2-04fe-40e8-83e7-84d0e84b820f.jpg"
                     alt="Beauty salon details"
@@ -113,7 +125,7 @@ const NewMe = () => {
             </div>
 
             {/* Image 3 */}
-            <div className="absolute w-[11.5vw] aspect-[1/1.2] top-[8%] left-[40%]">
+            <div className="floating-image absolute w-[11.5vw] aspect-[1/1.2] top-[8%] left-[40%]">
                 <Image
                     src="https://i.ibb.co/pvCXs1fm/5a0c5da2-c0e2-4de6-be9f-3390f376e3e1.jpg"
                     alt="Woman getting a beauty treatment"
