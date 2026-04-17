@@ -219,9 +219,12 @@ const Faq = () => {
             <div className="mt-16 pr-[clamp(1rem,3vw,5rem)]">
               <p className="font-lora text-nude" style={{ fontSize: '1.2vw' }}>Не нашли ответ?</p>
               <a
-                href="#"
-                className="inline-block mt-2 font-medium text-accent group rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-surface"
+                href="https://t.me/katso_studio"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-2 font-medium text-nude group rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nude focus-visible:ring-offset-4 focus-visible:ring-offset-surface"
                 data-cursor-hover="link"
+                style={{ fontSize: '1.2vw' }}
               >
                 <span>Напишите нам</span>
                 <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">&nbsp;&rarr;</span>
