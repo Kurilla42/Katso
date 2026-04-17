@@ -10,8 +10,8 @@ const ritualsData = [
     title: 'МАНИКЮР И НАРАЩИВАНИЕ НОГТЕЙ',
     description:
       'Идеальный маникюр и педикюр, от лечебного до дизайнерского. Безопасность, стерильность и внимание к деталям.',
-    bgColor: '#EAE0CC',
-    textColor: '#2D2D2D',
+    bgColor: '#8a9a5b',
+    textColor: '#EDE8E0',
     numeralColor: 'rgba(237, 232, 224, 0.18)',
   },
   {
@@ -26,8 +26,8 @@ const ritualsData = [
     title: 'СТРИЖКИ / УКЛАДКИ / УХОД ЗА ДЛИНОЙ',
     description:
       'От классических форм до смелых креативных решений, а также восстанавливающие уходы, которые вернут волосам силу и блеск.',
-    bgColor: '#EAE0CC',
-    textColor: '#2D2D2D',
+    bgColor: '#8a9a5b',
+    textColor: '#EDE8E0',
     numeralColor: 'rgba(237, 232, 224, 0.18)',
   },
   {
@@ -42,8 +42,8 @@ const ritualsData = [
     title: 'КЕРАТИН / БОТОКС',
     description:
       'Профессиональная диагностика и индивидуальные программы лечения и ухода для решения проблем кожи головы и стимуляции роста волос.',
-    bgColor: '#EAE0CC',
-    textColor: '#2D2D2D',
+    bgColor: '#8a9a5b',
+    textColor: '#EDE8E0',
     numeralColor: 'rgba(237, 232, 224, 0.18)',
   },
   {
@@ -58,8 +58,8 @@ const ritualsData = [
     title: 'МАКИЯЖ / ОБРАЗ НЕВЕСТЫ',
     description:
       'Создадим для вас неповторимый образ в самый важный день. Учтем все пожелания и детали, чтобы вы чувствовали себя неотразимой.',
-    bgColor: '#EAE0CC',
-    textColor: '#2D2D2D',
+    bgColor: '#8a9a5b',
+    textColor: '#EDE8E0',
     numeralColor: 'rgba(237, 232, 224, 0.18)',
   },
 ];
