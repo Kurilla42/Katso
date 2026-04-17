@@ -79,7 +79,7 @@ const NewMe = () => {
           style={{
             backgroundImage: 'url(https://i.ibb.co/zWNnhBMd/concrete-wall-2-1.png)',
             backgroundRepeat: 'repeat',
-            opacity: 0.4,
+            opacity: 0.55,
             mixBlendMode: 'overlay',
           }}></div>
       <div ref={pinContainerRef} className="h-screen w-full flex items-center justify-center overflow-hidden md:sticky md:top-0 relative">
