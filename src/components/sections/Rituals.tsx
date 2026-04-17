@@ -26,7 +26,7 @@ const ritualsData = [
     bgColor: '#F0EBE3',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(45, 45, 45, 0.18)',
-    imageUrl: 'https://i.ibb.co/dsR0Z0NM/Image-2.png',
+    imageUrl: 'https://i.ibb.co/cSx8YPZn/Image-2.png',
   },
   {
     id: 'hair',
@@ -148,7 +148,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
               }}
               data-cursor-hover="link"
             >
-              ПОДРОБНЕЕ<span className="inline-block transition-transform duration-300 group-hover:translate-x-1">&nbsp;→</span>
+              ЦЕНЫ<span className="inline-block transition-transform duration-300 group-hover:translate-x-1">&nbsp;→</span>
             </Link>
           </div>
 
@@ -264,7 +264,7 @@ const Rituals = () => {
                         paddingBottom: 'clamp(64px, 10vh, 96px)',
                     }}
                 >
-                    <h2 className="ritual-card-headline text-cream" style={{fontStyle: 'italic'}}>
+                    <h2 className="ritual-card-headline text-cream">
                         Ритуалы <br /> Красоты
                     </h2>
                 </div>
