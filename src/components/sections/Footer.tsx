@@ -10,22 +10,22 @@ const footerLinks = [
   {
     title: 'Навигация',
     links: [
-      { text: 'Главная', href: '#' },
-      { text: 'Услуги', href: '#' },
-      { text: 'Мастера', href: '#' },
-      { text: 'Почему мы', href: '#' },
-      { text: 'FAQ', href: '#' },
+      { text: 'Главная', href: '#hero' },
+      { text: 'Услуги', href: '#rituals' },
+      { text: 'Мастера', href: '#masters' },
+      { text: 'Почему мы', href: '#why-us' },
+      { text: 'FAQ', href: '#faq' },
     ],
   },
   {
     title: 'Услуги',
     links: [
-      { text: 'Стрижки', href: '#' },
-      { text: 'Окрашивание', href: '#' },
-      { text: 'Уход', href: '#' },
-      { text: 'Ногти', href: '#' },
-      { text: 'Косметология', href: '#' },
-      { text: 'Макияж', href: '#' },
+      { text: 'Стрижки', href: '/services#hair' },
+      { text: 'Окрашивание', href: '/services#color' },
+      { text: 'Уход', href: '/services#scalp' },
+      { text: 'Ногти', href: '/services#manicure' },
+      { text: 'Брови', href: '/services#brows' },
+      { text: 'Макияж', href: '/services#makeup' },
     ],
   },
   {
@@ -42,6 +42,7 @@ const footerLinks = [
       { text: 'Instagram', href: 'https://www.instagram.com/katso.studio' },
       { text: 'VK', href: 'https://vk.com/httpkatso.studio' },
       { text: 'Telegram', href: 'https://t.me/katso_studio' },
+      { text: 'Whatsapp', href: 'https://wa.me/79120193362' },
     ],
   },
 ];
@@ -91,16 +92,16 @@ const Footer = () => {
         <div className="paper-texture"></div>
         <div className="grid-overlay"></div>
         <div ref={containerRef}>
-          <div className="relative h-[clamp(300px,30vw,500px)] flex items-end overflow-hidden pl-[10%] pr-[10%]">
+          <div className="relative h-[clamp(300px,30vw,500px)] flex items-end overflow-hidden px-[clamp(1rem,3vw,5rem)]">
             {/* Left: Giant Wordmark */}
             <div className="absolute left-0 bottom-0 z-0">
-              <h2 ref={wordMarkRef} className="font-display text-cream/10 leading-none select-none whitespace-nowrap">
+              <h2 ref={wordMarkRef} className="font-display text-cream/10 leading-none select-none whitespace-nowrap pl-[clamp(1rem,3vw,5rem)]">
                   KATSO
               </h2>
             </div>
 
             {/* Right: Map */}
-            <div className="relative w-full md:w-1/2 lg:w-5/12 h-[clamp(240px,25vw,400px)] ml-auto rounded-md overflow-hidden z-10">
+            <div className="relative w-full md:w-1/2 lg:w-5/12 aspect-[4/3] ml-auto rounded-md overflow-hidden z-10">
                 <Map />
             </div>
           </div>
@@ -129,8 +130,8 @@ const Footer = () => {
           <div className="border-b border-cream/10 my-16 md:my-24" />
 
           {/* Bottom CTA */}
-          <a href="#" className="group block text-center py-8 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" data-cursor-hover="link">
-              <span className="font-display tracking-display text-cream uppercase group-hover:text-accent transition-colors duration-200" style={{ fontSize: '5vw' }}>
+          <a href="https://wa.me/79120193362" target="_blank" rel="noopener noreferrer" className="group block text-center py-8 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" data-cursor-hover="link">
+              <span className="font-display tracking-display text-cream uppercase group-hover:text-accent transition-colors duration-200" style={{ fontSize: '3.5vw' }}>
                   Записаться на ритуал
                   <span className="inline-block transition-transform duration-400 group-hover:translate-x-2 group-hover:-translate-y-2">&nbsp;↗</span>
               </span>
