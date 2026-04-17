@@ -162,12 +162,6 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
                   sizes="25vw"
                   priority={index < 2}
                 />
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background: `linear-gradient(to right, ${bgColor} 0%, transparent 40%)`,
-                  }}
-                />
               </div>
             </div>
         </div>
