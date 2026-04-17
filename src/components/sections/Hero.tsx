@@ -149,7 +149,7 @@ const Hero = () => {
                 </h1>
                 <div className="mt-8 inline-block">
                     <div style={{ height: '1px', backgroundColor: '#F0EBE3', marginBottom: '1rem' }}></div>
-                    <p className="font-furore uppercase" style={{ color: '#F0EBE3', fontSize: '1.2vw', letterSpacing: '0.2em' }}>
+                    <p className="font-furore uppercase" style={{ color: '#F0EBE3', fontSize: '1.2vw', letterSpacing: '0.2em', textShadow: '1px 1px 4px rgba(0, 0, 0, 0.5)' }}>
                         KATSO STUDIO · ИЖЕВСК
                     </p>
                 </div>
