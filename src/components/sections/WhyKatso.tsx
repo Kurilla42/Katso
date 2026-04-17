@@ -124,11 +124,20 @@ const WhyKatso = () => {
                             ></div>
                             <div className="paper-texture"></div>
 
-                            {/* Decorative Line */}
-                            <div
-                                className={`absolute right-0 w-[60%] h-px ${index === 1 ? 'bottom-[40%]' : 'top-[40%]'}`}
-                                style={{ backgroundColor: index === 1 ? '#2D2D2D' : colors.cream }}
-                            />
+                            {/* Decorative Line & Text */}
+                            <div className={`absolute right-0 w-[60%] ${index === 1 ? 'bottom-[40%]' : 'top-[40%]'}`}>
+                                {index !== 1 && (
+                                    <p className="absolute bottom-full left-0 mb-2 font-lora" style={{fontSize: '1.2vw', color: colors.cream}}>
+                                        наши работы
+                                    </p>
+                                )}
+                                <div className="w-full h-px" style={{ backgroundColor: index === 1 ? '#2D2D2D' : colors.cream }}/>
+                                {index === 1 && (
+                                    <p className="absolute top-full left-0 mt-2 font-lora" style={{fontSize: '1.2vw', color: '#2D2D2D'}}>
+                                        наши работы
+                                    </p>
+                                )}
+                            </div>
 
                             {/* Content Wrapper */}
                             <div 
@@ -169,15 +178,6 @@ const WhyKatso = () => {
                             </div>
                             {index === 0 && (
                                 <>
-                                <div className="absolute top-[8%] right-0 w-[42vw] h-[85vh] max-w-[600px] pointer-events-none scale-120">
-                                    <Image
-                                        src="https://i.ibb.co/B5zD30Jx/isolated-pampas-grass-plume2.png"
-                                        alt="Pampas grass decoration"
-                                        fill
-                                        style={{ objectFit: 'contain', objectPosition: 'top right' }}
-                                    />
-                                </div>
-                                
                                 <div className="absolute bottom-[10%] md:top-[42%] md:bottom-[2%] right-[16%] w-[54%] md:w-[42%] lg:w-[36%] flex items-stretch gap-2 z-20">
                                     <div className="relative flex-1 aspect-[9/16]">
                                         <Image
@@ -236,21 +236,13 @@ const WhyKatso = () => {
                                         </div>
                                         <div className="relative flex-1 aspect-[9/16]">
                                             <Image
-                                                src="https://i.ibb.co/prbQTwGN/0i-Xf-i-PYg4-Je-IHQv-MNs-CKAKPega-Ed7-Mg-L2-Ns-Hq-Jw-AFvq-VNwa-Niy9x-MTjd-Zjgr7-Ofb-DF8-T-1k-QAX-s7-HF7-Uef.jpg"
+                                                src="https://i.ibb.co/zTX5qYP0/795de294-619b-4183-bc0e-0c4e3ea43753.jpg"
                                                 alt="Studio example 6"
                                                 fill
                                                 className="object-cover rounded-sm"
                                                 sizes="15vw"
                                             />
                                         </div>
-                                    </div>
-                                    <div className="absolute bottom-0 right-[5%] w-[30vw] h-[38vh] z-0 pointer-events-none">
-                                        <Image
-                                            src="https://i.ibb.co/Y71XvhtZ/Pngtree-pampas-grass-isolated-on-a-21120510.png"
-                                            alt="Pampas grass decoration"
-                                            fill
-                                            style={{ objectFit: 'contain', objectPosition: 'bottom right' }}
-                                        />
                                     </div>
                                 </>
                             )}
@@ -259,7 +251,7 @@ const WhyKatso = () => {
                                 <div className="absolute bottom-[10%] md:top-[42%] md:bottom-[2%] right-[16%] w-[54%] md:w-[42%] lg:w-[36%] flex items-stretch gap-2 z-20">
                                     <div className="relative flex-1 aspect-[9/16]">
                                         <Image
-                                            src="https://i.ibb.co/W4SrSLNw/2026-04-16-20-21-01.png"
+                                            src="https://i.ibb.co/Ps8WZV4p/3e6657d5-4dd8-4e65-8cb5-ea6922fcb896.jpg"
                                             alt="Studio example 3"
                                             fill
                                             className="object-cover rounded-sm"
