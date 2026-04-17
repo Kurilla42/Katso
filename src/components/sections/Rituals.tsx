@@ -264,7 +264,7 @@ const Rituals = () => {
                 <div
                     className="w-full mx-auto"
                     style={{
-                        paddingLeft: 'clamp(24px, 4vw, 80px)',
+                        paddingLeft: '5%',
                         paddingRight: 'clamp(24px, 4vw, 80px)',
                         paddingTop: 'clamp(64px, 10vh, 96px)',
                         paddingBottom: 'clamp(64px, 10vh, 96px)',

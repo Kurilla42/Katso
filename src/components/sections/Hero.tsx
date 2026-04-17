@@ -97,7 +97,7 @@ const Hero = () => {
                 mixBlendMode: 'overlay',
             }}
         ></div>
-        <div className="paper-texture"></div>
+        <div className="paper-texture absolute inset-0 w-full h-full pointer-events-none"></div>
 
         <svg ref={svgRef} className="absolute inset-0 w-full h-full pointer-events-none z-10">
           <defs>
@@ -143,7 +143,7 @@ const Hero = () => {
 
         <div ref={contentRef} className="absolute inset-0 z-20 opacity-0 flex items-end justify-center">
              <div className="text-center" style={{ paddingBottom: '5vh' }}>
-                <h1 className="font-display leading-none" style={{ fontSize: '7vw', color: '#F0EBE3' }}>
+                <h1 className="font-display leading-none italic" style={{ fontSize: '7vw', color: '#F0EBE3' }}>
                     Красота, которую видно
                 </h1>
             </div>
