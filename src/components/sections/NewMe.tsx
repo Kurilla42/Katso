@@ -82,45 +82,50 @@ const NewMe = () => {
             opacity: 0.7,
             mixBlendMode: 'overlay',
           }}></div>
-      <div ref={pinContainerRef} className="h-screen w-full flex items-center justify-center overflow-hidden md:sticky md:top-0 relative">
+      <div ref={pinContainerRef} className="h-screen w-full overflow-hidden md:sticky md:top-0 relative">
         <div
             ref={scaleTargetRef}
-            className="relative z-10 w-full text-cream grid grid-cols-[1fr_auto_1fr] gap-x-8 items-center"
-            style={{
-                paddingLeft: 'clamp(24px, 4vw, 80px)',
-                paddingRight: 'clamp(24px, 4vw, 80px)',
-            }}
+            className="relative w-full h-full"
         >
-            <h2
-                style={{ fontSize: '3vw', transform: 'translateY(-7.2vw)' }}
-                className="text-right leading-none font-display uppercase whitespace-pre-line"
-            >
-                {'Задача\nKA'}<span ref={tRef}>T</span>SO:
-            </h2>
-            
-            <div>
-                <p
-                    className="whitespace-pre-line font-display uppercase"
-                    style={{ fontSize: '3vw', lineHeight: 1.2 }}
-                >
-                    {'Раскрыть твою уникальность\nи познакомить с новым «я»'}
-                </p>
-            </div>
-
-            <p
-                className="font-lora text-right whitespace-pre-line"
+          <div className="w-full h-full flex items-center justify-center">
+            <div
+                className="relative z-10 w-full text-cream grid grid-cols-[1fr_auto_1fr] gap-x-8 items-center"
                 style={{
-                    fontSize: '1.2vw',
-                    lineHeight: 1.085,
-                    color: '#B89E82',
-                    transform: 'translateY(7.2vw)',
+                    paddingLeft: 'clamp(24px, 4vw, 80px)',
+                    paddingRight: 'clamp(24px, 4vw, 80px)',
                 }}
             >
-                {'Другой взгляд на себя, \nдругое мировоззрение и \nотношения с окружающим миром'}
-            </p>
+                <h2
+                    style={{ fontSize: '3vw', transform: 'translateY(-7.2vw)' }}
+                    className="text-right leading-none font-display uppercase whitespace-pre-line"
+                >
+                    {'Задача\nKA'}<span ref={tRef}>T</span>SO:
+                </h2>
+                
+                <div>
+                    <p
+                        className="whitespace-pre-line font-display uppercase"
+                        style={{ fontSize: '3vw', lineHeight: 1.2 }}
+                    >
+                        {'Раскрыть твою уникальность\nи познакомить с новым «я»'}
+                    </p>
+                </div>
 
+                <p
+                    className="font-lora text-right whitespace-pre-line"
+                    style={{
+                        fontSize: '1.2vw',
+                        lineHeight: 1.085,
+                        color: '#B89E82',
+                        transform: 'translateY(7.2vw)',
+                    }}
+                >
+                    {'Другой взгляд на себя, \nдругое мировоззрение и \nотношения с окружающим миром'}
+                </p>
+            </div>
+          </div>
             {/* Image 1 */}
-            <div className="absolute w-[15vw] aspect-[1/1.2] bottom-[-55%] left-[10%] transform -rotate-[7deg]">
+            <div className="absolute w-[15vw] aspect-[1/1.2] bottom-[10%] left-[10%] transform -rotate-[7deg]">
                 <Image
                     src="https://i.ibb.co/8D9VnyxZ/790b8980-17ce-4517-9d41-bd3a5008a7ef.jpg"
                     alt="Woman with beautiful hair"
@@ -131,7 +136,7 @@ const NewMe = () => {
             </div>
 
             {/* Image 2 */}
-            <div className="absolute w-[12vw] aspect-[1.2/1] top-[-55%] right-[15%] transform rotate-[6deg]">
+            <div className="absolute w-[12vw] aspect-[1.2/1] top-[15%] right-[15%] transform rotate-[6deg]">
                 <Image
                     src="https://i.ibb.co/v6xqgN14/440cc9b2-04fe-40e8-83e7-84d0e84b820f.jpg"
                     alt="Beauty salon details"
@@ -142,7 +147,7 @@ const NewMe = () => {
             </div>
 
             {/* Image 3 */}
-            <div className="absolute w-[16vw] aspect-[1/1.2] top-[-75%] left-[42%]">
+            <div className="absolute w-[16vw] aspect-[1/1.2] top-[10%] left-[42%]">
                 <Image
                     src="https://i.ibb.co/pvCXs1fm/5a0c5da2-c0e2-4de6-be9f-3390f376e3e1.jpg"
                     alt="Woman getting a beauty treatment"
