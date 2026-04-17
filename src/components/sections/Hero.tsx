@@ -112,6 +112,7 @@ const Hero = () => {
                 mixBlendMode: 'overlay',
             }}>
         </div>
+        <div className="paper-texture"></div>
         
         <svg ref={svgRef} className="absolute inset-0 w-full h-full pointer-events-none">
           <defs>
