@@ -11,6 +11,7 @@ const Hero = () => {
   const contentRef = useRef<HTMLDivElement>(null);
   const maskRectRef = useRef<SVGRectElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -34,6 +35,16 @@ const Hero = () => {
                 invalidateOnRefresh: true,
             },
             });
+
+            // Parallax effect for the video
+            tl.to(
+                videoRef.current,
+                {
+                    yPercent: 20, // Move video down slowly
+                    ease: 'none',
+                },
+                0
+            );
 
             // Phase 1: Animate the text mask to expand
             tl.to(
@@ -114,14 +125,14 @@ const Hero = () => {
         </svg>
 
         <div className="h-full w-full" style={{ mask: 'url(#hero-mask)', WebkitMask: 'url(#hero-mask)' }}>
-          <video className="w-full h-full object-cover" autoPlay loop muted playsInline poster="https://i.ibb.co/cKjhxFRw/2026-04-16-20-21-13.png">
+          <video ref={videoRef} className="w-full h-full object-cover" autoPlay loop muted playsInline poster="https://i.ibb.co/cKjhxFRw/2026-04-16-20-21-13.png">
             <source src="/video/Hero-video.mp4" type="video/mp4" />
           </video>
         </div>
 
         <div ref={contentRef} className="absolute inset-0 z-10 opacity-0 flex items-end justify-center">
              <div className="text-center" style={{ paddingBottom: '5vh' }}>
-                <h1 className="font-display leading-none" style={{ fontSize: '13vw', color: '#2D2D2D' }}>
+                <h1 className="font-display leading-none" style={{ fontSize: '6vw', color: '#F0EBE3' }}>
                     Красота, которую видно
                 </h1>
             </div>

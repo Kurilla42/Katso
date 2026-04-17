@@ -11,8 +11,8 @@ export default function Home() {
   return (
     <main>
       <Hero />
-      <BrandMarquee />
-      <SocialProof />
+      {/* <BrandMarquee /> */}
+      {/* <SocialProof /> */}
       <Rituals />
       <NewMe />
       <WhyKatso />
