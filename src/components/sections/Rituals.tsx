@@ -5,63 +5,78 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { EASES } from '@/lib/animations';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const ritualsData = [
   {
+    id: 'manicure',
     title: 'МАНИКЮР И НАРАЩИВАНИЕ НОГТЕЙ',
     description:
       'Идеальный маникюр и педикюр, от лечебного до дизайнерского. Безопасность, стерильность и внимание к деталям.',
     bgColor: '#8FA89A',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(240, 235, 227, 0.18)',
+    imageUrl: 'https://i.ibb.co/spH1Fjd7/Whisk-c3d7e1a30964faf9de94c4e89d9441feeg-removebg-preview-upscayl-2x-ultrasharp-4x.png',
   },
   {
+    id: 'brows',
     title: 'БРОВИ И РЕСНИЦЫ',
     description:
       'Коррекция и окрашивание бровей и ресниц для создания выразительного взгляда, который подчеркнет вашу естественную красоту.',
     bgColor: '#F0EBE3',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(45, 45, 45, 0.18)',
+    imageUrl: 'https://i.ibb.co/XZdQq3fJ/Whisk-27769cf02b3812bb0f246d211e75f64edr-removebg-preview-upscayl-2x-ultrasharp-4x.png',
   },
   {
+    id: 'hair',
     title: 'СТРИЖКИ / УКЛАДКИ / УХОД ЗА ДЛИНОЙ',
     description:
       'От классических форм до смелых креативных решений, а также восстанавливающие уходы, которые вернут волосам силу и блеск.',
     bgColor: '#8FA89A',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(240, 235, 227, 0.18)',
+    imageUrl: 'https://i.ibb.co/23NQVcnf/Whisk-2d20512359f9059bbcc4a221cef3c79fdr-removebg-preview-upscayl-2x-ultrasharp-4x.png',
   },
   {
+    id: 'color',
     title: 'ОКРАШИВАНИЯ / ВЫПРЯМЛЕНИЕ',
     description:
       'Сложные техники окрашивания, безопасное выпрямление и процедуры для глубокого восстановления структуры волос.',
     bgColor: '#F0EBE3',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(45, 45, 45, 0.18)',
+    imageUrl: 'https://i.ibb.co/6RJ64XBy/Whisk-a7c8acf8514669fb9bf493e47ff7ffc6dr-removebg-preview-upscayl-2x-ultrasharp-4x.png',
   },
   {
+    id: 'keratin',
     title: 'КЕРАТИН / БОТОКС',
     description:
       'Профессиональная диагностика и индивидуальные программы лечения и ухода для решения проблем кожи головы и стимуляции роста волос.',
     bgColor: '#8FA89A',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(240, 235, 227, 0.18)',
+    imageUrl: 'https://i.ibb.co/SwwdwCCk/Whisk-bba91139aa68284b2ff4dccad8136ab3dr-removebg-preview-upscayl-2x-ultrasharp-4x.png',
   },
   {
+    id: 'scalp',
     title: 'УХОД ЗА КОЖЕЙ ГОЛОВЫ',
     description:
       'Дневной, вечерний или для особого случая. Наши визажисты создадут образ, который подчеркнет вашу уникальность.',
     bgColor: '#F0EBE3',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(45, 45, 45, 0.18)',
+    imageUrl: 'https://i.ibb.co/5gY1NcSJ/Whisk-7135b2e72ee7bbbad5f48f302f0e6577dr-removebg-preview-upscayl-2x-ultrasharp-4x.png',
   },
   {
+    id: 'makeup',
     title: 'МАКИЯЖ / ОБРАЗ НЕВЕСТЫ',
     description:
       'Создадим для вас неповторимый образ в самый важный день. Учтем все пожелания и детали, чтобы вы чувствовали себя неотразимой.',
     bgColor: '#8FA89A',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(240, 235, 227, 0.18)',
+    imageUrl: 'https://i.ibb.co/pjDSJnrJ/Whisk-e21bda035270e648ac1407efd0a90bd8dr-removebg-preview-upscayl-2x-ultrasharp-4x.png',
   },
 ];
 
@@ -71,10 +86,9 @@ interface RitualCardProps {
   bgColor: string;
   textColor: string;
   numeralColor: string;
-  numeral: string;
   headline: string;
   description: string;
-  linkLabel: string;
+  imageUrl: string;
   linkHref: string;
 }
 
@@ -82,14 +96,11 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
   (
     {
       index,
-      totalCards,
       bgColor,
       textColor,
-      numeralColor,
-      numeral,
       headline,
       description,
-      linkLabel,
+      imageUrl,
       linkHref,
     },
     ref
@@ -128,28 +139,28 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
             >
               {description}
             </p>
-            <a
+            <Link
               href={linkHref}
-              className="ritual-card-link"
+              className="ritual-card-link group"
               style={{
                 color: textColor,
                 opacity: 0.95,
               }}
               data-cursor-hover="link"
             >
-              {linkLabel}
-            </a>
+              ПОДРОБНЕЕ<span className="inline-block transition-transform duration-300 group-hover:translate-x-1">&nbsp;→</span>
+            </Link>
           </div>
 
-          {index === 0 ? (
             <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
               <div className="relative w-full h-full">
                 <Image
-                  src="https://i.ibb.co/spH1Fjd7/Whisk-c3d7e1a30964faf9de94c4e89d9441feeg-removebg-preview-upscayl-2x-ultrasharp-4x.png"
-                  alt="Manicure tool"
+                  src={imageUrl}
+                  alt={headline}
                   fill
                   className="object-contain object-center"
                   sizes="25vw"
+                  priority={index < 2}
                 />
                 <div
                   className="absolute inset-0"
@@ -159,124 +170,6 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
                 />
               </div>
             </div>
-          ) : index === 1 ? (
-            <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
-              <div className="relative w-full h-full">
-                <Image
-                  src="https://i.ibb.co/XZdQq3fJ/Whisk-27769cf02b3812bb0f246d211e75f64edr-removebg-preview-upscayl-2x-ultrasharp-4x.png"
-                  alt="Eyebrow and lash tool"
-                  fill
-                  className="object-contain object-center"
-                  sizes="25vw"
-                />
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background: `linear-gradient(to right, ${bgColor} 0%, transparent 40%)`,
-                  }}
-                />
-              </div>
-            </div>
-          ) : index === 2 ? (
-            <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
-                <div className="relative w-full h-full">
-                    <Image
-                    src="https://i.ibb.co/23NQVcnf/Whisk-2d20512359f9059bbcc4a221cef3c79fdr-removebg-preview-upscayl-2x-ultrasharp-4x.png"
-                    alt="Hairdressing tool"
-                    fill
-                    className="object-contain object-center"
-                    sizes="25vw"
-                    />
-                    <div
-                    className="absolute inset-0"
-                    style={{
-                        background: `linear-gradient(to right, ${bgColor} 0%, transparent 40%)`,
-                    }}
-                    />
-                </div>
-            </div>
-          ) : index === 3 ? (
-            <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
-                <div className="relative w-full h-full">
-                    <Image
-                    src="https://i.ibb.co/6RJ64XBy/Whisk-a7c8acf8514669fb9bf493e47ff7ffc6dr-removebg-preview-upscayl-2x-ultrasharp-4x.png"
-                    alt="Hair coloring tool"
-                    fill
-                    className="object-contain object-center"
-                    sizes="25vw"
-                    />
-                    <div
-                    className="absolute inset-0"
-                    style={{
-                        background: `linear-gradient(to right, ${bgColor} 0%, transparent 40%)`,
-                    }}
-                    />
-                </div>
-            </div>
-          ) : index === 4 ? (
-            <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
-                <div className="relative w-full h-full">
-                    <Image
-                    src="https://i.ibb.co/SwwdwCCk/Whisk-bba91139aa68284b2ff4dccad8136ab3dr-removebg-preview-upscayl-2x-ultrasharp-4x.png"
-                    alt="Keratin treatment tool"
-                    fill
-                    className="object-contain object-center"
-                    sizes="25vw"
-                    />
-                    <div
-                    className="absolute inset-0"
-                    style={{
-                        background: `linear-gradient(to right, ${bgColor} 0%, transparent 40%)`,
-                    }}
-                    />
-                </div>
-            </div>
-          ) : index === 5 ? (
-            <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
-                <div className="relative w-full h-full">
-                    <Image
-                    src="https://i.ibb.co/5gY1NcSJ/Whisk-7135b2e72ee7bbbad5f48f302f0e6577dr-removebg-preview-upscayl-2x-ultrasharp-4x.png"
-                    alt="Scalp care tool"
-                    fill
-                    className="object-contain object-center"
-                    sizes="25vw"
-                    />
-                    <div
-                    className="absolute inset-0"
-                    style={{
-                        background: `linear-gradient(to right, ${bgColor} 0%, transparent 40%)`,
-                    }}
-                    />
-                </div>
-            </div>
-          ) : index === 6 ? (
-            <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
-                <div className="relative w-full h-full">
-                    <Image
-                    src="https://i.ibb.co/pjDSJnrJ/Whisk-e21bda035270e648ac1407efd0a90bd8dr-removebg-preview-upscayl-2x-ultrasharp-4x.png"
-                    alt="Makeup tool"
-                    fill
-                    className="object-contain object-center"
-                    sizes="25vw"
-                    />
-                    <div
-                    className="absolute inset-0"
-                    style={{
-                        background: `linear-gradient(to right, ${bgColor} 0%, transparent 40%)`,
-                    }}
-                    />
-                </div>
-            </div>
-          ) : (
-            <div
-              className="ritual-card-numeral"
-              style={{
-                WebkitTextStroke: `2px ${numeralColor}`,
-              }}
-            >
-              {numeral}
-            </div>
-          )}
         </div>
       </article>
     );
@@ -392,11 +285,10 @@ const Rituals = () => {
                         bgColor={ritual.bgColor}
                         textColor={ritual.textColor}
                         numeralColor={ritual.numeralColor}
-                        numeral={`0${index + 1}`}
                         headline={ritual.title}
                         description={ritual.description}
-                        linkLabel="цены"
-                        linkHref="#"
+                        linkHref={`/services#${ritual.id}`}
+                        imageUrl={ritual.imageUrl}
                         ref={(el: HTMLElement | null) => {
                             if (el) {
                               cardsRef.current[index] = el;
