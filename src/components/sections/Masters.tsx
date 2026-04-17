@@ -210,7 +210,7 @@ const Masters = () => {
       id="masters"
       ref={component}
       className="relative h-full overflow-y-auto"
-      style={{ backgroundColor: '#66686b' }}
+      style={{ backgroundColor: '#2D2D2D' }}
       data-cursor="dark"
     >
       <div

@@ -71,7 +71,7 @@ const NewMe = () => {
       ref={sectionRef}
       id="new-me"
       className="relative h-[400vh]"
-      style={{ backgroundColor: '#66686b' }}
+      style={{ backgroundColor: '#2D2D2D' }}
       data-cursor="dark"
     >
       <div
