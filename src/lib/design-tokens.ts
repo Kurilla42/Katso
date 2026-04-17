@@ -2,9 +2,9 @@ export const colors = {
   background: '#2A2722',
   surface: '#3E3A34',
   accent: '#C49850',
-  cream: '#EDE8E0',
-  nude: '#B89E82',
-  walnut: '#B89E82',
+  cream: '#F0EBE3',
+  nude: '#8FA89A',
+  walnut: '#8FA89A',
 };
 
 export const typography = {

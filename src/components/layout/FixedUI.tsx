@@ -21,17 +21,6 @@ const FixedUI = () => {
         <span className="block w-1.5 h-1.5 bg-accent rounded-full transition-transform duration-300 ease-in-out group-hover:scale-[3.5]"></span>
       </button>
 
-      {/* Right edge tag */}
-      <div className="fixed top-1/2 right-4 -translate-y-1/2 z-50 bg-walnut text-cream rounded-full px-2 py-4 flex flex-col items-center justify-center shadow-lg">
-        <span className="font-display tracking-display text-lg leading-none">K.</span>
-        <span
-          className="font-body text-xs uppercase mt-2 tracking-widest"
-          style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
-        >
-          STUDIO
-        </span>
-      </div>
-
       {/* Top-right menu placeholder */}
       <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 hidden md:block" data-cursor-hover="link">
         <span className="caption text-cream hover:text-accent transition-colors">МЕНЮ</span>

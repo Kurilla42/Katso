@@ -124,7 +124,7 @@ const WhyKatso = () => {
                             {/* Decorative Line */}
                             <div
                                 className={`absolute right-0 w-[60%] h-px ${index === 1 ? 'bottom-[40%]' : 'top-[40%]'}`}
-                                style={{ backgroundColor: index === 1 ? '#2D2D2D' : '#EDE8E0' }}
+                                style={{ backgroundColor: index === 1 ? '#2D2D2D' : colors.cream }}
                             />
 
                             {/* Content Wrapper */}
@@ -146,7 +146,7 @@ const WhyKatso = () => {
                                             style={{
                                                 fontSize: '1.2vw',
                                                 lineHeight: 1.085,
-                                                color: index === 1 ? '#2D2D2D' : colors.nude,
+                                                color: index === 1 ? '#2D2D2D' : colors.cream,
                                             }}
                                         >
                                             {item.description}

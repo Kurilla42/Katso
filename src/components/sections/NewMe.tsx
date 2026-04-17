@@ -149,10 +149,10 @@ const NewMe = () => {
                     style={{ fontSize: '3vw', transform: 'translateY(-7.2vw)' }}
                     className="text-right leading-none font-display uppercase whitespace-pre-line"
                 >
-                    {'Задача\nKA'}<span ref={tRef}>T</span>SO:
+                    {'Задача\n'}<span style={{color: '#8FA89A'}}>KA<span ref={tRef}>T</span>SO:</span>
                 </h2>
                 
-                <div>
+                <div className="text-center">
                     <p
                         className="whitespace-pre-line font-display tracking-display uppercase"
                         style={{ fontSize: '3vw', lineHeight: 1.2 }}
@@ -162,11 +162,10 @@ const NewMe = () => {
                 </div>
 
                 <p
-                    className="font-lora text-right whitespace-pre-line"
+                    className="font-lora text-right whitespace-pre-line text-nude"
                     style={{
                         fontSize: '1.2vw',
                         lineHeight: 1.085,
-                        color: '#B89E82',
                         transform: 'translateY(7.2vw)',
                     }}
                 >

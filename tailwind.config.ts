@@ -13,7 +13,7 @@ const config: Config = {
         ...colors,
         textPrimary: colors.cream,
         textSecondary: colors.nude,
-        grid: 'rgba(237, 232, 224, 0.08)',
+        grid: 'rgba(240, 235, 227, 0.08)',
       },
       fontFamily: {
         display: ['Playfair Display', 'serif'],
