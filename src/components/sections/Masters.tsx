@@ -224,7 +224,7 @@ const Masters = () => {
       ></div>
       <div className="paper-texture"></div>
       <div 
-        className="w-full mx-auto py-16 md:py-40 relative"
+        className="w-full mx-auto pt-16 pb-8 md:py-40 relative"
         style={{
             paddingLeft: 'clamp(24px, 4vw, 80px)',
             paddingRight: 'clamp(24px, 4vw, 80px)',
