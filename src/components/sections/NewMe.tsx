@@ -63,8 +63,8 @@ const NewMe = () => {
             tl.to(
               scaleTargetEl,
               {
-                scale: 200,
-                ease: 'power1.in',
+                scale: 300,
+                ease: 'power2.in',
               }
             );
         });
