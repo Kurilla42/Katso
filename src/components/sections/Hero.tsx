@@ -18,8 +18,6 @@ const Hero = () => {
 
     let ctx: gsap.Context;
 
-    // We must wait for the webfont to be loaded before initializing GSAP
-    // to prevent positioning bugs.
     document.fonts.ready.then(() => {
         ctx = gsap.context(() => {
         const mm = gsap.matchMedia();
@@ -36,7 +34,6 @@ const Hero = () => {
             },
             });
 
-            // Phase 1: Animate the text mask to expand
             tl.to(
             maskedTextRef.current,
             {
@@ -47,7 +44,6 @@ const Hero = () => {
             0
             );
 
-            // Phase 2: Reveal the video by making the mask's rect white
             tl.to(
             maskRectRef.current,
             {
@@ -58,7 +54,6 @@ const Hero = () => {
             3
             );
 
-            // Phase 2: Fade in the content on top
             tl.fromTo(
             contentRef.current,
             {
@@ -74,9 +69,8 @@ const Hero = () => {
         });
         
         mm.add("(max-width: 767px)", () => {
-            // Mobile fallback: Show final content immediately, no complex animation.
             gsap.set(contentRef.current, { opacity: 1, y: 0 });
-            gsap.set(maskedTextRef.current, { 'font-size': 0, opacity: 0 }); // Hide masked text
+            gsap.set(maskedTextRef.current, { 'font-size': 0, opacity: 0 });
         });
 
         }, sectionRef);
@@ -93,7 +87,7 @@ const Hero = () => {
     <section ref={sectionRef} id="hero" className="relative md:h-[350vh]">
       <div ref={pinRef} className="h-screen w-full md:sticky top-0 overflow-hidden" style={{ backgroundColor: '#2D2D2D' }}>
         
-        <svg ref={svgRef} className="absolute inset-0 w-full h-full pointer-events-none">
+        <svg ref={svgRef} className="absolute inset-0 w-full h-full pointer-events-none z-10">
           <defs>
             <mask id="hero-mask">
               <rect ref={maskRectRef} width="100%" height="100%" fill="black" />
@@ -121,7 +115,7 @@ const Hero = () => {
             WebkitMaskImage: 'linear-gradient(to top, black 15%, transparent 30%)',
             }}
         >
-            <div className="relative w-full h-full">
+            <div className="relative w-full h-full" style={{ backgroundColor: '#2D2D2D' }}>
                 <div
                     className="absolute inset-0 w-full h-full"
                     style={{
