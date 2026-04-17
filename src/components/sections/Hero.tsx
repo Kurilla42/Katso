@@ -93,7 +93,6 @@ const Hero = () => {
   const stats = [
     { value: 1000, label: 'Довольных клиентов', suffix: '+' },
     { value: 5, label: 'Лет безупречной работы', suffix: '' },
-    { value: 20, label: 'Профильных наград', suffix: '+' },
   ];
 
   return (
