@@ -145,7 +145,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
             <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
               <div className="relative w-full h-full">
                 <Image
-                  src="https://i.ibb.co/1fzMvZsX/Whisk-c3d7e1a30964faf9de94c4e89d9441feeg.png"
+                  src="https://i.ibb.co/27zQ4Nvz/Whisk-c3d7e1a30964faf9de94c4e89d9441feeg-removebg-preview.png"
                   alt="Manicure tool"
                   fill
                   className="object-contain object-center"
