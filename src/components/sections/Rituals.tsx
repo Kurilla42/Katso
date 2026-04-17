@@ -16,7 +16,7 @@ const ritualsData = [
     bgColor: '#8FA89A',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(240, 235, 227, 0.18)',
-    imageUrl: 'https://i.ibb.co/spH1Fjd7/Whisk-c3d7e1a30964faf9de94c4e89d9441feeg-removebg-preview-upscayl-2x-ultrasharp-4x.png',
+    imageUrl: 'https://i.ibb.co/tpVftN6p/Image-5.png',
   },
   {
     id: 'brows',
@@ -26,7 +26,7 @@ const ritualsData = [
     bgColor: '#F0EBE3',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(45, 45, 45, 0.18)',
-    imageUrl: 'https://i.ibb.co/XZdQq3fJ/Whisk-27769cf02b3812bb0f246d211e75f64edr-removebg-preview-upscayl-2x-ultrasharp-4x.png',
+    imageUrl: 'https://i.ibb.co/dsR0Z0NM/Image-2.png',
   },
   {
     id: 'hair',
@@ -36,7 +36,7 @@ const ritualsData = [
     bgColor: '#8FA89A',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(240, 235, 227, 0.18)',
-    imageUrl: 'https://i.ibb.co/23NQVcnf/Whisk-2d20512359f9059bbcc4a221cef3c79fdr-removebg-preview-upscayl-2x-ultrasharp-4x.png',
+    imageUrl: 'https://i.ibb.co/5hd4Jyj2/Image-6.png',
   },
   {
     id: 'color',
@@ -46,7 +46,7 @@ const ritualsData = [
     bgColor: '#F0EBE3',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(45, 45, 45, 0.18)',
-    imageUrl: 'https://i.ibb.co/6RJ64XBy/Whisk-a7c8acf8514669fb9bf493e47ff7ffc6dr-removebg-preview-upscayl-2x-ultrasharp-4x.png',
+    imageUrl: 'https://i.ibb.co/0VvX4mwZ/Image-4.png',
   },
   {
     id: 'keratin',
@@ -56,7 +56,7 @@ const ritualsData = [
     bgColor: '#8FA89A',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(240, 235, 227, 0.18)',
-    imageUrl: 'https://i.ibb.co/SwwdwCCk/Whisk-bba91139aa68284b2ff4dccad8136ab3dr-removebg-preview-upscayl-2x-ultrasharp-4x.png',
+    imageUrl: 'https://i.ibb.co/rKNpKH4h/Image.png',
   },
   {
     id: 'scalp',
@@ -66,7 +66,7 @@ const ritualsData = [
     bgColor: '#F0EBE3',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(45, 45, 45, 0.18)',
-    imageUrl: 'https://i.ibb.co/5gY1NcSJ/Whisk-7135b2e72ee7bbbad5f48f302f0e6577dr-removebg-preview-upscayl-2x-ultrasharp-4x.png',
+    imageUrl: 'https://i.ibb.co/GQSbDRBD/Image-3.png',
   },
   {
     id: 'makeup',
@@ -76,7 +76,7 @@ const ritualsData = [
     bgColor: '#8FA89A',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(240, 235, 227, 0.18)',
-    imageUrl: 'https://i.ibb.co/pjDSJnrJ/Whisk-e21bda035270e648ac1407efd0a90bd8dr-removebg-preview-upscayl-2x-ultrasharp-4x.png',
+    imageUrl: 'https://i.ibb.co/4ZFJFKMx/Image-1.png',
   },
 ];
 
