@@ -115,7 +115,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
             className="absolute bottom-[clamp(20px,2.5vw,40px)] text-right"
             style={{
               maxWidth: '30vw',
-              right: index === 0 || index === 1 ? 'calc(25vw + 5vw)' : '40%',
+              right: 'calc(25vw + 5vw)',
             }}
           >
             <p
@@ -163,7 +163,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
             <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
               <div className="relative w-full h-full">
                 <Image
-                  src="https://i.ibb.co/d4m4HQq4/Whisk-itnxywy3czn4mdm10snjzmytutmirtlhbty20sz-removebg-preview.png"
+                  src="https://i.ibb.co/G3bb3tJW/Whisk-e2a222fd1d93f479bf241578c34fa8eaeg-removebg-preview.png"
                   alt="Eyebrow and lash tool"
                   fill
                   className="object-contain object-center"
@@ -176,6 +176,96 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
                   }}
                 />
               </div>
+            </div>
+          ) : index === 2 ? (
+            <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
+                <div className="relative w-full h-full">
+                    <Image
+                    src="https://i.ibb.co/tMTK5Dfg/Whisk-805bb058bc86e48be73448b52e080bdbdr-removebg-preview-1.png"
+                    alt="Hairdressing tool"
+                    fill
+                    className="object-contain object-center"
+                    sizes="25vw"
+                    />
+                    <div
+                    className="absolute inset-0"
+                    style={{
+                        background: `linear-gradient(to right, ${bgColor} 0%, transparent 40%)`,
+                    }}
+                    />
+                </div>
+            </div>
+          ) : index === 3 ? (
+            <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
+                <div className="relative w-full h-full">
+                    <Image
+                    src="https://i.ibb.co/vvVPy5SZ/Whisk-a7c8acf8514669fb9bf493e47ff7ffc6dr-removebg-preview.png"
+                    alt="Hair coloring tool"
+                    fill
+                    className="object-contain object-center"
+                    sizes="25vw"
+                    />
+                    <div
+                    className="absolute inset-0"
+                    style={{
+                        background: `linear-gradient(to right, ${bgColor} 0%, transparent 40%)`,
+                    }}
+                    />
+                </div>
+            </div>
+          ) : index === 4 ? (
+            <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
+                <div className="relative w-full h-full">
+                    <Image
+                    src="https://i.ibb.co/QvzQ2xrx/Whisk-b28514e40a605588f9945c4cb122255bdr-removebg-preview.png"
+                    alt="Keratin treatment tool"
+                    fill
+                    className="object-contain object-center"
+                    sizes="25vw"
+                    />
+                    <div
+                    className="absolute inset-0"
+                    style={{
+                        background: `linear-gradient(to right, ${bgColor} 0%, transparent 40%)`,
+                    }}
+                    />
+                </div>
+            </div>
+          ) : index === 5 ? (
+            <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
+                <div className="relative w-full h-full">
+                    <Image
+                    src="https://i.ibb.co/7dGfSpM0/Whisk-1e8ba549e98a6f0b8974891a067a5d37dr-removebg-preview.png"
+                    alt="Scalp care tool"
+                    fill
+                    className="object-contain object-center"
+                    sizes="25vw"
+                    />
+                    <div
+                    className="absolute inset-0"
+                    style={{
+                        background: `linear-gradient(to right, ${bgColor} 0%, transparent 40%)`,
+                    }}
+                    />
+                </div>
+            </div>
+          ) : index === 6 ? (
+            <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
+                <div className="relative w-full h-full">
+                    <Image
+                    src="https://i.ibb.co/6cshktBn/Whisk-e21bda035270e648ac1407efd0a90bd8dr-removebg-preview.png"
+                    alt="Makeup tool"
+                    fill
+                    className="object-contain object-center"
+                    sizes="25vw"
+                    />
+                    <div
+                    className="absolute inset-0"
+                    style={{
+                        background: `linear-gradient(to right, ${bgColor} 0%, transparent 40%)`,
+                    }}
+                    />
+                </div>
             </div>
           ) : (
             <div
