@@ -10,6 +10,7 @@ const Hero = () => {
   const maskedTextRef = useRef<SVGTextElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const maskRectRef = useRef<SVGRectElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -61,11 +62,9 @@ const Hero = () => {
             contentRef.current,
             {
                 opacity: 0,
-                y: 50,
             },
             {
                 opacity: 1,
-                y: 0,
                 ease: 'power1.out',
                 duration: 3,
             },
@@ -103,7 +102,7 @@ const Hero = () => {
             }}>
         </div>
         
-        <svg className="absolute inset-0 w-full h-full pointer-events-none">
+        <svg ref={svgRef} className="absolute inset-0 w-full h-full pointer-events-none">
           <defs>
             <mask id="hero-mask">
               <rect ref={maskRectRef} width="100%" height="100%" fill="black" />
@@ -120,22 +119,11 @@ const Hero = () => {
           </video>
         </div>
 
-        <div ref={contentRef} className="absolute inset-0 z-10 opacity-0 flex items-center justify-center">
-            <div className="text-center text-cream max-w-3xl mx-auto px-4">
-                <h1 className="font-display leading-none" style={{ fontSize: 'clamp(3rem, 6vw, 5rem)' }}>
+        <div ref={contentRef} className="absolute inset-0 z-10 opacity-0 flex items-end justify-center">
+             <div className="text-center" style={{ paddingBottom: '5vh' }}>
+                <h1 className="font-display leading-none" style={{ fontSize: '13vw', color: '#2D2D2D' }}>
                     Красота, которую видно
                 </h1>
-                <p className="font-lora text-nude mt-4" style={{ fontSize: 'clamp(1rem, 1.2vw, 1.2rem)' }}>
-                    Премиум-салон в центре Ижевска. Kérastase · Olaplex · La Biosthétique · мастера с обучением в Лондоне и Париже
-                </p>
-                <div className="flex justify-center gap-4 mt-8">
-                    <a href="#" className="bg-accent text-background font-display uppercase tracking-display py-3 px-6 rounded-sm transition-transform hover:scale-105" data-cursor-hover="link">
-                        Записаться онлайн
-                    </a>
-                    <a href="#" className="border border-nude text-nude font-display uppercase tracking-display py-3 px-6 rounded-sm transition-transform hover:scale-105" data-cursor-hover="link">
-                        Смотреть работы
-                    </a>
-                </div>
             </div>
         </div>
 
