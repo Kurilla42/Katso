@@ -162,9 +162,11 @@
   font-family: theme('fontFamily.display');
   font-size: 3vw;
   line-height: 0.95;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   text-transform: uppercase;
   margin: 0;
+  position: relative;
+  left: -2vw;
 }
 
 .ritual-card-description {
