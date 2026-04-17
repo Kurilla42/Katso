@@ -50,31 +50,38 @@ const footerLinks = [
 const Footer = () => {
     const wordMarkRef = useRef<HTMLHeadingElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
+    const mapWrapperRef = useRef<HTMLDivElement>(null);
 
     useLayoutEffect(() => {
-        if (!wordMarkRef.current || !containerRef.current) return;
+        if (!wordMarkRef.current || !containerRef.current || !mapWrapperRef.current) return;
 
         const el = wordMarkRef.current;
         const container = containerRef.current;
+        const mapWrapper = mapWrapperRef.current;
 
-        const fitText = () => {
+        const fitTextAndMap = () => {
             const containerWidth = container.offsetWidth / 2;
             const currentFontSize = parseFloat(window.getComputedStyle(el).fontSize);
             if (el.scrollWidth === 0) return;
             const scale = containerWidth / el.scrollWidth;
             const newSize = currentFontSize * scale * 0.95; // 0.95 for a bit of margin
             gsap.set(el, { fontSize: newSize });
+
+            const textHeight = el.getBoundingClientRect().height;
+            if (textHeight > 0) {
+                gsap.set(mapWrapper, { height: textHeight });
+            }
         }
 
         const timer = setTimeout(() => {
-            fitText();
-            window.addEventListener('resize', fitText);
+            fitTextAndMap();
+            window.addEventListener('resize', fitTextAndMap);
         }, 150);
 
 
         return () => {
             clearTimeout(timer);
-            window.removeEventListener('resize', fitText);
+            window.removeEventListener('resize', fitTextAndMap);
         }
 
     }, []);
@@ -108,7 +115,7 @@ const Footer = () => {
             </div>
 
             {/* Right: Map */}
-            <div className="relative w-full md:w-1/2 lg:w-5/12 aspect-[4/3] ml-auto rounded-md overflow-hidden z-10">
+            <div ref={mapWrapperRef} className="relative w-full md:w-1/2 lg:w-5/12 ml-auto rounded-md overflow-hidden z-10">
                 <Map />
             </div>
           </div>
