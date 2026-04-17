@@ -43,40 +43,47 @@ const WhyKatso = () => {
             
             gsap.set(sectionEl, { backgroundColor: colors.cream });
 
+            // Animate first card as section scrolls into view
+            gsap.fromTo(cards[0], 
+                { rotation: 4, yPercent: 20 }, 
+                { 
+                    rotation: 0, 
+                    yPercent: 0, 
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: sectionEl,
+                        start: 'top bottom',
+                        end: 'top top',
+                        scrub: 1,
+                        invalidateOnRefresh: true,
+                    },
+                }
+            );
+            
+            // Pin and stack the rest of the cards
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: sectionEl,
                     pin: stickyContainer,
                     scrub: 1,
                     start: 'top top',
-                    end: `+=${(cards.length) * 100}%`,
+                    end: `+=${(cards.length - 1) * 100}%`,
                     invalidateOnRefresh: true,
-                    onUpdate: (self) => {
-                        const time = self.progress * (cards.length);
-                        
-                        if (time < 1) {
-                            gsap.to(sectionEl, { backgroundColor: colors.cream, duration: 0.3, ease: 'none' });
-                        } else {
-                            const cardIndex = Math.floor(time - 1);
-                            if (cardIndex < whyKatsoData.length) {
-                                const currentCardData = whyKatsoData[cardIndex];
-                                if (currentCardData) {
-                                  gsap.to(sectionEl, { backgroundColor: currentCardData.bgColor, duration: 0.3, ease: 'none' });
-                                }
-                            }
-                        }
-                    },
+                    onEnter: () => gsap.to(sectionEl, { backgroundColor: whyKatsoData[0].bgColor, duration: 0.4, ease: 'none' }),
+                    onLeaveBack: () => gsap.to(sectionEl, { backgroundColor: colors.cream, duration: 0.4, ease: 'none' }),
                 }
             });
 
-            tl.fromTo(cards[0], { rotation: 4, yPercent: 20 }, { rotation: 0, yPercent: 0, duration: 1, ease: 'none' });
-            
+            // Animate subsequent cards sliding over and change background color
             cards.slice(1).forEach((card, i) => {
+                const newColor = whyKatsoData[i + 1].bgColor;
                 tl.fromTo(card, 
-                    { yPercent: 101, rotation: 4 }, 
-                    { yPercent: 0, rotation: 0, duration: 1, ease: 'none' },
-                    i + 1
+                    { yPercent: 105, rotation: 5 }, // Increased yPercent and rotation to ensure it's hidden
+                    { yPercent: 0, rotation: 0, duration: 1, ease: 'power1.inOut' },
+                    i // position in timeline: 0, 1, ...
                 );
+                // Animate background color at the same time
+                tl.to(sectionEl, { backgroundColor: newColor, duration: 1, ease: 'power1.inOut' }, i);
             });
 
             return () => {
