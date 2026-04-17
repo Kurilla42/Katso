@@ -343,7 +343,7 @@ const PriceRow = ({
   col2: string | null;
   col3?: string | null;
 }) => (
-  <div className="flex justify-between items-start gap-4 py-4 font-lora">
+  <div className="flex justify-between items-start gap-4 py-4 font-lora border-b border-cream/10">
     <div className="flex-1">
       {col1 && <p className="text-cream" style={{ fontSize: '1.2vw' }}>{col1}</p>}
       {col3 && <p className="text-nude mt-1 max-w-md" style={{ fontSize: '1.2vw' }}>{col3}</p>}
@@ -353,7 +353,7 @@ const PriceRow = ({
 );
 
 const ThreeColPriceRow = ({ col1, col2, col3 }: { col1: string | null; col2: string | null; col3: string | null; }) => (
-    <div className="grid grid-cols-3 items-start gap-4 py-4 font-lora">
+    <div className="grid grid-cols-3 items-start gap-4 py-4 font-lora border-b border-cream/10">
       <p className="text-cream" style={{ fontSize: '1.2vw' }}>{col1}</p>
       <p className="text-cream text-center" style={{ fontSize: '1.2vw' }}>{col2}</p>
       <p className="text-cream text-right" style={{ fontSize: '1.2vw' }}>{col3}</p>
@@ -367,13 +367,13 @@ const PriceTable = ({ subCategory }: { subCategory: (typeof servicesData)[0]['su
     
     <div>
         {subCategory.headers.length > 0 && subCategory.headers.length < 3 && (
-             <div className="flex justify-between items-start gap-4 py-2 font-display text-nude uppercase tracking-wider text-sm">
+             <div className="flex justify-between items-start gap-4 py-2 font-display text-nude uppercase tracking-wider text-sm border-b border-cream/10">
                 <span className="flex-1">{subCategory.headers[0]}</span>
                 {subCategory.headers[1] && <span className="text-right whitespace-nowrap">{subCategory.headers[1]}</span>}
             </div>
         )}
          {subCategory.headers.length === 3 && (
-             <div className="grid grid-cols-3 items-start gap-4 py-2 font-display text-nude uppercase tracking-wider text-sm">
+             <div className="grid grid-cols-3 items-start gap-4 py-2 font-display text-nude uppercase tracking-wider text-sm border-b border-cream/10">
                 <span>{subCategory.headers[0]}</span>
                 <span className="text-center">{subCategory.headers[1]}</span>
                 <span className="text-right">{subCategory.headers[2]}</span>
