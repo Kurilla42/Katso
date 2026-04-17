@@ -118,6 +118,39 @@ const NewMe = () => {
             >
                 {'Другой взгляд на себя, \nдругое мировоззрение и \nотношения с окружающим миром'}
             </p>
+
+            {/* Image 1 */}
+            <div className="absolute w-[15vw] aspect-[1/1.2] bottom-[-25%] left-[10%] transform -rotate-[7deg]">
+                <Image
+                    src="https://i.ibb.co/8D9VnyxZ/790b8980-17ce-4517-9d41-bd3a5008a7ef.jpg"
+                    alt="Woman with beautiful hair"
+                    fill
+                    className="object-cover rounded-md"
+                    sizes="15vw"
+                />
+            </div>
+
+            {/* Image 2 */}
+            <div className="absolute w-[12vw] aspect-[1.2/1] top-[-20%] right-[15%] transform rotate-[6deg]">
+                <Image
+                    src="https://i.ibb.co/v6xqgN14/440cc9b2-04fe-40e8-83e7-84d0e84b820f.jpg"
+                    alt="Beauty salon details"
+                    fill
+                    className="object-cover rounded-md"
+                    sizes="12vw"
+                />
+            </div>
+
+            {/* Image 3 */}
+            <div className="absolute w-[16vw] aspect-[1/1.2] top-[-40%] left-[42%]">
+                <Image
+                    src="https://i.ibb.co/pvCXs1fm/5a0c5da2-c0e2-4de6-be9f-3390f376e3e1.jpg"
+                    alt="Woman getting a beauty treatment"
+                    fill
+                    className="object-cover rounded-md"
+                    sizes="16vw"
+                />
+            </div>
         </div>
       </div>
     </section>
