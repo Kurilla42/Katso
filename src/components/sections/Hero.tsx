@@ -1,16 +1,15 @@
-
 'use client';
 
 import { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { EASES } from '@/lib/animations';
 
 const Hero = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const pinRef = useRef<HTMLDivElement>(null);
   const maskedTextRef = useRef<SVGTextElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const maskRectRef = useRef<SVGRectElement>(null);
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -34,23 +33,22 @@ const Hero = () => {
         tl.to(
           maskedTextRef.current,
           {
-            attr: { 'font-size': '80vw' },
-            letterSpacing: '5vw',
+            attr: { 'font-size': '80vw', 'letter-spacing': '5vw' },
             ease: 'power1.in',
             duration: 4,
           },
           0
         );
 
-        // Phase 2: Reveal the video by "erasing" the mask's text
+        // Phase 2: Reveal the video by making the mask's rect white
         tl.to(
-          maskedTextRef.current,
+          maskRectRef.current,
           {
-            attr: { fill: 'white' }, // Filling with white makes this part of the mask transparent
+            attr: { fill: 'white' },
             ease: 'power1.inOut',
             duration: 3,
           },
-          3 // Start this animation slightly before the previous one ends
+          3
         );
 
         // Phase 2: Fade in the content on top
@@ -66,8 +64,13 @@ const Hero = () => {
             ease: 'power1.out',
             duration: 3,
           },
-          3.5 // Start slightly after the mask starts to disappear
+          3.5
         );
+        
+        // Refresh ScrollTrigger after fonts are loaded to prevent positioning jumps
+        document.fonts.ready.then(() => {
+            ScrollTrigger.refresh();
+        });
       });
       
       mm.add("(max-width: 767px)", () => {
@@ -98,8 +101,8 @@ const Hero = () => {
         <svg className="absolute w-0 h-0">
           <defs>
             <mask id="hero-mask">
-              <rect width="100%" height="100%" fill="white" />
-              <text ref={maskedTextRef} x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fill="black" fontSize="25vw" fontFamily="Playfair Display" fontWeight="700">
+              <rect ref={maskRectRef} width="100%" height="100%" fill="black" />
+              <text ref={maskedTextRef} x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fill="white" fontSize="25vw" fontFamily="Playfair Display" fontWeight="700">
                 KATSO
               </text>
             </mask>
