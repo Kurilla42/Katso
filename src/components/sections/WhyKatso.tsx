@@ -41,7 +41,7 @@ const WhyKatso = () => {
             const stickyContainer = sectionEl.querySelector<HTMLElement>('.why-us-sticky-container');
             if (!stickyContainer || cards.length === 0) return;
             
-            gsap.set(sectionEl, { backgroundColor: colors.cream });
+            gsap.set(sectionEl, { backgroundColor: colors.walnut });
 
             // Animate first card as section scrolls into view
             gsap.fromTo(cards[0], 
@@ -70,7 +70,7 @@ const WhyKatso = () => {
                     end: `+=${(cards.length - 1) * 100}%`,
                     invalidateOnRefresh: true,
                     onEnter: () => gsap.to(sectionEl, { backgroundColor: whyKatsoData[0].bgColor, duration: 0.4, ease: 'none' }),
-                    onLeaveBack: () => gsap.to(sectionEl, { backgroundColor: colors.cream, duration: 0.4, ease: 'none' }),
+                    onLeaveBack: () => gsap.to(sectionEl, { backgroundColor: colors.walnut, duration: 0.4, ease: 'none' }),
                 }
             });
 
@@ -100,7 +100,7 @@ const WhyKatso = () => {
             ref={sectionRef}
             className="md:h-[300vh]"
             data-cursor="dark"
-            style={{ backgroundColor: colors.cream }}
+            style={{ backgroundColor: colors.walnut }}
         >
             <div className="why-us-sticky-container h-auto md:h-screen md:sticky md:top-0 md:overflow-hidden">
                 <div className="relative flex flex-col gap-4 py-16 md:py-0 md:gap-0 md:w-full md:h-full">
