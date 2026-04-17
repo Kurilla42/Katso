@@ -236,7 +236,7 @@ const WhyKatso = () => {
                                         </div>
                                         <div className="relative flex-1 aspect-[9/16]">
                                             <Image
-                                                src="https://i.ibb.co/zTX5qYP0/795de294-619b-4183-bc0e-0c4e3ea43753.jpg"
+                                                src="https://i.ibb.co/PGN67QtT/0i-Xf-i-PYg4-Je-IHQv-MNs-CKAKPega-Ed7-Mg-L2-Ns-Hq-Jw-AFvq-VNwa-Niy9x-MTjd-Zjgr7-Ofb-DF8-T-1k-QAX-s7-HF7-Uef.jpg"
                                                 alt="Studio example 6"
                                                 fill
                                                 className="object-cover rounded-sm"

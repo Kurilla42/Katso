@@ -85,7 +85,7 @@ const FixedUI = () => {
         ref={menuRef}
         className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 hidden md:flex items-center gap-6"
       >
-        <a href="https://wa.me/79120193362" target="_blank" rel="noopener noreferrer" className="caption text-nude hover:text-accent transition-colors" data-cursor-hover="link">
+        <a href="https://t.me/katso_studio" target="_blank" rel="noopener noreferrer" className="caption text-nude hover:text-accent transition-colors" data-cursor-hover="link">
           ЗАПИСАТЬСЯ ОНЛАЙН
         </a>
         <div className="relative">
