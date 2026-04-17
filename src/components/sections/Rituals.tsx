@@ -181,7 +181,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
             <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
                 <div className="relative w-full h-full">
                     <Image
-                    src="https://i.ibb.co/9mbVj5TB/Whisk-2d20512359f9059bbcc4a221cef3c79fdr-removebg-preview-upscayl-2x-ultrasharp-4x.png"
+                    src="https://i.ibb.co/23NQVcnf/Whisk-2d20512359f9059bbcc4a221cef3c79fdr-removebg-preview-upscayl-2x-ultrasharp-4x.png"
                     alt="Hairdressing tool"
                     fill
                     className="object-contain object-center"
