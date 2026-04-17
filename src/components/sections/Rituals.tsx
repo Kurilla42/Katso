@@ -115,7 +115,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
             className="absolute bottom-[clamp(20px,2.5vw,40px)] text-right"
             style={{
               maxWidth: '30vw',
-              right: index === 0 ? 'calc(25vw + 5vw)' : '40%',
+              right: index === 0 || index === 1 ? 'calc(25vw + 5vw)' : '40%',
             }}
           >
             <p
@@ -147,6 +147,24 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
                 <Image
                   src="https://i.ibb.co/27zQ4Nvz/Whisk-c3d7e1a30964faf9de94c4e89d9441feeg-removebg-preview.png"
                   alt="Manicure tool"
+                  fill
+                  className="object-contain object-center"
+                  sizes="25vw"
+                />
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background: `linear-gradient(to right, ${bgColor} 0%, transparent 40%)`,
+                  }}
+                />
+              </div>
+            </div>
+          ) : index === 1 ? (
+            <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
+              <div className="relative w-full h-full">
+                <Image
+                  src="https://i.ibb.co/d4m4HQq4/Whisk-itnxywy3czn4mdm10snjzmytutmirtlhbty20sz-removebg-preview.png"
+                  alt="Eyebrow and lash tool"
                   fill
                   className="object-contain object-center"
                   sizes="25vw"
