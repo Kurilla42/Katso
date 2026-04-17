@@ -143,7 +143,7 @@ const Hero = () => {
 
         <div ref={contentRef} className="absolute inset-0 z-20 opacity-0 flex items-end justify-start">
              <div className="text-left" style={{ paddingBottom: '5vh', paddingLeft: 'clamp(1rem, 3vw, 5rem)' }}>
-                <h1 className="font-display leading-none uppercase whitespace-pre-line" style={{ fontSize: '7vw', color: '#F0EBE3', letterSpacing: '-0.01em', textShadow: '2px 2px 8px rgba(0, 0, 0, 0.5)', fontStyle: 'italic' }}>
+                <h1 className="font-display leading-none uppercase whitespace-pre-line" style={{ fontSize: '7vw', color: '#F0EBE3', letterSpacing: '-0.01em', textShadow: '2px 2px 8px rgba(0, 0, 0, 0.5)' }}>
                     {'КРАСОТА\nКОТОРУЮ\nВИДНО'}
                 </h1>
             </div>
