@@ -43,6 +43,9 @@ const WhyKatso = () => {
             
             gsap.set(sectionEl, { backgroundColor: colors.walnut });
 
+            // Set transform origin for all cards to make rotation consistent on resize
+            cards.forEach(card => gsap.set(card, { transformOrigin: 'bottom center' }));
+
             // Animate first card as section scrolls into view
             gsap.fromTo(cards[0], 
                 { rotation: 4, yPercent: 20 }, 
