@@ -107,7 +107,7 @@ const NewMe = () => {
                     src="https://i.ibb.co/v6xqgN14/440cc9b2-04fe-40e8-83e7-84d0e84b820f.jpg"
                     alt="Beauty salon details"
                     fill
-                    className="object-cover rounded-md"
+                    className="object-contain rounded-md"
                     quality={100}
                 />
             </div>
