@@ -174,14 +174,6 @@ const Rituals = () => {
 
             const ritualsEl = componentRef.current;
             if (!ritualsEl) return;
-
-            const stackContainer = ritualsEl.querySelector('.rituals-stack');
-            if (!stackContainer) return;
-            
-            const stackPeek = parseInt(
-              getComputedStyle(ritualsEl)
-                .getPropertyValue('--stack-peek')
-            );
             
             // Animate content inside each card
             cards.forEach((card) => {
@@ -200,35 +192,24 @@ const Rituals = () => {
                 observer.observe(card);
             });
 
-            // Card recede animation
+            // Card disappear animation
             cards.forEach((card, index) => {
+                // The last card doesn't scroll off, it just gets covered by the next section
                 if (index === cards.length - 1) return;
 
-                const recedeTimeline = gsap.timeline({ paused: true });
-
-                for (let step = index; step < cards.length - 1; step++) {
-                    const blur = Math.min(1.5 + (step - index) * 0.8, 5);
-                    const scale = Math.max(0.97 - (step - index) * 0.015, 0.88);
-                    const opacity = Math.max(0.75 - (step - index) * 0.12, 0.3);
-                    const yPercent = -5 * (step - index);
-
-                    recedeTimeline.to(card, {
-                        scale: scale,
-                        opacity: opacity,
-                        filter: `blur(${blur}px)`,
-                        yPercent: yPercent,
-                        ease: 'none',
-                        duration: 1,
-                    }, step - index);
-                }
-                
-                ScrollTrigger.create({
-                    trigger: stackContainer,
-                    start: () => `top top-=${(index + 1) * stackPeek - (stackPeek * 0.25)}`,
-                    end: () => `top top-=${(cards.length - 1) * stackPeek}`,
-                    scrub: true,
-                    animation: recedeTimeline,
-                    invalidateOnRefresh: true,
+                gsap.to(card, {
+                    scale: 0.9,
+                    yPercent: -15,
+                    opacity: 0,
+                    filter: 'blur(8px)',
+                    ease: 'power1.in',
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 30%', // When top of card is at 30% of viewport height (i.e. it has passed 70% of the screen)
+                        end: 'top top',    // When top of card reaches top of viewport
+                        scrub: true,
+                        invalidateOnRefresh: true,
+                    },
                 });
             });
             
