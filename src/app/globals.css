@@ -139,7 +139,7 @@
 }
 
 .ritual-card {
-  position: sticky;
+  position: relative;
   height: var(--card-height);
   width: 100%;
   margin-bottom: var(--card-gap);

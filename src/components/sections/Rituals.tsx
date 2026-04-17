@@ -95,8 +95,6 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
   ) => {
     const style: CSSProperties = {
       backgroundColor: bgColor,
-      top: `calc(${index} * var(--stack-peek))`,
-      zIndex: index + 1,
     };
 
     return (
