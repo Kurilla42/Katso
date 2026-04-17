@@ -114,7 +114,7 @@
 #rituals {
   --card-height: 304px;
   --stack-peek: 220px;
-  --card-gap: 24px;
+  --card-gap: 30px;
 
   background-color: theme('colors.background');
 }

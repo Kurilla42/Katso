@@ -210,11 +210,13 @@ const Rituals = () => {
                     const blur = Math.min(1.5 + (step - index) * 0.8, 5);
                     const scale = Math.max(0.97 - (step - index) * 0.015, 0.88);
                     const opacity = Math.max(0.75 - (step - index) * 0.12, 0.3);
+                    const yPercent = -5 * (step - index);
 
                     recedeTimeline.to(card, {
                         scale: scale,
                         opacity: opacity,
                         filter: `blur(${blur}px)`,
+                        yPercent: yPercent,
                         ease: 'none',
                         duration: 1,
                     }, step - index);
@@ -222,7 +224,7 @@ const Rituals = () => {
                 
                 ScrollTrigger.create({
                     trigger: stackContainer,
-                    start: () => `top top-=${(index + 1) * stackPeek}`,
+                    start: () => `top top-=${(index + 1) * stackPeek - (stackPeek * 0.25)}`,
                     end: () => `top top-=${(cards.length - 1) * stackPeek}`,
                     scrub: true,
                     animation: recedeTimeline,
