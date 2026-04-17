@@ -11,7 +11,7 @@ const ritualsData = [
     description:
       'Идеальный маникюр и педикюр, от лечебного до дизайнерского. Безопасность, стерильность и внимание к деталям.',
     bgColor: '#8FA89A',
-    textColor: '#F0EBE3',
+    textColor: '#2D2D2D',
     numeralColor: 'rgba(240, 235, 227, 0.18)',
   },
   {
@@ -27,7 +27,7 @@ const ritualsData = [
     description:
       'От классических форм до смелых креативных решений, а также восстанавливающие уходы, которые вернут волосам силу и блеск.',
     bgColor: '#8FA89A',
-    textColor: '#F0EBE3',
+    textColor: '#2D2D2D',
     numeralColor: 'rgba(240, 235, 227, 0.18)',
   },
   {
@@ -43,7 +43,7 @@ const ritualsData = [
     description:
       'Профессиональная диагностика и индивидуальные программы лечения и ухода для решения проблем кожи головы и стимуляции роста волос.',
     bgColor: '#8FA89A',
-    textColor: '#F0EBE3',
+    textColor: '#2D2D2D',
     numeralColor: 'rgba(240, 235, 227, 0.18)',
   },
   {
@@ -59,7 +59,7 @@ const ritualsData = [
     description:
       'Создадим для вас неповторимый образ в самый важный день. Учтем все пожелания и детали, чтобы вы чувствовали себя неотразимой.',
     bgColor: '#8FA89A',
-    textColor: '#F0EBE3',
+    textColor: '#2D2D2D',
     numeralColor: 'rgba(240, 235, 227, 0.18)',
   },
 ];
