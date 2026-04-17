@@ -363,8 +363,8 @@ const ThreeColPriceRow = ({ col1, col2, col3 }: { col1: string | null; col2: str
 const SwappedThreeColPriceRow = ({ col1, col2, col3 }: { col1: string | null; col2: string | null; col3: string | null; }) => (
     <div className="grid grid-cols-3 items-start gap-4 py-4 font-lora border-b border-cream/10">
       <p className="text-cream" style={{ fontSize: '1.2vw' }}>{col1}</p>
-      <p className="text-nude" style={{ fontSize: '1.2vw' }}>{col2}</p>
       <p className="text-cream text-right" style={{ fontSize: '1.2vw' }}>{col3}</p>
+      <p className="text-cream" style={{ fontSize: '1.2vw' }}>{col2}</p>
     </div>
 );
 
@@ -376,18 +376,18 @@ const PriceTable = ({ subCategory }: { subCategory: (typeof servicesData)[0]['su
     
     <div>
         {subCategory.headers.length > 0 && subCategory.headers.length < 3 && (
-             <div className="flex justify-between items-start gap-4 py-2 font-display text-nude uppercase tracking-wider border-b border-cream/10" style={{ fontSize: '1.2vw' }}>
+             <div className="flex justify-between items-start gap-4 py-2 font-display text-nude uppercase tracking-wider" style={{ fontSize: '1.2vw' }}>
                 <span className="flex-1">{subCategory.headers[0]}</span>
                 {subCategory.headers[1] && <span className="text-right whitespace-nowrap">{subCategory.headers[1]}</span>}
             </div>
         )}
          {subCategory.headers.length === 3 && (
-            <div className="grid grid-cols-3 items-start gap-4 py-2 font-display text-nude uppercase tracking-wider border-b border-cream/10" style={{ fontSize: '1.2vw' }}>
+            <div className="grid grid-cols-3 items-start gap-4 py-2 font-display text-nude uppercase tracking-wider" style={{ fontSize: '1.2vw' }}>
                 <span>{subCategory.headers[0]}</span>
                 {subCategory.headers[1] === 'Описание' && subCategory.headers[2] === 'Цена' ? (
                     <>
-                        <span>{subCategory.headers[1]}</span>
                         <span className="text-right">{subCategory.headers[2]}</span>
+                        <span>{subCategory.headers[1]}</span>
                     </>
                 ) : (
                     <>
