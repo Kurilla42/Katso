@@ -273,7 +273,7 @@ const Rituals = () => {
                 </div>
             </div>
 
-            <div className="rituals-stack relative md:p-0">
+            <div className="rituals-stack relative px-[clamp(1rem,3vw,5rem)]">
                 {ritualsData.map((ritual, index) => (
                     <RitualCard
                         key={ritual.title}
