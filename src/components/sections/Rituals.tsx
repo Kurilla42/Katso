@@ -46,7 +46,7 @@ const ritualsData = [
     bgColor: '#F0EBE3',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(45, 45, 45, 0.18)',
-    imageUrl: 'https://i.ibb.co/CKRWnrWG/Image.png',
+    imageUrl: 'https://i.ibb.co/TDpZg3MN/Image.png',
   },
   {
     id: 'keratin',
@@ -264,7 +264,7 @@ const Rituals = () => {
                         paddingBottom: 'clamp(64px, 10vh, 96px)',
                     }}
                 >
-                    <h2 className="ritual-card-headline text-cream">
+                    <h2 className="ritual-card-headline text-cream" style={{fontStyle: 'italic'}}>
                         Ритуалы <br /> Красоты
                     </h2>
                 </div>
