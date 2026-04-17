@@ -10,15 +10,15 @@ const ritualsData = [
     title: 'МАНИКЮР И НАРАЩИВАНИЕ НОГТЕЙ',
     description:
       'Идеальный маникюр и педикюр, от лечебного до дизайнерского. Безопасность, стерильность и внимание к деталям.',
-    bgColor: '#3D2A1A',
-    textColor: '#EDE8E0',
-    numeralColor: 'rgba(237, 232, 224, 0.18)',
+    bgColor: '#8FA89A',
+    textColor: '#F0EBE3',
+    numeralColor: 'rgba(240, 235, 227, 0.18)',
   },
   {
     title: 'БРОВИ И РЕСНИЦЫ',
     description:
       'Коррекция и окрашивание бровей и ресниц для создания выразительного взгляда, который подчеркнет вашу естественную красоту.',
-    bgColor: '#EDE8E0',
+    bgColor: '#F0EBE3',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(45, 45, 45, 0.18)',
   },
@@ -26,15 +26,15 @@ const ritualsData = [
     title: 'СТРИЖКИ / УКЛАДКИ / УХОД ЗА ДЛИНОЙ',
     description:
       'От классических форм до смелых креативных решений, а также восстанавливающие уходы, которые вернут волосам силу и блеск.',
-    bgColor: '#3D2A1A',
-    textColor: '#EDE8E0',
-    numeralColor: 'rgba(237, 232, 224, 0.18)',
+    bgColor: '#8FA89A',
+    textColor: '#F0EBE3',
+    numeralColor: 'rgba(240, 235, 227, 0.18)',
   },
   {
     title: 'ОКРАШИВАНИЯ / ВЫПРЯМЛЕНИЕ',
     description:
       'Сложные техники окрашивания, безопасное выпрямление и процедуры для глубокого восстановления структуры волос.',
-    bgColor: '#EDE8E0',
+    bgColor: '#F0EBE3',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(45, 45, 45, 0.18)',
   },
@@ -42,15 +42,15 @@ const ritualsData = [
     title: 'КЕРАТИН / БОТОКС',
     description:
       'Профессиональная диагностика и индивидуальные программы лечения и ухода для решения проблем кожи головы и стимуляции роста волос.',
-    bgColor: '#3D2A1A',
-    textColor: '#EDE8E0',
-    numeralColor: 'rgba(237, 232, 224, 0.18)',
+    bgColor: '#8FA89A',
+    textColor: '#F0EBE3',
+    numeralColor: 'rgba(240, 235, 227, 0.18)',
   },
   {
     title: 'УХОД ЗА КОЖЕЙ ГОЛОВЫ',
     description:
       'Дневной, вечерний или для особого случая. Наши визажисты создадут образ, который подчеркнет вашу уникальность.',
-    bgColor: '#EDE8E0',
+    bgColor: '#F0EBE3',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(45, 45, 45, 0.18)',
   },
@@ -58,9 +58,9 @@ const ritualsData = [
     title: 'МАКИЯЖ / ОБРАЗ НЕВЕСТЫ',
     description:
       'Создадим для вас неповторимый образ в самый важный день. Учтем все пожелания и детали, чтобы вы чувствовали себя неотразимой.',
-    bgColor: '#3D2A1A',
-    textColor: '#EDE8E0',
-    numeralColor: 'rgba(237, 232, 224, 0.18)',
+    bgColor: '#8FA89A',
+    textColor: '#F0EBE3',
+    numeralColor: 'rgba(240, 235, 227, 0.18)',
   },
 ];
 
@@ -221,7 +221,7 @@ const Rituals = () => {
             ref={componentRef}
             data-cursor="dark"
             className="relative"
-            style={{ backgroundColor: '#7A7570' }}
+            style={{ backgroundColor: '#2D2D2D' }}
         >
             <div
                 className="absolute inset-0 w-full h-full pointer-events-none"
