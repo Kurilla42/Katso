@@ -124,8 +124,8 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
                 </h3>
                 <Link
                     href={linkHref}
-                    className="font-display text-base uppercase underline underline-offset-4"
-                    style={{ color: textColor }}
+                    className="font-display uppercase underline underline-offset-4"
+                    style={{ color: textColor, fontSize: '3vw' }}
                     data-cursor-hover="link"
                 >
                     ЦЕНЫ<span className="inline-block transition-transform duration-300 group-hover:translate-x-1">&nbsp;→</span>
@@ -300,7 +300,7 @@ const Rituals = () => {
                         paddingBottom: 'clamp(64px, 10vh, 96px)',
                     }}
                 >
-                    <h2 className="ritual-card-headline text-cream">
+                    <h2 className="ritual-card-headline text-cream" style={{fontSize: '5vw'}}>
                         Ритуалы <br /> Красоты
                     </h2>
                 </div>
