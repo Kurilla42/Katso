@@ -78,8 +78,49 @@ const Hero = () => {
             });
             
             mm.add("(max-width: 767px)", () => {
-                gsap.set(contentRef.current, { opacity: 1, y: 0 });
-                gsap.set(maskedTextRef.current, { 'font-size': 0, opacity: 0 });
+                const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: 'top top',
+                    end: '+=150%',
+                    scrub: 1,
+                    pin: pinRef.current,
+                    invalidateOnRefresh: true,
+                },
+                });
+
+                tl.to(
+                maskedTextRef.current,
+                {
+                    attr: { 'font-size': '200vw', 'letter-spacing': '5vw' },
+                    ease: 'power1.in',
+                    duration: 4,
+                },
+                0
+                );
+
+                tl.to(
+                maskRectRef.current,
+                {
+                    attr: { fill: 'white' },
+                    ease: 'power1.inOut',
+                    duration: 3,
+                },
+                3
+                );
+
+                tl.fromTo(
+                contentRef.current,
+                {
+                    opacity: 0,
+                },
+                {
+                    opacity: 1,
+                    ease: 'power1.out',
+                    duration: 3,
+                },
+                3.5
+                );
             });
 
         }, sectionRef);
@@ -93,7 +134,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} id="hero" className="relative md:h-[350vh]">
+    <section ref={sectionRef} id="hero" className="relative h-[250vh] md:h-[350vh]">
       <div ref={pinRef} className="h-screen w-full md:sticky top-0 overflow-hidden" style={{ backgroundColor: '#2D2D2D' }}>
         
         {/* Main background textures */}
