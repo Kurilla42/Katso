@@ -159,7 +159,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
                   src={imageUrl}
                   alt={headline}
                   fill
-                  className="object-contain object-center"
+                  className="object-cover object-top"
                   sizes="25vw"
                   priority={index < 2}
                 />
