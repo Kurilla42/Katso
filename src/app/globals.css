@@ -97,11 +97,19 @@
 /* ─── RITUALS STACKING SECTION ─────────────────────────── */
 
 #rituals {
-  --card-height: clamp(90px, 15vh, 150px);
+  /* Desktop height by default */
+  --card-height: clamp(240px, 28vh, 350px);
   --stack-peek: clamp(52px, 6vw, 220px);
   --card-gap: clamp(16px, 1.2vw, 28px);
 
   background-color: #2D2D2D;
+}
+
+/* Mobile-specific override */
+@media (max-width: 767px) {
+  #rituals {
+    --card-height: clamp(90px, 15vh, 150px);
+  }
 }
 
 .rituals-stack {
