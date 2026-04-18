@@ -115,10 +115,10 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
       <article className="ritual-card" style={style} ref={ref} data-cursor={cursorTheme}>
         <div className="flex h-full w-full">
             {/* Left Content Area (Mobile) */}
-            <div className="w-3/5 flex flex-col justify-between p-4 md:hidden">
+            <div className="w-[55%] flex flex-col justify-between p-4 md:hidden">
                 <h3
                     className="font-display uppercase"
-                    style={{ color: textColor, letterSpacing: '-0.01em', fontSize: '7vw', lineHeight: 1.1 }}
+                    style={{ color: textColor, letterSpacing: '-0.01em', fontSize: '5vw', lineHeight: 1.1 }}
                 >
                     {headline}
                 </h3>
@@ -133,13 +133,13 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
             </div>
 
             {/* Right Image Area (Mobile) */}
-            <div className="relative w-2/5 md:hidden">
+            <div className="relative w-[45%] md:hidden">
                 <Image
                   src={imageUrl}
                   alt={headline}
                   fill
                   className="object-cover object-top"
-                  sizes="40vw"
+                  sizes="45vw"
                   priority={index < 2}
                 />
             </div>
