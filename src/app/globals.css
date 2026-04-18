@@ -92,31 +92,12 @@
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }
-
-  @media (max-width: 767px) {
-    .rituals-stack {
-      @apply snap-y snap-mandatory;
-    }
-    .ritual-card {
-      position: relative !important;
-      top: auto !important;
-      height: 100svh;
-      margin-top: 24px;
-      @apply snap-start;
-    }
-    .ritual-card:first-child {
-      margin-top: 0;
-    }
-    .ritual-card + .ritual-card {
-      border-top: none;
-    }
-  }
 }
 
 /* ─── RITUALS STACKING SECTION ─────────────────────────── */
 
 #rituals {
-  --card-height: clamp(160px, 12vw, 420px);
+  --card-height: clamp(320px, 50vh, 420px);
   --stack-peek: clamp(52px, 6vw, 220px);
   --card-gap: clamp(16px, 1.2vw, 28px);
 
@@ -199,42 +180,4 @@
   pointer-events: none;
   user-select: none;
   white-space: nowrap;
-}
-
-/* Mobile fallback */
-@media (max-width: 767px) {
-  #rituals {
-    --card-height: auto;
-    --card-gap: 24px;
-  }
-
-  .ritual-card {
-    position: relative;
-    height: auto;
-    min-height: 320px;
-  }
-
-  .ritual-card-inner {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
-  }
-
-  .ritual-card-numeral {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    font-size: 120px;
-    opacity: 0.6;
-  }
-
-  .ritual-card-content {
-    align-items: flex-start;
-    text-align: left;
-  }
-
-  .ritual-card-description,
-  .ritual-card-link {
-    text-align: left;
-    align-self: flex-start;
-  }
 }

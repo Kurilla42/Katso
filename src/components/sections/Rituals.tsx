@@ -113,57 +113,90 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
 
     return (
       <article className="ritual-card" style={style} ref={ref} data-cursor={cursorTheme}>
-        <div className="ritual-card-inner">
-          <div className="ritual-card-content">
-            <h3
-              className="ritual-card-headline"
-              style={{ color: textColor, letterSpacing: '-0.01em', left: '-2vw' }}
-            >
-              {headline}
-            </h3>
-          </div>
+        <div className="flex h-full w-full">
+            {/* Left Content Area (Mobile) */}
+            <div className="w-1/2 flex flex-col justify-between p-4 md:hidden">
+                <h3
+                    className="font-display uppercase text-3xl/[1.1]"
+                    style={{ color: textColor, letterSpacing: '-0.01em' }}
+                >
+                    {headline}
+                </h3>
+                <Link
+                    href={linkHref}
+                    className="font-display text-base uppercase underline underline-offset-4"
+                    style={{ color: textColor }}
+                    data-cursor-hover="link"
+                >
+                    ЦЕНЫ<span className="inline-block transition-transform duration-300 group-hover:translate-x-1">&nbsp;→</span>
+                </Link>
+            </div>
 
-          <div
-            className="absolute bottom-[clamp(20px,2.5vw,40px)] text-right"
-            style={{
-              maxWidth: '30vw',
-              right: 'calc(25vw + 5vw)',
-            }}
-          >
-            <p
-              className="ritual-card-description font-lora"
-              style={{
-                color: textColor,
-                opacity: 0.65,
-                lineHeight: 1.085,
-              }}
-            >
-              {description}
-            </p>
-            <Link
-              href={linkHref}
-              className="ritual-card-link group"
-              style={{
-                color: textColor,
-                opacity: 0.95,
-              }}
-              data-cursor-hover="link"
-            >
-              ЦЕНЫ<span className="inline-block transition-transform duration-300 group-hover:translate-x-1">&nbsp;→</span>
-            </Link>
-          </div>
-
-            <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
-              <div className="relative w-full h-full">
+            {/* Right Image Area (Mobile) */}
+            <div className="relative w-1/2 md:hidden">
                 <Image
                   src={imageUrl}
                   alt={headline}
                   fill
                   className="object-cover object-top"
-                  sizes="25vw"
+                  sizes="50vw"
                   priority={index < 2}
                 />
-              </div>
+            </div>
+
+            {/* Desktop Layout (hidden on mobile) */}
+            <div className="hidden md:block w-full h-full relative">
+                <div className="ritual-card-inner">
+                    <div className="ritual-card-content">
+                        <h3
+                            className="ritual-card-headline"
+                            style={{ color: textColor, letterSpacing: '-0.01em', left: '-2vw' }}
+                        >
+                            {headline}
+                        </h3>
+                    </div>
+                </div>
+                <div
+                    className="absolute bottom-[clamp(20px,2.5vw,40px)] text-right"
+                    style={{
+                        maxWidth: '30vw',
+                        right: 'calc(25vw + 5vw)',
+                    }}
+                >
+                    <p
+                        className="ritual-card-description font-lora"
+                        style={{
+                            color: textColor,
+                            opacity: 0.65,
+                            lineHeight: 1.085,
+                        }}
+                    >
+                        {description}
+                    </p>
+                    <Link
+                        href={linkHref}
+                        className="ritual-card-link group"
+                        style={{
+                            color: textColor,
+                            opacity: 0.95,
+                        }}
+                        data-cursor-hover="link"
+                    >
+                        ЦЕНЫ<span className="inline-block transition-transform duration-300 group-hover:translate-x-1">&nbsp;→</span>
+                    </Link>
+                </div>
+                <div className="absolute top-0 right-0 bottom-0 w-[25vw] pointer-events-none">
+                    <div className="relative w-full h-full">
+                        <Image
+                            src={imageUrl}
+                            alt={headline}
+                            fill
+                            className="object-cover object-top"
+                            sizes="25vw"
+                            priority={index < 2}
+                        />
+                    </div>
+                </div>
             </div>
         </div>
       </article>
@@ -182,11 +215,10 @@ const Rituals = () => {
         const mm = gsap.matchMedia(componentRef.current!);
         
         mm.add({
-            isDesktop: "(min-width: 768px)",
             isReduced: "(prefers-reduced-motion: reduce)"
         }, (context) => {
-            const { isDesktop, isReduced } = context.conditions as { isDesktop: boolean; isReduced: boolean };
-            if (!isDesktop || isReduced) return;
+            const { isReduced } = context.conditions as { isReduced: boolean };
+            if (isReduced) return;
             
             const cards = cardsRef.current.filter(Boolean) as HTMLElement[];
             if (cards.length < 1) return;
@@ -213,6 +245,9 @@ const Rituals = () => {
 
             // Card disappear animation
             cards.forEach((card, index) => {
+                // Don't animate the last card away
+                if (index === cards.length - 1) return;
+                
                 gsap.to(card, {
                     scale: 0.9,
                     yPercent: -100,
