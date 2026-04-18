@@ -116,8 +116,8 @@
 /* ─── RITUALS STACKING SECTION ─────────────────────────── */
 
 #rituals {
-  --card-height: clamp(180px, 14vw, 500px);
-  --stack-peek: clamp(60px, 7vw, 260px);
+  --card-height: clamp(170px, 13vw, 460px);
+  --stack-peek: clamp(56px, 6.5vw, 240px);
   --card-gap: clamp(8px, 0.6vw, 14px);
 
   background-color: #2D2D2D;
