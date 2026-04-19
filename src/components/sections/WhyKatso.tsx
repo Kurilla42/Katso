@@ -8,17 +8,17 @@ import Image from 'next/image';
 
 const whyKatsoData = [
   {
-    title: 'Мастерство через отбор',
+    title: 'Мастерство\nчерез отбор',
     description: 'Не учим джуниоров на платных клиентах. Каждый мастер пришёл с минимум 3-летним стажем в своей дисциплине. Вы платите за руки, которые делали это уже тысячу раз и получают удовольствие от своего занятия',
     bgColor: '#2D2D2D',
   },
   {
-    title: 'Программа лояльности',
+    title: 'Программа\nлояльности',
     description: '3% от каждой услуги возвращается баллами. Этими баллами можно оплатить 20% любой следующей услуги\n-15% скидка в день рождения, действует 7 дней до/после\n-15% день студента каждый понедельник\n-10% комбо «ногти+ брови»',
     bgColor: '#9EB89A',
   },
   {
-    title: 'Консультация часть услуги',
+    title: 'Консультация\nчасть услуги',
     description: 'Каждая услуга начинается с 10-минутного разбора: что вы хотите сегодня, что у вас было в прошлый раз, какой финальный образ. Это входит в цену и не продлевает время в кресле. Нам важно слышать вас',
     bgColor: '#2D2D2D',
   },
@@ -158,7 +158,8 @@ const WhyKatso = () => {
                                         className="absolute bottom-[10%] font-display uppercase max-w-[50%]"
                                         style={{
                                             fontSize: 'clamp(32px, 10vw, 70px)',
-                                            color: index === 1 ? '#2D2D2D' : colors.cream
+                                            color: index === 1 ? '#2D2D2D' : colors.cream,
+                                            whiteSpace: 'pre-line'
                                         }}
                                     >
                                         {item.title}
@@ -277,7 +278,7 @@ const WhyKatso = () => {
                                 </div>
                                 <div>
                                     <div className="px-6">
-                                        <h3 className="font-display uppercase" style={{ fontSize: '12vw', color: index === 1 ? '#2D2D2D' : colors.cream, lineHeight: 1 }}>
+                                        <h3 className="font-display uppercase" style={{ fontSize: '12vw', color: index === 1 ? '#2D2D2D' : colors.cream, lineHeight: 1, whiteSpace: 'pre-line' }}>
                                             {item.title}
                                         </h3>
                                     </div>
