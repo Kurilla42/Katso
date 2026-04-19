@@ -74,11 +74,11 @@ const FixedUI = () => {
       {/* Top-left logo mark */}
       <button
         onClick={scrollToTop}
-        className="fixed top-4 left-4 sm:top-6 sm:left-6 z-50 w-12 h-12 bg-transparent cursor-pointer group transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        className="fixed top-4 left-4 sm:top-6 sm:left-6 z-50 w-24 h-24 bg-transparent cursor-pointer group transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         aria-label="Scroll to top"
         data-cursor-hover="link"
       >
-        <Image src="https://i.ibb.co/hRyWbg1V/image.png" alt="KATSO Logo" width={48} height={48} className="object-contain transition-transform duration-300 ease-in-out group-hover:scale-110" />
+        <Image src="https://i.ibb.co/hRyWbg1V/image.png" alt="KATSO Logo" width={96} height={96} className="object-contain transition-transform duration-300 ease-in-out group-hover:scale-110" />
       </button>
 
       {/* Top-right menu placeholder */}
