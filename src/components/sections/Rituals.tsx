@@ -219,8 +219,8 @@ const Rituals = () => {
             const cards = cardsRef.current.filter(Boolean) as HTMLElement[];
             if (cards.length < 1) return;
     
-            // Apply animation to all cards except the last one
-            cards.slice(0, -1).forEach((card) => {
+            // Apply animation to all cards.
+            cards.forEach((card) => {
                 gsap.to(card, {
                     scale: 0.9,
                     filter: 'blur(8px)',
