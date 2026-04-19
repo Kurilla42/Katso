@@ -17,14 +17,18 @@ const Hero = () => {
 
   const [isMobile, setIsMobile] = useState(false);
   const [isMobileVideoLoaded, setIsMobileVideoLoaded] = useState(false);
+  const [isDesktopVideoLoaded, setIsDesktopVideoLoaded] = useState(false);
 
   useLayoutEffect(() => {
-    setIsMobile(window.innerWidth < 768);
+    const onResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    onResize();
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
   }, []);
 
   useEffect(() => {
-    if (!isMobile) return;
-
     const video = mobileVideoRef.current;
     if (!video) return;
 
@@ -32,9 +36,7 @@ const Hero = () => {
       setIsMobileVideoLoaded(true);
     };
 
-    // In case the video is already loaded from browser cache
     if (video.readyState >= 4) {
-      // HAVE_ENOUGH_DATA
       onCanPlay();
     } else {
       video.addEventListener('canplaythrough', onCanPlay);
@@ -43,17 +45,34 @@ const Hero = () => {
     return () => {
       video.removeEventListener('canplaythrough', onCanPlay);
     };
-  }, [isMobile]);
+  }, []);
+
+  useEffect(() => {
+    const video = desktopVideoRef.current;
+    if (!video) return;
+
+    const onCanPlay = () => {
+      setIsDesktopVideoLoaded(true);
+    };
+
+    if (video.readyState >= 4) {
+      onCanPlay();
+    } else {
+      video.addEventListener('canplaythrough', onCanPlay);
+    }
+
+    return () => {
+      video.removeEventListener('canplaythrough', onCanPlay);
+    };
+  }, []);
 
   useEffect(() => {
     if (desktopVideoRef.current) {
-      // Force play on component mount to fix back-navigation bug
       desktopVideoRef.current.play().catch(error => {
         console.error("Desktop video autoplay was prevented:", error);
       });
     }
     if (mobileVideoRef.current) {
-      // Force play on component mount to fix back-navigation bug
       mobileVideoRef.current.play().catch(error => {
         console.error("Mobile video autoplay was prevented:", error);
       });
@@ -171,9 +190,11 @@ const Hero = () => {
     };
   }, []);
 
+  const isLoaded = isMobile ? isMobileVideoLoaded : isDesktopVideoLoaded;
+
   return (
     <>
-      {isMobile && <Preloader isLoaded={isMobileVideoLoaded} />}
+      <Preloader isLoaded={isLoaded} />
       <section ref={sectionRef} id="hero" className="relative h-[250vh] md:h-[350vh]">
         <div ref={pinRef} className="h-screen w-full md:sticky top-0 overflow-hidden" style={{ backgroundColor: '#2D2D2D' }}>
           
