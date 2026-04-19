@@ -43,7 +43,7 @@ const faqData = [
 
 // Reusable component for a single image in the gallery
 const GalleryImage = ({ image, priority = false }: { image: (typeof PlaceHolderImages)[0], priority?: boolean }) => (
-    <div className="relative w-[40vw] h-[50vw] lg:w-full lg:aspect-[8/5] lg:mb-[2vw] flex-shrink-0 lg:flex-shrink-1 lg:px-0">
+    <div className="relative w-[40vw] h-[50vw] lg:w-full lg:aspect-[16/5] lg:mb-[2vw] flex-shrink-0 lg:flex-shrink-1 lg:px-0">
       <Image
         src={image.imageUrl}
         alt={image.description}
