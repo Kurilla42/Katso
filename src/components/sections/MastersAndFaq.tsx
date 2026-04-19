@@ -52,29 +52,28 @@ const MastersAndFaq = () => {
                     scrollTrigger: {
                         trigger: sectionEl,
                         start: 'top top',
-                        end: '+=100%',
+                        end: '+=200%', // Increased pin duration to allow for internal scrolling
                         scrub: true,
                         pin: true,
                         invalidateOnRefresh: true,
-                        onUpdate: (self) => {
-                            // Only allow interaction when the animation is fully complete
-                            if (self.progress === 1) {
-                                gsap.set(faqWrapperEl, { pointerEvents: 'auto' });
-                            } else {
-                                gsap.set(faqWrapperEl, { pointerEvents: 'none' });
-                            }
-                        },
-                        // Ensure it's non-interactive when scrolling back up
-                        onLeaveBack: () => {
-                            gsap.set(faqWrapperEl, { pointerEvents: 'none' });
-                        },
                     },
                 });
 
+                // Animate slide-up in the first 1/4 of the scroll, then hold for 3/4
                 tl.to(faqWrapperEl, {
                     yPercent: 0,
                     ease: 'none',
-                });
+                    duration: 1,
+                    // Enable interaction only when FAQ is fully visible
+                    onComplete: () => {
+                        gsap.set(faqWrapperEl, { pointerEvents: 'auto' });
+                    },
+                    // Disable interaction when scrolling back up
+                    onReverseComplete: () => {
+                        gsap.set(faqWrapperEl, { pointerEvents: 'none' });
+                    }
+                })
+                .to({}, { duration: 3 }); // Empty tween to hold the pin
             });
         }, sectionRef);
 
