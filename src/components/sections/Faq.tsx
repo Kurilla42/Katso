@@ -120,7 +120,7 @@ const AccordionItem = ({
         className="w-full flex justify-between items-center py-6 text-left gap-4 focus-visible:outline-none focus-visible:bg-black/5 rounded-sm pr-[clamp(1rem,3vw,5rem)]"
         data-cursor-hover="link"
       >
-        <span className="font-lora text-cream text-[4.5vw] md:text-[1.2vw]" style={{ lineHeight: 1.085 }}>{item.question}</span>
+        <span className="font-lora text-cream text-[4.5vw] lg:text-[1.2vw]" style={{ lineHeight: 1.085 }}>{item.question}</span>
         <div className="relative w-4 h-4 flex-shrink-0 text-cream">
           <span className="absolute w-full h-px bg-current top-1/2 -translate-y-1/2"></span>
           <span
@@ -132,7 +132,7 @@ const AccordionItem = ({
         </div>
       </button>
       <div ref={contentRef} className="h-0 overflow-hidden">
-        <p className="pb-6 text-cream font-lora pr-[clamp(1rem,3vw,5rem)] text-[4vw] md:text-[1vw]" style={{ lineHeight: 1.085 }}>{item.answer}</p>
+        <p className="pb-6 text-cream font-lora pr-[clamp(1rem,3vw,5rem)] text-[4vw] lg:text-[1vw]" style={{ lineHeight: 1.085 }}>{item.answer}</p>
       </div>
     </div>
   );
@@ -257,7 +257,7 @@ const Faq = () => {
         </div>
       </div>
 
-      <div className="py-16 md:py-40 relative lg:pl-[clamp(1rem,3vw,5rem)]">
+      <div className="py-16 lg:py-40 relative lg:pl-[clamp(1rem,3vw,5rem)]">
         
         {/* Mobile-only: Horizontal Scrolling Gallery */}
         <div className="lg:hidden w-full overflow-hidden space-y-2 mb-8">
@@ -265,7 +265,7 @@ const Faq = () => {
             <FaqGalleryRow images={rightImages} innerRef={bottomRowRef} />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16 items-start px-4 lg:px-0">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start px-4 lg:px-0">
           
           {/* Spacer to push content to the right on desktop */}
           <div className="hidden lg:block lg:col-span-5"></div>
@@ -273,11 +273,11 @@ const Faq = () => {
           {/* Right Column: FAQ & Contact */}
           <div className="lg:col-span-7">
             <div className="pr-[clamp(1rem,3vw,5rem)]">
-              <h2 className="font-display uppercase text-cream leading-none text-[12vw] md:text-[5vw]">
+              <h2 className="font-display uppercase text-cream leading-none text-[12vw] lg:text-[5vw]">
                 FAQ
               </h2>
             </div>
-            <div className="mt-8 md:mt-12">
+            <div className="mt-8 lg:mt-12">
               {faqData.map((item, index) => (
                 <AccordionItem
                   key={index}
@@ -289,12 +289,12 @@ const Faq = () => {
             </div>
             
             <div className="mt-16 pr-[clamp(1rem,3vw,5rem)]">
-              <p className="font-lora text-cream text-[4.5vw] md:text-[1.2vw]">Не нашли ответ?</p>
+              <p className="font-lora text-cream text-[4.5vw] lg:text-[1.2vw]">Не нашли ответ?</p>
               <a
                 href="https://t.me/katso_studio"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block mt-2 font-lora text-cream group rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nude focus-visible:ring-offset-4 focus-visible:ring-offset-surface text-[4.5vw] md:text-[1.2vw]"
+                className="inline-block mt-2 font-lora text-cream group rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nude focus-visible:ring-offset-4 focus-visible:ring-offset-surface text-[4.5vw] lg:text-[1.2vw]"
                 data-cursor-hover="link"
                 style={{ color: '#F0EBE3' }}
               >

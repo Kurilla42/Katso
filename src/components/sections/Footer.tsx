@@ -55,7 +55,7 @@ const Footer = () => {
     useLayoutEffect(() => {
         const mm = gsap.matchMedia();
 
-        mm.add("(min-width: 768px)", () => {
+        mm.add("(min-width: 1024px)", () => {
             if (!wordMarkRef.current || !containerRef.current || !mapWrapperRef.current) return;
 
             const el = wordMarkRef.current;
@@ -111,46 +111,46 @@ const Footer = () => {
         <div className="grid-overlay"></div>
         
         {/* Desktop-only Wordmark and Map */}
-        <div ref={containerRef} className="hidden md:block">
+        <div ref={containerRef} className="hidden lg:block">
           <div className="relative h-[clamp(200px,25vw,380px)] flex items-end overflow-hidden px-[clamp(1rem,3vw,5rem)]">
             <div className="absolute left-0 bottom-0 z-0 pl-[clamp(1rem,3vw,5rem)]">
               <h2 ref={wordMarkRef} className="font-display text-cream/10 leading-none select-none whitespace-nowrap">
                   KATSO
               </h2>
             </div>
-            <div ref={mapWrapperRef} className="relative w-full md:w-1/2 lg:w-5/12 ml-auto rounded-md overflow-hidden z-10">
+            <div ref={mapWrapperRef} className="relative w-full lg:w-1/2 lg:w-5/12 ml-auto rounded-md overflow-hidden z-10">
                 <Map />
             </div>
           </div>
         </div>
 
         {/* Mobile-only Wordmark */}
-        <div className="md:hidden text-center overflow-hidden px-[clamp(1rem,3vw,5rem)] pt-16">
+        <div className="lg:hidden text-center overflow-hidden px-[clamp(1rem,3vw,5rem)] pt-16">
             <h2 className="font-display text-cream/10 leading-none select-none" style={{fontSize: '28vw'}}>
                 KATSO
             </h2>
         </div>
         
-        <div className="py-16 md:py-24 px-[clamp(1rem,3vw,5rem)]">
+        <div className="py-16 lg:py-24 px-[clamp(1rem,3vw,5rem)]">
           {/* Four-column links */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12 md:gap-x-28">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 lg:gap-x-28">
             {footerLinks.map((column, index) => {
               const orderClasses = [
-                'order-3 md:order-1', // Навигация
-                'order-4 md:order-2', // Услуги
-                'order-1 md:order-3', // Контакты
-                'order-2 md:order-4', // Соцсети
+                'order-3 lg:order-1', // Навигация
+                'order-4 lg:order-2', // Услуги
+                'order-1 lg:order-3', // Контакты
+                'order-2 lg:order-4', // Соцсети
               ];
 
               return (
                 <div key={column.title} className={orderClasses[index]}>
-                  <h4 className="font-lora text-cream mb-4 uppercase text-[4vw] md:text-[1.2vw]">
+                  <h4 className="font-lora text-cream mb-4 uppercase text-[4vw] lg:text-[1.2vw]">
                     {column.title}
                   </h4>
                   <ul>
                     {column.links.map((link) => (
                       <li key={link.text} className="mt-2">
-                        <a href={link.href} className="font-lora text-cream hover:text-accent transition-colors duration-200 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent text-[4vw] md:text-[1.2vw]" data-cursor-hover="link">
+                        <a href={link.href} className="font-lora text-cream hover:text-accent transition-colors duration-200 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent text-[4vw] lg:text-[1.2vw]" data-cursor-hover="link">
                           {link.text}
                         </a>
                       </li>
@@ -162,24 +162,24 @@ const Footer = () => {
           </div>
 
           {/* Separator */}
-          <div className="border-b border-cream/10 my-16 md:my-24" />
+          <div className="border-b border-cream/10 my-16 lg:my-24" />
 
           {/* Bottom CTA */}
           <a href="https://wa.me/79120193362" target="_blank" rel="noopener noreferrer" className="group block text-center py-8 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" data-cursor-hover="link">
-              <span className="font-display tracking-display text-cream uppercase group-hover:text-accent transition-colors duration-200 text-[7vw] md:text-[2.45vw]">
+              <span className="font-display tracking-display text-cream uppercase group-hover:text-accent transition-colors duration-200 text-[7vw] lg:text-[2.45vw]">
                   Записаться на ритуал
-                  <span className="hidden md:inline-block transition-transform duration-400 group-hover:translate-x-2 group-hover:-translate-y-2">&nbsp;↗</span>
+                  <span className="hidden lg:inline-block transition-transform duration-400 group-hover:translate-x-2 group-hover:-translate-y-2">&nbsp;↗</span>
               </span>
           </a>
 
           {/* Mobile-only Map */}
-          <div className="md:hidden relative w-full h-[20vh] rounded-md overflow-hidden z-10 mt-16">
+          <div className="lg:hidden relative w-full h-[20vh] rounded-md overflow-hidden z-10 mt-16">
             <Map />
           </div>
         </div>
         
         <div className="pb-6 px-[clamp(1rem,3vw,5rem)]">
-          <div className="border-t border-cream/10 pt-4 flex justify-between items-center text-nude font-lora text-[3.5vw] md:text-[1.2vw]">
+          <div className="border-t border-cream/10 pt-4 flex justify-between items-center text-nude font-lora text-[3.5vw] lg:text-[1.2vw]">
               <span>© {new Date().getFullYear()} KATSO Studio. All rights reserved.</span>
           </div>
         </div>

@@ -115,7 +115,7 @@ const WhyKatso = () => {
                             <div className="paper-texture"></div>
 
                             {/* --- DESKTOP LAYOUT (hidden on mobile) --- */}
-                            <div className="hidden md:block relative h-full">
+                            <div className="hidden lg:block relative h-full">
                                 <div className={`absolute right-0 w-[60%] ${index === 1 ? 'bottom-[40%]' : 'top-[40%]'}`}>
                                     {index !== 1 && (
                                         <p className="absolute bottom-full left-0 mb-2 font-lora" style={{fontSize: 'clamp(12px, 3vw, 16px)', color: colors.cream}}>
@@ -137,7 +137,7 @@ const WhyKatso = () => {
                                     }}
                                 >
                                     <div className="absolute top-[10%] max-w-2xl">
-                                        <div className="relative pl-4 md:pl-6">
+                                        <div className="relative pl-4 lg:pl-6">
                                             <div
                                                 className="absolute top-0 left-0 h-full w-px"
                                                 style={{ backgroundColor: index === 1 ? colors.cream : colors.cream }}
@@ -166,14 +166,14 @@ const WhyKatso = () => {
                                     </h3>
                                 </div>
                                 {index === 0 && (
-                                    <div className="absolute bottom-[10%] right-[5%] w-[80%] sm:w-[54%] md:top-[42%] md:bottom-[2%] md:right-[16%] md:w-[42%] lg:w-[36%] flex items-stretch gap-2 z-20">
+                                    <div className="absolute bottom-[10%] right-[5%] w-[80%] sm:w-[54%] lg:top-[42%] lg:bottom-[2%] lg:right-[16%] lg:w-[36%] flex items-stretch gap-2 z-20">
                                         <div className="relative flex-1 aspect-[9/16]">
                                             <Image
                                                 src="https://i.ibb.co/5XKvgQWw/Am-KWo-80y-IRE0-Zv-Jank4y-ZPm-Xsn-JCL-p1-B7s-J-8-D9w3r-Qxzgol-Sxp-Th-N35vk-Yy-QXR-5sxd53-YGbs2u-CBI2-Qh.jpg"
                                                 alt="Studio example 1"
                                                 fill
                                                 className="object-cover rounded-sm"
-                                                sizes="(max-width: 640px) 25vw, 15vw"
+                                                sizes="(max-width: 1023px) 30vw, 15vw"
                                             />
                                         </div>
                                         <div className="relative flex-1 aspect-[9/16]">
@@ -193,13 +193,13 @@ const WhyKatso = () => {
                                                 alt="Studio example 2"
                                                 fill
                                                 className="object-cover rounded-sm"
-                                                sizes="(max-width: 640px) 25vw, 15vw"
+                                                sizes="(max-width: 1023px) 30vw, 15vw"
                                             />
                                         </div>
                                     </div>
                                 )}
                                 {index === 1 && (
-                                    <div className="absolute top-[10%] right-[5%] w-[80%] sm:w-[54%] md:top-[2%] md:bottom-[42%] md:right-[16%] md:w-[42%] lg:w-[36%] flex items-stretch gap-2 z-20">
+                                    <div className="absolute top-[10%] right-[5%] w-[80%] sm:w-[54%] lg:top-[2%] lg:bottom-[42%] lg:right-[16%] lg:w-[36%] flex items-stretch gap-2 z-20">
                                         <div className="relative flex-1 aspect-[9/16]">
                                             <video
                                                 className="w-full h-full object-cover rounded-sm"
@@ -217,7 +217,7 @@ const WhyKatso = () => {
                                                 alt="Studio example 5"
                                                 fill
                                                 className="object-cover rounded-sm"
-                                                sizes="(max-width: 640px) 25vw, 15vw"
+                                                sizes="(max-width: 1023px) 30vw, 15vw"
                                             />
                                         </div>
                                         <div className="relative flex-1 aspect-[9/16]">
@@ -226,20 +226,20 @@ const WhyKatso = () => {
                                                 alt="Studio example 6"
                                                 fill
                                                 className="object-cover rounded-sm"
-                                                sizes="(max-width: 640px) 25vw, 15vw"
+                                                sizes="(max-width: 1023px) 30vw, 15vw"
                                             />
                                         </div>
                                     </div>
                                 )}
                                 {index === 2 && (
-                                    <div className="absolute bottom-[10%] right-[5%] w-[80%] sm:w-[54%] md:top-[42%] md:bottom-[2%] md:right-[16%] md:w-[42%] lg:w-[36%] flex items-stretch gap-2 z-20">
+                                    <div className="absolute bottom-[10%] right-[5%] w-[80%] sm:w-[54%] lg:top-[42%] lg:bottom-[2%] lg:right-[16%] lg:w-[36%] flex items-stretch gap-2 z-20">
                                         <div className="relative flex-1 aspect-[9/16]">
                                             <Image
                                                 src="https://i.ibb.co/Ps8WZV4p/3e6657d5-4dd8-4e65-8cb5-ea6922fcb896.jpg"
                                                 alt="Studio example 3"
                                                 fill
                                                 className="object-cover rounded-sm"
-                                                sizes="(max-width: 640px) 25vw, 15vw"
+                                                sizes="(max-width: 1023px) 30vw, 15vw"
                                             />
                                         </div>
                                         <div className="relative flex-1 aspect-[9/16]">
@@ -248,7 +248,7 @@ const WhyKatso = () => {
                                                 alt="Studio example 4"
                                                 fill
                                                 className="object-cover rounded-sm"
-                                                sizes="(max-width: 640px) 25vw, 15vw"
+                                                sizes="(max-width: 1023px) 30vw, 15vw"
                                             />
                                         </div>
                                         <div className="relative flex-1 aspect-[9/16]">
@@ -267,7 +267,7 @@ const WhyKatso = () => {
                             </div>
 
                             {/* --- MOBILE LAYOUT (hidden on desktop) --- */}
-                            <div className="block md:hidden relative h-full w-full flex flex-col justify-between py-6">
+                            <div className="block lg:hidden relative h-full w-full flex flex-col justify-between py-6">
                                 <div className="px-6">
                                     <div className="relative pl-4">
                                         <div className="absolute top-0 left-0 h-full w-px" style={{ backgroundColor: index === 1 ? colors.cream : colors.cream }}></div>

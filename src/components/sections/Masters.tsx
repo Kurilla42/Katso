@@ -83,7 +83,7 @@ const MobileAnimatedImages = ({ images, isActive }: { images: string[], isActive
                         src={src}
                         alt="Photo of a master"
                         fill
-                        sizes="(max-width: 767px) 100vw, 0vw"
+                        sizes="(max-width: 1023px) 100vw, 0vw"
                         className="object-cover"
                         priority={index === 0}
                     />
@@ -110,7 +110,7 @@ const MasterRow = React.forwardRef<
     className={cn(
       'w-full text-left border-b transition-colors duration-300 focus-visible:outline-none group',
       'border-cream/20 bg-transparent',
-      'md:hover:bg-cream',
+      'lg:hover:bg-cream',
       'focus-visible:ring-2 focus-visible:ring-cream ring-offset-2 ring-offset-walnut'
     )}
     data-cursor-hover="link"
@@ -124,17 +124,17 @@ const MasterRow = React.forwardRef<
     >
       <div
         className={cn(
-          'flex flex-col md:flex-row md:items-baseline md:gap-6'
+          'flex flex-col lg:flex-row lg:items-baseline lg:gap-6'
         )}
       >
-        <h3 className="font-display text-[7vw] md:text-h3 uppercase text-cream md:group-hover:text-background transition-colors duration-300">
+        <h3 className="font-display text-[7vw] lg:text-h3 uppercase text-cream lg:group-hover:text-background transition-colors duration-300">
           {master.name}
         </h3>
-        <p className={cn('font-lora text-cream md:group-hover:text-background transition-colors duration-300 text-[4.5vw] md:text-body-lg')}>
+        <p className={cn('font-lora text-cream lg:group-hover:text-background transition-colors duration-300 text-[4.5vw] lg:text-body-lg')}>
           {master.role}
         </p>
       </div>
-      <div className={cn('transition-transform duration-400 ease-slide md:hidden text-cream', isActive ? 'rotate-45' : 'rotate-0')}>
+      <div className={cn('transition-transform duration-400 ease-slide lg:hidden text-cream', isActive ? 'rotate-45' : 'rotate-0')}>
         <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8 0V16" stroke="currentColor" strokeWidth="1.5"/>
             <path d="M16 8L0 8" stroke="currentColor" strokeWidth="1.5"/>
@@ -161,8 +161,8 @@ const Masters = () => {
       const mm = gsap.matchMedia();
 
       mm.add({
-          isDesktop: `(min-width: 768px)`,
-          isMobile: `(max-width: 767px)`
+          isDesktop: `(min-width: 1024px)`,
+          isMobile: `(max-width: 1023px)`
       }, (context) => {
         const { isDesktop } = context.conditions!;
 
@@ -240,7 +240,7 @@ const Masters = () => {
   }, []);
 
   useEffect(() => {
-    if (window.innerWidth >= 768) return;
+    if (window.innerWidth >= 1024) return;
 
     accordionContentsRef.current.forEach((content, index) => {
       gsap.to(content, {
@@ -253,7 +253,7 @@ const Masters = () => {
   }, [activeIndex]);
 
   const onRowClick = (index: number) => {
-    if (window.innerWidth < 768) {
+    if (window.innerWidth < 1024) {
       setActiveIndex(activeIndex === index ? null : index);
     }
   };
@@ -277,13 +277,13 @@ const Masters = () => {
       ></div>
       <div className="paper-texture"></div>
       <div 
-        className="w-full mx-auto pt-4 pb-4 md:pt-8 md:pb-4 relative"
+        className="w-full mx-auto pt-4 pb-4 lg:pt-8 lg:pb-4 relative"
         style={{
             paddingLeft: 'clamp(24px, 4vw, 80px)',
             paddingRight: 'clamp(24px, 4vw, 80px)',
         }}
       >
-        <p className="uppercase text-cream text-[4.5vw] md:text-caption">Команда</p>
+        <p className="uppercase text-cream text-[4.5vw] lg:text-caption">Команда</p>
       </div>
 
       <div className="masters-list">
@@ -300,7 +300,7 @@ const Masters = () => {
               />
               <div
                 ref={el => accordionContentsRef.current[index] = el}
-                className="h-0 overflow-hidden md:hidden"
+                className="h-0 overflow-hidden lg:hidden"
                 style={{ backgroundColor: '#2D2D2D' }}
               >
                 <div className="p-4">
@@ -312,7 +312,7 @@ const Masters = () => {
                           src={placeholder.imageUrl}
                           alt={placeholder.description}
                           fill
-                          sizes="(max-width: 767px) 100vw, 0vw"
+                          sizes="(max-width: 1023px) 100vw, 0vw"
                           className="object-cover rounded-sm"
                           data-ai-hint={placeholder.imageHint}
                        />
@@ -327,7 +327,7 @@ const Masters = () => {
       
       <div
         ref={imageWrapperRef}
-        className="hidden md:block fixed top-1/2 right-[25vw] w-[clamp(280px,24vw,420px)] aspect-[4/5] z-20 pointer-events-none"
+        className="hidden lg:block fixed top-1/2 right-[25vw] w-[clamp(280px,24vw,420px)] aspect-[4/5] z-20 pointer-events-none"
         style={{ transform: 'translateY(-50%)' }}
       >
         <div className="relative w-full h-full rounded-sm overflow-hidden">

@@ -85,7 +85,7 @@ const SocialProof = () => {
       style={{ backgroundColor: colors.surface }}
       data-cursor="dark"
     >
-      <div className="py-6 md:py-8">
+      <div className="py-6 lg:py-8">
         <div ref={wrapperRef} className="flex">
           <div className="marquee-content flex shrink-0 items-center">
             {marqueeItems}

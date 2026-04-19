@@ -21,7 +21,7 @@ const Hero = () => {
 
   useLayoutEffect(() => {
     const onResize = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(window.innerWidth < 1024);
     };
     onResize();
     window.addEventListener('resize', onResize);
@@ -88,7 +88,7 @@ const Hero = () => {
         ctx = gsap.context(() => {
             const mm = gsap.matchMedia();
 
-            mm.add("(min-width: 768px)", () => {
+            mm.add("(min-width: 1024px)", () => {
                 const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: sectionRef.current,
@@ -134,7 +134,7 @@ const Hero = () => {
                 );
             });
             
-            mm.add("(max-width: 767px)", () => {
+            mm.add("(max-width: 1023px)", () => {
                 const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: sectionRef.current,
@@ -195,8 +195,8 @@ const Hero = () => {
   return (
     <>
       <Preloader isLoaded={isLoaded} />
-      <section ref={sectionRef} id="hero" className="relative h-[250vh] md:h-[350vh]">
-        <div ref={pinRef} className="h-screen w-full md:sticky top-0 overflow-hidden" style={{ backgroundColor: '#2D2D2D' }}>
+      <section ref={sectionRef} id="hero" className="relative h-[250vh] lg:h-[350vh]">
+        <div ref={pinRef} className="h-screen w-full lg:sticky top-0 overflow-hidden" style={{ backgroundColor: '#2D2D2D' }}>
           
           {/* Main background textures */}
           <div
@@ -223,10 +223,10 @@ const Hero = () => {
 
           <div className="h-full w-full" style={{ mask: 'url(#hero-mask)', WebkitMask: 'url(#hero-mask)' }}>
             <div className="relative h-full w-full overflow-hidden">
-              <video ref={desktopVideoRef} className="hidden md:block absolute top-0 left-0 w-full h-full object-cover" autoPlay loop muted playsInline poster="https://i.ibb.co/p688qQCw/2026-04-18-03-06-45.jpg">
+              <video ref={desktopVideoRef} className="hidden lg:block absolute top-0 left-0 w-full h-full object-cover" autoPlay loop muted playsInline poster="https://i.ibb.co/p688qQCw/2026-04-18-03-06-45.jpg">
                 <source src="/video/Hero-video.mp4" type="video/mp4" />
               </video>
-              <video ref={mobileVideoRef} className="block md:hidden absolute top-0 left-0 w-full h-full object-cover" autoPlay loop muted playsInline poster="https://i.ibb.co/Qvg2sdhh/2026-04-19-10-32-10.png">
+              <video ref={mobileVideoRef} className="block lg:hidden absolute top-0 left-0 w-full h-full object-cover" autoPlay loop muted playsInline poster="https://i.ibb.co/Qvg2sdhh/2026-04-19-10-32-10.png">
                 <source src="/video/Hero-video-mobile4.mp4" type="video/mp4" />
               </video>
               <div className="absolute inset-0 bg-black/20"></div>
@@ -235,13 +235,13 @@ const Hero = () => {
 
           <div ref={contentRef} className="absolute inset-0 z-20 opacity-0 flex items-end justify-start">
               <div className="text-left" style={{ paddingBottom: '15vh', paddingLeft: 'clamp(1rem, 3vw, 5rem)' }}>
-                  <h1 className="font-display leading-none text-[14vw] md:text-[7vw]" style={{ color: '#F0EBE3', letterSpacing: '-0.01em', textShadow: '0 0 40px rgba(10,9,8,0.9), 0 0 80px rgba(10,9,8,0.7), 0 2px 4px rgba(10,9,8,1)' }}>
+                  <h1 className="font-display leading-none text-[14vw] lg:text-[7vw]" style={{ color: '#F0EBE3', letterSpacing: '-0.01em', textShadow: '0 0 40px rgba(10,9,8,0.9), 0 0 80px rgba(10,9,8,0.7), 0 2px 4px rgba(10,9,8,1)' }}>
                       <div style={{ fontWeight: 900, textTransform: 'uppercase' }}>Красота</div>
                       <div style={{ fontWeight: 400, fontStyle: 'italic', color: '#F0EBE3' }}>которую видно</div>
                   </h1>
                   <div className="mt-8 inline-block">
                       <div style={{ height: '1px', backgroundColor: '#F0EBE3', marginBottom: '1rem' }}></div>
-                      <p className="font-furore uppercase text-[3.5vw] md:text-[1.2vw]" style={{ color: '#F0EBE3', letterSpacing: '0.2em', textShadow: '0 0 10px rgba(10,9,8,0.9), 0 1px 2px rgba(10,9,8,1)' }}>
+                      <p className="font-furore uppercase text-[3.5vw] lg:text-[1.2vw]" style={{ color: '#F0EBE3', letterSpacing: '0.2em', textShadow: '0 0 10px rgba(10,9,8,0.9), 0 1px 2px rgba(10,9,8,1)' }}>
                           KATSO STUDIO · ИЖЕВСК
                       </p>
                   </div>

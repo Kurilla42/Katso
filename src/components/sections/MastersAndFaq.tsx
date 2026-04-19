@@ -21,7 +21,7 @@ const MastersAndFaq = () => {
         const ctx = gsap.context(() => {
             const mm = gsap.matchMedia();
 
-            mm.add("(min-width: 768px)", () => {
+            mm.add("(min-width: 1024px)", () => {
                 // Desktop animation: slide from right
                 gsap.set(faqWrapperEl, { xPercent: 100, pointerEvents: 'none' });
 
@@ -44,7 +44,7 @@ const MastersAndFaq = () => {
                 });
             });
 
-            mm.add("(max-width: 767px)", () => {
+            mm.add("(max-width: 1023px)", () => {
                 // Mobile animation: slide from bottom
                 gsap.set(faqWrapperEl, { yPercent: 100, pointerEvents: 'none' });
 

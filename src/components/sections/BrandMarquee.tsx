@@ -11,7 +11,7 @@ const MarqueeItem = () => (
     <span className="mx-8 text-h2 font-display uppercase text-cream">
       KATSO
     </span>
-    <StarIcon className="w-8 h-8 md:w-12 md:h-12 text-accent" />
+    <StarIcon className="w-8 h-8 lg:w-12 lg:h-12 text-accent" />
   </div>
 );
 
@@ -76,7 +76,7 @@ const BrandMarquee = () => {
       style={{ backgroundColor: colors.walnut }}
       data-cursor="dark"
     >
-      <div className="py-8 md:py-4">
+      <div className="py-8 lg:py-4">
         <div ref={wrapperRef} className="flex">
           <div className="marquee-content flex shrink-0">
             {marqueeItems}

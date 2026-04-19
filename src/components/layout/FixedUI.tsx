@@ -56,7 +56,7 @@ const FixedUI = () => {
     let st: ScrollTrigger | undefined;
     const mm = gsap.matchMedia();
 
-    mm.add("(min-width: 768px)", () => {
+    mm.add("(min-width: 1024px)", () => {
         st = ScrollTrigger.create({
             trigger: 'body',
             start: '150vh top',
@@ -98,7 +98,7 @@ const FixedUI = () => {
       {/* Top-left logo mark */}
       <button
         onClick={scrollToTop}
-        className={`fixed top-[-14px] left-6 z-50 w-24 h-24 bg-transparent cursor-pointer group transition-opacity duration-500 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-2 focus-visible:ring-offset-background hidden md:block ${isLogoVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+        className={`fixed top-[-14px] left-6 z-50 w-24 h-24 bg-transparent cursor-pointer group transition-opacity duration-500 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-2 focus-visible:ring-offset-background hidden lg:block ${isLogoVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
         aria-label="Scroll to top"
         data-cursor-hover="link"
       >
@@ -108,7 +108,7 @@ const FixedUI = () => {
       {/* Top-right menu placeholder */}
       <div
         ref={menuRef}
-        className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 hidden md:flex items-center gap-6"
+        className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 hidden lg:flex items-center gap-6"
       >
         <a href="https://t.me/katso_studio" target="_blank" rel="noopener noreferrer" className="caption text-nude hover:text-accent transition-colors" data-cursor-hover="link">
           ЗАПИСАТЬСЯ ОНЛАЙН

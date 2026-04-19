@@ -134,7 +134,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
         <div className="paper-texture"></div>
         <div className="flex h-full w-full relative">
             {/* Left Content Area (Mobile) */}
-            <div className="w-1/2 flex flex-col justify-between p-4 md:hidden">
+            <div className="w-1/2 flex flex-col justify-between p-4 lg:hidden">
                 <h3
                     className="font-display uppercase"
                     style={{ color: textColor, letterSpacing: '-0.01em', fontSize: '5vw', lineHeight: 1.1 }}
@@ -152,7 +152,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
             </div>
 
             {/* Right Image Area (Mobile) */}
-            <div className="relative w-1/2 md:hidden">
+            <div className="relative w-1/2 lg:hidden">
                 <Image
                   src={imageUrl}
                   alt={headline}
@@ -164,7 +164,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
             </div>
 
             {/* Desktop Layout (hidden on mobile) */}
-            <div className="hidden md:block w-full h-full relative">
+            <div className="hidden lg:block w-full h-full relative">
                 <div className="ritual-card-inner">
                     <div className="ritual-card-content">
                         <h3
@@ -293,7 +293,7 @@ const Rituals = () => {
                         paddingBottom: 'clamp(64px, 10vh, 96px)',
                     }}
                 >
-                    <h2 className="font-display uppercase text-cream text-[10vw] md:text-[5vw] leading-none md:leading-[.95] md:relative md:left-[-2vw]">
+                    <h2 className="font-display uppercase text-cream text-[10vw] lg:text-[5vw] leading-none lg:leading-[.95] lg:relative lg:left-[-2vw]">
                         Ритуалы <br /> Красоты
                     </h2>
                 </div>
