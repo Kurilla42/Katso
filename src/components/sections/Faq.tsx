@@ -41,6 +41,22 @@ const faqData = [
   },
 ];
 
+// Reusable component for a single image in the gallery
+const GalleryImage = ({ image, priority = false }: { image: (typeof PlaceHolderImages)[0], priority?: boolean }) => (
+    <div className="relative w-[40vw] h-[50vw] lg:w-full lg:aspect-[4/5] lg:mb-[2vw] flex-shrink-0 lg:flex-shrink-1 px-1 lg:px-0">
+      <Image
+        src={image.imageUrl}
+        alt={image.description}
+        fill
+        sizes="(max-width: 1023px) 40vw, 20vw"
+        className="object-cover"
+        data-ai-hint={image.imageHint}
+        priority={priority}
+      />
+    </div>
+  );
+
+// Vertical column for desktop
 const FaqGalleryColumn = ({
   images,
   innerRef,
@@ -55,21 +71,28 @@ const FaqGalleryColumn = ({
   return (
     <div ref={innerRef}>
       {[...displayImages, ...displayImages].map((p, index) => (
-        <div key={index} className="relative w-full aspect-[4/5] mb-[2vw]">
-          <Image
-            src={p.imageUrl}
-            alt={p.description}
-            fill
-            sizes="20vw"
-            className="object-cover"
-            data-ai-hint={p.imageHint}
-            priority={index < 4}
-          />
-        </div>
+        <GalleryImage key={index} image={p} priority={index < 4} />
       ))}
     </div>
   );
 };
+
+// Horizontal row for mobile
+const FaqGalleryRow = ({
+    images,
+    innerRef
+  }: {
+    images: (typeof PlaceHolderImages);
+    innerRef: React.RefObject<HTMLDivElement>;
+  }) => {
+      return (
+          <div ref={innerRef} className="flex">
+              {[...images, ...images].map((p, index) => (
+                  <GalleryImage key={index} image={p} priority={index < 4} />
+              ))}
+          </div>
+      )
+  }
 
 const AccordionItem = ({
   item,
@@ -118,36 +141,77 @@ const AccordionItem = ({
 const Faq = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
+  
+  // Refs for desktop (vertical)
   const leftColumnRef = useRef<HTMLDivElement>(null);
   const rightColumnRef = useRef<HTMLDivElement>(null);
-  
+
+  // Refs for mobile (horizontal)
+  const topRowRef = useRef<HTMLDivElement>(null);
+  const bottomRowRef = useRef<HTMLDivElement>(null);
+
   const galleryImages = PlaceHolderImages.filter(p => p.id.startsWith('faq-gallery-'));
-  const leftImages = galleryImages.slice(0, 4);
-  const rightImages = galleryImages.slice(4, 8);
+  const leftImages = galleryImages.slice(0, 4); // Used for top row and left column
+  const rightImages = galleryImages.slice(4, 8); // Used for bottom row and right column
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     
     const triggerElement = sectionRef.current?.parentElement?.parentElement;
-    if (!triggerElement || !leftColumnRef.current || !rightColumnRef.current) return;
+    if (!triggerElement) return;
 
     const ctx = gsap.context(() => {
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: triggerElement,
-                start: 'top top',
-                end: '+=100%',
-                scrub: true,
-                invalidateOnRefresh: true,
-            }
+        const mm = gsap.matchMedia();
+
+        // --- Desktop Animation (Vertical Columns) ---
+        mm.add("(min-width: 1024px)", () => {
+            if (!leftColumnRef.current || !rightColumnRef.current) return;
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: triggerElement,
+                    start: 'top top',
+                    end: '+=100%',
+                    scrub: true,
+                    invalidateOnRefresh: true,
+                }
+            });
+            gsap.set(rightColumnRef.current, { yPercent: -50 });
+            tl.to(leftColumnRef.current, { yPercent: -50, ease: 'none' }, 0);
+            tl.to(rightColumnRef.current, { yPercent: 0, ease: 'none' }, 0);
         });
 
-        // Set initial positions
-        gsap.set(rightColumnRef.current, { yPercent: -50 });
+        // --- Mobile Animation (Horizontal Rows) ---
+        mm.add("(max-width: 1023px)", () => {
+            const topRow = topRowRef.current;
+            const bottomRow = bottomRowRef.current;
+            if (!topRow || !bottomRow) return;
 
-        // Animate columns
-        tl.to(leftColumnRef.current, { yPercent: -50, ease: 'none' }, 0);
-        tl.to(rightColumnRef.current, { yPercent: 0, ease: 'none' }, 0);
+            // Set initial position for bottom row for parallax effect
+            gsap.set(bottomRow, { xPercent: -50 });
+
+            gsap.to(topRow, {
+                xPercent: -50,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: triggerElement,
+                    start: 'top top',
+                    end: '+=100%',
+                    scrub: true,
+                },
+            });
+
+            gsap.to(bottomRow, {
+                xPercent: 0,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: triggerElement,
+                    start: 'top top',
+                    end: '+=100%',
+                    scrub: true,
+                },
+            });
+        });
+
     }, sectionRef);
 
     return () => ctx.revert();
@@ -177,7 +241,7 @@ const Faq = () => {
       <div className="paper-texture"></div>
       <div className="grid-overlay"></div>
 
-      {/* Left Column: Image Gallery - Repositioned and Resized */}
+      {/* Desktop-only: Left Column Image Gallery */}
       <div className="hidden lg:flex absolute top-0 left-0 h-full w-1/2 items-center pointer-events-none">
         <div
             className="relative flex justify-start gap-[5vw]"
@@ -192,10 +256,17 @@ const Faq = () => {
         </div>
       </div>
 
-      <div className="py-16 md:py-40 relative pl-[clamp(1rem,3vw,5rem)]">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16 items-start">
+      <div className="py-16 md:py-40 relative lg:pl-[clamp(1rem,3vw,5rem)]">
+        
+        {/* Mobile-only: Horizontal Scrolling Gallery */}
+        <div className="lg:hidden w-full overflow-hidden space-y-2 mb-8">
+            <FaqGalleryRow images={leftImages} innerRef={topRowRef} />
+            <FaqGalleryRow images={rightImages} innerRef={bottomRowRef} />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16 items-start px-4 lg:px-0">
           
-          {/* Spacer to push content to the right */}
+          {/* Spacer to push content to the right on desktop */}
           <div className="hidden lg:block lg:col-span-5"></div>
 
           {/* Right Column: FAQ & Contact */}
