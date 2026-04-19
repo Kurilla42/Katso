@@ -296,7 +296,7 @@ const Faq = () => {
                 rel="noopener noreferrer"
                 className="inline-block mt-2 font-lora text-nude group rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nude focus-visible:ring-offset-4 focus-visible:ring-offset-surface text-[4.5vw] md:text-[1.2vw]"
                 data-cursor-hover="link"
-                style={{ color: '#9EB89A' }}
+                style={{ color: '#2A5C56' }}
               >
                 <span>Напишите нам</span>
                 <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">&nbsp;&rarr;</span>
