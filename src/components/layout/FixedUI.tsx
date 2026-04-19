@@ -19,6 +19,7 @@ const navLinks = [
 const FixedUI = () => {
   const menuRef = useRef<HTMLDivElement>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLogoVisible, setIsLogoVisible] = useState(false);
   const lenis = useLenis();
   const pathname = usePathname();
   const router = useRouter();
@@ -49,6 +50,29 @@ const FixedUI = () => {
     };
   }, []);
 
+  useLayoutEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    let st: ScrollTrigger | undefined;
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 768px)", () => {
+        st = ScrollTrigger.create({
+            trigger: 'body',
+            start: '150vh top',
+            end: 'bottom bottom',
+            onToggle: (self) => {
+                setIsLogoVisible(self.isActive);
+            },
+        });
+    });
+
+    return () => {
+        st?.kill();
+        mm.revert();
+    };
+  }, []);
+
   const scrollToTop = () => {
     if (pathname !== '/') {
         router.push('/');
@@ -74,7 +98,7 @@ const FixedUI = () => {
       {/* Top-left logo mark */}
       <button
         onClick={scrollToTop}
-        className="fixed top-4 left-4 sm:top-6 sm:left-6 md:top-[-14px] z-50 w-24 h-24 bg-transparent cursor-pointer group transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        className={`fixed top-[-14px] left-6 z-50 w-24 h-24 bg-transparent cursor-pointer group transition-opacity duration-500 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-2 focus-visible:ring-offset-background hidden md:block ${isLogoVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
         aria-label="Scroll to top"
         data-cursor-hover="link"
       >
