@@ -130,7 +130,7 @@ const MasterRow = React.forwardRef<
         <h3 className="font-display text-[7vw] md:text-h3 uppercase text-cream md:group-hover:text-background transition-colors duration-300">
           {master.name}
         </h3>
-        <p className={cn('font-lora text-nude md:group-hover:text-background transition-colors duration-300 text-[4.5vw] md:text-body-lg')}>
+        <p className={cn('font-lora text-cream md:group-hover:text-background transition-colors duration-300 text-[4.5vw] md:text-body-lg')}>
           {master.role}
         </p>
       </div>
@@ -283,7 +283,7 @@ const Masters = () => {
             paddingRight: 'clamp(24px, 4vw, 80px)',
         }}
       >
-        <p className="uppercase text-nude text-[4.5vw] md:text-caption">Команда</p>
+        <p className="uppercase text-cream text-[4.5vw] md:text-caption">Команда</p>
       </div>
 
       <div className="masters-list">

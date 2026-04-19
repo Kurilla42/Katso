@@ -122,9 +122,9 @@ const WhyKatso = () => {
                                             наши работы
                                         </p>
                                     )}
-                                    <div className="w-full h-px" style={{ backgroundColor: index === 1 ? '#2D2D2D' : colors.cream }}/>
+                                    <div className="w-full h-px" style={{ backgroundColor: index === 1 ? colors.cream : colors.cream }}/>
                                     {index === 1 && (
-                                        <p className="absolute top-full left-0 mt-2 font-lora" style={{fontSize: 'clamp(12px, 3vw, 16px)', color: '#2D2D2D'}}>
+                                        <p className="absolute top-full left-0 mt-2 font-lora" style={{fontSize: 'clamp(12px, 3vw, 16px)', color: colors.cream}}>
                                             наши работы
                                         </p>
                                     )}
@@ -140,14 +140,14 @@ const WhyKatso = () => {
                                         <div className="relative pl-4 md:pl-6">
                                             <div
                                                 className="absolute top-0 left-0 h-full w-px"
-                                                style={{ backgroundColor: index === 1 ? '#2D2D2D' : colors.cream }}
+                                                style={{ backgroundColor: index === 1 ? colors.cream : colors.cream }}
                                             ></div>
                                             <p
                                                 className="font-lora whitespace-pre-line"
                                                 style={{
                                                     fontSize: 'clamp(14px, 4vw, 18px)',
                                                     lineHeight: 1.085,
-                                                    color: index === 1 ? '#2D2D2D' : colors.cream,
+                                                    color: index === 1 ? colors.cream : colors.cream,
                                                 }}
                                             >
                                                 {item.description}
@@ -158,7 +158,7 @@ const WhyKatso = () => {
                                         className="absolute bottom-[10%] font-display uppercase max-w-[50%]"
                                         style={{
                                             fontSize: 'clamp(32px, 10vw, 70px)',
-                                            color: index === 1 ? '#2D2D2D' : colors.cream,
+                                            color: index === 1 ? colors.cream : colors.cream,
                                             whiteSpace: 'pre-line'
                                         }}
                                     >
@@ -270,23 +270,23 @@ const WhyKatso = () => {
                             <div className="block md:hidden relative h-full w-full flex flex-col justify-between py-6">
                                 <div className="px-6">
                                     <div className="relative pl-4">
-                                        <div className="absolute top-0 left-0 h-full w-px" style={{ backgroundColor: index === 1 ? '#2D2D2D' : colors.cream }}></div>
-                                        <p className="font-lora whitespace-pre-line" style={{ fontSize: '4.5vw', lineHeight: 1.3, color: index === 1 ? '#2D2D2D' : colors.cream }}>
+                                        <div className="absolute top-0 left-0 h-full w-px" style={{ backgroundColor: index === 1 ? colors.cream : colors.cream }}></div>
+                                        <p className="font-lora whitespace-pre-line" style={{ fontSize: '4.5vw', lineHeight: 1.3, color: index === 1 ? colors.cream : colors.cream }}>
                                             {item.description}
                                         </p>
                                     </div>
                                 </div>
                                 <div>
                                     <div className="px-6">
-                                        <h3 className="font-display uppercase" style={{ fontSize: '10vw', color: index === 1 ? '#2D2D2D' : colors.cream, lineHeight: 1, whiteSpace: 'pre-line' }}>
+                                        <h3 className="font-display uppercase" style={{ fontSize: '10vw', color: index === 1 ? colors.cream : colors.cream, lineHeight: 1, whiteSpace: 'pre-line' }}>
                                             {item.title}
                                         </h3>
                                     </div>
                                     <div className="w-full mt-8">
-                                        <p className="font-lora mb-2 px-6" style={{ fontSize: '3.5vw', color: index === 1 ? '#2D2D2D' : colors.nude }}>
+                                        <p className="font-lora mb-2 px-6" style={{ fontSize: '3.5vw', color: index === 1 ? colors.cream : colors.nude }}>
                                             наши работы
                                         </p>
-                                        <div className="w-full h-px" style={{ backgroundColor: index === 1 ? '#2D2D2D' : colors.cream }} />
+                                        <div className="w-full h-px" style={{ backgroundColor: index === 1 ? colors.cream : colors.cream }} />
                                     </div>
                                     <div className="w-[94%] mx-auto mt-4">
                                         {index === 0 && (

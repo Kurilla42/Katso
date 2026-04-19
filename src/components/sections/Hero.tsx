@@ -183,7 +183,7 @@ const Hero = () => {
              <div className="text-left" style={{ paddingBottom: '15vh', paddingLeft: 'clamp(1rem, 3vw, 5rem)' }}>
                 <h1 className="font-display leading-none text-[14vw] md:text-[7vw]" style={{ color: '#F0EBE3', letterSpacing: '-0.01em', textShadow: '0 0 40px rgba(10,9,8,0.9), 0 0 80px rgba(10,9,8,0.7), 0 2px 4px rgba(10,9,8,1)' }}>
                     <div style={{ fontWeight: 900, textTransform: 'uppercase' }}>Красота</div>
-                    <div style={{ fontWeight: 400, fontStyle: 'italic', color: '#2A5C56' }}>которую видно</div>
+                    <div style={{ fontWeight: 400, fontStyle: 'italic', color: '#F0EBE3' }}>которую видно</div>
                 </h1>
                 <div className="mt-8 inline-block">
                     <div style={{ height: '1px', backgroundColor: '#F0EBE3', marginBottom: '1rem' }}></div>

@@ -150,7 +150,7 @@ const NewMe = () => {
 
                 <p
                     ref={pTextRef}
-                    className="text-[4vw] md:text-[1.2vw] font-lora md:text-right whitespace-pre-line text-nude"
+                    className="text-[4vw] md:text-[1.2vw] font-lora md:text-right whitespace-pre-line text-cream"
                     style={{ lineHeight: 1.085 }}
                 >
                     {'Другой взгляд на себя, \nдругое мировоззрение и \nотношения с окружающим миром'}

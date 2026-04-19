@@ -144,7 +144,7 @@ const Footer = () => {
 
               return (
                 <div key={column.title} className={orderClasses[index]}>
-                  <h4 className="font-lora text-nude mb-4 uppercase text-[4vw] md:text-[1.2vw]">
+                  <h4 className="font-lora text-cream mb-4 uppercase text-[4vw] md:text-[1.2vw]">
                     {column.title}
                   </h4>
                   <ul>

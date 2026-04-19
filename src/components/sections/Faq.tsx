@@ -121,7 +121,7 @@ const AccordionItem = ({
         data-cursor-hover="link"
       >
         <span className="font-lora text-cream text-[4.5vw] md:text-[1.2vw]" style={{ lineHeight: 1.085 }}>{item.question}</span>
-        <div className="relative w-4 h-4 flex-shrink-0 text-nude">
+        <div className="relative w-4 h-4 flex-shrink-0 text-cream">
           <span className="absolute w-full h-px bg-current top-1/2 -translate-y-1/2"></span>
           <span
             className={cn(
@@ -132,7 +132,7 @@ const AccordionItem = ({
         </div>
       </button>
       <div ref={contentRef} className="h-0 overflow-hidden">
-        <p className="pb-6 text-nude font-lora pr-[clamp(1rem,3vw,5rem)] text-[4vw] md:text-[1vw]" style={{ lineHeight: 1.085 }}>{item.answer}</p>
+        <p className="pb-6 text-cream font-lora pr-[clamp(1rem,3vw,5rem)] text-[4vw] md:text-[1vw]" style={{ lineHeight: 1.085 }}>{item.answer}</p>
       </div>
     </div>
   );
@@ -289,14 +289,14 @@ const Faq = () => {
             </div>
             
             <div className="mt-16 pr-[clamp(1rem,3vw,5rem)]">
-              <p className="font-lora text-nude text-[4.5vw] md:text-[1.2vw]">Не нашли ответ?</p>
+              <p className="font-lora text-cream text-[4.5vw] md:text-[1.2vw]">Не нашли ответ?</p>
               <a
                 href="https://t.me/katso_studio"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block mt-2 font-lora text-nude group rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nude focus-visible:ring-offset-4 focus-visible:ring-offset-surface text-[4.5vw] md:text-[1.2vw]"
+                className="inline-block mt-2 font-lora text-cream group rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nude focus-visible:ring-offset-4 focus-visible:ring-offset-surface text-[4.5vw] md:text-[1.2vw]"
                 data-cursor-hover="link"
-                style={{ color: '#2A5C56' }}
+                style={{ color: '#F0EBE3' }}
               >
                 <span>Напишите нам</span>
                 <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">&nbsp;&rarr;</span>
