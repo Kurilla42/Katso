@@ -116,7 +116,7 @@ const NewMe = () => {
             <div className="floating-image absolute w-[59vw] md:w-[12.3vw] aspect-[1/1.2] bottom-[10%] left-1/2 md:left-[8%] transform -translate-x-1/2 md:translate-x-0 -rotate-[7deg]">
                 <Image src="https://i.ibb.co/8D9VnyxZ/790b8980-17ce-4517-9d41-bd3a5008a7ef.jpg" alt="Woman with beautiful hair" fill className="object-cover rounded-md" quality={100} />
             </div>
-            <div className="floating-image absolute w-[51vw] md:w-[17.7vw] aspect-[1.2/1] top-[8%] right-[10%] transform rotate-[6deg]">
+            <div className="floating-image absolute w-[51vw] md:w-[17.7vw] aspect-[1.2/1] top-[12%] md:top-[8%] right-[10%] transform rotate-[6deg]">
                 <Image src="https://i.ibb.co/v6xqgN14/440cc9b2-04fe-40e8-83e7-84d0e84b820f.jpg" alt="Beauty salon details" fill className="object-contain rounded-md" quality={100} />
             </div>
             <div className="floating-image absolute w-[33vw] md:w-[11.5vw] aspect-[1/1.2] top-[10%] left-[5%] md:left-[38%]">
