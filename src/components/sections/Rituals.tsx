@@ -293,7 +293,7 @@ const Rituals = () => {
                         paddingBottom: 'clamp(64px, 10vh, 96px)',
                     }}
                 >
-                    <h2 className="ritual-card-headline text-cream text-[10vw] md:text-[5vw]">
+                    <h2 className="font-display uppercase text-cream text-[10vw] md:text-[5vw] leading-none md:leading-[.95] md:relative md:left-[-2vw]">
                         Ритуалы <br /> Красоты
                     </h2>
                 </div>

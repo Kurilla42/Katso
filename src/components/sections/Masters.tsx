@@ -110,7 +110,7 @@ const MasterRow = React.forwardRef<
     className={cn(
       'w-full text-left border-b transition-colors duration-300 focus-visible:outline-none group',
       'border-cream/20 bg-transparent',
-      'hover:bg-cream',
+      'md:hover:bg-cream',
       'focus-visible:ring-2 focus-visible:ring-cream ring-offset-2 ring-offset-walnut'
     )}
     data-cursor-hover="link"
@@ -127,14 +127,14 @@ const MasterRow = React.forwardRef<
           'flex flex-col md:flex-row md:items-baseline md:gap-6'
         )}
       >
-        <h3 className="font-display text-[7vw] md:text-h3 uppercase text-cream group-hover:text-background transition-colors duration-300">
+        <h3 className="font-display text-[7vw] md:text-h3 uppercase text-cream md:group-hover:text-background transition-colors duration-300">
           {master.name}
         </h3>
-        <p className={cn('font-lora text-nude group-hover:text-background transition-colors duration-300 text-[4.5vw] md:text-body-lg')}>
+        <p className={cn('font-lora text-nude md:group-hover:text-background transition-colors duration-300 text-[4.5vw] md:text-body-lg')}>
           {master.role}
         </p>
       </div>
-      <div className={cn('transition-transform duration-400 ease-slide md:hidden text-cream group-hover:text-background', isActive ? 'rotate-45' : 'rotate-0')}>
+      <div className={cn('transition-transform duration-400 ease-slide md:hidden text-cream', isActive ? 'rotate-45' : 'rotate-0')}>
         <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8 0V16" stroke="currentColor" strokeWidth="1.5"/>
             <path d="M16 8L0 8" stroke="currentColor" strokeWidth="1.5"/>

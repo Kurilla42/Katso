@@ -126,7 +126,7 @@ const Footer = () => {
 
         {/* Mobile-only Wordmark */}
         <div className="md:hidden text-center overflow-hidden px-[clamp(1rem,3vw,5rem)] pt-16">
-            <h2 className="font-display text-cream/10 leading-none select-none" style={{fontSize: '30vw'}}>
+            <h2 className="font-display text-cream/10 leading-none select-none" style={{fontSize: '28vw'}}>
                 KATSO
             </h2>
         </div>
