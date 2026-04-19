@@ -190,7 +190,10 @@
   white-space: nowrap;
 }
 
-[class*="ymaps-2"][class*="ground-pane"],
-[class*="ymaps-2"][class*="copyrights-pane"] {
+.yandex-map-container > ymaps {
+  filter: invert(100%) hue-rotate(180deg);
+}
+
+.yandex-map-container [class*="placemark"] {
   filter: invert(100%) hue-rotate(180deg);
 }

@@ -28,7 +28,7 @@ const Map = () => {
   return (
     <div
       ref={mapContainerRef}
-      className="absolute inset-0 w-full h-full"
+      className="absolute inset-0 w-full h-full yandex-map-container"
     />
   );
 };
