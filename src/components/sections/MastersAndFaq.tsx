@@ -52,28 +52,23 @@ const MastersAndFaq = () => {
                     scrollTrigger: {
                         trigger: sectionEl,
                         start: 'top top',
-                        end: '+=200%', // Increased pin duration to allow for internal scrolling
+                        end: '+=100%',
                         scrub: true,
                         pin: true,
                         invalidateOnRefresh: true,
                     },
                 });
 
-                // Animate slide-up in the first 1/4 of the scroll, then hold for 3/4
                 tl.to(faqWrapperEl, {
                     yPercent: 0,
                     ease: 'none',
-                    duration: 1,
-                    // Enable interaction only when FAQ is fully visible
                     onComplete: () => {
                         gsap.set(faqWrapperEl, { pointerEvents: 'auto' });
                     },
-                    // Disable interaction when scrolling back up
                     onReverseComplete: () => {
                         gsap.set(faqWrapperEl, { pointerEvents: 'none' });
                     }
-                })
-                .to({}, { duration: 3 }); // Empty tween to hold the pin
+                });
             });
         }, sectionRef);
 

@@ -345,35 +345,35 @@ const PriceRow = ({
 }) => (
   <div className="flex justify-between items-start gap-4 py-4 font-lora border-b border-cream/10">
     <div className="flex-1">
-      {col1 && <p className="text-cream" style={{ fontSize: '1.2vw' }}>{col1}</p>}
-      {col3 && <p className="text-nude mt-1 max-w-md" style={{ fontSize: '1.2vw' }}>{col3}</p>}
+      {col1 && <p className="text-cream text-[3vw] sm:text-[2vw] md:text-[1.5vw] lg:text-[1.2vw]">{col1}</p>}
+      {col3 && <p className="text-nude mt-1 max-w-md text-[3vw] sm:text-[2vw] md:text-[1.5vw] lg:text-[1.2vw]">{col3}</p>}
     </div>
-    {col2 && <p className="text-cream text-right whitespace-nowrap" style={{ fontSize: '1.2vw' }}>{col2}</p>}
+    {col2 && <p className="text-cream text-right whitespace-nowrap text-[3vw] sm:text-[2vw] md:text-[1.5vw] lg:text-[1.2vw]">{col2}</p>}
   </div>
 );
 
 const ThreeColPriceRow = ({ col1, col2, col3 }: { col1: string | null; col2: string | null; col3: string | null; }) => (
     <div className="grid grid-cols-3 items-start gap-4 py-4 font-lora border-b border-cream/10">
-      <p className="text-cream" style={{ fontSize: '1.2vw' }}>{col1}</p>
-      <p className="text-cream text-center" style={{ fontSize: '1.2vw' }}>{col2}</p>
-      <p className="text-cream text-right" style={{ fontSize: '1.2vw' }}>{col3}</p>
+      <p className="text-cream text-[3vw] sm:text-[2vw] md:text-[1.5vw] lg:text-[1.2vw]">{col1}</p>
+      <p className="text-cream text-center text-[3vw] sm:text-[2vw] md:text-[1.5vw] lg:text-[1.2vw]">{col2}</p>
+      <p className="text-cream text-right text-[3vw] sm:text-[2vw] md:text-[1.5vw] lg:text-[1.2vw]">{col3}</p>
     </div>
   );
 
 const PriceTable = ({ subCategory }: { subCategory: (typeof servicesData)[0]['subCategories'][0] }) => (
   <div className="mb-12">
     {subCategory.title && <h3 className="font-display text-2xl md:text-3xl uppercase text-cream mb-6">{subCategory.title}</h3>}
-    {subCategory.description && <p className="font-lora text-nude mb-6 -mt-4" style={{ fontSize: '1.2vw' }}>{subCategory.description}</p>}
+    {subCategory.description && <p className="font-lora text-nude mb-6 -mt-4 text-[3vw] sm:text-[2vw] md:text-[1.5vw] lg:text-[1.2vw]">{subCategory.description}</p>}
     
     <div>
         {subCategory.headers.length > 0 && subCategory.headers.length < 3 && (
-             <div className="flex justify-between items-start gap-4 py-2 font-display text-cream uppercase tracking-wider" style={{ fontSize: '1.2vw' }}>
+             <div className="flex justify-between items-start gap-4 py-2 font-display text-cream uppercase tracking-wider text-[3vw] sm:text-[2vw] md:text-[1.5vw] lg:text-[1.2vw]">
                 <span className="flex-1">{subCategory.headers[0]}</span>
                 {subCategory.headers[1] && <span className="text-right whitespace-nowrap">{subCategory.headers[1]}</span>}
             </div>
         )}
          {subCategory.headers.length === 3 && (
-            <div className="grid grid-cols-3 items-start gap-4 py-2 font-display text-cream uppercase tracking-wider" style={{ fontSize: '1.2vw' }}>
+            <div className="grid grid-cols-3 items-start gap-4 py-2 font-display text-cream uppercase tracking-wider text-[3vw] sm:text-[2vw] md:text-[1.5vw] lg:text-[1.2vw]">
                 <span>{subCategory.headers[0]}</span>
                 <span className="text-center">{subCategory.headers[1]}</span>
                 <span className="text-right">{subCategory.headers[2]}</span>
@@ -391,7 +391,7 @@ const PriceTable = ({ subCategory }: { subCategory: (typeof servicesData)[0]['su
     {subCategory.notes && (
         <div className="mt-4 space-y-1">
             {subCategory.notes.map((note, index) => (
-                <p key={index} className="text-nude font-lora" style={{ fontSize: '1.2vw' }}>
+                <p key={index} className="text-nude font-lora text-[3vw] sm:text-[2vw] md:text-[1.5vw] lg:text-[1.2vw]">
                     * {note}
                 </p>
             ))}
