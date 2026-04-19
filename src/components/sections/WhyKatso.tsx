@@ -37,13 +37,12 @@ const WhyKatso = () => {
         const ctx = gsap.context(() => {
             const cards = gsap.utils.toArray<HTMLElement>(sectionEl.querySelectorAll('.why-us-card'));
             const stickyContainer = sectionEl.querySelector<HTMLElement>('.why-us-sticky-container');
+            const videos = gsap.utils.toArray<HTMLVideoElement>(sectionEl.querySelectorAll('.why-us-video'));
             if (!stickyContainer || cards.length === 0) return;
             
             gsap.set(sectionEl, { backgroundColor: colors.walnut });
 
             cards.forEach(card => gsap.set(card, { transformOrigin: 'bottom center' }));
-
-            const firstCardVideo = cards[0].querySelector<HTMLVideoElement>('.why-us-video');
 
             gsap.fromTo(cards[0], 
                 { rotation: 4, yPercent: 20 }, 
@@ -69,30 +68,27 @@ const WhyKatso = () => {
                     start: 'top top',
                     end: `+=${(cards.length - 1) * 100}%`,
                     invalidateOnRefresh: true,
+                    onToggle: self => {
+                        videos.forEach(v => {
+                            if (self.isActive) {
+                                v.play().catch(() => {});
+                            } else {
+                                v.pause();
+                            }
+                        });
+                    },
                     onEnter: () => {
                         gsap.to(sectionEl, { backgroundColor: whyKatsoData[0].bgColor, duration: 0.4, ease: 'none' });
-                        firstCardVideo?.play().catch(() => {});
                     },
                     onLeaveBack: () => {
                         gsap.to(sectionEl, { backgroundColor: colors.walnut, duration: 0.4, ease: 'none' });
-                        firstCardVideo?.pause();
                     },
-                    onLeave: () => {
-                        const lastCardVideo = cards[cards.length-1].querySelector<HTMLVideoElement>('.why-us-video');
-                        lastCardVideo?.pause();
-                    },
-                    onEnterBack: () => {
-                        const lastCardVideo = cards[cards.length-1].querySelector<HTMLVideoElement>('.why-us-video');
-                        lastCardVideo?.play().catch(() => {});
-                    }
                 }
             });
 
             cards.slice(1).forEach((card, i) => {
                 const newColor = whyKatsoData[i + 1].bgColor;
-                const video = card.querySelector<HTMLVideoElement>('.why-us-video');
-                const prevVideo = cards[i].querySelector<HTMLVideoElement>('.why-us-video');
-
+                
                 tl.fromTo(card, 
                     { yPercent: 105, rotation: 5 },
                     { 
@@ -100,14 +96,6 @@ const WhyKatso = () => {
                         rotation: 0, 
                         duration: 1, 
                         ease: 'power1.inOut',
-                        onStart: () => {
-                            video?.play().catch(() => {});
-                            prevVideo?.pause();
-                        },
-                        onReverseComplete: () => {
-                            video?.pause();
-                            prevVideo?.play().catch(() => {});
-                        }
                     },
                     i 
                 );
@@ -211,7 +199,6 @@ const WhyKatso = () => {
                                         <div className="relative flex-1 aspect-[9/16]">
                                             <video
                                                 className="w-full h-full object-cover why-us-video"
-                                                autoPlay
                                                 loop
                                                 muted
                                                 playsInline
@@ -235,7 +222,6 @@ const WhyKatso = () => {
                                         <div className="relative flex-1 aspect-[9/16]">
                                             <video
                                                 className="w-full h-full object-cover why-us-video"
-                                                autoPlay
                                                 loop
                                                 muted
                                                 playsInline
@@ -286,7 +272,6 @@ const WhyKatso = () => {
                                         <div className="relative flex-1 aspect-[9/16]">
                                             <video
                                                 className="w-full h-full object-cover why-us-video"
-                                                autoPlay
                                                 loop
                                                 muted
                                                 playsInline
@@ -335,7 +320,6 @@ const WhyKatso = () => {
                                                 <div className="relative flex-1 aspect-[9/16]">
                                                     <video
                                                         className="w-full h-full object-cover why-us-video"
-                                                        autoPlay
                                                         loop
                                                         muted
                                                         playsInline
@@ -359,7 +343,6 @@ const WhyKatso = () => {
                                                 <div className="relative flex-1 aspect-[9/16]">
                                                     <video
                                                         className="w-full h-full object-cover why-us-video"
-                                                        autoPlay
                                                         loop
                                                         muted
                                                         playsInline
@@ -410,7 +393,6 @@ const WhyKatso = () => {
                                                 <div className="relative flex-1 aspect-[9/16]">
                                                     <video
                                                         className="w-full h-full object-cover why-us-video"
-                                                        autoPlay
                                                         loop
                                                         muted
                                                         playsInline

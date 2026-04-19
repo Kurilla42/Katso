@@ -5,7 +5,7 @@ import FixedUI from '@/components/layout/FixedUI';
 
 export const metadata: Metadata = {
   title: 'KATSO Studio',
-  description: 'Студия красоты в Кишинёве, Молдова.',
+  description: 'Студия красоты в Ижевске',
 };
 
 export default function RootLayout({
