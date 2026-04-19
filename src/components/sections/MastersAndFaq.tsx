@@ -56,8 +56,18 @@ const MastersAndFaq = () => {
                         scrub: true,
                         pin: true,
                         invalidateOnRefresh: true,
-                        onEnter: () => gsap.set(faqWrapperEl, { pointerEvents: 'auto' }),
-                        onLeaveBack: () => gsap.set(faqWrapperEl, { pointerEvents: 'none' }),
+                        onUpdate: (self) => {
+                            // Only allow interaction when the animation is fully complete
+                            if (self.progress === 1) {
+                                gsap.set(faqWrapperEl, { pointerEvents: 'auto' });
+                            } else {
+                                gsap.set(faqWrapperEl, { pointerEvents: 'none' });
+                            }
+                        },
+                        // Ensure it's non-interactive when scrolling back up
+                        onLeaveBack: () => {
+                            gsap.set(faqWrapperEl, { pointerEvents: 'none' });
+                        },
                     },
                 });
 
