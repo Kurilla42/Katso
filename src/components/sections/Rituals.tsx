@@ -225,18 +225,19 @@ const Rituals = () => {
     
         const mm = gsap.matchMedia(componentRef.current!);
         
-        mm.add("(prefers-reduced-motion: no-preference) and (min-width: 1024px)", () => {
+        mm.add("(prefers-reduced-motion: no-preference)", () => {
             
             const cards = cardsRef.current.filter(Boolean) as HTMLElement[];
             if (cards.length < 1) return;
     
             // Apply animation to all cards.
             cards.forEach((card) => {
+                const isMobile = window.innerWidth < 1024;
                 gsap.to(card, {
-                    scale: 0.9,
-                    filter: 'blur(8px)',
+                    scale: isMobile ? 1 : 0.9,
+                    filter: isMobile ? 'none' : 'blur(8px)',
                     yPercent: -100,
-                    opacity: 0.8,
+                    opacity: isMobile ? 1 : 0.8,
                     ease: 'none',
                     scrollTrigger: {
                         trigger: card,
