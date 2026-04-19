@@ -274,7 +274,7 @@ const Rituals = () => {
                         paddingBottom: 'clamp(64px, 10vh, 96px)',
                     }}
                 >
-                    <h2 className="ritual-card-headline text-cream" style={{fontSize: '5vw'}}>
+                    <h2 className="ritual-card-headline text-cream text-[10vw] md:text-[5vw]">
                         Ритуалы <br /> Красоты
                     </h2>
                 </div>

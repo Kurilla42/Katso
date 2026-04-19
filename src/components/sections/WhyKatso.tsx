@@ -278,7 +278,7 @@ const WhyKatso = () => {
                                 </div>
                                 <div>
                                     <div className="px-6">
-                                        <h3 className="font-display uppercase" style={{ fontSize: '12vw', color: index === 1 ? '#2D2D2D' : colors.cream, lineHeight: 1, whiteSpace: 'pre-line' }}>
+                                        <h3 className="font-display uppercase" style={{ fontSize: '10vw', color: index === 1 ? '#2D2D2D' : colors.cream, lineHeight: 1, whiteSpace: 'pre-line' }}>
                                             {item.title}
                                         </h3>
                                     </div>
