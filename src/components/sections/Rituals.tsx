@@ -11,6 +11,7 @@ const ritualsData = [
   {
     id: 'manicure',
     title: 'МАНИКЮР И НАРАЩИВАНИЕ НОГТЕЙ',
+    mobileTitle: 'МАНИКЮР И НАРАЩИВАНИЕ',
     description:
       'Идеальный маникюр и педикюр, от лечебного до дизайнерского. Безопасность, стерильность и внимание к деталям.',
     bgColor: '#9EB89A',
@@ -21,6 +22,7 @@ const ritualsData = [
   {
     id: 'brows',
     title: 'БРОВИ И РЕСНИЦЫ',
+    mobileTitle: 'БРОВИ И РЕСНИЦЫ',
     description:
       'Коррекция и окрашивание бровей и ресниц для создания выразительного взгляда, который подчеркнет вашу естественную красоту.',
     bgColor: '#9EB89A',
@@ -31,6 +33,7 @@ const ritualsData = [
   {
     id: 'hair',
     title: 'СТРИЖКИ / УКЛАДКИ / УХОД ЗА ДЛИНОЙ',
+    mobileTitle: 'СТРИЖКИ и УКЛАДКИ',
     description:
       'От классических форм до смелых креативных решений, а также восстанавливающие уходы, которые вернут волосам силу и блеск.',
     bgColor: '#9EB89A',
@@ -41,6 +44,7 @@ const ritualsData = [
   {
     id: 'color',
     title: 'ОКРАШИВАНИЯ / ВЫПРЯМЛЕНИЕ',
+    mobileTitle: 'ОКРАШИВАНИЯ ВЫПРЯМЛЕНИЕ',
     description:
       'Сложные техники окрашивания, безопасное выпрямление и процедуры для глубокого восстановления структуры волос.',
     bgColor: '#9EB89A',
@@ -51,6 +55,7 @@ const ritualsData = [
   {
     id: 'keratin',
     title: 'КЕРАТИН / БОТОКС',
+    mobileTitle: 'КЕРАТИН И БОТОКС',
     description:
       'Профессиональная диагностика и индивидуальные программы лечения и ухода для решения проблем кожи головы и стимуляции роста волос.',
     bgColor: '#9EB89A',
@@ -61,6 +66,7 @@ const ritualsData = [
   {
     id: 'scalp',
     title: 'УХОД ЗА КОЖЕЙ ГОЛОВЫ',
+    mobileTitle: 'УХОД ЗА КОЖЕЙ',
     description:
       'Дневной, вечерний или для особого случая. Наши визажисты создадут образ, который подчеркнет вашу уникальность.',
     bgColor: '#9EB89A',
@@ -71,6 +77,7 @@ const ritualsData = [
   {
     id: 'makeup',
     title: 'МАКИЯЖ / ОБРАЗ НЕВЕСТЫ',
+    mobileTitle: 'МАКИЯЖ',
     description:
       'Создадим для вас неповторимый образ в самый важный день. Учтем все пожелания и детали, чтобы вы чувствовали себя неотразимой.',
     bgColor: '#9EB89A',
@@ -87,6 +94,7 @@ interface RitualCardProps {
   textColor: string;
   numeralColor: string;
   headline: string;
+  mobileHeadline: string;
   description: string;
   imageUrl: string;
   linkHref: string;
@@ -99,6 +107,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
       bgColor,
       textColor,
       headline,
+      mobileHeadline,
       description,
       imageUrl,
       linkHref,
@@ -130,7 +139,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
                     className="font-display uppercase"
                     style={{ color: textColor, letterSpacing: '-0.01em', fontSize: '5vw', lineHeight: 1.1 }}
                 >
-                    {headline}
+                    {mobileHeadline}
                 </h3>
                 <Link
                     href={linkHref}
@@ -300,6 +309,7 @@ const Rituals = () => {
                         textColor={ritual.textColor}
                         numeralColor={ritual.numeralColor}
                         headline={ritual.title}
+                        mobileHeadline={ritual.mobileTitle || ritual.title}
                         description={ritual.description}
                         linkHref={`/services#${ritual.id}`}
                         imageUrl={ritual.imageUrl}
