@@ -240,6 +240,7 @@ const Faq = () => {
       ></div>
       <div className="paper-texture"></div>
       <div className="grid-overlay"></div>
+      <div className="absolute inset-y-0 left-[1px] w-px bg-grid hidden lg:block"></div>
 
       {/* Desktop-only: Left Column Image Gallery */}
       <div className="hidden lg:flex absolute top-0 left-0 h-full w-1/2 items-center pointer-events-none">
