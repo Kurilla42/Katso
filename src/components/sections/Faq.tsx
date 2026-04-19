@@ -227,7 +227,7 @@ const Faq = () => {
       ref={sectionRef}
       style={{ backgroundColor: '#2D2D2D' }}
       data-cursor="dark"
-      className="h-full w-full overflow-y-auto"
+      className="h-full w-full overflow-y-auto overscroll-behavior-contain"
     >
       <div
         className="absolute inset-0 w-full h-full pointer-events-none"
