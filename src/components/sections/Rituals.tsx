@@ -214,12 +214,7 @@ const Rituals = () => {
     
         const mm = gsap.matchMedia(componentRef.current!);
         
-        mm.add({
-            isDesktop: "(min-width: 768px)",
-            isReduced: "(prefers-reduced-motion: reduce)"
-        }, (context) => {
-            const { isDesktop, isReduced } = context.conditions as { isDesktop: boolean, isReduced: boolean };
-            if (!isDesktop || isReduced) return;
+        mm.add("(prefers-reduced-motion: no-preference)", () => {
             
             const cards = cardsRef.current.filter(Boolean) as HTMLElement[];
             if (cards.length < 1) return;
@@ -229,9 +224,9 @@ const Rituals = () => {
                 gsap.to(card, {
                     scale: 0.9,
                     filter: 'blur(8px)',
-                    yPercent: 5,
+                    yPercent: -100,
                     opacity: 0.8,
-                    ease: 'power1.in',
+                    ease: 'none',
                     scrollTrigger: {
                         trigger: card,
                         start: 'top 30%',
