@@ -310,14 +310,13 @@ const WhyKatso = () => {
                                                     />
                                                 </div>
                                                 <div className="relative flex-1 aspect-[9/16]">
-                                                    <video
-                                                        className="w-full h-full object-cover why-us-video"
-                                                        loop
-                                                        muted
-                                                        playsInline
-                                                    >
-                                                        <source src="/video/Video-15-mobile.mp4" type="video/mp4" />
-                                                    </video>
+                                                    <Image
+                                                        src="https://i.ibb.co/mVs18VN5/2026-04-16-20-21-01.png"
+                                                        alt="Studio example mobile 1"
+                                                        fill
+                                                        className="object-cover"
+                                                        sizes="30vw"
+                                                    />
                                                 </div>
                                                 <div className="relative flex-1 aspect-[9/16]">
                                                     <Image
@@ -333,14 +332,13 @@ const WhyKatso = () => {
                                         {index === 1 && (
                                             <div className="flex items-stretch gap-2 z-20">
                                                 <div className="relative flex-1 aspect-[9/16]">
-                                                    <video
-                                                        className="w-full h-full object-cover why-us-video"
-                                                        loop
-                                                        muted
-                                                        playsInline
-                                                    >
-                                                        <source src="/video/Video-16-mobile.mp4" type="video/mp4" />
-                                                    </video>
+                                                    <Image
+                                                        src="https://i.ibb.co/Kj94sTxg/f-E9-Ns-WGdvxth-EZxq8-Jtk5t5t3o-Gqguv-JZ9-w6bo-n-LMDLZo-Yx-DXGe8nxb-Wek0-WPI2b-Nt-Ew-Ltnv9a-Kzfv-G85ik.jpg"
+                                                        alt="Studio example mobile 2"
+                                                        fill
+                                                        className="object-cover"
+                                                        sizes="30vw"
+                                                    />
                                                 </div>
                                                 <div className="relative flex-1 aspect-[9/16]">
                                                     <Image
@@ -383,14 +381,13 @@ const WhyKatso = () => {
                                                     />
                                                 </div>
                                                 <div className="relative flex-1 aspect-[9/16]">
-                                                    <video
-                                                        className="w-full h-full object-cover why-us-video"
-                                                        loop
-                                                        muted
-                                                        playsInline
-                                                    >
-                                                        <source src="/video/Video-17-mobile.mp4" type="video/mp4" />
-                                                    </video>
+                                                    <Image
+                                                        src="https://i.ibb.co/nsjJH4sK/rvbij-QN3lho-MGe-CBst-Unr-Qnx-Koyirl-G7-HZ9-E1-Ud-D3hu9l-FW2-FI7qbkq-NUNQU8-YSo-UI48-Lyvo-Ah5-V6-CCNv6hgij.jpg"
+                                                        alt="Studio example mobile 3"
+                                                        fill
+                                                        className="object-cover"
+                                                        sizes="30vw"
+                                                    />
                                                 </div>
                                             </div>
                                         )}

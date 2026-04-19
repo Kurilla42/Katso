@@ -87,7 +87,7 @@
     @apply absolute inset-0 w-full h-full pointer-events-none;
     background-image: url('https://i.ibb.co/zWNnhBMd/concrete-wall-2-1.png');
     background-repeat: repeat;
-    opacity: 0.5;
+    opacity: 0.8;
     mix-blend-mode: overlay;
   }
 
