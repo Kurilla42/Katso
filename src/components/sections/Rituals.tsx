@@ -122,15 +122,7 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
 
     return (
       <article className="ritual-card" style={style} ref={ref} data-cursor={cursorTheme}>
-        <div
-            className="absolute inset-0 w-full h-full pointer-events-none"
-            style={{
-                backgroundImage: 'url(https://i.ibb.co/zWNnhBMd/concrete-wall-2-1.png)',
-                backgroundRepeat: 'repeat',
-                opacity: 0.7,
-                mixBlendMode: 'overlay',
-            }}
-        ></div>
+        <div className="concrete-texture"></div>
         <div className="paper-texture"></div>
         <div className="flex h-full w-full relative">
             {/* Left Content Area (Mobile) */}
@@ -233,7 +225,7 @@ const Rituals = () => {
     
         const mm = gsap.matchMedia(componentRef.current!);
         
-        mm.add("(prefers-reduced-motion: no-preference)", () => {
+        mm.add("(prefers-reduced-motion: no-preference) and (min-width: 1024px)", () => {
             
             const cards = cardsRef.current.filter(Boolean) as HTMLElement[];
             if (cards.length < 1) return;
@@ -272,15 +264,7 @@ const Rituals = () => {
             className="relative"
             style={{ backgroundColor: '#2D2D2D' }}
         >
-            <div
-                className="absolute inset-0 w-full h-full pointer-events-none"
-                style={{
-                    backgroundImage: 'url(https://i.ibb.co/zWNnhBMd/concrete-wall-2-1.png)',
-                    backgroundRepeat: 'repeat',
-                    opacity: 0.7,
-                    mixBlendMode: 'overlay',
-                }}
-            ></div>
+            <div className="concrete-texture"></div>
             <div className="paper-texture"></div>
 
             <div className="relative">

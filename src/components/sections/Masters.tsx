@@ -266,15 +266,7 @@ const Masters = () => {
       style={{ backgroundColor: '#2D2D2D' }}
       data-cursor="dark"
     >
-      <div
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        style={{
-          backgroundImage: 'url(https://i.ibb.co/zWNnhBMd/concrete-wall-2-1.png)',
-          backgroundRepeat: 'repeat',
-          opacity: 0.7,
-          mixBlendMode: 'overlay',
-        }}
-      ></div>
+      <div className="concrete-texture"></div>
       <div className="paper-texture"></div>
       <div 
         className="w-full mx-auto pt-4 pb-4 lg:pt-8 lg:pb-4 relative"

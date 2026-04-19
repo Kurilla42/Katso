@@ -20,6 +20,8 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Anton&family=Geologica:wght@300&family=Lora:wght@400&family=Playfair+Display:ital,wght@0,700;0,900;1,400&display=swap" rel="stylesheet" />
         <link rel="icon" href="https://i.ibb.co/s9tP31PR/katso-fav.jpg" sizes="any" />
+        <link rel="preload" href="/video/Hero-video.mp4" as="video" type="video/mp4" />
+        <link rel="preload" href="/video/Hero-video-mobile4.mp4" as="video" type="video/mp4" />
         <link rel="preload" href="/video/Video-15.mp4" as="video" type="video/mp4" />
         <link rel="preload" href="/video/Video-16.mp4" as="video" type="video/mp4" />
         <link rel="preload" href="/video/Video-17.mp4" as="video" type="video/mp4" />

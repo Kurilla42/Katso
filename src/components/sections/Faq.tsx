@@ -227,19 +227,11 @@ const Faq = () => {
     <section
       id="faq"
       ref={sectionRef}
-      style={{ backgroundColor: '#2D2D2D', overflowAnchor: 'none' }}
+      style={{ backgroundColor: '#2D2D2D' }}
       data-cursor="dark"
-      className="h-full w-full overflow-y-auto overscroll-behavior-contain"
+      className="relative lg:h-auto"
     >
-      <div
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        style={{
-          backgroundImage: 'url(https://i.ibb.co/zWNnhBMd/concrete-wall-2-1.png)',
-          backgroundRepeat: 'repeat',
-          opacity: 0.7,
-          mixBlendMode: 'overlay',
-        }}
-      ></div>
+      <div className="concrete-texture"></div>
       <div className="paper-texture"></div>
       <div className="grid-overlay hidden lg:block"></div>
       <div className="absolute inset-y-0 left-[1px] w-px bg-grid hidden lg:block"></div>

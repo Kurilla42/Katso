@@ -98,14 +98,7 @@ const NewMe = () => {
       style={{ backgroundColor: '#2D2D2D' }}
       data-cursor="dark"
     >
-      <div
-          className="absolute inset-0 w-full h-full pointer-events-none"
-          style={{
-            backgroundImage: 'url(https://i.ibb.co/zWNnhBMd/concrete-wall-2-1.png)',
-            backgroundRepeat: 'repeat',
-            opacity: 0.7,
-            mixBlendMode: 'overlay',
-          }}></div>
+      <div className="concrete-texture"></div>
       <div ref={pinContainerRef} className="h-screen w-full overflow-hidden lg:sticky lg:top-0 relative">
         <div
             ref={scaleTargetRef}
