@@ -23,9 +23,9 @@ const ritualsData = [
     title: 'БРОВИ И РЕСНИЦЫ',
     description:
       'Коррекция и окрашивание бровей и ресниц для создания выразительного взгляда, который подчеркнет вашу естественную красоту.',
-    bgColor: '#F0EBE3',
+    bgColor: '#8FA89A',
     textColor: '#2D2D2D',
-    numeralColor: 'rgba(45, 45, 45, 0.18)',
+    numeralColor: 'rgba(240, 235, 227, 0.18)',
     imageUrl: 'https://i.ibb.co/cSx8YPZn/Image-2.png',
   },
   {
@@ -43,9 +43,9 @@ const ritualsData = [
     title: 'ОКРАШИВАНИЯ / ВЫПРЯМЛЕНИЕ',
     description:
       'Сложные техники окрашивания, безопасное выпрямление и процедуры для глубокого восстановления структуры волос.',
-    bgColor: '#F0EBE3',
+    bgColor: '#8FA89A',
     textColor: '#2D2D2D',
-    numeralColor: 'rgba(45, 45, 45, 0.18)',
+    numeralColor: 'rgba(240, 235, 227, 0.18)',
     imageUrl: 'https://i.ibb.co/TDpZg3MN/Image.png',
   },
   {
@@ -63,9 +63,9 @@ const ritualsData = [
     title: 'УХОД ЗА КОЖЕЙ ГОЛОВЫ',
     description:
       'Дневной, вечерний или для особого случая. Наши визажисты создадут образ, который подчеркнет вашу уникальность.',
-    bgColor: '#F0EBE3',
+    bgColor: '#8FA89A',
     textColor: '#2D2D2D',
-    numeralColor: 'rgba(45, 45, 45, 0.18)',
+    numeralColor: 'rgba(240, 235, 227, 0.18)',
     imageUrl: 'https://i.ibb.co/GQSbDRBD/Image-3.png',
   },
   {
