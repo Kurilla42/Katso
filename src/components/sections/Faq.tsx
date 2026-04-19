@@ -43,7 +43,7 @@ const faqData = [
 
 // Reusable component for a single image in the gallery
 const GalleryImage = ({ image, priority = false }: { image: (typeof PlaceHolderImages)[0], priority?: boolean }) => (
-    <div className="relative w-[40vw] h-[50vw] lg:w-full lg:aspect-[4/5] lg:mb-[2vw] flex-shrink-0 lg:flex-shrink-1 px-1 lg:px-0">
+    <div className="relative w-[40vw] h-[50vw] lg:w-full lg:aspect-[4/5] lg:mb-[2vw] flex-shrink-0 lg:flex-shrink-1 lg:px-0">
       <Image
         src={image.imageUrl}
         alt={image.description}
@@ -86,7 +86,7 @@ const FaqGalleryRow = ({
     innerRef: React.RefObject<HTMLDivElement>;
   }) => {
       return (
-          <div ref={innerRef} className="flex">
+          <div ref={innerRef} className="flex gap-2">
               {[...images, ...images].map((p, index) => (
                   <GalleryImage key={index} image={p} priority={index < 4} />
               ))}
