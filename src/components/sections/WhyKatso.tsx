@@ -43,6 +43,8 @@ const WhyKatso = () => {
 
             cards.forEach(card => gsap.set(card, { transformOrigin: 'bottom center' }));
 
+            const firstCardVideo = cards[0].querySelector<HTMLVideoElement>('.why-us-video');
+
             gsap.fromTo(cards[0], 
                 { rotation: 4, yPercent: 20 }, 
                 { 
@@ -67,16 +69,46 @@ const WhyKatso = () => {
                     start: 'top top',
                     end: `+=${(cards.length - 1) * 100}%`,
                     invalidateOnRefresh: true,
-                    onEnter: () => gsap.to(sectionEl, { backgroundColor: whyKatsoData[0].bgColor, duration: 0.4, ease: 'none' }),
-                    onLeaveBack: () => gsap.to(sectionEl, { backgroundColor: colors.walnut, duration: 0.4, ease: 'none' }),
+                    onEnter: () => {
+                        gsap.to(sectionEl, { backgroundColor: whyKatsoData[0].bgColor, duration: 0.4, ease: 'none' });
+                        firstCardVideo?.play().catch(() => {});
+                    },
+                    onLeaveBack: () => {
+                        gsap.to(sectionEl, { backgroundColor: colors.walnut, duration: 0.4, ease: 'none' });
+                        firstCardVideo?.pause();
+                    },
+                    onLeave: () => {
+                        const lastCardVideo = cards[cards.length-1].querySelector<HTMLVideoElement>('.why-us-video');
+                        lastCardVideo?.pause();
+                    },
+                    onEnterBack: () => {
+                        const lastCardVideo = cards[cards.length-1].querySelector<HTMLVideoElement>('.why-us-video');
+                        lastCardVideo?.play().catch(() => {});
+                    }
                 }
             });
 
             cards.slice(1).forEach((card, i) => {
                 const newColor = whyKatsoData[i + 1].bgColor;
+                const video = card.querySelector<HTMLVideoElement>('.why-us-video');
+                const prevVideo = cards[i].querySelector<HTMLVideoElement>('.why-us-video');
+
                 tl.fromTo(card, 
                     { yPercent: 105, rotation: 5 },
-                    { yPercent: 0, rotation: 0, duration: 1, ease: 'power1.inOut' },
+                    { 
+                        yPercent: 0, 
+                        rotation: 0, 
+                        duration: 1, 
+                        ease: 'power1.inOut',
+                        onStart: () => {
+                            video?.play().catch(() => {});
+                            prevVideo?.pause();
+                        },
+                        onReverseComplete: () => {
+                            video?.pause();
+                            prevVideo?.play().catch(() => {});
+                        }
+                    },
                     i 
                 );
                 tl.to(sectionEl, { backgroundColor: newColor, duration: 1, ease: 'power1.inOut' }, i);
@@ -172,13 +204,13 @@ const WhyKatso = () => {
                                                 src="https://i.ibb.co/5XKvgQWw/Am-KWo-80y-IRE0-Zv-Jank4y-ZPm-Xsn-JCL-p1-B7s-J-8-D9w3r-Qxzgol-Sxp-Th-N35vk-Yy-QXR-5sxd53-YGbs2u-CBI2-Qh.jpg"
                                                 alt="Studio example 1"
                                                 fill
-                                                className="object-cover rounded-sm"
+                                                className="object-cover"
                                                 sizes="(max-width: 1023px) 30vw, 15vw"
                                             />
                                         </div>
                                         <div className="relative flex-1 aspect-[9/16]">
                                             <video
-                                                className="w-full h-full object-cover rounded-sm"
+                                                className="w-full h-full object-cover why-us-video"
                                                 autoPlay
                                                 loop
                                                 muted
@@ -192,7 +224,7 @@ const WhyKatso = () => {
                                                 src="https://i.ibb.co/LzKt0WTV/F4-s35-Lzl9i-J7-ZJa-E161ac-Yt-RBz3cs-c0m7-BDy-NJBjo-Kf-JVp-Epz-Pg-T9f-O3-Cvknkb-Nr-XYx3-U-a-BD887o-Mlj1t.jpg"
                                                 alt="Studio example 2"
                                                 fill
-                                                className="object-cover rounded-sm"
+                                                className="object-cover"
                                                 sizes="(max-width: 1023px) 30vw, 15vw"
                                             />
                                         </div>
@@ -202,7 +234,7 @@ const WhyKatso = () => {
                                     <div className="absolute top-[10%] right-[5%] w-[80%] sm:w-[54%] lg:top-[2%] lg:bottom-[42%] lg:right-[16%] lg:w-[36%] flex items-stretch gap-2 z-20">
                                         <div className="relative flex-1 aspect-[9/16]">
                                             <video
-                                                className="w-full h-full object-cover rounded-sm"
+                                                className="w-full h-full object-cover why-us-video"
                                                 autoPlay
                                                 loop
                                                 muted
@@ -216,7 +248,7 @@ const WhyKatso = () => {
                                                 src="https://i.ibb.co/cKjhxFRw/2026-04-16-20-21-13.png"
                                                 alt="Studio example 5"
                                                 fill
-                                                className="object-cover rounded-sm"
+                                                className="object-cover"
                                                 sizes="(max-width: 1023px) 30vw, 15vw"
                                             />
                                         </div>
@@ -225,7 +257,7 @@ const WhyKatso = () => {
                                                 src="https://i.ibb.co/PGN67QtT/0i-Xf-i-PYg4-Je-IHQv-MNs-CKAKPega-Ed7-Mg-L2-Ns-Hq-Jw-AFvq-VNwa-Niy9x-MTjd-Zjgr7-Ofb-DF8-T-1k-QAX-s7-HF7-Uef.jpg"
                                                 alt="Studio example 6"
                                                 fill
-                                                className="object-cover rounded-sm"
+                                                className="object-cover"
                                                 sizes="(max-width: 1023px) 30vw, 15vw"
                                             />
                                         </div>
@@ -238,7 +270,7 @@ const WhyKatso = () => {
                                                 src="https://i.ibb.co/Ps8WZV4p/3e6657d5-4dd8-4e65-8cb5-ea6922fcb896.jpg"
                                                 alt="Studio example 3"
                                                 fill
-                                                className="object-cover rounded-sm"
+                                                className="object-cover"
                                                 sizes="(max-width: 1023px) 30vw, 15vw"
                                             />
                                         </div>
@@ -247,13 +279,13 @@ const WhyKatso = () => {
                                                 src="https://i.ibb.co/q30RbqX1/2026-04-16-22-06-13.png"
                                                 alt="Studio example 4"
                                                 fill
-                                                className="object-cover rounded-sm"
+                                                className="object-cover"
                                                 sizes="(max-width: 1023px) 30vw, 15vw"
                                             />
                                         </div>
                                         <div className="relative flex-1 aspect-[9/16]">
                                             <video
-                                                className="w-full h-full object-cover rounded-sm"
+                                                className="w-full h-full object-cover why-us-video"
                                                 autoPlay
                                                 loop
                                                 muted
@@ -296,13 +328,13 @@ const WhyKatso = () => {
                                                         src="https://i.ibb.co/5XKvgQWw/Am-KWo-80y-IRE0-Zv-Jank4y-ZPm-Xsn-JCL-p1-B7s-J-8-D9w3r-Qxzgol-Sxp-Th-N35vk-Yy-QXR-5sxd53-YGbs2u-CBI2-Qh.jpg"
                                                         alt="Studio example 1"
                                                         fill
-                                                        className="object-cover rounded-sm"
+                                                        className="object-cover"
                                                         sizes="30vw"
                                                     />
                                                 </div>
                                                 <div className="relative flex-1 aspect-[9/16]">
                                                     <video
-                                                        className="w-full h-full object-cover rounded-sm"
+                                                        className="w-full h-full object-cover why-us-video"
                                                         autoPlay
                                                         loop
                                                         muted
@@ -316,7 +348,7 @@ const WhyKatso = () => {
                                                         src="https://i.ibb.co/LzKt0WTV/F4-s35-Lzl9i-J7-ZJa-E161ac-Yt-RBz3cs-c0m7-BDy-NJBjo-Kf-JVp-Epz-Pg-T9f-O3-Cvknkb-Nr-XYx3-U-a-BD887o-Mlj1t.jpg"
                                                         alt="Studio example 2"
                                                         fill
-                                                        className="object-cover rounded-sm"
+                                                        className="object-cover"
                                                         sizes="30vw"
                                                     />
                                                 </div>
@@ -326,7 +358,7 @@ const WhyKatso = () => {
                                             <div className="flex items-stretch gap-2 z-20">
                                                 <div className="relative flex-1 aspect-[9/16]">
                                                     <video
-                                                        className="w-full h-full object-cover rounded-sm"
+                                                        className="w-full h-full object-cover why-us-video"
                                                         autoPlay
                                                         loop
                                                         muted
@@ -340,7 +372,7 @@ const WhyKatso = () => {
                                                         src="https://i.ibb.co/cKjhxFRw/2026-04-16-20-21-13.png"
                                                         alt="Studio example 5"
                                                         fill
-                                                        className="object-cover rounded-sm"
+                                                        className="object-cover"
                                                         sizes="30vw"
                                                     />
                                                 </div>
@@ -349,7 +381,7 @@ const WhyKatso = () => {
                                                         src="https://i.ibb.co/PGN67QtT/0i-Xf-i-PYg4-Je-IHQv-MNs-CKAKPega-Ed7-Mg-L2-Ns-Hq-Jw-AFvq-VNwa-Niy9x-MTjd-Zjgr7-Ofb-DF8-T-1k-QAX-s7-HF7-Uef.jpg"
                                                         alt="Studio example 6"
                                                         fill
-                                                        className="object-cover rounded-sm"
+                                                        className="object-cover"
                                                         sizes="30vw"
                                                     />
                                                 </div>
@@ -362,7 +394,7 @@ const WhyKatso = () => {
                                                         src="https://i.ibb.co/Ps8WZV4p/3e6657d5-4dd8-4e65-8cb5-ea6922fcb896.jpg"
                                                         alt="Studio example 3"
                                                         fill
-                                                        className="object-cover rounded-sm"
+                                                        className="object-cover"
                                                         sizes="30vw"
                                                     />
                                                 </div>
@@ -371,13 +403,13 @@ const WhyKatso = () => {
                                                         src="https://i.ibb.co/q30RbqX1/2026-04-16-22-06-13.png"
                                                         alt="Studio example 4"
                                                         fill
-                                                        className="object-cover rounded-sm"
+                                                        className="object-cover"
                                                         sizes="30vw"
                                                     />
                                                 </div>
                                                 <div className="relative flex-1 aspect-[9/16]">
                                                     <video
-                                                        className="w-full h-full object-cover rounded-sm"
+                                                        className="w-full h-full object-cover why-us-video"
                                                         autoPlay
                                                         loop
                                                         muted
