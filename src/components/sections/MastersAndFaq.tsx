@@ -19,29 +19,52 @@ const MastersAndFaq = () => {
         if (!sectionEl || !faqWrapperEl) return;
 
         const ctx = gsap.context(() => {
-            // Initially, the FAQ wrapper is off-screen and not interactive.
-            gsap.set(faqWrapperEl, { xPercent: 100, pointerEvents: 'none' });
+            const mm = gsap.matchMedia();
 
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: sectionEl,
-                    start: 'top top',
-                    end: '+=100%',
-                    scrub: true,
-                    pin: true,
-                    invalidateOnRefresh: true,
-                    // Use callbacks to manage interactivity precisely.
-                    // When the scroll enters the trigger area, make the FAQ section clickable.
-                    onEnter: () => gsap.set(faqWrapperEl, { pointerEvents: 'auto' }),
-                    // When scrolling back up and leaving the trigger, disable clicks again.
-                    onLeaveBack: () => gsap.set(faqWrapperEl, { pointerEvents: 'none' }),
-                },
+            mm.add("(min-width: 768px)", () => {
+                // Desktop animation: slide from right
+                gsap.set(faqWrapperEl, { xPercent: 100, pointerEvents: 'none' });
+
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: sectionEl,
+                        start: 'top top',
+                        end: '+=100%',
+                        scrub: true,
+                        pin: true,
+                        invalidateOnRefresh: true,
+                        onEnter: () => gsap.set(faqWrapperEl, { pointerEvents: 'auto' }),
+                        onLeaveBack: () => gsap.set(faqWrapperEl, { pointerEvents: 'none' }),
+                    },
+                });
+
+                tl.to(faqWrapperEl, {
+                    xPercent: 0,
+                    ease: 'none',
+                });
             });
 
-            // The animation itself remains the same.
-            tl.to(faqWrapperEl, {
-                xPercent: 0,
-                ease: 'none',
+            mm.add("(max-width: 767px)", () => {
+                // Mobile animation: slide from bottom
+                gsap.set(faqWrapperEl, { yPercent: 100, pointerEvents: 'none' });
+
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: sectionEl,
+                        start: 'top top',
+                        end: '+=100%',
+                        scrub: true,
+                        pin: true,
+                        invalidateOnRefresh: true,
+                        onEnter: () => gsap.set(faqWrapperEl, { pointerEvents: 'auto' }),
+                        onLeaveBack: () => gsap.set(faqWrapperEl, { pointerEvents: 'none' }),
+                    },
+                });
+
+                tl.to(faqWrapperEl, {
+                    yPercent: 0,
+                    ease: 'none',
+                });
             });
         }, sectionRef);
 

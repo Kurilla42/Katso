@@ -97,7 +97,7 @@ const AccordionItem = ({
         className="w-full flex justify-between items-center py-6 text-left gap-4 focus-visible:outline-none focus-visible:bg-black/5 rounded-sm pr-[clamp(1rem,3vw,5rem)]"
         data-cursor-hover="link"
       >
-        <span className="font-lora text-cream" style={{ lineHeight: 1.085, fontSize: '1.2vw' }}>{item.question}</span>
+        <span className="font-lora text-cream text-[4.5vw] md:text-[1.2vw]" style={{ lineHeight: 1.085 }}>{item.question}</span>
         <div className="relative w-4 h-4 flex-shrink-0 text-nude">
           <span className="absolute w-full h-px bg-current top-1/2 -translate-y-1/2"></span>
           <span
@@ -109,7 +109,7 @@ const AccordionItem = ({
         </div>
       </button>
       <div ref={contentRef} className="h-0 overflow-hidden">
-        <p className="pb-6 text-nude font-lora pr-[clamp(1rem,3vw,5rem)]" style={{ lineHeight: 1.085, fontSize: '1vw' }}>{item.answer}</p>
+        <p className="pb-6 text-nude font-lora pr-[clamp(1rem,3vw,5rem)] text-[4vw] md:text-[1vw]" style={{ lineHeight: 1.085 }}>{item.answer}</p>
       </div>
     </div>
   );
@@ -201,7 +201,7 @@ const Faq = () => {
           {/* Right Column: FAQ & Contact */}
           <div className="lg:col-span-7">
             <div className="pr-[clamp(1rem,3vw,5rem)]">
-              <h2 className="font-display uppercase text-cream leading-none" style={{ fontSize: '5vw' }}>
+              <h2 className="font-display uppercase text-cream leading-none text-[12vw] md:text-[5vw]">
                 FAQ
               </h2>
             </div>
@@ -217,14 +217,14 @@ const Faq = () => {
             </div>
             
             <div className="mt-16 pr-[clamp(1rem,3vw,5rem)]">
-              <p className="font-lora text-nude" style={{ fontSize: '1.2vw' }}>Не нашли ответ?</p>
+              <p className="font-lora text-nude text-[4.5vw] md:text-[1.2vw]">Не нашли ответ?</p>
               <a
                 href="https://t.me/katso_studio"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block mt-2 font-lora text-nude group rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nude focus-visible:ring-offset-4 focus-visible:ring-offset-surface"
+                className="inline-block mt-2 font-lora text-nude group rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nude focus-visible:ring-offset-4 focus-visible:ring-offset-surface text-[4.5vw] md:text-[1.2vw]"
                 data-cursor-hover="link"
-                style={{ fontSize: '1.2vw', color: '#8FA89A' }}
+                style={{ color: '#8FA89A' }}
               >
                 <span>Напишите нам</span>
                 <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">&nbsp;&rarr;</span>
