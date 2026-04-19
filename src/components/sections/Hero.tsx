@@ -11,13 +11,20 @@ const Hero = () => {
   const contentRef = useRef<HTMLDivElement>(null);
   const maskRectRef = useRef<SVGRectElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const desktopVideoRef = useRef<HTMLVideoElement>(null);
+  const mobileVideoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (videoRef.current) {
+    if (desktopVideoRef.current) {
       // Force play on component mount to fix back-navigation bug
-      videoRef.current.play().catch(error => {
-        console.error("Video autoplay was prevented:", error);
+      desktopVideoRef.current.play().catch(error => {
+        console.error("Desktop video autoplay was prevented:", error);
+      });
+    }
+    if (mobileVideoRef.current) {
+      // Force play on component mount to fix back-navigation bug
+      mobileVideoRef.current.play().catch(error => {
+        console.error("Mobile video autoplay was prevented:", error);
       });
     }
   }, []);
@@ -162,8 +169,11 @@ const Hero = () => {
 
         <div className="h-full w-full" style={{ mask: 'url(#hero-mask)', WebkitMask: 'url(#hero-mask)' }}>
            <div className="relative h-full w-full overflow-hidden">
-             <video ref={videoRef} className="absolute top-0 left-0 w-full h-full object-cover" autoPlay loop muted playsInline poster="https://i.ibb.co/p688qQCw/2026-04-18-03-06-45.jpg">
+             <video ref={desktopVideoRef} className="hidden md:block absolute top-0 left-0 w-full h-full object-cover" autoPlay loop muted playsInline poster="https://i.ibb.co/p688qQCw/2026-04-18-03-06-45.jpg">
                <source src="/video/Hero-video.mp4" type="video/mp4" />
+             </video>
+             <video ref={mobileVideoRef} className="block md:hidden absolute top-0 left-0 w-full h-full object-cover" autoPlay loop muted playsInline poster="https://i.ibb.co/p688qQCw/2026-04-18-03-06-45.jpg">
+               <source src="/video/Hero-video-mobile2.mp4" type="video/mp4" />
              </video>
              <div className="absolute inset-0 bg-black/20"></div>
            </div>
