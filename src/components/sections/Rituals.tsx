@@ -249,15 +249,15 @@ const Rituals = () => {
                 if (index === cards.length - 1) return;
                 
                 gsap.to(card, {
-                    scale: 0.9,
-                    yPercent: -100,
-                    filter: 'blur(8px)',
+                    scale: 0.95,
+                    filter: 'blur(4px)',
+                    opacity: 0.8,
                     ease: 'power1.in',
                     scrollTrigger: {
                         trigger: card,
-                        start: 'top 30%',
+                        start: 'top 25%',
                         end: 'top top',
-                        scrub: 1.5,
+                        scrub: 1,
                         invalidateOnRefresh: true,
                     },
                 });
