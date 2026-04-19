@@ -124,20 +124,31 @@ const Footer = () => {
         <div className="py-16 md:py-24 px-[clamp(1rem,3vw,5rem)]">
           {/* Four-column links */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12 md:gap-x-28">
-            {footerLinks.map((column) => (
-              <div key={column.title}>
-                <h4 className="font-lora text-nude mb-4 uppercase" style={{ fontSize: '1.2vw' }}>{column.title}</h4>
-                <ul>
-                  {column.links.map((link) => (
-                    <li key={link.text} className="mt-2">
-                      <a href={link.href} className="font-lora text-cream hover:text-accent transition-colors duration-200 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" data-cursor-hover="link" style={{ fontSize: '1.2vw' }}>
-                        {link.text}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            {footerLinks.map((column, index) => {
+              const orderClasses = [
+                'order-3 md:order-1', // Навигация
+                'order-4 md:order-2', // Услуги
+                'order-1 md:order-3', // Контакты
+                'order-2 md:order-4', // Соцсети
+              ];
+
+              return (
+                <div key={column.title} className={orderClasses[index]}>
+                  <h4 className="font-lora text-nude mb-4 uppercase text-[4vw] md:text-[1.2vw]">
+                    {column.title}
+                  </h4>
+                  <ul>
+                    {column.links.map((link) => (
+                      <li key={link.text} className="mt-2">
+                        <a href={link.href} className="font-lora text-cream hover:text-accent transition-colors duration-200 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent text-[4vw] md:text-[1.2vw]" data-cursor-hover="link">
+                          {link.text}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
           </div>
 
           {/* Separator */}
@@ -153,7 +164,7 @@ const Footer = () => {
         </div>
         
         <div className="pb-6 px-[clamp(1rem,3vw,5rem)]">
-          <div className="border-t border-cream/10 pt-4 flex justify-between items-center text-nude font-lora" style={{ fontSize: '1.2vw' }}>
+          <div className="border-t border-cream/10 pt-4 flex justify-between items-center text-nude font-lora text-[3.5vw] md:text-[1.2vw]">
               <span>© {new Date().getFullYear()} KATSO Studio. All rights reserved.</span>
           </div>
         </div>
