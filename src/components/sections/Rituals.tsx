@@ -72,7 +72,7 @@ const ritualsData = [
     bgColor: '#9EB89A',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(240, 235, 227, 0.18)',
-    imageUrl: 'https://i.ibb.co/GQSbDRBD/Image-3.png',
+    imageUrl: 'https://i.ibb.co/7NgwB5xq/Image-3.png',
   },
   {
     id: 'makeup',
