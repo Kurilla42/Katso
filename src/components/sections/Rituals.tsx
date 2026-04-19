@@ -211,53 +211,32 @@ const Rituals = () => {
 
     useLayoutEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
-
+    
         const mm = gsap.matchMedia(componentRef.current!);
         
         mm.add({
+            isDesktop: "(min-width: 768px)",
             isReduced: "(prefers-reduced-motion: reduce)"
         }, (context) => {
-            const { isReduced } = context.conditions as { isReduced: boolean };
-            if (isReduced) return;
+            const { isDesktop, isReduced } = context.conditions as { isDesktop: boolean, isReduced: boolean };
+            if (!isDesktop || isReduced) return;
             
             const cards = cardsRef.current.filter(Boolean) as HTMLElement[];
             if (cards.length < 1) return;
-
-            const ritualsEl = componentRef.current;
-            if (!ritualsEl) return;
-            
-            // Animate content inside each card
-            cards.forEach((card) => {
-                const animatedItems = card.querySelectorAll('.ritual-card-headline, .ritual-card-description, .ritual-card-link');
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            gsap.fromTo(animatedItems, 
-                                { y: 40, opacity: 0 },
-                                { y: 0, opacity: 1, ease: EASES.slide, stagger: 0.06, duration: 0.7 }
-                            );
-                            observer.unobserve(card);
-                        }
-                    });
-                }, { threshold: 0.6 });
-                observer.observe(card);
-            });
-
-            // Card disappear animation
-            cards.forEach((card, index) => {
-                // Don't animate the last card away
-                if (index === cards.length - 1) return;
-                
+    
+            // Apply animation to all cards except the last one
+            cards.slice(0, -1).forEach((card) => {
                 gsap.to(card, {
-                    scale: 0.95,
-                    filter: 'blur(4px)',
+                    scale: 0.9,
+                    filter: 'blur(8px)',
+                    yPercent: 5,
                     opacity: 0.8,
                     ease: 'power1.in',
                     scrollTrigger: {
                         trigger: card,
-                        start: 'top 25%',
+                        start: 'top 30%',
                         end: 'top top',
-                        scrub: 1,
+                        scrub: 1.5,
                         invalidateOnRefresh: true,
                     },
                 });
@@ -267,7 +246,7 @@ const Rituals = () => {
                 ScrollTrigger.refresh();
             });
         });
-
+    
         return () => mm.revert();
     }, []);
 
