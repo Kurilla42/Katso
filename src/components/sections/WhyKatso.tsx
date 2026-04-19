@@ -283,7 +283,7 @@ const WhyKatso = () => {
                                         </h3>
                                     </div>
                                     <div className="w-full mt-8">
-                                        <p className="font-lora mb-2 px-6" style={{ fontSize: '3.5vw', color: index === 1 ? colors.cream : colors.nude }}>
+                                        <p className="font-lora mb-2 px-6" style={{ fontSize: '3.5vw', color: colors.cream }}>
                                             наши работы
                                         </p>
                                         <div className="w-full h-px" style={{ backgroundColor: index === 1 ? colors.cream : colors.cream }} />
