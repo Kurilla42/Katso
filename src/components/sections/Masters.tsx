@@ -64,6 +64,9 @@ const MobileAnimatedImages = ({ images, isActive }: { images: string[], isActive
 
         return () => {
             ctx.revert();
+            if (timelineRef.current) {
+                timelineRef.current.kill();
+            }
         };
 
     }, [isActive, images]);
@@ -280,7 +283,7 @@ const Masters = () => {
             paddingRight: 'clamp(24px, 4vw, 80px)',
         }}
       >
-        <p className="caption">Команда</p>
+        <p className="uppercase text-nude text-[4.5vw] md:text-caption">Команда</p>
       </div>
 
       <div className="masters-list">
@@ -297,7 +300,8 @@ const Masters = () => {
               />
               <div
                 ref={el => accordionContentsRef.current[index] = el}
-                className="h-0 overflow-hidden md:hidden bg-[#2D2D2D]"
+                className="h-0 overflow-hidden md:hidden"
+                style={{ backgroundColor: '#2D2D2D' }}
               >
                 <div className="p-4">
                   {master.animationImages && master.animationImages.length > 0 ? (
