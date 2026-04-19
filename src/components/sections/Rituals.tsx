@@ -113,7 +113,17 @@ const RitualCard = forwardRef<HTMLElement, RitualCardProps>(
 
     return (
       <article className="ritual-card" style={style} ref={ref} data-cursor={cursorTheme}>
-        <div className="flex h-full w-full">
+        <div
+            className="absolute inset-0 w-full h-full pointer-events-none"
+            style={{
+                backgroundImage: 'url(https://i.ibb.co/zWNnhBMd/concrete-wall-2-1.png)',
+                backgroundRepeat: 'repeat',
+                opacity: 0.7,
+                mixBlendMode: 'overlay',
+            }}
+        ></div>
+        <div className="paper-texture"></div>
+        <div className="flex h-full w-full relative">
             {/* Left Content Area (Mobile) */}
             <div className="w-1/2 flex flex-col justify-between p-4 md:hidden">
                 <h3
