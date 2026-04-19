@@ -53,36 +53,40 @@ const Footer = () => {
     const mapWrapperRef = useRef<HTMLDivElement>(null);
 
     useLayoutEffect(() => {
-        if (!wordMarkRef.current || !containerRef.current || !mapWrapperRef.current) return;
+        const mm = gsap.matchMedia();
 
-        const el = wordMarkRef.current;
-        const container = containerRef.current;
-        const mapWrapper = mapWrapperRef.current;
+        mm.add("(min-width: 768px)", () => {
+            if (!wordMarkRef.current || !containerRef.current || !mapWrapperRef.current) return;
 
-        const fitTextAndMap = () => {
-            const containerWidth = container.offsetWidth / 2;
-            const currentFontSize = parseFloat(window.getComputedStyle(el).fontSize);
-            if (el.scrollWidth === 0) return;
-            const scale = containerWidth / el.scrollWidth;
-            const newSize = currentFontSize * scale * 0.95; // 0.95 for a bit of margin
-            gsap.set(el, { fontSize: newSize });
+            const el = wordMarkRef.current;
+            const container = containerRef.current;
+            const mapWrapper = mapWrapperRef.current;
 
-            const textHeight = el.getBoundingClientRect().height;
-            if (textHeight > 0) {
-                gsap.set(mapWrapper, { height: textHeight });
+            const fitTextAndMap = () => {
+                const containerWidth = container.offsetWidth / 2;
+                const currentFontSize = parseFloat(window.getComputedStyle(el).fontSize);
+                if (el.scrollWidth === 0) return;
+                const scale = containerWidth / el.scrollWidth;
+                const newSize = currentFontSize * scale * 0.95; // 0.95 for a bit of margin
+                gsap.set(el, { fontSize: newSize });
+
+                const textHeight = el.getBoundingClientRect().height;
+                if (textHeight > 0) {
+                    gsap.set(mapWrapper, { height: textHeight });
+                }
             }
-        }
 
-        const timer = setTimeout(() => {
-            fitTextAndMap();
-            window.addEventListener('resize', fitTextAndMap);
-        }, 150);
+            const timer = setTimeout(() => {
+                fitTextAndMap();
+                window.addEventListener('resize', fitTextAndMap);
+            }, 150);
 
 
-        return () => {
-            clearTimeout(timer);
-            window.removeEventListener('resize', fitTextAndMap);
-        }
+            return () => {
+                clearTimeout(timer);
+                window.removeEventListener('resize', fitTextAndMap);
+            }
+        });
 
     }, []);
 
@@ -105,20 +109,26 @@ const Footer = () => {
         ></div>
         <div className="paper-texture"></div>
         <div className="grid-overlay"></div>
-        <div ref={containerRef}>
+        
+        {/* Desktop-only Wordmark and Map */}
+        <div ref={containerRef} className="hidden md:block">
           <div className="relative h-[clamp(200px,25vw,380px)] flex items-end overflow-hidden px-[clamp(1rem,3vw,5rem)]">
-            {/* Left: Giant Wordmark */}
             <div className="absolute left-0 bottom-0 z-0 pl-[clamp(1rem,3vw,5rem)]">
               <h2 ref={wordMarkRef} className="font-display text-cream/10 leading-none select-none whitespace-nowrap">
                   KATSO
               </h2>
             </div>
-
-            {/* Right: Map */}
             <div ref={mapWrapperRef} className="relative w-full md:w-1/2 lg:w-5/12 ml-auto rounded-md overflow-hidden z-10">
                 <Map />
             </div>
           </div>
+        </div>
+
+        {/* Mobile-only Wordmark */}
+        <div className="md:hidden text-center overflow-hidden px-[clamp(1rem,3vw,5rem)] pt-16">
+            <h2 className="font-display text-cream/10 leading-none select-none" style={{fontSize: '30vw'}}>
+                KATSO
+            </h2>
         </div>
         
         <div className="py-16 md:py-24 px-[clamp(1rem,3vw,5rem)]">
@@ -156,11 +166,16 @@ const Footer = () => {
 
           {/* Bottom CTA */}
           <a href="https://wa.me/79120193362" target="_blank" rel="noopener noreferrer" className="group block text-center py-8 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" data-cursor-hover="link">
-              <span className="font-display tracking-display text-cream uppercase group-hover:text-accent transition-colors duration-200" style={{ fontSize: 'calc(3.5vw * 0.7)' }}>
+              <span className="font-display tracking-display text-cream uppercase group-hover:text-accent transition-colors duration-200 text-[7vw] md:text-[2.45vw]">
                   Записаться на ритуал
                   <span className="inline-block transition-transform duration-400 group-hover:translate-x-2 group-hover:-translate-y-2">&nbsp;↗</span>
               </span>
           </a>
+
+          {/* Mobile-only Map */}
+          <div className="md:hidden relative w-full h-[20vh] rounded-md overflow-hidden z-10 mt-16">
+            <Map />
+          </div>
         </div>
         
         <div className="pb-6 px-[clamp(1rem,3vw,5rem)]">
