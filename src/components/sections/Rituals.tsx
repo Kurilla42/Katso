@@ -232,12 +232,11 @@ const Rituals = () => {
     
             // Apply animation to all cards.
             cards.forEach((card) => {
-                const isMobile = window.innerWidth < 1024;
                 gsap.to(card, {
-                    scale: isMobile ? 1 : 0.9,
-                    filter: isMobile ? 'none' : 'blur(8px)',
+                    scale: 0.9,
+                    filter: 'blur(8px)',
                     yPercent: -100,
-                    opacity: isMobile ? 1 : 0.8,
+                    opacity: 0.8,
                     ease: 'none',
                     scrollTrigger: {
                         trigger: card,
