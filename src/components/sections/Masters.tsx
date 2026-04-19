@@ -41,6 +41,56 @@ const mastersData = [
   },
 ];
 
+// Helper component for mobile animation
+const MobileAnimatedImages = ({ images, isActive }: { images: string[], isActive: boolean }) => {
+    const wrapperRef = useRef<HTMLDivElement>(null);
+    const timelineRef = useRef<gsap.core.Timeline | null>(null);
+
+    useEffect(() => {
+        if (!isActive) return;
+
+        const animatedElements = wrapperRef.current?.querySelectorAll<HTMLDivElement>('.animated-image-instance-mobile');
+        if (!animatedElements || animatedElements.length < 3) return;
+
+        const ctx = gsap.context(() => {
+            gsap.set(animatedElements, { y: '100%' });
+            gsap.set(animatedElements[0], { y: '0%' });
+
+            timelineRef.current = gsap.timeline({ delay: 1 })
+              .to(animatedElements[1], { y: '0%', duration: 0.5, ease: EASES.slide })
+              .to(animatedElements[2], { y: '0%', duration: 0.5, ease: EASES.slide }, '+=0.5');
+
+        }, wrapperRef);
+
+        return () => {
+            ctx.revert();
+        };
+
+    }, [isActive, images]);
+
+    return (
+        <div ref={wrapperRef} className="relative aspect-[4/5] w-full overflow-hidden rounded-sm">
+            {images.map((src, index) => (
+                <div
+                    key={src}
+                    className="animated-image-instance-mobile absolute inset-0 w-full h-full"
+                    style={{ zIndex: index + 1 }}
+                >
+                    <Image
+                        src={src}
+                        alt="Photo of a master"
+                        fill
+                        sizes="(max-width: 767px) 100vw, 0vw"
+                        className="object-cover"
+                        priority={index === 0}
+                    />
+                </div>
+            ))}
+        </div>
+    );
+};
+
+
 const MasterRow = React.forwardRef<
   HTMLButtonElement,
   {
@@ -74,10 +124,10 @@ const MasterRow = React.forwardRef<
           'flex flex-col md:flex-row md:items-baseline md:gap-6'
         )}
       >
-        <h3 className="font-display text-h3 uppercase text-cream group-hover:text-background transition-colors duration-300">
+        <h3 className="font-display text-[7vw] md:text-h3 uppercase text-cream group-hover:text-background transition-colors duration-300">
           {master.name}
         </h3>
-        <p className={cn('font-lora text-nude group-hover:text-background transition-colors duration-300')} style={{ fontSize: '1.2vw' }}>
+        <p className={cn('font-lora text-nude group-hover:text-background transition-colors duration-300 text-[4.5vw] md:text-body-lg')}>
           {master.role}
         </p>
       </div>
@@ -247,10 +297,12 @@ const Masters = () => {
               />
               <div
                 ref={el => accordionContentsRef.current[index] = el}
-                className="h-0 overflow-hidden md:hidden bg-cream"
+                className="h-0 overflow-hidden md:hidden bg-[#2D2D2D]"
               >
                 <div className="p-4">
-                  {placeholder && (
+                  {master.animationImages && master.animationImages.length > 0 ? (
+                      <MobileAnimatedImages images={master.animationImages} isActive={activeIndex === index} />
+                  ) : placeholder ? (
                     <div className="relative aspect-[4/5] w-full">
                        <Image
                           src={placeholder.imageUrl}
@@ -261,7 +313,7 @@ const Masters = () => {
                           data-ai-hint={placeholder.imageHint}
                        />
                     </div>
-                  )}
+                  ) : null}
                 </div>
               </div>
             </div>
