@@ -179,28 +179,6 @@ const Hero = () => {
            </div>
         </div>
 
-        {/* Gradient Overlay */}
-        <div
-            className="absolute inset-x-0 top-0 bottom-[-2px] w-full z-[5] pointer-events-none"
-            style={{
-            maskImage: 'linear-gradient(to top, black 5%, transparent 20%)',
-            WebkitMaskImage: 'linear-gradient(to top, black 5%, transparent 20%)',
-            }}
-        >
-            <div className="relative w-full h-full" style={{ backgroundColor: '#2D2D2D' }}>
-                <div
-                    className="absolute inset-0 w-full h-full"
-                    style={{
-                        backgroundImage: 'url(https://i.ibb.co/zWNnhBMd/concrete-wall-2-1.png)',
-                        backgroundRepeat: 'repeat',
-                        opacity: 0.7,
-                        mixBlendMode: 'overlay',
-                    }}>
-                </div>
-                <div className="paper-texture"></div>
-            </div>
-        </div>
-
         <div ref={contentRef} className="absolute inset-0 z-20 opacity-0 flex items-end justify-start">
              <div className="text-left" style={{ paddingBottom: '15vh', paddingLeft: 'clamp(1rem, 3vw, 5rem)' }}>
                 <h1 className="font-display leading-none text-[14vw] md:text-[7vw]" style={{ color: '#F0EBE3', letterSpacing: '-0.01em', textShadow: '0 0 40px rgba(10,9,8,0.9), 0 0 80px rgba(10,9,8,0.7), 0 2px 4px rgba(10,9,8,1)' }}>
