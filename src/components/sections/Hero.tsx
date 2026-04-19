@@ -226,7 +226,7 @@ const Hero = () => {
               <video ref={desktopVideoRef} className="hidden md:block absolute top-0 left-0 w-full h-full object-cover" autoPlay loop muted playsInline poster="https://i.ibb.co/p688qQCw/2026-04-18-03-06-45.jpg">
                 <source src="/video/Hero-video.mp4" type="video/mp4" />
               </video>
-              <video ref={mobileVideoRef} className="block md:hidden absolute top-0 left-0 w-full h-full object-cover" autoPlay loop muted playsInline poster="https://i.ibb.co/p688qQCw/2026-04-18-03-06-45.jpg">
+              <video ref={mobileVideoRef} className="block md:hidden absolute top-0 left-0 w-full h-full object-cover" autoPlay loop muted playsInline poster="https://i.ibb.co/Qvg2sdhh/2026-04-19-10-32-10.png">
                 <source src="/video/Hero-video-mobile2.mp4" type="video/mp4" />
               </video>
               <div className="absolute inset-0 bg-black/20"></div>
