@@ -13,7 +13,7 @@ const ritualsData = [
     title: 'МАНИКЮР И НАРАЩИВАНИЕ НОГТЕЙ',
     description:
       'Идеальный маникюр и педикюр, от лечебного до дизайнерского. Безопасность, стерильность и внимание к деталям.',
-    bgColor: '#8FA89A',
+    bgColor: '#9EB89A',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(240, 235, 227, 0.18)',
     imageUrl: 'https://i.ibb.co/tpVftN6p/Image-5.png',
@@ -23,7 +23,7 @@ const ritualsData = [
     title: 'БРОВИ И РЕСНИЦЫ',
     description:
       'Коррекция и окрашивание бровей и ресниц для создания выразительного взгляда, который подчеркнет вашу естественную красоту.',
-    bgColor: '#8FA89A',
+    bgColor: '#9EB89A',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(240, 235, 227, 0.18)',
     imageUrl: 'https://i.ibb.co/cSx8YPZn/Image-2.png',
@@ -33,7 +33,7 @@ const ritualsData = [
     title: 'СТРИЖКИ / УКЛАДКИ / УХОД ЗА ДЛИНОЙ',
     description:
       'От классических форм до смелых креативных решений, а также восстанавливающие уходы, которые вернут волосам силу и блеск.',
-    bgColor: '#8FA89A',
+    bgColor: '#9EB89A',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(240, 235, 227, 0.18)',
     imageUrl: 'https://i.ibb.co/5hd4Jyj2/Image-6.png',
@@ -43,7 +43,7 @@ const ritualsData = [
     title: 'ОКРАШИВАНИЯ / ВЫПРЯМЛЕНИЕ',
     description:
       'Сложные техники окрашивания, безопасное выпрямление и процедуры для глубокого восстановления структуры волос.',
-    bgColor: '#8FA89A',
+    bgColor: '#9EB89A',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(240, 235, 227, 0.18)',
     imageUrl: 'https://i.ibb.co/TDpZg3MN/Image.png',
@@ -53,7 +53,7 @@ const ritualsData = [
     title: 'КЕРАТИН / БОТОКС',
     description:
       'Профессиональная диагностика и индивидуальные программы лечения и ухода для решения проблем кожи головы и стимуляции роста волос.',
-    bgColor: '#8FA89A',
+    bgColor: '#9EB89A',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(240, 235, 227, 0.18)',
     imageUrl: 'https://i.ibb.co/rKNpKH4h/Image.png',
@@ -63,7 +63,7 @@ const ritualsData = [
     title: 'УХОД ЗА КОЖЕЙ ГОЛОВЫ',
     description:
       'Дневной, вечерний или для особого случая. Наши визажисты создадут образ, который подчеркнет вашу уникальность.',
-    bgColor: '#8FA89A',
+    bgColor: '#9EB89A',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(240, 235, 227, 0.18)',
     imageUrl: 'https://i.ibb.co/GQSbDRBD/Image-3.png',
@@ -73,7 +73,7 @@ const ritualsData = [
     title: 'МАКИЯЖ / ОБРАЗ НЕВЕСТЫ',
     description:
       'Создадим для вас неповторимый образ в самый важный день. Учтем все пожелания и детали, чтобы вы чувствовали себя неотразимой.',
-    bgColor: '#8FA89A',
+    bgColor: '#9EB89A',
     textColor: '#2D2D2D',
     numeralColor: 'rgba(240, 235, 227, 0.18)',
     imageUrl: 'https://i.ibb.co/4ZFJFKMx/Image-1.png',

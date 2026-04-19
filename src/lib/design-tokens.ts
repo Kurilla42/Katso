@@ -3,8 +3,8 @@ export const colors = {
   surface: '#3E3A34',
   accent: '#C49850',
   cream: '#F0EBE3',
-  nude: '#8FA89A',
-  walnut: '#8FA89A',
+  nude: '#9EB89A',
+  walnut: '#9EB89A',
 };
 
 export const typography = {

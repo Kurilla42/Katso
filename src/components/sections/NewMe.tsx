@@ -136,7 +136,7 @@ const NewMe = () => {
                     ref={h2TextRef}
                     className="text-[5vw] md:text-[3vw] md:text-right leading-none font-display uppercase whitespace-pre-line"
                 >
-                    {'Задача\n'}<span style={{color: '#8FA89A'}}>KA<span ref={tRef}>T</span>SO:</span>
+                    {'Задача\n'}<span style={{color: '#9EB89A'}}>KA<span ref={tRef}>T</span>SO:</span>
                 </h2>
                 
                 <div className="text-center">
