@@ -108,7 +108,7 @@ const Footer = () => {
             }}
         ></div>
         <div className="paper-texture"></div>
-        <div className="grid-overlay"></div>
+        <div className="grid-overlay hidden lg:block"></div>
         
         {/* Desktop-only Wordmark and Map */}
         <div ref={containerRef} className="hidden lg:block">

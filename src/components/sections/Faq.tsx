@@ -184,7 +184,9 @@ const Faq = () => {
         mm.add("(max-width: 1023px)", () => {
             const topRow = topRowRef.current;
             const bottomRow = bottomRowRef.current;
-            if (!topRow || !bottomRow) return;
+            if (!topRow || !bottomRow || !sectionRef.current) return;
+
+            const animationTrigger = sectionRef.current;
 
             // Set initial position for bottom row for parallax effect
             gsap.set(bottomRow, { xPercent: -50 });
@@ -193,9 +195,9 @@ const Faq = () => {
                 xPercent: -50,
                 ease: 'none',
                 scrollTrigger: {
-                    trigger: triggerElement,
-                    start: 'top top',
-                    end: '+=100%',
+                    trigger: animationTrigger,
+                    start: 'top bottom',
+                    end: 'bottom top',
                     scrub: true,
                 },
             });
@@ -204,9 +206,9 @@ const Faq = () => {
                 xPercent: 0,
                 ease: 'none',
                 scrollTrigger: {
-                    trigger: triggerElement,
-                    start: 'top top',
-                    end: '+=100%',
+                    trigger: animationTrigger,
+                    start: 'top bottom',
+                    end: 'bottom top',
                     scrub: true,
                 },
             });
@@ -239,7 +241,7 @@ const Faq = () => {
         }}
       ></div>
       <div className="paper-texture"></div>
-      <div className="grid-overlay"></div>
+      <div className="grid-overlay hidden lg:block"></div>
       <div className="absolute inset-y-0 left-[1px] w-px bg-grid hidden lg:block"></div>
 
       {/* Desktop-only: Left Column Image Gallery */}

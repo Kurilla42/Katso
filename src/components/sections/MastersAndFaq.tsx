@@ -8,7 +8,7 @@ import Faq from './Faq';
 
 const MastersAndFaq = () => {
     const sectionRef = useRef<HTMLDivElement>(null);
-    const faqWrapperRef = useRef<HTMLDivElement>(null); // Ref for the FAQ wrapper div
+    const faqWrapperRef = useRef<HTMLDivElement>(null);
 
     useLayoutEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
@@ -43,46 +43,19 @@ const MastersAndFaq = () => {
                     ease: 'none',
                 });
             });
-
-            mm.add("(max-width: 1023px)", () => {
-                // Mobile animation: slide from bottom
-                gsap.set(faqWrapperEl, { yPercent: 100, pointerEvents: 'none' });
-
-                const tl = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: sectionEl,
-                        start: 'top top',
-                        end: '+=100%',
-                        scrub: true,
-                        pin: true,
-                        invalidateOnRefresh: true,
-                    },
-                });
-
-                tl.to(faqWrapperEl, {
-                    yPercent: 0,
-                    ease: 'none',
-                    onComplete: () => {
-                        gsap.set(faqWrapperEl, { pointerEvents: 'auto' });
-                    },
-                    onReverseComplete: () => {
-                        gsap.set(faqWrapperEl, { pointerEvents: 'none' });
-                    }
-                });
-            });
         }, sectionRef);
 
         return () => ctx.revert();
     }, []);
 
     return (
-        <div ref={sectionRef} className="relative h-screen overflow-hidden">
+        <div ref={sectionRef} className="lg:relative lg:h-screen lg:overflow-hidden">
             {/* Base layer: Masters section, always interactive. */}
-            <div className="absolute inset-0 w-full h-full" style={{ transform: 'translateZ(0)' }}>
+            <div className="lg:absolute lg:inset-0 lg:w-full lg:h-full" style={{ transform: 'translateZ(0)' }}>
                 <Masters />
             </div>
             {/* Overlay layer: FAQ section that slides in. */}
-            <div ref={faqWrapperRef} className="absolute inset-0 w-full h-full">
+            <div ref={faqWrapperRef} className="lg:absolute lg:inset-0 lg:w-full lg:h-full">
                 <Faq />
             </div>
         </div>
