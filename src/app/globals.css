@@ -102,7 +102,7 @@
   --stack-peek: clamp(52px, 6vw, 220px);
   --card-gap: clamp(16px, 1.2vw, 28px);
 
-  background-color: #2D2D2D;
+  background-color: #B8AFA4;
 }
 
 /* Mobile-specific override */
@@ -190,11 +190,14 @@
   white-space: nowrap;
 }
 
-.yandex-map-container ymaps {
-  filter: invert(100%) hue-rotate(180deg);
-}
-
-.yandex-map-container [class*="placemark"],
-.yandex-map-container [class*="copyright"] {
-  filter: invert(100%) hue-rotate(180deg);
+.yandex-map-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  z-index: 1;
 }
